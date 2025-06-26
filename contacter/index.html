@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - ENELIV</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 4rem 1rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #1e3c72;
+      margin-bottom: 2rem;
+    }
+
+    .map-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .france-map {
+      position: relative;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .france-map img {
+      width: 100%;
+      transition: filter 0.3s ease;
+      filter: grayscale(1) blur(2px);
+    }
+
+    .france-map:hover img {
+      filter: grayscale(1) blur(2px);
+    }
+
+    .region-label {
+      position: absolute;
+      background: white;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #1e3c72;
+      font-weight: bold;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    .region-label.active {
+      display: block;
+      z-index: 10;
+    }
+
+    /* Position des régions approximative */
+    [data-region="idf"] { top: 22%; left: 46%; }
+    [data-region="nord-est"] { top: 20%; right: 8%; }
+    [data-region="nord-ouest"] { top: 25%; left: 8%; }
+    [data-region="sud-ouest"] { bottom: 10%; left: 12%; }
+    [data-region="sud-est"] { bottom: 10%; right: 8%; }
+
+    /* Ajoute un curseur pour simuler les régions sur la carte */
+    .region-hotspot {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .region-hotspot:hover ~ img {
+      filter: grayscale(1) blur(2px);
+    }
+
+    .blur {
+      filter: grayscale(1) blur(2px);
+    }
+  </style>
+</head>
+<body>
+
+  <header>ENELIV - Contact Régional</header>
+
+  <section class="section">
+    <h2 class="section-title">Demander un devis par région</h2>
+    <div class="map-contact">
+      <div class="france-map">
+        <img src="assets/map-france.png" alt="Carte des régions ENELIV" id="franceImage" />
+
+        <div class="region-hotspot" data-region="idf" style="top:22%; left:46%;"></div>
+        <div class="region-hotspot" data-region="nord-est" style="top:20%; left:68%;"></div>
+        <div class="region-hotspot" data-region="nord-ouest" style="top:25%; left:10%;"></div>
+        <div class="region-hotspot" data-region="sud-ouest" style="bottom:10%; left:15%;"></div>
+        <div class="region-hotspot" data-region="sud-est" style="bottom:10%; right:10%;"></div>
+
+        <div class="region-label" data-region="idf">Île-de-France<br><strong>idf@eneliv.fr</strong></div>
+        <div class="region-label" data-region="nord-est">Nord-Est<br><strong>nord-est@eneliv.fr</strong></div>
+        <div class="region-label" data-region="nord-ouest">Nord-Ouest<br><strong>nord-ouest@eneliv.fr</strong></div>
+        <div class="region-label" data-region="sud-ouest">Sud-Ouest<br><strong>sud-ouest@eneliv.fr</strong></div>
+        <div class="region-label" data-region="sud-est">Sud-Est<br><strong>sud-est@eneliv.fr</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const hotspots = document.querySelectorAll('.region-hotspot');
+    const labels = document.querySelectorAll('.region-label');
+    const img = document.getElementById('franceImage');
+
+    hotspots.forEach(hotspot => {
+      hotspot.addEventListener('mouseenter', () => {
+        const region = hotspot.dataset.region;
+        labels.forEach(label => {
+          label.classList.toggle('active', label.dataset.region === region);
+        });
+        img.classList.add('blur');
+      });
+
+      hotspot.addEventListener('mouseleave', () => {
+        labels.forEach(label => label.classList.remove('active'));
+        img.classList.remove('blur');
+      });
+    });
+  </script>
+
+</body>
+</html>
