@@ -12,7 +12,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             line-height: 3;
             color: #333;
         }
@@ -94,7 +94,7 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   cursor: pointer;
   font-size: 14px;
   margin-left: 10px;
@@ -107,7 +107,7 @@
 /* Style des sous-menus cachés */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  margin-top: 18px;
   left: 0;
   background-color: #0B3041;
   padding: 0.5rem 0;
@@ -116,25 +116,30 @@
   display: none;
   min-width: 220px;
   z-index: 999;
-  max-width: 250px;
+  max-width: 420px;
   
 }
 
 .dropdown-menu li {
   list-style: none;
+  margin-bottom: -23px;
 }
 
 .dropdown-menu a {
   display: block;
-  padding: 0.8rem 1.2rem;
+  padding: 0.7rem 1.1rem;
   color: white;
   font-weight: 500;
   transition: background 0.3s;
-  font-family: montdserrat, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   width: max-content;
   font-size: 16px; ;
+  margin-bottom: 12px;
 }
+
+
+
 
 
 
@@ -240,6 +245,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #0B3041;
         }
 
         .hero-slide.active {
@@ -247,19 +253,19 @@
         }
 
       .hero-slide:nth-child(1) {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./home/assets/image1.png');
+    background:  url('./home/assets/image1.png');
     background-size: cover;
     background-position: center;
 }
 
 .hero-slide:nth-child(2) {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./home/assets/image2.png');
+    background:  url('./home/assets/eneliv3.png');
     background-size: cover;
     background-position: center;
 }
 
 .hero-slide:nth-child(3) {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./home/assets/image3.png');
+    background:  url('./home/assets/image3.png');
     background-size: cover;
     background-position: center;
 }
@@ -374,34 +380,33 @@
   }
 }
 
-.header.scrolled {
-    background: linear-gradient(135deg, #395445, #1c8750, #088544);
-    backdrop-filter: blur(10px);
-}
+
 
 
 
         .hero-content {
             text-align: center;
-            color: white;
+            color: #0B3041;
             max-width: 800px;
             padding: 0 2rem;
             z-index: 2;
+            
         }
 
         .hero-title {
-            font-size: 1.5rem;
+            font-size: 2.1rem;
             font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease-out;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: -1rem;
+
+
         }
 
         .hero-subtitle {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            animation: fadeInUp 1s ease-out 0.3s both;
+            font-size: 1.4rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: -2.5rem;
+
         }
 
         .hero-nav {
@@ -683,7 +688,7 @@
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
-                        <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE <br>ÉNERGÉTIQUE </a></li>
+                        <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
                         <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
                         <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
                         <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
