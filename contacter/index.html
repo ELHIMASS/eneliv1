@@ -36,111 +36,115 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     .france-map {
       position: relative;
-      max-width: 700px;
-      width: 100%;
+      width: 700px;
+      max-width: 90%;
     }
 
     .france-map img {
       width: 100%;
-      transition: filter 0.3s ease;
-      filter: grayscale(1) blur(2px);
-    }
-
-    .france-map:hover img {
-      filter: grayscale(1) blur(2px);
-    }
-
-    .region-label {
-      position: absolute;
-      background: white;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      color: #1e3c72;
-      font-weight: bold;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      display: none;
-    }
-
-    .region-label.active {
       display: block;
-      z-index: 10;
     }
 
-    /* Position des régions approximative */
-    [data-region="idf"] { top: 22%; left: 46%; }
-    [data-region="nord-est"] { top: 20%; right: 8%; }
-    [data-region="nord-ouest"] { top: 25%; left: 8%; }
-    [data-region="sud-ouest"] { bottom: 10%; left: 12%; }
-    [data-region="sud-est"] { bottom: 10%; right: 8%; }
+    .map-colored {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
 
-    /* Ajoute un curseur pour simuler les régions sur la carte */
+    .map-blurred {
+      filter: grayscale(1) blur(2px);
+      position: relative;
+      z-index: 1;
+    }
+
     .region-hotspot {
       position: absolute;
       width: 80px;
       height: 80px;
       cursor: pointer;
-      z-index: 2;
+      z-index: 3;
     }
 
-    .region-hotspot:hover ~ img {
-      filter: grayscale(1) blur(2px);
+    .region-label {
+      position: absolute;
+      background: white;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      color: #1e3c72;
+      font-weight: bold;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      display: none;
+      z-index: 5;
     }
 
-    .blur {
-      filter: grayscale(1) blur(2px);
+    .region-label.active {
+      display: block;
     }
+
+    /* Position approximative à ajuster selon ta carte */
+    [data-region="idf"] { top: 22%; left: 46%; }
+    [data-region="nord-est"] { top: 20%; left: 68%; }
+    [data-region="nord-ouest"] { top: 25%; left: 10%; }
+    [data-region="sud-ouest"] { bottom: 10%; left: 15%; }
+    [data-region="sud-est"] { bottom: 10%; right: 10%; }
   </style>
 </head>
 <body>
 
-  <header>ENELIV - Contact Régional</header>
+<header>ENELIV - Contact Régional</header>
 
-  <section class="section">
-    <h2 class="section-title">Demander un devis par région</h2>
-    <div class="map-contact">
-      <div class="france-map">
-        <img src="assets/map-france.png" alt="Carte des régions ENELIV" id="franceImage" />
+<section class="section">
+  <h2 class="section-title">Demander un devis par région</h2>
+  <div class="map-contact">
+    <div class="france-map">
+      <img src="./../home/assets/france-map.png" alt="Carte grise floutée" class="map-blurred" />
+      <img src="./../home/assets/france-map.png" alt="Carte colorée" class="map-colored" id="coloredMap" />
 
-        <div class="region-hotspot" data-region="idf" style="top:22%; left:46%;"></div>
-        <div class="region-hotspot" data-region="nord-est" style="top:20%; left:68%;"></div>
-        <div class="region-hotspot" data-region="nord-ouest" style="top:25%; left:10%;"></div>
-        <div class="region-hotspot" data-region="sud-ouest" style="bottom:10%; left:15%;"></div>
-        <div class="region-hotspot" data-region="sud-est" style="bottom:10%; right:10%;"></div>
+      <div class="region-hotspot" data-region="idf" style="top:22%; left:46%;"></div>
+      <div class="region-hotspot" data-region="nord-est" style="top:20%; left:68%;"></div>
+      <div class="region-hotspot" data-region="nord-ouest" style="top:25%; left:10%;"></div>
+      <div class="region-hotspot" data-region="sud-ouest" style="bottom:10%; left:15%;"></div>
+      <div class="region-hotspot" data-region="sud-est" style="bottom:10%; right:10%;"></div>
 
-        <div class="region-label" data-region="idf">Île-de-France<br><strong>idf@eneliv.fr</strong></div>
-        <div class="region-label" data-region="nord-est">Nord-Est<br><strong>nord-est@eneliv.fr</strong></div>
-        <div class="region-label" data-region="nord-ouest">Nord-Ouest<br><strong>nord-ouest@eneliv.fr</strong></div>
-        <div class="region-label" data-region="sud-ouest">Sud-Ouest<br><strong>sud-ouest@eneliv.fr</strong></div>
-        <div class="region-label" data-region="sud-est">Sud-Est<br><strong>sud-est@eneliv.fr</strong></div>
-      </div>
+      <div class="region-label" data-region="idf">Île-de-France<br><strong>idf@eneliv.fr</strong></div>
+      <div class="region-label" data-region="nord-est">Nord-Est<br><strong>nord-est@eneliv.fr</strong></div>
+      <div class="region-label" data-region="nord-ouest">Nord-Ouest<br><strong>nord-ouest@eneliv.fr</strong></div>
+      <div class="region-label" data-region="sud-ouest">Sud-Ouest<br><strong>sud-ouest@eneliv.fr</strong></div>
+      <div class="region-label" data-region="sud-est">Sud-Est<br><strong>sud-est@eneliv.fr</strong></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    const hotspots = document.querySelectorAll('.region-hotspot');
-    const labels = document.querySelectorAll('.region-label');
-    const img = document.getElementById('franceImage');
+<script>
+  const hotspots = document.querySelectorAll('.region-hotspot');
+  const labels = document.querySelectorAll('.region-label');
+  const coloredMap = document.getElementById('coloredMap');
 
-    hotspots.forEach(hotspot => {
-      hotspot.addEventListener('mouseenter', () => {
-        const region = hotspot.dataset.region;
-        labels.forEach(label => {
-          label.classList.toggle('active', label.dataset.region === region);
-        });
-        img.classList.add('blur');
+  hotspots.forEach(hotspot => {
+    hotspot.addEventListener('mouseenter', () => {
+      const region = hotspot.dataset.region;
+      labels.forEach(label => {
+        label.classList.toggle('active', label.dataset.region === region);
       });
-
-      hotspot.addEventListener('mouseleave', () => {
-        labels.forEach(label => label.classList.remove('active'));
-        img.classList.remove('blur');
-      });
+      coloredMap.style.opacity = '1';
     });
-  </script>
+
+    hotspot.addEventListener('mouseleave', () => {
+      labels.forEach(label => label.classList.remove('active'));
+      coloredMap.style.opacity = '0';
+    });
+  });
+</script>
 
 </body>
 </html>

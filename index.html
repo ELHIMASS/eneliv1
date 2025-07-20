@@ -13,13 +13,13 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+            line-height: 3;
             color: #333;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(135deg, #2c5364,#0f2027, #203a43);
+            background-color: #0B3041;
             color: white;
             padding: 1rem 0;
             position: fixed;
@@ -46,7 +46,7 @@
         }
 
         .logo img {
-            height: 50px;
+            height: 40px;
             width: auto;
             max-width: 200px;
             object-fit: contain;
@@ -73,21 +73,76 @@
         }
 
         .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  
+}
 
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+.nav-menu :hover {
+    cursor: pointer;
+    color: #1c3a48;
 
-        .nav-menu a:hover {
-            color: #00ff88;
-        }
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: Montserrat, sans-serif;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+
+}
+
+
+
+
+/* Style des sous-menus cachés */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #0B3041;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: none;
+  min-width: 220px;
+  z-index: 999;
+  max-width: 250px;
+  
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.8rem 1.2rem;
+  color: white;
+  font-weight: 500;
+  transition: background 0.3s;
+  font-family: montdserrat, sans-serif;
+  font-weight: bold;
+  width: max-content;
+  font-size: 12px; ;
+}
+
+
+
+/* Afficher menu actif via JavaScript */
+.dropdown-menu.show {
+  display: block;
+}
+
 
         /* Burger Menu */
         .burger-menu {
@@ -160,7 +215,7 @@
 
         /* Hero Section with Slider */
         .hero {
-            height: 100vh;
+            height: 60vh;
             position: relative;
             overflow: hidden;
             margin-top: 80px;
@@ -335,7 +390,7 @@
         }
 
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -343,7 +398,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: 1rem;
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
             animation: fadeInUp 1s ease-out 0.3s both;
@@ -607,18 +662,41 @@
         <div class="nav-container">
             <div class="logo">
                 <!-- Remplacez le src par le chemin vers votre logo -->
-                <img src="./home/assets/ENELIVG.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <img src="./../Eneliv Assets/logoblanc.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <!-- Placeholder si le logo ne charge pas -->
                 <div class="logo-placeholder" style="display: none;"></div>
             </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#accueil">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="#services">Vos besoins</a></li>
-                    <li><a href="#expertise">Notre expertise</a></li>
-                    <li><a href="./contacter/index.html">Contact</a></li>
-                    <li><a href="#actualite">Actualités</a></li>
-                </ul>
+
+                    <li class="dropdown" onclick="toggleDropdown('besoinsDropdown')">
+                        <a href="javascript:void(0)">VOS BESOINS ▼</a>
+                        <ul id="besoinsDropdown" class="dropdown-menu">
+                        <li><a href="#besoin1"> PARTICULIER </a></li>
+                        <li><a href="#besoin2"> COPROPRIÉTÉ </a></li>
+                        <li><a href="#besoin3"> TERTIAIRE </a></li>
+                        <li><a href="#besoin4"> INDUSTRIE </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                        <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE <br>ÉNERGÉTIQUE </a></li>
+                        <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                        <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                        <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
+                        <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="./contacter/index.html">CONTACT</a></li>
+                    <li><a href="#actualite">ACTUALITÉS</a></li>
+                    </ul>
+
+
                 <div class="burger-menu" onclick="toggleMobileMenu()">
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
@@ -664,6 +742,8 @@
             <button class="hero-nav-btn" onclick="showHeroSlide(2)"></button>
         </div>
     </section>
+
+    
 
     <!-- Services Section -->
     <section class="section" id="services">
@@ -913,6 +993,32 @@ setInterval(() => {
   currentEtape = (currentEtape + 1) % etapeSlides.length;
   showEtapeSlide(currentEtape);
 }, 5000);
+
+
+
+function toggleDropdown(id) {
+  // Fermer les autres menus
+  document.querySelectorAll('.dropdown-menu').forEach(menu => {
+    if (menu.id !== id) {
+      menu.classList.remove('show');
+    }
+  });
+
+  // Toggle le menu cliqué
+  const menu = document.getElementById(id);
+  menu.classList.toggle('show');
+}
+
+// Fermer si clic en dehors
+document.addEventListener('click', function (event) {
+  const isClickInside = event.target.closest('.dropdown');
+  if (!isClickInside) {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.classList.remove('show');
+    });
+  }
+});
+
     </script>
 </body>
 </html>
