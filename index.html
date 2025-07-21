@@ -46,9 +46,8 @@
         }
 
         .logo img {
-            height: 40px;
-            width: auto;
-            max-width: 200px;
+            height: 1.2cm;
+            width: 5.4cm;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
@@ -667,7 +666,7 @@
         <div class="nav-container">
             <div class="logo">
                 <!-- Remplacez le src par le chemin vers votre logo -->
-                <img src="./logoblanc.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <img src="./logoblanc.png" alt="Logo" >
                 <!-- Placeholder si le logo ne charge pas -->
                 <div class="logo-placeholder" style="display: none;"></div>
             </div>
@@ -999,7 +998,9 @@ setInterval(() => {
   showEtapeSlide(currentEtape);
 }, 5000);
 
-
+document.querySelector('.logo').addEventListener('click', function() {
+        window.location.href = './index.html'; // Remplacez par le chemin de votre page
+    });
 
 function toggleDropdown(id) {
   // Fermer les autres menus
