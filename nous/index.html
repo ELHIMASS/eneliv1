@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENELIV - Qui sommes nous</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            margin-right: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 1.2cm;
+            width: 5.4cm;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #1c3a48;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 18px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            border-radius: 6px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 220px;
+            z-index: 999;
+            max-width: 420px;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+            margin-bottom: -23px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.1rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            width: max-content;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .burger-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            margin: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            width: 80%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: #00ff88;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem 0;
+            min-height: calc(100vh - 100px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section for Who We Are */
+        .who-we-are-hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            color: #0B3041;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* President Section */
+        .president-section {
+            background: white;
+            padding: 4rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .president-card {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .president-image {
+            flex-shrink: 0;
+        }
+
+        .president-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .president-content {
+            flex: 1;
+        }
+
+        .president-title {
+            font-size: 1.3rem;
+            color: #0B3041;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .president-text {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .president-text strong {
+            color: #0B3041;
+            font-weight: bold;
+        }
+
+        /* Company Values Section */
+        .values-section {
+            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .values-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .values-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .values-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .values-highlight {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid #00ff88;
+        }
+
+        .values-highlight p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        /* Services Grid */
+        .services-preview {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0B3041;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+            color: white;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: white;
+            color: #56ab2f;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+            transition: color 0.3s ease;
+        }
+
+        .service-card:hover .service-title {
+            color: white;
+        }
+
+        .service-card:hover p {
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .president-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .values-title {
+                font-size: 2rem;
+            }
+
+            .services-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo" onclick="window.location.href='./index.html'">
+                <img src="../logoblanc.png" alt="Logo ENELIV">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#accueil" style="color: #555;">QUI SOMMES NOUS ?</a></li>
+
+                    <li class="dropdown" onclick="toggleDropdown('besoinsDropdown')">
+                        <a href="javascript:void(0)">VOS BESOINS ▼</a>
+                        <ul id="besoinsDropdown" class="dropdown-menu">
+                            <li><a href="#besoin1">PARTICULIER</a></li>
+                            <li><a href="#besoin2">COPROPRIÉTÉ</a></li>
+                            <li><a href="#besoin3">TERTIAIRE</a></li>
+                            <li><a href="#besoin4">INDUSTRIE</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="../contacter/index.html">CONTACT</a></li>
+                    <li><a href="#actualite">ACTUALITÉS</a></li>
+                </ul>
+
+                <div class="burger-menu" onclick="toggleMobileMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#accueil" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
+            <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
+            <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
+            <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="who-we-are-hero">
+            <div class="container">
+                <h1 class="hero-title">Qui sommes nous ?</h1>
+                <p class="hero-subtitle">Découvrez ENELIV, votre partenaire de confiance pour la performance énergétique</p>
+            </div>
+        </section>
+
+        <!-- President Section -->
+        <section class="president-section">
+            <div class="container">
+                <div class="president-card">
+                    <div class="president-image">
+                        <div class="president-avatar">
+                            <img src="../home/assets/akrame.png" alt="" style="width: 120px;">
+                        </div>
+                    </div>
+                    <div class="president-content">
+                        <h2 class="president-title">Président d'ENELIV</h2>
+                        <p class="president-text">
+                            Chez <strong>Eneliv</strong>, nous accompagnons celles et ceux qui veulent <strong>mieux comprendre</strong>, <strong>mieux gérer</strong> et <strong>mieux anticiper leur patrimoine</strong>.
+                        </p>
+                        <p class="president-text">
+                            Nos clients cherchent à <strong>se mettre en conformité</strong>, à <strong>réaliser des économies durables</strong> et à <strong>agir pour l'environnement</strong> – nous leur offrons les outils, l'expertise et la clarté nécessaires.
+                        </p>
+                        <p class="president-text">
+                            <strong>Transformer les obligations en opportunités</strong>, et l'information en <strong>décisions utiles</strong>, c'est notre mission.
+                        </p>
+                        <p class="president-text">
+                            Toujours avec indépendance, rigueur et sens du service.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Values Section -->
+        <section class="values-section">
+            <div class="container">
+                <div class="values-content">
+                    <h2 class="values-title">ENELIV</h2>
+                    <p class="values-text">
+                        ENELIV votre bureau d'études engagé pour la performance énergétique et la durabilité. 
+                        Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire, 
+                        nous vous aidons à réduire vos consommations énergétiques.
+                    </p>
+                    <p class="values-text">
+                        Nous mettons notre expertise technique au service de la performance de vos édifices, en toute 
+                        transparence. Nos valeurs sont la qualité, notre approche sur-mesure.
+                    </p>
+                    <div class="values-highlight">
+                        <p>
+                            Notre ambition : vous garantir la conformité réglementaire, optimiser vos installations, 
+                            valoriser votre patrimoine et vous accompagner dans la transition énergétique, partout où 
+                            vous en avez besoin.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+           </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+
+        // Dropdown Menu Functions
+        function toggleDropdown(id) {
+            // Fermer les autres menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle le menu cliqué
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Animation on scroll for service cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+        // Add fadeInUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.querySelector('.logo').addEventListener('click', function() {
+        window.location.href = '../index.html'; // Remplacez par le chemin de votre page
+    });
+    </script>
+</body>
+</html>

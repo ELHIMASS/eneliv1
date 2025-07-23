@@ -292,16 +292,48 @@
 }
 
 .etape-card {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 2rem;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  margin-bottom: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-left: 6px solid #1e3c72;
 }
+
+.etape-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-left-color: #00b894;
+}
+
+.etape-num {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #1e3c72;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 1rem;
+  transition: background 0.3s ease;
+}
+
+.etape-card:hover .etape-num {
+  background: #00b894;
+}
+
 
 .etape-content {
   flex: 1;
@@ -446,8 +478,8 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 2rem;
+            margin-bottom: 1rem;
             color: #1e3c72;
         }
 
@@ -672,7 +704,7 @@
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#accueil">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="../eneliv1/nous/index.html">QUI SOMMES NOUS ?</a></li>
 
                     <li class="dropdown" onclick="toggleDropdown('besoinsDropdown')">
                         <a href="javascript:void(0)">VOS BESOINS ▼</a>
@@ -753,7 +785,7 @@
     <section class="section" id="services">
         <div class="container">
             <h2 class="section-title">NOS SECTEURS</h2>
-            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.1rem; color: #666;">
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem; color: #666;">
                 Un accompagnement sur-mesure
             </p>
             
@@ -796,7 +828,7 @@
                     valoriser votre patrimoine et vous accompagner dans la transition énergétique, partout où 
                     vous en avez besoin.
                 </p>
-                <p style="margin-top: 2rem; font-style: italic; color: #666; font-size: 1.1rem;">
+                <p style="margin-top: 2rem; font-style: italic; color: #666; font-size: 1.1rem; font-family: Fave Script Bold Pro;">
                     Directeur Général
                 </p>
             </div>
