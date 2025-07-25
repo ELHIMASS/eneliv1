@@ -7,7 +7,6 @@
     <meta name="description" content="Contactez ENELIV pour vos projets de rénovation énergétique.">
     <meta name="keywords" content="ENELIV, énergie, audit, rénovation, DPE, contact">
     <meta name="author" content="ENELIV">
-    <link rel="icon" href="../logoblanc.png">
     <style>
         /* Base styles */
         * {
@@ -20,6 +19,7 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
+            background: #f8f9fa;
         }
 
         /* Header */
@@ -32,47 +32,30 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            margin-right: 40px;
         }
 
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
-        }
-
-        .logo img {
-            height: 1.2cm;
-            width: 5.4cm;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-placeholder {
-            width: 120px;
-            height: 50px;
-            background: linear-gradient(135deg, #00ff88, #00ccff);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+            font-size: 1.5rem;
             font-weight: bold;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+            color: #7FB77E;
+        }
+        .logo img {
+                height: 1.2cm;
+                width: 5.4cm;
+                object-fit: contain;
+                transition: transform 0.3s ease;
         }
 
         .nav-menu {
@@ -82,436 +65,66 @@
             align-items: center;
         }
 
-        .nav-menu :hover {
-            cursor: pointer;
-            color: #1c3a48;
-        }
-
-        .nav-menu li {
-            position: relative;
-        }
-
         .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            cursor: pointer;
             font-size: 14px;
-            margin-left: 10px;
+            transition: color 0.3s ease;
         }
 
-        .dropdown-menu {
-            position: absolute;
-            margin-top: 18px;
-            left: 0;
-            background-color: #0B3041;
-            padding: 0.5rem 0;
-            border-radius: 6px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            min-width: 220px;
-            z-index: 999;
-            max-width: 420px;
+        .nav-menu a:hover {
+            color: #7FB77E;
         }
 
-        .dropdown-menu li {
-            list-style: none;
-            margin-bottom: -23px;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.7rem 1.1rem;
-            color: white;
-            font-weight: 500;
-            transition: background 0.3s;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            width: max-content;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .burger-line {
-            width: 25px;
-            height: 3px;
-            background: white;
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .burger-menu.active .burger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 3rem;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-            padding: 1rem 0;
-            margin: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            width: 80%;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: #00ff88;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-
-        /* Hero Section with Map */
-        .hero-section {
+        /* Main Content */
+        .main-content {
             margin-top: 80px;
-            background-image: url('../home/assets/contact.png');
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            padding: 4rem 0 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            background: gray;
-            color: #0B3041;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(240, 240, 240, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        /* Interactive Map Section */
-        .map-hero {
-            background: white;
-            padding: 2rem 0;
-            position: relative;
-        }
-
-        .map-title {
-            text-align: center;
-            font-size: 2rem;
-            color: #0B3041;
-            margin-bottom: 2rem;
-            font-weight: bold;
-        }
-
-       
-        .map-container-hero {
-            position: relative;
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        
-
-        /* Region overlays */
-        .region-overlay {
-            position: absolute;
-            background: rgba(11, 48, 65, 0.9);
-            color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border: 2px solid transparent;
-        }
-
-        .region-overlay:hover {
-            background: rgba(30, 60, 114, 0.95);
-            transform: scale(1.05);
-            border-color: #00ff88;
-        }
-
-        .region-overlay h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: #00ff88;
-        }
-
-        .region-overlay p {
-            font-size: 0.8rem;
-            margin: 0.2rem 0;
-        }
-
-        /* France map background */
-        .france-map-background {
-            position: relative;
-            width: 80%;
-            height: 300px;
-            background-image: url('../home/assets/france-regions-background.jpg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        /* Region hotspots */
-        .region-hotspot {
-            position: absolute;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .region-hotspot:hover {
-            transform: scale(1.05);
-            z-index: 10;
-        }
-
-        /* Region cards */
-        .region-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 1rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-            min-width: 200px;
-            backdrop-filter: blur(10px);
-        }
-
-        .region-card:hover {
-            border-color: #00ff88;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-            background: rgba(255, 255, 255, 0.98);
-        }
-
-        .region-image {
-            width: 100%;
-            height: 80px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-        }
-
-        .region-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .region-card:hover .region-image img {
-            transform: scale(1.1);
-        }
-
-        .region-info h3 {
-            color: #0B3041;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .region-info p {
-            color: #666;
-            font-size: 0.9rem;
-            margin: 0.2rem 0;
-            line-height: 1.3;
-        }
-
-        /* Positioning for regions - Ajustez selon votre image */
-        .region-ile-france {
-            top: 35%;
-            left: 45%;
-        }
-
-        .region-nord-est {
-            top: 20%;
-            right: 15%;
-        }
-
-        .region-sud-est {
-            bottom: 20%;
-            right: 20%;
-        }
-
-        .region-sud-ouest {
-            bottom: 25%;
-            left: 20%;
-        }
-
-        .region-nord-ouest {
-            top: 40%;
-            left: 15%;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 4rem 0;
-            background: #f8f9fa;
+            padding: 3rem 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
+        /* Page Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title h1 {
+            color: #0B3041;
+            font-size: 2.5rem;
+        }
+
+        .page-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        /* Contact Grid */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            margin-top: 2rem;
-        }
-
-        .contact-info {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            height: fit-content;
-        }
-
-        .contact-info h3 {
-            color: #1e3c72;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            color: #1e3c72;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-details p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        .contact-details a {
-            color: #1e3c72;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-details a:hover {
-            color: #1c3a48;
+            align-items: start;
         }
 
         /* Contact Form */
         .contact-form {
-            background: white;
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            height: fit-content;
         }
 
-        .contact-form h3 {
-            color: #1e3c72;
+        .contact-form h2 {
+            color: #0B3041;
             font-size: 1.8rem;
             margin-bottom: 2rem;
             display: flex;
@@ -532,60 +145,265 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #1e3c72;
+            color: #0B3041;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
             font-family: inherit;
-            line-height: 1.4;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #1e3c72;
-            box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
-            transform: translateY(-1px);
+            border-color: #0B3041;
+            box-shadow: 0 0 0 3px rgba(11, 48, 65, 0.1);
         }
 
         .form-group textarea {
-            height: 120px;
+            height: 100px;
             resize: vertical;
         }
 
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-item input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .checkbox-group {
+            margin: 1rem 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+            margin-top: 0.2rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
         .submit-btn {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+            background: #7FB77E;
+            color: #0B3041;
             border: none;
-            padding: 1rem 2.5rem;
             border-radius: 50px;
             font-size: 1.1rem;
-            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+            box-shadow: 0 5px 15px rgba(11, 48, 65, 0.3);
+            width: 64%;
+            height: 46px;
         }
 
         .submit-btn:hover {
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            background: #7FB77E;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.4);
+            box-shadow: 0 8px 25px rgba(11, 48, 65, 0.4);
+            color: #e2e2e2;
+        }
+
+        /* Map Section */
+        
+
+       
+
+        .map-container {
+            position: relative;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .france-map {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+        }
+
+        /* Marqueurs */
+        .marker {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #7FB77E;
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .marker:hover {
+            transform: scale(1.5);
+            background-color: #0B3041;
+            z-index: 20;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background-color: white;
+            color: #0B3041;
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            pointer-events: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border: 2px solid #7FB77E;
+        }
+
+        .tooltip h4 {
+            color: #0B3041;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tooltip .email {
+            color: #7FB77E;
+            font-weight: bold;
+        }
+
+        /* Contact Info Section */
+        .contact-info-section {
+            border-radius: 20px;
+            padding: 2.5rem;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .contact-info-header h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #0B3041;
+        }
+
+        .contact-info-header .highlight {
+            color: #7FB77E;
+            font-weight: bold;
+        }
+
+        .contact-info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            color: #0B3041;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .contact-info-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .contact-info-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+        }
+
+        /* Contact Info Cards */
+        .contact-info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: #0B3041;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: #666;
+        }
+
+        .contact-card a {
+            color: #0B3041;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            color: #7FB77E;
         }
 
         /* Success Message */
         .success-message {
-            background: linear-gradient(135deg, #00b894 0%, #00ff88 100%);
+            background: linear-gradient(135deg, #00b894 0%, #7FB77E 100%);
             color: white;
             padding: 1rem 2rem;
             border-radius: 12px;
@@ -600,52 +418,13 @@
             animation: slideInDown 0.5s ease-out;
         }
 
-        .bech{
-            width: 100%;
-            height: auto;
+        .sauf{
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            display: block;
         }
 
-         .france-map {
-            width: 45%;
-            height: auto;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-            margin: 370px;
-        }
-
-        /* Style des marqueurs */
-        .marker {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #7FB77E;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1; /* Mettre le marqueur derrière le tooltip */
-        }
-
-        /* Effet hover sur les marqueurs */
-        .marker:hover {
-            transform: scale(1.5);
-            z-index: 10;
-        }
-
-        /* Style de l'info-bulle (tooltip) */
-        .tooltip {
-            position: absolute;
-            background-color: rgb(255, 255, 255);
-            color: rgb(0, 0, 0);
-            width: 230px;
-            padding: 5px;
-            border-radius: 5px;
-            font-size: 13px;
-            display: none;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10; /* Mettre le tooltip en avant */
-        }
-        /* Animations */
         @keyframes slideInDown {
             from {
                 opacity: 0;
@@ -659,14 +438,6 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-title {
-                font-size: 2.2rem;
-            }
-
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -676,54 +447,63 @@
                 grid-template-columns: 1fr;
             }
 
-            .regions-map {
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .contact-form,
+            .map-section {
+                padding: 1.5rem;
+            }
+
+            .contact-info-section {
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .contact-info-header h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-info-items {
+                gap: 1rem;
+            }
+
+            .contact-info-item {
+                padding: 0.8rem;
+            }
+
+            .contact-info-text {
+                font-size: 1rem;
+            }
+
+            .map-header {
+                padding: 1.5rem;
+            }
+
+            .map-container {
                 padding: 1rem;
+                min-height: 400px;
             }
 
-            .france-map-background {
-                height: 400px;
+            .france-map {
+                max-width: 300px;
             }
 
-            .region-hotspot {
-                position: relative;
-                margin: 1rem;
-                display: inline-block;
-            }
-
-            .region-card {
-                min-width: 150px;
-            }
-
-            .region-image {
-                height: 60px;
-            }
-
-            /* Stack regions vertically on mobile */
-            .map-container-hero {
-                text-align: center;
-            }
-
-            .region-ile-france,
-            .region-nord-est,
-            .region-sud-est,
-            .region-sud-ouest,
-            .region-nord-ouest {
-                position: relative;
-                top: auto;
-                left: auto;
-                right: auto;
-                bottom: auto;
-                display: inline-block;
-                margin: 0.5rem;
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
 
         /* Footer */
         .footer {
-            background: #1e3c72;
+            background: #0B3041;
             color: white;
             text-align: center;
             padding: 2rem 0;
+            margin-top: 4rem;
         }
     </style>
 </head>
@@ -732,104 +512,38 @@
         <div class="nav-container">
             <div class="logo" onclick="window.location.href='../index.html'">
                 <img src="../logoblanc.png" alt="Logo ENELIV">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="#nous">QUI SOMMES NOUS ?</a></li>
                     <li><a href="#besoins">VOS BESOINS</a></li>
                     <li><a href="#expertise">NOTRE EXPERTISE</a></li>
-                    <li><a href="#contact" style="color: #3e3e3e;">CONTACT</a></li>
+                    <li><a href="#contact" style="color: #7FB77E;">CONTACT</a></li>
                     <li><a href="#actualite">ACTUALITÉS</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title">"Une expertise nationale à votre service"</h1>
-            <p class="hero-subtitle">
-                ENELIV vous accompagne partout en France pour votre projet technique, environnement et énergie.
-            </p>
-            <a href="#contact-form" class="cta-button">Demander un devis</a>
-        </div>
-    </section>
-
-    <!-- Interactive Map Section -->
-    <section class="map-hero">
+    <main class="main-content">
         <div class="container">
-            <h2 class="map-title">Nos régions d'intervention</h2>
-            <div class="regions-map" >
-               
-                   <img  class="france-map" src="../home/assets/carte-france1.png" aria-hidden="true" class="mapplic-map-image" >
-
-            <!-- Marqueurs interactifs (à positionner selon la carte) -->
-            <div class="marker" style="top: 24.5%; left: 50.5%;" data-region="Île-de-France" data-res="paris@eneliv.fr"></div>
-            <div class="marker" style="top: 74%; left: 68%;" data-region="Provence-Alpes-Côte d'Azur" data-res="marseille@eneliv.fr"></div>
-            <div class="marker" style="top: 19.5%; left: 42.5%;" data-region="Normandie" data-res="rouen@eneliv.fr"></div>
-            <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-res="bordeaux@eneliv.fr"></div>
-            <div class="marker" style="top: 9%; left: 54.7%;" data-region="Hauts-de-France" data-res="lille@eneliv.fr"></div>
-            <div class="marker" style="top: 31%; left: 26%;" data-region="Bretagne" data-res="rennes@eneliv.fr"></div>
-            <div class="marker" style="top: 52%; left: 65%;" data-region="Auvergne Rhône Alpes" data-res="lyon@eneliv.fr"></div>
-            <div class="marker" style="top: 71%; left: 45%;" data-region="Occitanie" data-res="toulouse@eneliv.fr"></div>
-            <div class="marker" style="top: 27%; left: 83.4%;" data-region="Grand Est" data-res="strasbourg@eneliv.fr"></div>
-            <div class="marker" style="top: 39%; left: 26%;" data-region="Pays de la Loire" data-res="nantes@eneliv.fr"></div>
-            <div class="marker" style="top: 33%; left: 48%;" data-region="Centre-Val de Loire" data-res="orleans@eneliv.fr"></div>
-            <div class="marker" style="top: 37.5%; left: 66.5%;" data-region="Bourgogne-Franche-Comté" data-res="dijon@eneliv.fr"></div>
-
-            <div id="tooltip" class="tooltip"></div>
-
+            <!-- Page Title -->
+            <div class="page-title">
+                <h1>Contacter ENELIV</h1>
+                <p>Des experts spécialisés à votre disposition sur toute la France.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
+            <!-- Success Message -->
             <div class="success-message" id="successMessage">
                 ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
             </div>
 
+            <!-- Contact Grid -->
             <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>📞 Nos coordonnées</h3>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p><a href="mailto:ismail.elhimass@gmail.com">ismail.elhimass@gmail.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div class="contact-details">
-                            <h4>Téléphone</h4>
-                            <p><a href="tel:+33123456789">01 23 45 67 89</a></p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <h4>Adresse</h4>
-                            <p>123 Avenue de l'Énergie<br>75001 Paris, France</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">⏰</div>
-                        <div class="contact-details">
-                            <h4>Horaires</h4>
-                            <p>Lundi - Vendredi<br>9h00 - 18h00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-form" id="contact-form">
-                    <h3>💬 Envoyez-nous un message</h3>
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2> Envoyez-nous un message</h2>
                     <form id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
@@ -844,59 +558,117 @@
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="email">Email *</label>
+                                <label for="email">E-mail *</label>
                                 <input type="email" id="email" name="email" required>
                             </div>
                             <div class="form-group">
-                                <label for="telephone">Téléphone</label>
-                                <input type="tel" id="telephone" name="telephone">
+                                <label for="telephone">Téléphone *</label>
+                                <input type="tel" id="telephone" name="telephone" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="entreprise">Entreprise / Organisation</label>
-                            <input type="text" id="entreprise" name="entreprise">
+                            <label for="code_postal">Code postal *</label>
+                            <input type="text" id="code_postal" name="code_postal" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="secteur">Secteur d'activité</label>
-                            <select id="secteur" name="secteur">
-                                <option value="">Sélectionnez votre secteur</option>
-                                <option value="particulier">Particulier</option>
-                                <option value="copropriete">Copropriété</option>
-                                <option value="tertiaire">Tertiaire</option>
-                                <option value="industrie">Industrie</option>
-                                <option value="autre">Autre</option>
-                            </select>
+                            <label>Vous êtes *</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="particulier" name="vous_etes" value="Particulier" required>
+                                    <label for="particulier">Particulier</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="professionnel" name="vous_etes" value="Professionnel" required>
+                                    <label for="professionnel">Professionnel</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="sujet">Sujet de votre demande</label>
-                            <select id="sujet" name="sujet">
-                                <option value="">Sélectionnez un sujet</option>
-                                <option value="Diagnostic de Performance Énergétique">Diagnostic de Performance Énergétique (DPE)</option>
-                                <option value="Diagnostic Technique Global">Diagnostic Technique Global (DTG)</option>
-                                <option value="Plan Pluriannuel de Travaux">Plan Pluriannuel de Travaux (PPPT)</option>
-                                <option value="Audit Énergétique">Audit Énergétique</option>
+                            <label for="demande">Votre demande concerne</label>
+                            <select id="demande" name="demande">
+                                <option value="">Sélectionnez votre demande</option>
+                                <option value="Audit énergétique">Audit énergétique</option>
+                                <option value="DPE">Diagnostic de Performance Énergétique (DPE)</option>
+                                <option value="DTG">Diagnostic Technique Global (DTG)</option>
+                                <option value="PPPT">Plan Pluriannuel de Travaux (PPPT)</option>
                                 <option value="Mon Accompagnateur Rénov">Mon Accompagnateur Rénov'</option>
-                                <option value="Demande de devis">Demande de devis</option>
-                                <option value="autre">Autre demande</option>
+                                <option value="Autre">Autre demande</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="message">Votre message *</label>
+                            <label for="date_assemblee">Date d'assemblée générale</label>
+                            <input type="date" id="date_assemblee" name="date_assemblee">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
                             <textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins ou posez-nous vos questions..." required></textarea>
                         </div>
 
-                        <div style="text-align: center; margin-top: 2rem;">
-                            <button type="submit" class="submit-btn">Envoyer le message</button>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="accepte" name="accepte" required>
+                                <label for="accepte">J'accepte que mes données soient utilisées exclusivement par Eneliv et sont uniquement destinées au traitement de votre demande. Vous disposez d'un droit d'opposition en vous inscrivant gratuitement sur le site <a href="https://www.bloctel.gouv.fr/" style="color: #0B3041;">https://www.bloctel.gouv.fr/</a>.</label>
+                            </div>
                         </div>
+
+                        <button type="submit" class="submit-btn">Envoyer</button>
                     </form>
                 </div>
+
+                <!-- Map Section -->
+                <div class="map-section">
+                    
+                    <div class="map-container">
+                        <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
+                        
+                        <!-- Marqueurs pour chaque région -->
+                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
+                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
+                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
+                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
+                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
+                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
+                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
+                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
+                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
+                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
+                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
+                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
+                    </div>
+                    <div class="contact-info-section">
+                    <div class="contact-info-header">
+                        <h2>Prenons <span class="highlight">contact</span></h2>
+                    </div>
+                    <div class="contact-info-items">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">☎</div>
+                            <span class="contact-info-text">09 70 69 01 64</span>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">✉︎</div>
+                            <span class="contact-info-text">contact@eneliv.fr</span>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <span class="sauf">Nos équipes vous rappelleront sous 24h pour échanger sur votre projet</span>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Contact Info Section -->
+                
             </div>
-        </div>
-    </section>
+
+           
+    </main>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
 
     <footer class="footer">
         <div class="container">
@@ -905,60 +677,83 @@
     </footer>
 
     <script>
-        // Smooth scrolling for CTA button
-        document.querySelector('.cta-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector('#contact-form');
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        // Gestion des marqueurs et tooltips
+        document.addEventListener('DOMContentLoaded', function () {
+            const markers = document.querySelectorAll('.marker');
+            const tooltip = document.getElementById('tooltip');
+
+            markers.forEach(marker => {
+                marker.addEventListener('mouseenter', (e) => {
+                    const regionName = e.target.getAttribute('data-region');
+                    const email = e.target.getAttribute('data-email');
+                    
+                    tooltip.innerHTML = `
+                        <h4>${regionName}</h4>
+                        <p>Contact: <span class="email">${email}</span></p>
+                    `;
+                    
+                    tooltip.style.display = 'block';
+                });
+
+                marker.addEventListener('mousemove', (e) => {
+                    tooltip.style.top = (e.clientY + 10) + 'px';
+                    tooltip.style.left = (e.clientX + 10) + 'px';
+                });
+
+                marker.addEventListener('mouseleave', () => {
+                    tooltip.style.display = 'none';
+                });
+
+                // Clic sur un marqueur pour pré-remplir le formulaire
+                marker.addEventListener('click', (e) => {
+                    const regionName = e.target.getAttribute('data-region');
+                    const email = e.target.getAttribute('data-email');
+                    
+                    // Pré-remplir le message avec la région sélectionnée
+                    const messageField = document.getElementById('message');
+                    const currentMessage = messageField.value;
+                    const regionMessage = `Région d'intérêt: ${regionName} (${email})\n\n`;
+                    
+                    if (!currentMessage.includes(regionName)) {
+                        messageField.value = regionMessage + currentMessage;
+                    }
+                    
+                    // Scroll vers le formulaire
+                    document.querySelector('.contact-form').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
             });
         });
 
-        // Region hover effects
-        document.querySelectorAll('.region-hotspot').forEach(hotspot => {
-            hotspot.addEventListener('mouseenter', function() {
-                this.style.zIndex = '20';
-            });
-            
-            hotspot.addEventListener('mouseleave', function() {
-                this.style.zIndex = '1';
-            });
-
-            // Click to show more info or navigate
-            hotspot.addEventListener('click', function() {
-                const regionName = this.dataset.region;
-                const email = this.querySelector('.region-info p strong').textContent;
-                
-                // Option 1: Show alert with region info
-                alert(`Région: ${regionName}\nContact: ${email}`);
-                
-                // Option 2: Scroll to contact form and pre-fill region
-                // const contactForm = document.getElementById('secteur');
-                // contactForm.value = regionName;
-                // document.getElementById('contact-form').scrollIntoView({behavior: 'smooth'});
-            });
-        });
-
-        // Form submission
+        // Gestion du formulaire
         const contactForm = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
 
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simulate form submission
+            // Simulation d'envoi
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+            
             setTimeout(() => {
                 successMessage.classList.add('show');
                 contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
                 
+                // Masquer le message après 5 secondes
                 setTimeout(() => {
                     successMessage.classList.remove('show');
                 }, 5000);
-            }, 1000);
+            }, 1500);
         });
 
-        // Header scroll effect
+        // Effet de défilement sur l'en-tête
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
@@ -969,43 +764,6 @@
                 header.style.backdropFilter = 'none';
             }
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-    const markers = document.querySelectorAll('.marker');
-    const tooltip = document.getElementById('tooltip');
-
-    if (tooltip) {
-        // Ajouter des événements sur chaque marqueur
-        markers.forEach(marker => {
-            marker.addEventListener('mouseenter', (e) => {
-                // Récupérer le nom de la région depuis l'attribut data-region
-                const regionName = e.target.getAttribute('data-region');
-                const email = e.target.getAttribute('data-res');
-                // Utilisation de innerHTML pour permettre les retours à la ligne
-                tooltip.innerHTML = regionName;  // Affiche le nom de la région
-
-                // Si l'email est présent, l'ajouter avec un saut de ligne et couleur verte
-                if (email) {
-                    tooltip.innerHTML += '<br>Contact: <span style="color: #7FB77E;">' + email + '</span>';
-                }
-
-                tooltip.style.display = 'block';
-                tooltip.style.top = (e.clientY + 10) + 'px';
-                tooltip.style.left = (e.clientX + 10) + 'px';
-            });
-
-            // Masquer l'info-bulle lorsque la souris quitte le marqueur
-            marker.addEventListener('mouseleave', function() {
-                tooltip.style.display = 'none';
-            });
-        });
-    } else {
-        console.error("Tooltip élément non trouvé !");
-    }
-});
-
-
-
     </script>
 </body>
 </html>
