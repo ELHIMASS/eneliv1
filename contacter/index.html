@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Contact - ENELIV</title>
-    <meta name="description" content="Contactez ENELIV pour vos projets de rénovation énergétique.">
-    <meta name="keywords" content="ENELIV, énergie, audit, rénovation, DPE, contact">
-    <meta name="author" content="ENELIV">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact - ENELIV</title>
+<meta content="Contactez ENELIV pour vos projets de rénovation énergétique." name="description"/>
+<meta content="ENELIV, énergie, audit, rénovation, DPE, contact" name="keywords"/>
+<meta content="ENELIV" name="author"/>
+<style>
         /* Base styles */
         * {
             margin: 0;
@@ -232,10 +233,6 @@
         }
 
         /* Map Section */
-        
-
-       
-
         .map-container {
             position: relative;
             padding: 2rem;
@@ -251,8 +248,8 @@
             height: auto;
         }
 
-        /* Marqueurs */
-        .marker {
+        /* Marqueurs dans le style mapplic-pin */
+        .mapplic-pin {
             position: absolute;
             width: 16px;
             height: 16px;
@@ -263,12 +260,57 @@
             transition: all 0.3s ease;
             z-index: 10;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: block;
         }
 
-        .marker:hover {
+        .mapplic-pin.pin-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .mapplic-pin.pin-label::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #0B3041;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .mapplic-pin:hover {
             transform: scale(1.5);
             background-color: #0B3041;
             z-index: 20;
+        }
+
+        .mapplic-pin:hover.pin-label::after {
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         /* Tooltip */
@@ -356,49 +398,11 @@
             margin-left: 10px;
         }
 
-        /* Contact Info Cards */
-        .contact-info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-card h3 {
-            color: #0B3041;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card p {
+        .sauf{
+            font-size: 0.9rem;
             color: #666;
-        }
-
-        .contact-card a {
-            color: #0B3041;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .contact-card a:hover {
-            color: #7FB77E;
+            margin-top: 1rem;
+            display: block;
         }
 
         /* Success Message */
@@ -416,13 +420,6 @@
         .success-message.show {
             display: block;
             animation: slideInDown 0.5s ease-out;
-        }
-
-        .sauf{
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 1rem;
-            display: block;
         }
 
         @keyframes slideInDown {
@@ -478,10 +475,6 @@
                 font-size: 1rem;
             }
 
-            .map-header {
-                padding: 1.5rem;
-            }
-
             .map-container {
                 padding: 1rem;
                 min-height: 400px;
@@ -508,178 +501,165 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo" onclick="window.location.href='../index.html'">
-                <img src="../logoblanc.png" alt="Logo ENELIV">
-                <div class="logo-placeholder" style="display: none;">ENELIV</div>
-            </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#nous">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="#besoins">VOS BESOINS</a></li>
-                    <li><a href="#expertise">NOTRE EXPERTISE</a></li>
-                    <li><a href="#contact" style="color: #7FB77E;">CONTACT</a></li>
-                    <li><a href="#actualite">ACTUALITÉS</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header class="header">
+<div class="nav-container">
+<div class="logo" onclick="window.location.href='../index.html'">
+<img alt="Logo ENELIV" src="../logoblanc.png"/>
+<div class="logo-placeholder" style="display: none;">ENELIV</div>
+</div>
+<nav>
+<ul class="nav-menu">
+<li><a href="#nous">QUI SOMMES NOUS ?</a></li>
+<li><a href="#besoins">VOS BESOINS</a></li>
+<li><a href="#expertise">NOTRE EXPERTISE</a></li>
+<li><a href="#contact" style="color: #7FB77E;">CONTACT</a></li>
+<li><a href="#actualite">ACTUALITÉS</a></li>
+</ul>
+</nav>
+</div>
+</header>
 
-    <main class="main-content">
-        <div class="container">
-            <!-- Page Title -->
-            <div class="page-title">
-                <h1>Contacter ENELIV</h1>
-                <p>Des experts spécialisés à votre disposition sur toute la France.</p>
-            </div>
+<main class="main-content">
+<div class="container">
+<!-- Page Title -->
+<div class="page-title">
+<h1>Contacter ENELIV</h1>
+<p>Des experts spécialisés à votre disposition sur toute la France.</p>
+</div>
 
-            <!-- Success Message -->
-            <div class="success-message" id="successMessage">
-                ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
-            </div>
+<!-- Success Message -->
+<div class="success-message" id="successMessage">
+    ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+</div>
 
-            <!-- Contact Grid -->
-            <div class="contact-grid">
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h2> Envoyez-nous un message</h2>
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="prenom">Prénom *</label>
-                                <input type="text" id="prenom" name="prenom" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="nom">Nom *</label>
-                                <input type="text" id="nom" name="nom" required>
-                            </div>
-                        </div>
+<!-- Contact Grid -->
+<div class="contact-grid">
+<!-- Contact Form -->
+<div class="contact-form">
+<h2> Envoyez-nous un message</h2>
+<form id="contactForm">
+<div class="form-row">
+<div class="form-group">
+<label for="prenom">Prénom *</label>
+<input id="prenom" name="prenom" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="nom">Nom *</label>
+<input id="nom" name="nom" required="" type="text"/>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="email">E-mail *</label>
+<input id="email" name="email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="telephone">Téléphone *</label>
+<input id="telephone" name="telephone" required="" type="tel"/>
+</div>
+</div>
+<div class="form-group">
+<label for="code_postal">Code postal *</label>
+<input id="code_postal" name="code_postal" required="" type="text"/>
+</div>
+<div class="form-group">
+<label>Vous êtes *</label>
+<div class="radio-group">
+<div class="radio-item">
+<input id="particulier" name="vous_etes" required="" type="radio" value="Particulier"/>
+<label for="particulier">Particulier</label>
+</div>
+<div class="radio-item">
+<input id="professionnel" name="vous_etes" required="" type="radio" value="Professionnel"/>
+<label for="professionnel">Professionnel</label>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="demande">Votre demande concerne</label>
+<select id="demande" name="demande">
+<option value="">Sélectionnez votre demande</option>
+<option value="Audit énergétique">Audit énergétique</option>
+<option value="DPE">Diagnostic de Performance Énergétique (DPE)</option>
+<option value="DTG">Diagnostic Technique Global (DTG)</option>
+<option value="PPPT">Plan Pluriannuel de Travaux (PPPT)</option>
+<option value="Mon Accompagnateur Rénov">Mon Accompagnateur Rénov'</option>
+<option value="Autre">Autre demande</option>
+</select>
+</div>
+<div class="form-group">
+<label for="date_assemblee">Date d'assemblée générale</label>
+<input id="date_assemblee" name="date_assemblee" type="date"/>
+</div>
+<div class="form-group">
+<label for="message">Message *</label>
+<textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins ou posez-nous vos questions..." required=""></textarea>
+</div>
+<div class="checkbox-group">
+<div class="checkbox-item">
+<input id="accepte" name="accepte" required="" type="checkbox"/>
+<label for="accepte">J'accepte que mes données soient utilisées exclusivement par Eneliv et sont uniquement destinées au traitement de votre demande. Vous disposez d'un droit d'opposition en vous inscrivant gratuitement sur le site <a href="https://www.bloctel.gouv.fr/" style="color: #0B3041;">https://www.bloctel.gouv.fr/</a>.</label>
+</div>
+</div>
+<button class="submit-btn" type="submit">Envoyer</button>
+</form>
+</div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">E-mail *</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="telephone">Téléphone *</label>
-                                <input type="tel" id="telephone" name="telephone" required>
-                            </div>
-                        </div>
+<!-- Map Section -->
+<div class="map-section">
+<div class="map-container">
+<img alt="Carte de France" class="france-map" src="../home/assets/carte-france1.png"/>
+<!-- Marqueurs dans le style mapplic-pin -->
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Paris marker" style="top: 27.5%; left: 49.5%; background-color: #7FB77E; border-color: #7FB77E;" data-location="75000" data-region="Île-de-France" data-email="paris@eneliv.fr" data-label="Paris"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Marseille marker" style="top: 73%; left: 66%; background-color: #7FB77E; border-color: #7FB77E;" data-location="13000" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr" data-label="Marseille"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Rouen marker" style="top: 21.5%; left: 42.5%; background-color: #7FB77E; border-color: #7FB77E;" data-location="76000" data-region="Normandie" data-email="rouen@eneliv.fr" data-label="Rouen"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Bordeaux marker" style="top: 60%; left: 33%; background-color: #7FB77E; border-color: #7FB77E;" data-location="33000" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr" data-label="Bordeaux"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Lille marker" style="top: 12%; left: 52.7%; background-color: #7FB77E; border-color: #7FB77E;" data-location="59000" data-region="Hauts-de-France" data-email="lille@eneliv.fr" data-label="Lille"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Rennes marker" style="top: 33%; left: 28%; background-color: #7FB77E; border-color: #7FB77E;" data-location="35000" data-region="Bretagne" data-email="rennes@eneliv.fr" data-label="Rennes"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Lyon marker" style="top: 53%; left: 62%; background-color: #7FB77E; border-color: #7FB77E;" data-location="69000" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr" data-label="Lyon"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Toulouse marker" style="top: 71%; left: 44%; background-color: #7FB77E; border-color: #7FB77E;" data-location="31000" data-region="Occitanie" data-email="toulouse@eneliv.fr" data-label="Toulouse"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Strasbourg marker" style="top: 28%; left: 76.4%; background-color: #7FB77E; border-color: #7FB77E;" data-location="67000" data-region="Grand Est" data-email="strasbourg@eneliv.fr" data-label="Strasbourg"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Nantes marker" style="top: 40%; left: 29%; background-color: #7FB77E; border-color: #7FB77E;" data-location="44000" data-region="Pays de la Loire" data-email="nantes@eneliv.fr" data-label="Nantes"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Orléans marker" style="top: 35%; left: 47%; background-color: #7FB77E; border-color: #7FB77E;" data-location="45000" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr" data-label="Orléans"></a>
+<a class="mapplic-pin pin-pulse pin-label" aria-label="Dijon marker" style="top: 39.5%; left: 63%; background-color: #7FB77E; border-color: #7FB77E;" data-location="21000" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr" data-label="Dijon"></a>
+</div>
 
-                        <div class="form-group">
-                            <label for="code_postal">Code postal *</label>
-                            <input type="text" id="code_postal" name="code_postal" required>
-                        </div>
+<div class="contact-info-section">
+<div class="contact-info-header">
+<h2>Prenons <span class="highlight">contact</span></h2>
+</div>
+<div class="contact-info-items">
+<div class="contact-info-item">
+<div class="contact-info-icon">☎</div>
+<span class="contact-info-text">09 70 69 01 64</span>
+</div>
+<div class="contact-info-item">
+<div class="contact-info-icon">✉︎</div>
+<span class="contact-info-text">contact@eneliv.fr</span>
+</div>
+<div class="contact-info-item">
+<span class="sauf">Nos équipes vous rappelleront sous 24h pour échanger sur votre projet</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
 
-                        <div class="form-group">
-                            <label>Vous êtes *</label>
-                            <div class="radio-group">
-                                <div class="radio-item">
-                                    <input type="radio" id="particulier" name="vous_etes" value="Particulier" required>
-                                    <label for="particulier">Particulier</label>
-                                </div>
-                                <div class="radio-item">
-                                    <input type="radio" id="professionnel" name="vous_etes" value="Professionnel" required>
-                                    <label for="professionnel">Professionnel</label>
-                                </div>
-                            </div>
-                        </div>
+<!-- Tooltip -->
+<div class="tooltip" id="tooltip"></div>
 
-                        <div class="form-group">
-                            <label for="demande">Votre demande concerne</label>
-                            <select id="demande" name="demande">
-                                <option value="">Sélectionnez votre demande</option>
-                                <option value="Audit énergétique">Audit énergétique</option>
-                                <option value="DPE">Diagnostic de Performance Énergétique (DPE)</option>
-                                <option value="DTG">Diagnostic Technique Global (DTG)</option>
-                                <option value="PPPT">Plan Pluriannuel de Travaux (PPPT)</option>
-                                <option value="Mon Accompagnateur Rénov">Mon Accompagnateur Rénov'</option>
-                                <option value="Autre">Autre demande</option>
-                            </select>
-                        </div>
+<footer class="footer">
+<div class="container">
+<p>© 2024 ENELIV. Tous droits réservés. | Expertise énergétique nationale</p>
+</div>
+</footer>
 
-                        <div class="form-group">
-                            <label for="date_assemblee">Date d'assemblée générale</label>
-                            <input type="date" id="date_assemblee" name="date_assemblee">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins ou posez-nous vos questions..." required></textarea>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="accepte" name="accepte" required>
-                                <label for="accepte">J'accepte que mes données soient utilisées exclusivement par Eneliv et sont uniquement destinées au traitement de votre demande. Vous disposez d'un droit d'opposition en vous inscrivant gratuitement sur le site <a href="https://www.bloctel.gouv.fr/" style="color: #0B3041;">https://www.bloctel.gouv.fr/</a>.</label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="submit-btn">Envoyer</button>
-                    </form>
-                </div>
-
-                <!-- Map Section -->
-                <div class="map-section">
-                    
-                    <div class="map-container">
-                        <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
-                        
-                        <!-- Marqueurs pour chaque région -->
-                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
-                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
-                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
-                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
-                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
-                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
-                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
-                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
-                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
-                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
-                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
-                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
-                    </div>
-                    <div class="contact-info-section">
-                    <div class="contact-info-header">
-                        <h2>Prenons <span class="highlight">contact</span></h2>
-                    </div>
-                    <div class="contact-info-items">
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">☎</div>
-                            <span class="contact-info-text">09 70 69 01 64</span>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">✉︎</div>
-                            <span class="contact-info-text">contact@eneliv.fr</span>
-                        </div>
-
-                        <div class="contact-info-item">
-                            <span class="sauf">Nos équipes vous rappelleront sous 24h pour échanger sur votre projet</span>
-                    </div>
-                </div>
-                </div>
-
-                <!-- Contact Info Section -->
-                
-            </div>
-
-           
-    </main>
-
-    <!-- Tooltip -->
-    <div id="tooltip" class="tooltip"></div>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 ENELIV. Tous droits réservés. | Expertise énergétique nationale</p>
-        </div>
-    </footer>
-
-    <script>
+<script>
         // Gestion des marqueurs et tooltips
         document.addEventListener('DOMContentLoaded', function () {
-            const markers = document.querySelectorAll('.marker');
+            const markers = document.querySelectorAll('.mapplic-pin');
             const tooltip = document.getElementById('tooltip');
 
             markers.forEach(marker => {
@@ -706,17 +686,30 @@
 
                 // Clic sur un marqueur pour pré-remplir le formulaire
                 marker.addEventListener('click', (e) => {
+                    e.preventDefault();
                     const regionName = e.target.getAttribute('data-region');
                     const email = e.target.getAttribute('data-email');
+                    const location = e.target.getAttribute('data-location');
                     
                     // Pré-remplir le message avec la région sélectionnée
                     const messageField = document.getElementById('message');
+                    const codePostalField = document.getElementById('code_postal');
                     const currentMessage = messageField.value;
                     const regionMessage = `Région d'intérêt: ${regionName} (${email})\n\n`;
                     
                     if (!currentMessage.includes(regionName)) {
                         messageField.value = regionMessage + currentMessage;
                     }
+                    
+                    // Pré-remplir le code postal si vide
+                    if (!codePostalField.value) {
+                        codePostalField.value = location;
+                    }
+                    
+                    // Animation de sélection du marqueur
+                    markers.forEach(m => m.style.transform = 'scale(1)');
+                    e.target.style.transform = 'scale(1.8)';
+                    e.target.style.backgroundColor = '#0B3041';
                     
                     // Scroll vers le formulaire
                     document.querySelector('.contact-form').scrollIntoView({
@@ -745,6 +738,12 @@
                 contactForm.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
+                
+                // Réinitialiser les marqueurs
+                document.querySelectorAll('.mapplic-pin').forEach(marker => {
+                    marker.style.transform = 'scale(1)';
+                    marker.style.backgroundColor = '#7FB77E';
+                });
                 
                 // Masquer le message après 5 secondes
                 setTimeout(() => {
