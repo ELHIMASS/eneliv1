@@ -613,6 +613,50 @@
             animation: slideInDown 0.5s ease-out;
         }
 
+        .bech{
+            width: 100%;
+            height: auto;
+        }
+
+         .france-map {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        /* Style des marqueurs */
+        .marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #7FB77E;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1; /* Mettre le marqueur derrière le tooltip */
+        }
+
+        /* Effet hover sur les marqueurs */
+        .marker:hover {
+            transform: scale(1.5);
+            z-index: 10;
+        }
+
+        /* Style de l'info-bulle (tooltip) */
+        .tooltip {
+            position: absolute;
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            width: 230px;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 13px;
+            display: none;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10; /* Mettre le tooltip en avant */
+        }
         /* Animations */
         @keyframes slideInDown {
             from {
@@ -728,10 +772,26 @@
     <section class="map-hero">
         <div class="container">
             <h2 class="map-title">Nos régions d'intervention</h2>
-            <div class="regions-map">
+            <div class="regions-map" >
                
-                <img src="../home/assets/image.png" alt="" style="width: 80%; height: auto; border-radius: 15px; margin: 80px;">
-                   
+                   <img  class="france-map" src="../home/assets/carte-france1.png" aria-hidden="true" class="mapplic-map-image" >
+
+            <!-- Marqueurs interactifs (à positionner selon la carte) -->
+            <div class="marker" style="top: 24.5%; left: 50.5%;" data-region="Île-de-France" data-res="paris@eneliv.fr"></div>
+            <div class="marker" style="top: 74%; left: 68%;" data-region="Provence-Alpes-Côte d'Azur" data-res="marseille@eneliv.fr"></div>
+            <div class="marker" style="top: 19.5%; left: 42.5%;" data-region="Normandie" data-res="rouen@eneliv.fr"></div>
+            <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-res="bordeaux@eneliv.fr"></div>
+            <div class="marker" style="top: 9%; left: 54.7%;" data-region="Hauts-de-France" data-res="lille@eneliv.fr"></div>
+            <div class="marker" style="top: 31%; left: 26%;" data-region="Bretagne" data-res="rennes@eneliv.fr"></div>
+            <div class="marker" style="top: 52%; left: 65%;" data-region="Auvergne Rhône Alpes" data-res="lyon@eneliv.fr"></div>
+            <div class="marker" style="top: 71%; left: 45%;" data-region="Occitanie" data-res="toulouse@eneliv.fr"></div>
+            <div class="marker" style="top: 27%; left: 83.4%;" data-region="Grand Est" data-res="strasbourg@eneliv.fr"></div>
+            <div class="marker" style="top: 39%; left: 26%;" data-region="Pays de la Loire" data-res="nantes@eneliv.fr"></div>
+            <div class="marker" style="top: 33%; left: 48%;" data-region="Centre-Val de Loire" data-res="orleans@eneliv.fr"></div>
+            <div class="marker" style="top: 37.5%; left: 66.5%;" data-region="Bourgogne-Franche-Comté" data-res="dijon@eneliv.fr"></div>
+
+            <div id="tooltip" class="tooltip"></div>
+
             </div>
         </div>
     </section>
@@ -921,6 +981,43 @@
                 header.style.backdropFilter = 'none';
             }
         });
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const markers = document.querySelectorAll('.marker');
+    const tooltip = document.getElementById('tooltip');
+
+    if (tooltip) {
+        // Ajouter des événements sur chaque marqueur
+        markers.forEach(marker => {
+            marker.addEventListener('mouseenter', (e) => {
+                // Récupérer le nom de la région depuis l'attribut data-region
+                const regionName = e.target.getAttribute('data-region');
+                const email = e.target.getAttribute('data-res');
+                // Utilisation de innerHTML pour permettre les retours à la ligne
+                tooltip.innerHTML = regionName;  // Affiche le nom de la région
+
+                // Si l'email est présent, l'ajouter avec un saut de ligne et couleur verte
+                if (email) {
+                    tooltip.innerHTML += '<br>Contact: <span style="color: #7FB77E;">' + email + '</span>';
+                }
+
+                tooltip.style.display = 'block';
+                tooltip.style.top = (e.clientY + 10) + 'px';
+                tooltip.style.left = (e.clientX + 10) + 'px';
+            });
+
+            // Masquer l'info-bulle lorsque la souris quitte le marqueur
+            marker.addEventListener('mouseleave', function() {
+                tooltip.style.display = 'none';
+            });
+        });
+    } else {
+        console.error("Tooltip élément non trouvé !");
+    }
+});
+
+
+
     </script>
 </body>
 </html>
