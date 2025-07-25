@@ -256,41 +256,26 @@
             position: absolute;
             width: 16px;
             height: 16px;
-            background-color: #00ff88;
+            background-color: #7FB77E;
             border: 3px solid white;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 10;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transform: translate(-50%, -50%); /* Centre le marqueur sur le point */
         }
 
         .marker:hover {
-            transform: translate(-50%, -50%) scale(1.5);
+            transform: scale(1.5);
             background-color: #0B3041;
             z-index: 20;
         }
-
-        /* Positionnement des marqueurs en pourcentage de l'image */
-        .marker[data-region="Île-de-France"] { top: 24.5%; left: 50.5%; }
-        .marker[data-region="Provence-Alpes-Côte d'Azur"] { top: 74%; left: 68%; }
-        .marker[data-region="Normandie"] { top: 19.5%; left: 42.5%; }
-        .marker[data-region="Nouvelle-Aquitaine"] { top: 60%; left: 33%; }
-        .marker[data-region="Hauts-de-France"] { top: 9%; left: 54.7%; }
-        .marker[data-region="Bretagne"] { top: 31%; left: 26%; }
-        .marker[data-region="Auvergne Rhône Alpes"] { top: 52%; left: 65%; }
-        .marker[data-region="Occitanie"] { top: 71%; left: 45%; }
-        .marker[data-region="Grand Est"] { top: 27%; left: 83.4%; }
-        .marker[data-region="Pays de la Loire"] { top: 39%; left: 26%; }
-        .marker[data-region="Centre-Val de Loire"] { top: 33%; left: 48%; }
-        .marker[data-region="Bourgogne-Franche-Comté"] { top: 37.5%; left: 66.5%; }
 
         /* Tooltip */
         .tooltip {
             position: fixed;
             background-color: white;
-            color: #333;
+            color: #0B3041;
             min-width: 200px;
             padding: 1rem;
             border-radius: 8px;
@@ -299,9 +284,8 @@
             pointer-events: none;
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             z-index: 1000;
-            border: 2px solid #00ff88;
+            border: 2px solid #7FB77E;
         }
-
 
         .tooltip h4 {
             color: #0B3041;
@@ -643,19 +627,19 @@
                         <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
                         
                         <!-- Marqueurs pour chaque région -->
-                                <div class="marker" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
-                                <div class="marker" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
-                                <div class="marker" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
-                                <div class="marker" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
-                                <div class="marker" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
-                                <div class="marker" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
-                                <div class="marker" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
-                                <div class="marker" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
-                                <div class="marker" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
-                                <div class="marker" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
-                                <div class="marker" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
-                                <div class="marker" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
-                            </div>
+                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
+                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
+                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
+                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
+                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
+                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
+                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
+                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
+                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
+                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
+                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
+                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
+                    </div>
                     <div class="contact-info-section">
                     <div class="contact-info-header">
                         <h2>Prenons <span class="highlight">contact</span></h2>
@@ -693,6 +677,7 @@
     </footer>
 
     <script>
+        // Gestion des marqueurs et tooltips
         document.addEventListener('DOMContentLoaded', function () {
             const markers = document.querySelectorAll('.marker');
             const tooltip = document.getElementById('tooltip');
