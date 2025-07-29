@@ -22,7 +22,7 @@
             background: #f8f9fa;
         }
 
-        .header {
+         .header {
             background-color: #0B3041;
             color: white;
             padding: 1rem 0;
@@ -100,37 +100,46 @@
             margin-left: 10px;
         }
 
-        .dropdown-menu {
-            position: absolute;
-            margin-top: 18px;
-            left: 0;
-            background-color: #0B3041;
-            padding: 0.5rem 0;
-            border-radius: 6px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            min-width: 220px;
-            z-index: 999;
-            max-width: 420px;
-        }
+       
 
-        .dropdown-menu li {
-            list-style: none;
-            margin-bottom: -23px;
-        }
+.dropdown-menu li:last-child a {
+    border-bottom: none; /* Supprime le trait du dernier élément */
+}
 
-        .dropdown-menu a {
-            display: block;
-            padding: 0.7rem 1.1rem;
-            color: white;
-            font-weight: 500;
-            transition: background 0.3s;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            width: max-content;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
+.dropdown-menu {
+    position: absolute;
+    margin-top: 16px;
+    left: 0;
+    background-color: #0B3041;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    display: none;
+    min-width: 327px;
+    z-index: 999;
+    max-width: 480px;
+}
+
+.dropdown-menu li {
+    list-style: none;
+    margin-bottom: -15px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 1.6rem 0.1rem;
+    color: white;
+    font-weight: 500;
+    transition: background 0.3s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 14px;
+    margin-block: -16px;
+    height: 90px;
+    width: 90%;
+    border-bottom: 1px solid white;
+}
+
 
         .dropdown-menu.show {
             display: block;
@@ -202,6 +211,7 @@
             background: rgba(255,255,255,0.1);
             border-radius: 10px;
         }
+
         /* Main Content */
         .main-content {
             margin-top: 80px;
