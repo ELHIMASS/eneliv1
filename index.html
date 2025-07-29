@@ -97,6 +97,13 @@
             margin-left: 10px;
         }
 
+       
+
+.dropdown-menu li:last-child a {
+    border-bottom: none; /* Supprime le trait du dernier élément */
+}
+
+
         .dropdown-menu {
             position: absolute;
             margin-top: 18px;
@@ -116,18 +123,20 @@
             margin-bottom: -36px;
         }
 
-        .dropdown-menu a {
-            display: block;
-            padding: 0.7rem 1.1rem;
-            color: white;
-            font-weight: 500;
-            transition: background 0.3s;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            width: max-content;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
+         .dropdown-menu a {
+    display: block;
+    padding: 0.8rem 0.1rem;
+    color: white;
+    font-weight: 500;
+    transition: background 0.3s;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    width: max-content;
+    font-size: 14px;
+    border-bottom: 1px solid white ;
+    margin-top: 14px;
+    margin-block: 24px;
+}
 
         .dropdown-menu.show {
             display: block;
