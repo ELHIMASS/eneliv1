@@ -18,7 +18,7 @@
         }
 
         /* Header */
-         .header {
+        .header {
             background-color: #0B3041;
             color: white;
             padding: 1rem 0;
@@ -36,7 +36,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            margin-right: 40px;
         }
 
         .logo {
@@ -96,46 +95,43 @@
             margin-left: 10px;
         }
 
-       
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
 
-.dropdown-menu li:last-child a {
-    border-bottom: none; /* Supprime le trait du dernier élément */
-}
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+            max-width: 480px;
+        }
 
-.dropdown-menu {
-    position: absolute;
-    margin-top: 16px;
-    left: 0;
-    background-color: #0B3041;
-    padding: 0.5rem 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    display: none;
-    min-width: 327px;
-    z-index: 999;
-    max-width: 480px;
-}
+        .dropdown-menu li {
+            list-style: none;
+            margin-bottom: -15px;
+        }
 
-.dropdown-menu li {
-    list-style: none;
-    margin-bottom: -15px;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 1.6rem 0.1rem;
-    color: white;
-    font-weight: 500;
-    transition: background 0.3s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: 14px;
-    margin-block: -16px;
-    height: 90px;
-    width: 90%;
-    border-bottom: 1px solid white;
-}
-
+        .dropdown-menu a {
+            display: block;
+            padding: 1.6rem 0.1rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 14px;
+            margin-block: -16px;
+            height: 90px;
+            width: 90%;
+            border-bottom: 1px solid white;
+        }
 
         .dropdown-menu.show {
             display: block;
@@ -145,20 +141,26 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .burger-menu:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         .burger-line {
-            width: 25px;
+            width: 28px;
             height: 3px;
             background: white;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+            transform: rotate(45deg) translate(7px, 7px);
         }
 
         .burger-menu.active .burger-line:nth-child(2) {
@@ -166,48 +168,36 @@
         }
 
         .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 3rem;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 500;
-            padding: 1rem 0;
-            margin: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            width: 80%;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: #7FB77E;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-        }
-
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+.mobile-menu.active {
+    left: 0;
+}
+.mobile-menu a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 1rem 0;
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
         /* Main Content */
         .main-content {
             margin-top: 100px;
@@ -275,6 +265,7 @@
             font-size: 3rem;
             color: white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
 
         .president-content {
@@ -440,17 +431,62 @@
             }
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .who-we-are-hero {
+                padding: 3rem 0;
             }
 
             .president-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 2rem;
+                padding: 2rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .president-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .president-title {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .president-text {
+                font-size: 0.95rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .values-section {
+                padding: 3rem 0;
             }
 
             .values-title {
                 font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .values-text {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .values-highlight {
+                padding: 1.5rem;
+                margin-top: 1.5rem;
+            }
+
+            .values-highlight p {
+                font-size: 1.1rem;
             }
 
             .services-title {
@@ -459,6 +495,63 @@
 
             .services-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .main-content {
+                margin-top: 80px;
+            }
+
+            .header {
+                padding: 0.8rem 0;
+            }
+
+            .logo img {
+                height: 1cm;
+                width: 4.5cm;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .president-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .president-avatar {
+                width: 80px;
+                height: 80px;
+            }
+
+            .values-title {
+                font-size: 1.8rem;
+            }
+
+            .values-text {
+                font-size: 0.95rem;
+            }
+
+            .values-highlight {
+                padding: 1rem;
+            }
+
+            .values-highlight p {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
             }
         }
     </style>
@@ -507,16 +600,16 @@
                 </div>
             </nav>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#accueil" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
-            <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
-            <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
-            <a href="#contact" onclick="closeMobileMenu()">Contact</a>
-            <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
-        </div>
     </header>
 
+    <!-- ✅ Déplacé ici, à l'extérieur du header -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/eneliv1/nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
+        <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
+        <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
+        <a href="/eneliv1/contacter/index.html" onclick="closeMobileMenu()">Contact</a>
+        <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+    </div>
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
