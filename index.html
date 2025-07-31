@@ -146,12 +146,11 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 5px;
         }
 
         .burger-line {
-            width: 25px;
-            height: 3px;
+            width: 19px;
+            height: 2px;
             background: white;
             margin: 3px 0;
             transition: all 0.3s ease;
@@ -200,7 +199,7 @@
 @media (max-width: 983px) {
   .hero {
     position: relative;
-    height: 55vh;
+    height: 60vh;
     overflow: hidden;
   }
 
@@ -218,27 +217,32 @@
     width: 90%;
     text-align: center;
     color: white;
-    z-index: 2;
-    padding: 0 1rem;
-    background: rgba(0, 0, 0, 0.4); /* bande noire transparente */
     border-radius: 10px;
   }
 
   .hero-title {
-    font-size: 1.3rem;
+    font-size: 0.7rem;
     margin: 0;
     line-height: 1.3;
     word-break: break-word;
   }
 
   .hero-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.4rem;
     margin-top: 0.5rem;
   }
 
   .hero-nav {
     bottom: 1rem;
-  }
+    
+ }
+
+ .logo img {
+            height: 0.7cm;
+            width: 4.1cm;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
 }
 
     
@@ -433,24 +437,6 @@
 }
 
 
-
-
-@media (max-width: 983px) {
-  .etape-card {
-    flex-direction: column;
-    text-align: left;
-  }
-
-  .etape-img {
-    width: 100%;
-    margin-top: 1rem;
-  }
-}
-
-
-
-
-
         .hero-content {
             color: #ffffff;
             max-width: 800px;
@@ -460,7 +446,7 @@
         }
 
         .hero-title {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
             font-weight: bold;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin-top: -1rem;
@@ -470,7 +456,7 @@
         }
 
         .hero-subtitle {
-            font-size: 1.0rem;
+            font-size: 1.4rem;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin-top: -2.5rem;
             margin-left: -400px;
@@ -697,15 +683,16 @@
 
             .burger-menu {
                 display: flex;
+                font-size: 20px;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 1.5rem;
                 margin-left: auto;
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: 0.8rem;
                 margin-top: auto;
                 margin-left: auto;
             }
