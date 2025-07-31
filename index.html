@@ -185,6 +185,92 @@
     transition: left 0.3s ease;
     z-index: 999;
 }
+
+/* Expertises Grid */
+.expertises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+}
+
+.expertise-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 360px;
+    width: 270px;
+    cursor: pointer;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.expertise-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Plus d'espace pour l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Overlay léger pour le contraste */
+    background-blend-mode: multiply;
+    background-color: rgba(30, 60, 114, 0.1);
+}
+
+.expertise-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 85%;
+    background: transparent;
+    padding: 1rem 1.5rem;
+    height: 5%; /* Réduit pour juste le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centré */
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.expertise-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+/* Effet de zoom sur l'image au survol */
+.expertise-card:hover .expertise-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 983px) {
+    .expertises-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .expertise-card {
+        height: 280px;
+    }
+    
+    .expertise-title {
+        font-size: 1.1rem;
+    }
+}
+
+
 .mobile-menu.active {
     left: 0;
 }
@@ -304,6 +390,56 @@
     background-size: cover;
     background-position: center;
 }
+
+.hero-slide:nth-child(5) {
+    background:  url('./home/assets/image5.png');
+    background-size: cover;
+    background-position: center;
+}
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-nav button {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-nav button.active {
+            background-color: #00b894;
+        }
 
         
 
@@ -490,20 +626,17 @@
         }
 
         /* Sections */
-        .section {
-            padding: 4rem 0;
-        }
+        
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            height: 50px;
             color: #1e3c72;
         }
 
@@ -719,9 +852,106 @@
             .section-title {
             text-align: center;
             font-size: 1rem;
-            margin-bottom: 1rem;
             color: #1e3c72;
         }
+        }
+
+        .eneliv-section {
+            text-align: center;
+            background: linear-gradient(135deg, #e8e9ea 0%, #f1f2f3 100%);
+            border-radius: 20px;
+            
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            top: auto;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+        
+        
+        
+        .eneliv-intro {
+            font-size: 1rem;
+            color: #34495e;
+            margin: 0 0 1.5rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .eneliv-description {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5a6c7d;
+            line-height: 1.8;
+            margin: 0 0 1.8rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.8rem;
+        }
+        
+        .eneliv-ambition {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @font-face {
+
+            font-family: 'MaSignature';
+
+            src: url('/eneliv1/home/assets/Bastliga\ One.ttf') format('truetype');
+
+            }
+ 
+
+
+ 
+        
+        .eneliv-signature {
+            font-family: 'MaSignature', cursive;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-style: italic;
+        }
+        
+
+        .eneliv-title {
+            width: 120px;
+            height: 80px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+
+        }
+        
+        @media (max-width: 768px) {
+            .eneliv-section {
+                padding: 2.5rem 1.5rem;
+            }
+            
+          
+            
+            .eneliv-intro {
+                font-size: 1rem;
+            }
+            
+            .eneliv-description,
+            .eneliv-ambition {
+                font-size: 0.95rem;
+            }
+            
+            .eneliv-signature {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -810,68 +1040,87 @@
                     <p class="hero-subtitle">Attestez, Validez, avancez ! ​</p>
                 </div>
             </div>
-        </div>
+
+
+
+            <div class="hero-slide">
+                <div class="hero-content">
+                    <h1 class="hero-title">Mon Accompagnateur Rénov'</h1>
+                    <p class="hero-subtitle">Votre guide vers une rénovation réussie</p>
+                </div>
+            </div>
+
         <div class="hero-nav">
             <button class="hero-nav-btn active" onclick="showHeroSlide(0)"></button>
             <button class="hero-nav-btn" onclick="showHeroSlide(1)"></button>
             <button class="hero-nav-btn" onclick="showHeroSlide(2)"></button>
             <button class="hero-nav-btn" onclick="showHeroSlide(3)"></button>
+            <button class="hero-nav-btn" onclick="showHeroSlide(4)"></button>
         </div>
     </section>
 
     
 
-    <!-- Services Section -->
+   <!-- Services Section -->
     <section class="section" id="services">
         <div class="container">
-            <h2 class="section-title">NOS SECTEURS</h2>
-            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem; color: #666;">
-                Un accompagnement sur-mesure
+            <h2 class="section-title" style="font-size: 30px;color: #0B3041;">Découvrez nos <span style="color: #7FB77E;">secteurs</span></h2>
+            <p style="text-align: center;  font-size: 1.1rem; color: #666; margin-bottom: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;" >
+                Nos 4 pôles d'expertise pour mettre en valeur votre patrimoine.
             </p>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏠</div>
-                    <h3 class="service-title">Particulier</h3>
-                    <p>Maison individuelle, Appartement</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3 class="service-title">Copropriété</h3>
-                    <p>Immeubles d'habitation, Résidences</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏛️</div>
-                    <h3 class="service-title">Tertiaire</h3>
-                    <p>Public, Scolaire, Hôpitaux, Hôtels, Bureaux, Commerce</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏭</div>
-                    <h3 class="service-title">Industrie</h3>
-                    <p>Tous les métiers industriels</p>
-                </div>
-            </div>
+            <div class="expertises-grid">
+    <div class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise1.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Particulier</h3>
+        </div>
+    </div>
+    
+    <div class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise2.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Copropriété</h3>
+        </div>
+    </div>
+    
+    <div class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise3.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Tertiaire</h3>
+        </div>
+    </div>
+    
+    <div class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise4.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Industrie</h3>
+        </div>
+    </div>
+</div>
 
-            <div style="text-align: center; background: #f8f9fa; padding: 3rem; border-radius: 15px; margin-top: 3rem;">
-                <h3 style="color: #1e3c72; margin-bottom: 2rem; font-size: 2rem;">ENELIV</h3>
-                <p style="margin-bottom: 2rem; line-height: 1.8; color: #555;">
-                    ENELIV votre bureau d'études engagé pour la performance énergétique et la durabilité. 
-                    Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire, 
-                    nous vous aidons à réduire vos consommations énergétiques.
-                </p>
-                <p style="margin-bottom: 2rem; line-height: 1.8; color: #555;">
-                    Nous mettons notre expertise technique au service de la performance de vos édifices, en toute 
-                    transparence. Nos valeurs sont la qualité, notre approche sur-mesure.
-                </p>
-                <p style="color: #1e3c72; font-weight: bold; font-size: 1.2rem;">
-                    Notre ambition : vous garantir la conformité réglementaire, optimiser vos installations, 
-                    valoriser votre patrimoine et vous accompagner dans la transition énergétique, partout où 
-                    vous en avez besoin.
-                </p>
-                <p style="margin-top: 2rem; font-style: italic; color: #666; font-size: 1.1rem; font-family: Fave Script Bold Pro;">
-                    Directeur Général
-                </p>
-            </div>
+            <div class="eneliv-section">
+            <img  class="eneliv-title" src="./home/assets/enelivV.png" alt=""> 
+
+            
+            <p class="eneliv-intro">
+                <p2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ENELIV </p2> votre bureau d'études engagé pour la performance énergétique et la durabilité. 
+                Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire, 
+                notre bureau d'études vous aide à réduire vos consommations, maîtriser vos dépenses, 
+                améliorer votre confort et limiter votre empreinte carbone.
+            
+                Nous mettons notre expertise technique au service de la performance de vos édifices, en toute 
+                transparence et avec une approche sur mesure.
+            </p>
+            <p class="eneliv-ambition" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                Notre ambition : vous garantir la conformité réglementaire, optimiser vos installations, 
+                valoriser votre patrimoine et vous accompagner dans la transition énergétique, aujourd'hui 
+                et pour demain.
+            </p>
+            <p class="eneliv-signature">
+                Directeur General
+            </p>
+        </div>
         </div>
     </section>
 
