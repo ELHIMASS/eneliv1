@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Diagnostic de Performance Énergétique - DPE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 80px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            margin-right: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 1.2cm;
+            width: 5.4cm;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu li:hover {
+            cursor: pointer;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .nav-menu a:hover {
+            color: #1c3a48;
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+            max-width: 480px;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+            margin-bottom: -15px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 1.6rem 0.1rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 14px;
+            margin-block: -16px;
+            height: 90px;
+            width: 90%;
+            border-bottom: 1px solid white;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .burger-line {
+            width: 19px;
+            height: 2px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        /* Main Content Styles */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            color: #0B3041;
+            margin-bottom: 0.5rem;
+            padding: 1rem 2rem;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 2rem 0 1.5rem 0;
+            font-weight: bold;
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: 310px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .content-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .content-text {
+            text-align: justify;
+        }
+
+        .text-paragraph {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+
+        .highlight-blue {
+            color: #0B3041;
+            font-weight: bold;
+        }
+
+        .info-section {
+            background: #e9ecef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .arrow-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .arrow-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .arrow-list li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: #0B3041;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bullet-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bullet-list li::before {
+            content: "⤷";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .cta-button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .column-content h4 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
+        .content-with-image {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 2rem;
+            align-items: start;
+            margin: 1.5rem 0;
+        }
+
+        .side-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .side-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Calendar Section Styles */
+        .calendar-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        /* Services Grid Styles */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.05);
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            color: #0B3041;
+            margin: 1rem 0 0.5rem 0;
+            font-weight: bold;
+        }
+
+        .service-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0 1.5rem 0;
+            padding: 0 1rem;
+            font-style: italic;
+        }
+
+        /* Engagement Section Styles */
+        .engagement-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .engagement-title {
+            font-size: 1.6rem;
+            color: #0B3041;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .engagement-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: justify;
+        }
+
+        .engagement-cta {
+            background-color: #6c9a5c;
+            font-size: 1.1rem;
+            padding: 1rem 2.5rem;
+        }
+
+        .engagement-cta:hover {
+            background-color: #5a8549;
+        }
+
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .content-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .info-icon {
+                justify-self: center;
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .two-column-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .content-with-image {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .engagement-section {
+                padding: 2rem 1rem;
+            }
+
+            .engagement-title {
+                font-size: 1.3rem;
+            }
+
+            .engagement-text {
+                font-size: 1rem;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./../logoblanc.png" alt="Logo" >
+                <div class="logo-placeholder" style="display: none;">LOGO</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./nous/index.html">QUI SOMMES NOUS ?</a></li>
+
+                    <li class="dropdown" onclick="toggleDropdown('besoinsDropdown')">
+                        <a href="javascript:void(0)">VOS BESOINS ▼</a>
+                        <ul id="besoinsDropdown" class="dropdown-menu">
+                        <li><a href="#besoin1"> PARTICULIER </a></li>
+                        <li><a href="#besoin2"> COPROPRIÉTÉ </a></li>
+                        <li><a href="#besoin3"> TERTIAIRE </a></li>
+                        <li><a href="#besoin4"> INDUSTRIE </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                        <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
+                        <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                        <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                        <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
+                        <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="./contacter/index.html">CONTACT</a></li>
+                    <li><a href="#actualite">ACTUALITÉS</a></li>
+                </ul>
+
+                <div class="burger-menu" onclick="toggleMobileMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="./nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
+            <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
+            <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
+            <a href="./contacter/index.html" onclick="closeMobileMenu()">Contact</a>
+            <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Le Diagnostic de Performance Énergétique - DPE</h1>
+        </div>
+
+        <h2 class="section-title">Qu'est-ce que le DPE ?</h2>
+
+        <div class="content-section">
+            <div class="content-image">
+                <img src="../home/assets/dpe.jpeg">
+            </div>
+
+            <div class="content-text">
+                <p class="text-paragraph">
+                    Le <span class="highlight-blue">Diagnostic de Performance Énergétique (DPE)</span> est un document réglementaire qui évalue la <span class="highlight-blue">consommation d'énergie</span> et les <span class="highlight-blue">émissions de gaz à effet de serre</span> d'un logement ou d'un bâtiment. Il s'inscrit dans le cadre de la <span class="highlight-blue">loi Climat et Résilience du 22 août 2021</span> et de plusieurs décrets et arrêtés publiés entre 2020 et 2021.
+                </p>
+
+                <p class="text-paragraph">
+                    <span class="highlight">Deux types de DPE :</span><br>
+                    <span class="highlight">DPE individuel :</span> Obligatoire pour toute <span class="highlight-blue">vente ou location</span> d'un logement.<br>
+                    <span class="highlight">DPE collectif :</span> Obligatoire pour toutes les <span class="highlight-blue">copropriétés de plus de 50 lots</span>.
+                </p>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-icon">
+                <div style="width: 50px; height: 50px; background: #0B3041; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px;">?</div>
+            </div>
+            
+            <div class="info-content">
+                <h3 class="info-title">Le saviez-vous ?</h3>
+                <ul class="bullet-list">
+                    <li>Le DPE est valable <span class="highlight">10 ans</span></li>
+                    <li>Toutes les copropriétés doivent avoir un DPE à jour (<span class="highlight">sauf < 50 lots dès le 1er janvier 2026</span>)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Quel est l'objectif du DPE ?</h2>
+
+        <div class="content-text">
+            <p class="text-paragraph">Le DPE vise à :</p>
+            
+            <ul class="arrow-list">
+                <li><span class="highlight">Informer</span> les occupants ou futurs acquéreurs/locataires sur la performance énergétique du bien.</li>
+                <li><span class="highlight">Sensibiliser</span> aux impacts environnementaux (émissions de CO₂).</li>
+                <li><span class="highlight">Identifier</span> les travaux prioritaires pour améliorer le confort thermique et réduire les consommations.</li>
+                <li><span class="highlight">Valoriser</span> le bien immobilier via la <span class="highlight-blue">valeur verte</span> (meilleure étiquette = meilleure revente).</li>
+                <li><span class="highlight">Préparer une stratégie de rénovation énergétique</span>, notamment en copropriété (DPE collectif → PPPT)</li>
+            </ul>
+
+            <div class="cta-button-container">
+                <button class="cta-button">Demander un DPE</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Qui est concerné par le DPE ?</h2>
+
+        <div class="two-column-section">
+            <div class="column-content">
+                <h4>DPE individuel :</h4>
+                <ul class="arrow-list">
+                    <li><span class="highlight">Tous les logements</span> mis en <span class="highlight-blue">vente ou location</span>, sauf ceux occupés moins de 4 mois/an.</li>
+                    <li>Obligatoire pour les <span class="highlight-blue">propriétaires bailleurs</span> et vendeurs.</li>
+                </ul>
+            </div>
+
+            <div class="column-content">
+                <h4>DPE collectif :</h4>
+                <ul class="arrow-list">
+                    <li><span class="highlight">Toutes les copropriétés</span> de plus de <span class="highlight-blue">50 lots</span>, selon le calendrier réglementaire.</li>
+                    <li>Obligatoire <span class="highlight-blue">même sans projet de vente ou de location</span>, car il constitue une <span class="highlight-blue">base pour le PPPT</span>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-icon">
+                <div style="width: 50px; height: 50px; background: #0B3041; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px;">!</div>
+            </div>
+            
+            <div class="info-content">
+                <h3 class="info-title">Le saviez-vous ?</h3>
+                <ul class="bullet-list">
+                    <li>Les copropriétaires peuvent mutualiser les DPE individuels lors de la réalisation du DPE collectif, ce qui permet de réduire les coûts des DPE individuels.</li>
+                    <li>Depuis juillet 2021, le DPE est opposable juridiquement : un acheteur ou locataire peut contester un DPE erroné et demander réparation.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Quel est le contenu du livrable PPPT ?</h2>
+
+        <div class="content-text">
+            <h3 class="info-title">Le DPE doit comporter les éléments suivants :</h3>
+            <ul class="arrow-list">
+                <li>Étiquette <span class="highlight-blue">énergie/climat</span> (de A à G)</li>
+                <li>Estimation des <span class="highlight-blue">consommations</span> (kWh/m²/an) et des émissions de CO₂</li>
+                <li>Estimation des <span class="highlight-blue">charges énergétiques</span></li>
+                <li><span class="highlight-blue">Recommandations de travaux</span></li>
+                <li><span class="highlight-blue">Fichier XML</span> (utile pour les DPE individuels à partir du DPE collectif)</li>
+            </ul>
+        </div>
+
+        <div class="content-with-image">
+            <div>
+                <h3 class="info-title">Spécificités du DPE individuel :</h3>
+                <ul class="arrow-list">
+                    <li>Analyse personnalisée du logement (isolation, chauffage, menuiseries...)</li>
+                    <li>Rapport pédagogique avec <span class="highlight-blue">conseils ciblés</span></li>
+                    <li>Valorisation des travaux déjà réalisés</li>
+                </ul>
+            </div>
+            <div class="side-image">
+                <img src="../home/assets/expertise1.jpeg" alt="Maison individuelle">
+            </div>
+        </div>
+
+        <div class="content-with-image">
+            <div>
+                <h3 class="info-title">Spécificités du DPE collectif :</h3>
+                <ul class="arrow-list">
+                    <li>Analyse de <span class="highlight-blue">l'enveloppe du bâtiment</span>, des <span class="highlight-blue">équipements techniques</span>, des <span class="highlight-blue">logements échantillonnés</span></li>
+                    <li><span class="highlight-blue">Plan de travaux budgétisé</span> et scénarisé</li>
+                    <li><span class="highlight-blue">Synergies de travaux</span> identifiées</li>
+                    <li>Compatible avec la réalisation du <span class="highlight-blue">PPPT</span></li>
+                </ul>
+            </div>
+            <div class="side-image">
+                <img src="../home/assets/expertise3.jpeg" alt="">
+
+            </div>
+        </div>
+
+        <div class="cta-button-container">
+            <button class="cta-button">Demander un DPE</button>
+        </div>
+
+        <h2 class="section-title">Comment mettre en place le DPE ?</h2>
+
+        <div class="two-column-section">
+            <div class="column-content">
+                <h4>DPE individuel :</h4>
+                <ul class="arrow-list">
+                    <li>Collecte des <span class="highlight-blue">données techniques</span></li>
+                    <li><span class="highlight-blue">Visite</span> du logement</li>
+                    <li><span class="highlight-blue">Calcul réglementaire</span></li>
+                    <li>Remise du <span class="highlight-blue">rapport officiel</span> (valable 10 ans)</li>
+                </ul>
+            </div>
+
+            <div class="column-content">
+                <h4>DPE collectif :</h4>
+                <ul class="arrow-list">
+                    <li>Réunion de <span class="highlight-blue">lancement</span> avec le syndic et les copropriétaires</li>
+                    <li>Collecte <span class="highlight-blue">documentaire</span> (plans, factures, historique des travaux...)</li>
+                    <li><span class="highlight-blue">Visite</span> technique du bâtiment et des logements échantillonnés</li>
+                    <li><span class="highlight-blue">Analyse et modélisation</span> (logiciel certifié 3CL 2021)</li>
+                    <li>Remise du <span class="highlight-blue">rapport + fichier XML</span></li>
+                    <li>Présentation en <span class="highlight-blue">AG</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Le calendrier DPE Section -->
+        <h2 class="section-title">Le calendrier DPE ?</h2>
+        
+        <div class="calendar-section">
+            <img src="../home/assets/cald.png" alt="Calendrier DPE" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+        </div>
+
+        <!-- Services Section -->
+        <h2 class="section-title">Nos autres services</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="../home/assets/ppt.jpeg" alt="PPPT">
+                </div>
+                <h3 class="service-title">PPPT</h3>
+                <p class="service-subtitle">(Projet de Plan Pluriannuel de Travaux)</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="../home/assets/audit.png" alt="Audit énergétique">
+                </div>
+                <h3 class="service-title">Audit énergétique</h3>
+                <p class="service-subtitle">(Audit énergétique réglementaire)</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="../home/assets/dtg.png" alt="DTG">
+                </div>
+                <h3 class="service-title">DTG</h3>
+                <p class="service-subtitle">(Diagnostic Technique Global)</p>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="engagement-section">
+            <h2 class="engagement-title">Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
+            <p class="engagement-text">
+                Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
+                intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
+                une prestation rigoureuse, première étape essentielle vers une simple conformité 
+                réglementaire ou une solide rénovation performante.
+            </p>
+            <div class="cta-button-container">
+                <button class="cta-button engagement-cta">Parler à votre référent</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logo click redirect
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = '../index.html';
+        });
+
+        // Dropdown functions
+        function toggleDropdown(id) {
+            // Fermer les autres menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle le menu cliqué
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
+        // Fermer si clic en dehors
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Show logo placeholder if image fails to load
+        document.querySelector('.logo img').addEventListener('error', function() {
+            this.style.display = 'none';
+            document.querySelector('.logo-placeholder').style.display = 'flex';
+        });
+
+        // Add click handlers for CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Redirect to contact page or show contact modal
+                window.location.href = './contacter/index.html';
+            });
+        });
+    </script>
+</body>
+</html>
