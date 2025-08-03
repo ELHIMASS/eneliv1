@@ -205,10 +205,8 @@
             font-size: 2.2rem;
             color: #0B3041;
             margin-bottom: 0.5rem;
-            border: 2px solid #0B3041;
             padding: 1rem 2rem;
             display: inline-block;
-            border-radius: 8px;
         }
 
         .section-title {
@@ -216,12 +214,13 @@
             color: #333;
             margin: 2rem 0 1.5rem 0;
             font-weight: bold;
+            margin-left: 70px;
         }
 
         .content-section {
             display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
+            grid-template-columns: 603px 1fr;
+            gap: 6rem;
             margin-bottom: 3rem;
             align-items: start;
         }
@@ -241,6 +240,8 @@
 
         .content-text {
             padding-left: 1rem;
+            margin-top: 60px;
+            text-align: justify;
         }
 
         .text-paragraph {
@@ -322,10 +323,89 @@
             align-items: flex-start;
         }
 
-        .question-side-image img {
-            max-width: 100%;
-            height: auto;
+        .objectives-section {
+            margin: 2rem 0;
+        }
+
+        .concerned-section {
+            margin: 2rem 0;
+        }
+
+        .arrow-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .arrow-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .arrow-list li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: #0B3041;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bullet-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cta-button-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .cta-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
             border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        .final-info-section {
+            background: #e9ecef;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 60px 1fr 150px;
+            gap: 1.5rem;
+            align-items: start;
         }
 
         @media (max-width: 768px) {
@@ -448,6 +528,58 @@
                 <ul class="checkmark-list">
                     <li>Le PPPT est une <span class="highlight">analyse technique</span> du bâtiment, incluant le <span class="highlight-blue">DPE collectif</span> et éventuellement le <span class="highlight-blue">DTG</span></li>
                     <li>Depuis le 1er janvier 2025, toute copropriété datant de plus de 15 ans est concernée</li>
+                </ul>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
+            </div>
+        </div>
+
+        <h2 class="section-title">Quel est l'objectif du PPPT ?</h2>
+
+        <div class="objectives-section">
+            <p class="text-paragraph">Le PPPT poursuit plusieurs objectifs majeurs :</p>
+            
+            <ul class="arrow-list">
+                <li><span class="highlight">Préserver la sécurité et la santé</span> des occupants.</li>
+                <li><span class="highlight">Assurer la conservation</span> du bâti et des équipements collectifs.</li>
+                <li><span class="highlight">Améliorer la performance énergétique</span> des immeubles.</li>
+                <li><span class="highlight">Réduire les émissions de gaz à effet de serre.</span></li>
+                <li><span class="highlight">Anticiper les coûts et les interventions</span>, pour une gestion durable et préventive de la copropriété</li>
+            </ul>
+
+            <p class="text-paragraph">
+                Il constitue un <span class="highlight-blue">outil d'aide à la décision</span> pour les syndics et les copropriétaires, tout en facilitant les démarches de financement et de valorisation patrimoniale
+            </p>
+
+            <div class="cta-button-container">
+                <button class="cta-button">Demander un PPPT</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Qui est concerné par le PPPT ?</h2>
+
+        <div class="concerned-section">
+            <p class="text-paragraph">Depuis 2025, le PPPT est obligatoire pour toutes les copropriétés :</p>
+            
+            <ul class="arrow-list">
+                <li><span class="highlight">À usage d'habitation</span>, totale ou partielle.</li>
+                <li><span class="highlight">Ayant plus de 15 ans</span> depuis leur réception.</li>
+                <li><span class="highlight">Sans limite de nombre de lots.</span></li>
+            </ul>
+        </div>
+
+        <div class="final-info-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <ul class="bullet-list">
+                    <li>Sans PPPT, l'administration peut bloquer les ventes et engager la responsabilité juridique du syndicat.</li>
+                    <li>Si un DTG a été réalisé et conclut à l'absence de travaux nécessaires dans les 10 prochaines années, le PPPT n'est pas requis</li>
                 </ul>
             </div>
 
