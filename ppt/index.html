@@ -397,6 +397,22 @@
             background-color: #218838;
         }
 
+        .cta-button-green {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button-green:hover {
+            background-color: #218838;
+        }
+
         .final-info-section {
             background: #e9ecef;
             padding: 2rem;
@@ -406,6 +422,199 @@
             grid-template-columns: 60px 1fr 150px;
             gap: 1.5rem;
             align-items: start;
+        }
+
+        /* Process Steps Styles */
+        .process-section {
+            margin: 3rem 0;
+            padding: 2rem 0;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+            position: relative;
+            margin-bottom: 3rem;
+            height: 350px;
+            background: #f8f9fa;
+            padding: 2rem 0;
+        }
+
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 200px;
+            flex: 1;
+        }
+
+        .process-step:nth-child(1) {
+            margin-top: 0px;
+        }
+
+        .process-step:nth-child(2) {
+            margin-top: 40px;
+        }
+
+        .process-step:nth-child(3) {
+            margin-top: 80px;
+        }
+
+        .process-step:nth-child(4) {
+            margin-top: 120px;
+        }
+
+        .process-step:nth-child(5) {
+            margin-top: 160px;
+        }
+
+        .step-header {
+            background: white;
+            border: 2px solid #0B3041;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            font-weight: bold;
+            color: #0B3041;
+            font-size: 0.9rem;
+        }
+
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-start;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-badge {
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-align: center;
+            font-weight: 500;
+            width: 180px;
+            margin: 0.2rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-badge.green {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .step-badge.dark {
+            background-color: #343a40;
+            color: white;
+        }
+
+        .step-badge.red {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .step-line {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100px;
+            border-left: 2px dashed #ccc;
+            z-index: 1;
+        }
+
+        .process-step:last-child .step-line {
+            display: none;
+        }
+
+        /* Services Section Styles */
+        .services-section {
+            margin: 3rem 0;
+            padding: 2rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0 1rem;
+        }
+
+        .service-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+        }
+
+        .services-description {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .services-main-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .services-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @media (max-width: 768px) {
@@ -434,6 +643,45 @@
             .page-title {
                 font-size: 1.8rem;
                 padding: 0.8rem 1.5rem;
+            }
+
+            .process-steps {
+                flex-direction: column;
+                gap: 2rem;
+                height: auto;
+                align-items: center;
+                background: none;
+                padding: 1rem 0;
+            }
+
+            .process-step:nth-child(1),
+            .process-step:nth-child(2),
+            .process-step:nth-child(3),
+            .process-step:nth-child(4),
+            .process-step:nth-child(5) {
+                margin-top: 0;
+            }
+
+            .step-badge {
+                width: 180px;
+            }
+
+            .step-content {
+                align-items: center;
+            }
+
+            .step-line {
+                display: none;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                margin-left: 0;
+                text-align: center;
             }
         }
     </style>
@@ -587,6 +835,161 @@
                 <!-- Espace pour image supplémentaire si nécessaire -->
             </div>
         </div>
+
+        <h2 class="section-title">Quel est le contenu du livrable PPPT ?</h2>
+
+        <div class="content-text">
+            <p class="text-paragraph">Le PPPT doit comporter les éléments suivants :</p>
+            
+            <ul class="arrow-list">
+                <li><span class="highlight-blue">Liste des travaux</span> nécessaires à la sauvegarde, sécurité et performance énergétique.</li>
+                <li><span class="highlight-blue">Estimation des gains énergétiques</span> et de réduction des émissions de GES.</li>
+                <li><span class="highlight-blue">Estimation des coûts</span> des travaux.</li>
+                <li><span class="highlight-blue">Classement par priorité</span> (urgence, impact, coût).</li>
+                <li><span class="highlight-blue">Échéancier sur 10 ans.</span></li>
+                <li><span class="highlight-blue">Intégration dans le carnet d'entretien</span> de l'immeuble</li>
+            </ul>
+
+            <p class="text-paragraph">
+                Une fois voté, le PPPT devient un <span class="highlight-blue">PPT</span>, qui engage la copropriété à réaliser les travaux selon le calendrier prévu.
+            </p>
+
+            <div class="cta-button-container">
+                <button class="cta-button">Demander un PPPT</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Comment mettre en place le PPPT ?</h2>
+
+        <div class="content-text">
+            <ul class="arrow-list">
+                <li><span class="highlight-blue">Initiative du syndic :</span> Inscription à l'ordre du jour de l'AG pour lancer le PPPT (vote à majorité simple).</li>
+                <li><span class="highlight-blue">Choix du prestataire :</span> Un professionnel certifié, indépendant du syndic et des entreprises (architecte, bureau d'études, thermicien).</li>
+                <li><span class="highlight-blue">Réalisation du PPPT :</span> Analyse technique sur site + étude des diagnostics.</li>
+                <li><span class="highlight-blue">Présentation en AG :</span> Vote du PPPT (majorité absolue).</li>
+                <li><span class="highlight-blue">Adoption du PPT :</span> Mise en œuvre des travaux votés, avec plan de financement et suivi par le syndic</li>
+            </ul>
+        </div>
+
+        <!-- Section Process Steps -->
+        <h2 class="section-title">Comment se déroule la mission ?</h2>
+        
+        <div class="process-section">
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-header">
+                        <span class="step-number">Étape 01</span>
+                        <div class="step-badge green">Réunion d'ouverture</div>
+
+                    </div>
+                    <div class="step-content">
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <span class="step-number">Étape 02</span>
+                        <div class="step-badge dark">Transmission des documents</div>
+
+                    </div>
+                    <div class="step-content">
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <span class="step-number">Étape 03</span>
+                        <div class="step-badge dark">Visite sur site</div>
+
+                    </div>
+                    <div class="step-content">
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <span class="step-number">Étape 04</span>
+                        <div class="step-badge dark">Réalisation du rapport</div>
+
+                    </div>
+                    <div class="step-content">
+                    </div>
+                    <div class="step-line"></div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-header">
+                        <span class="step-number">Étape 05</span>
+                        <div class="step-badge red">Restitution en Assemblée Générale</div>
+
+                    </div>
+                    <div class="step-content">
+                        <!-- Pas de badge pour l'étape 5 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Services -->
+        <div class="services-section">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="../home/assets/image4.png" alt="Audit énergétique">
+                    </div>
+                    <h3 class="service-title">Audit énergétique</h3>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="../home/assets/image2.png" alt="DPE">
+                    </div>
+                    <h3 class="service-title">DPE</h3>
+                    <p class="service-subtitle">(Diagnostic de Performance Énergétique)</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="../home/assets/image3.png" alt="DTG">
+                    </div>
+                    <h3 class="service-title">DTG</h3>
+                    <p class="service-subtitle">(Diagnostic Technique Global)</p>
+                </div>
+            </div>
+            
+            <div class="services-description">
+                <h3 class="services-main-title">Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
+                <p class="services-text">
+                    Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
+                    intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
+                    une prestation rigoureuse, première étape essentielle vers une simple conformité 
+                    réglementaire ou une solide rénovation performante.
+                </p>
+                <div class="cta-button-container">
+                    <button class="cta-button-green">Parler à votre référent</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="question-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <p class="text-paragraph">
+                    <span class="highlight-blue">ENELIV</span> élabore votre PPPT et coche l'ensemble de nos critères avec une surprise additionnelle pour ses clients. Faites appel à un professionnel de référence pour votre copropriété.
+                </p>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
+            </div>
+        </div>
     </div>
 
     <script>
@@ -674,6 +1077,14 @@
         document.querySelector('.logo img').addEventListener('error', function() {
             this.style.display = 'none';
             document.querySelector('.logo-placeholder').style.display = 'flex';
+        });
+
+        // Add click handlers for CTA buttons
+        document.querySelectorAll('.cta-button, .cta-button-green').forEach(button => {
+            button.addEventListener('click', function() {
+                // Redirect to contact page or show contact modal
+                window.location.href = './contacter/index.html';
+            });
         });
     </script>
 </body>
