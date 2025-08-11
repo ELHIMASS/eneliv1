@@ -28,7 +28,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
@@ -49,11 +48,6 @@
             height: 1.2cm;
             width: 5.4cm;
             object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
         }
 
         .logo-placeholder {
@@ -67,7 +61,6 @@
             color: white;
             font-weight: bold;
             font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
         }
 
         .nav-menu {
@@ -75,11 +68,6 @@
             display: flex;
             gap: 2rem;
             align-items: center;
-        }
-
-        .nav-menu :hover {
-            cursor: pointer;
-            color: #1c3a48;
         }
 
         .nav-menu li {
@@ -90,14 +78,13 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
         }
 
-        .dropdown-menu li:last-child a {
-            border-bottom: none;
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #7FB77E;
         }
 
         .dropdown-menu {
@@ -110,28 +97,23 @@
             display: none;
             min-width: 327px;
             z-index: 999;
-            max-width: 480px;
         }
 
         .dropdown-menu li {
             list-style: none;
-            margin-bottom: -15px;
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 2.2rem 0.1rem;
+            padding: 1rem;
             color: white;
             font-weight: 500;
             transition: background 0.3s;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 14px;
-            margin-block: -16px;
-            height: 90px;
-            width: 90%;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(127, 183, 126, 0.2);
         }
 
         .dropdown-menu.show {
@@ -143,12 +125,6 @@
             flex-direction: column;
             cursor: pointer;
             padding: 8px;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-        }
-
-        .burger-menu:hover {
-            background: rgba(255,255,255,0.1);
         }
 
         .burger-line {
@@ -160,48 +136,38 @@
             border-radius: 3px;
         }
 
-        .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
-
-        .burger-menu.active .burger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
         .mobile-menu {
-    position: fixed;
-    top: 80px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 80px);
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 3rem;
-    transition: left 0.3s ease;
-    z-index: 999;
-}
-.mobile-menu.active {
-    left: 0;
-}
-.mobile-menu a {
-    color: white;
-    font-size: 1.2rem;
-    text-decoration: none;
-    padding: 1rem 0;
-    width: 90%;
-    text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            padding: 1rem 0;
+            width: 90%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
         /* Main Content */
         .main-content {
-            margin-top: 100px;
             padding: 2rem 0;
             min-height: calc(100vh - 100px);
         }
@@ -212,36 +178,64 @@
             padding: 0 2rem;
         }
 
-        /* Hero Section for Who We Are */
-        .who-we-are-hero {
+        /* Hero Section */
+        .hero-section {
+            background-image: url('../home/assets/nous.png');
+            color: white;
             text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 6rem 0 4rem;
+            position: relative;
         }
 
         .hero-title {
-            font-size: 3rem;
-            color: #0B3041;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Company Description */
+        .company-description {
+            background: white;
+            padding: 4rem 0;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .description-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .company-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .company-intro strong {
+            color: #0B3041;
             font-weight: bold;
         }
 
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 2rem;
+        .highlight-text {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #7FB77E;
+            margin: 2rem 0;
         }
 
         /* President Section */
         .president-section {
-            background: white;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 4rem 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
         .president-card {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 3rem;
             max-width: 1000px;
             margin: 0 auto;
@@ -256,17 +250,17 @@
         }
 
         .president-avatar {
-            width: 120px;
-            height: 120px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             color: white;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             overflow: hidden;
+            margin-bottom: 1rem;
         }
 
         .president-content {
@@ -274,12 +268,13 @@
         }
 
         .president-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #0B3041;
             font-weight: bold;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
         .president-text {
@@ -289,119 +284,288 @@
             margin-bottom: 1.5rem;
         }
 
-        .president-text strong {
-            color: #0B3041;
-            font-weight: bold;
-        }
-
-        /* Company Values Section */
+        /* Values Section */
         .values-section {
-            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
-            color: white;
+            background: white;
             padding: 4rem 0;
-        }
-
-        .values-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         .values-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            font-weight: bold;
-        }
-
-        .values-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .values-highlight {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 2rem;
-            border-left: 4px solid #7FB77E;
-        }
-
-        .values-highlight p {
-            font-size: 1.2rem;
-            font-weight: 500;
-            line-height: 1.7;
-        }
-
-        /* Services Grid */
-        .services-preview {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-
-        .services-title {
             text-align: center;
             font-size: 2.5rem;
             color: #0B3041;
             margin-bottom: 3rem;
+            font-weight: bold;
         }
 
-        .services-grid {
+        .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
-        .service-card {
+        .value-card {
             text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            background: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(127, 183, 126, 0.1);
         }
 
-        .service-card:hover {
+        .value-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
-            color: white;
+            border-color: #7FB77E;
         }
 
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
+        .value-icon {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: white;
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #0B3041;
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Contact and Certifications Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 4rem 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .france-map-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .map-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+
+        }
+
+        .france-map {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .marker {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #7FB77E;
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .marker:hover {
+            transform: scale(1.5);
+            background-color: #0B3041;
+        }
+
+        .tooltip {
+            position: fixed;
+            background-color: white;
+            color: #0B3041;
+            min-width: 200px;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            pointer-events: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border: 2px solid #7FB77E;
+        }
+
+        .tooltip h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .tooltip .email {
+            color: #7FB77E;
+            font-weight: bold;
+        }
+
+        .map-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-link {
+            color: #dc3545;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info h3 {
+            color: #0B3041;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-info .email {
+            color: #0B3041;
+            font-weight: bold;
+        }
+
+        .certifications-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .certifications-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0B3041;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .certification-card {
+            background: white;
+            border: 3px solid #0B3041;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
             transition: all 0.3s ease;
         }
 
-        .service-card:hover .service-icon {
-            background: white;
-            color: #56ab2f;
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .service-title {
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             font-size: 1.5rem;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .cert-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #0B3041;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-subtitle {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .commitment-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #7FB77E;
+        }
+
+        .commitment-text h3 {
+            color: #0B3041;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            color: #1e3c72;
-            transition: color 0.3s ease;
         }
 
-        .service-card:hover .service-title {
+        .commitment-text p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .btn-contact {
+            background: linear-gradient(135deg, #7FB77E 0%, #56ab2f 100%);
             color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(127, 183, 126, 0.4);
         }
 
-        .service-card:hover p {
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(127, 183, 126, 0.6);
+            text-decoration: none;
             color: white;
         }
 
@@ -432,39 +596,47 @@
             }
 
             .hero-title {
-                font-size: 2.2rem;
-                margin-bottom: 1.5rem;
+                font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1.1rem;
-                padding: 0 1rem;
-            }
-
-            .who-we-are-hero {
-                padding: 3rem 0;
+            .hero-section {
+                padding: 4rem 0 3rem;
             }
 
             .president-card {
                 flex-direction: column;
                 text-align: center;
-                padding: 2rem 1.5rem;
+                padding: 2rem;
                 gap: 2rem;
             }
 
-            .president-avatar {
-                width: 100px;
-                height: 100px;
-            }
-
             .president-title {
-                font-size: 1.2rem;
-                margin-bottom: 1.5rem;
+                justify-content: center;
             }
 
-            .president-text {
-                font-size: 0.95rem;
-                margin-bottom: 1.2rem;
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .value-card {
+                padding: 2rem 1.5rem;
+            }
+
+            
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .company-description {
+                padding: 3rem 0;
+            }
+
+            .president-card {
+                padding: 1.5rem;
             }
 
             .values-section {
@@ -473,86 +645,19 @@
 
             .values-title {
                 font-size: 2rem;
-                margin-bottom: 1.5rem;
             }
 
-            .values-text {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .values-highlight {
-                padding: 1.5rem;
-                margin-top: 1.5rem;
-            }
-
-            .values-highlight p {
-                font-size: 1.1rem;
-            }
-
-            .services-title {
-                font-size: 2rem;
-            }
-
-            .services-grid {
+            .certifications-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            .service-card {
-                padding: 1.5rem;
+            .commitment-text {
+                padding: 2rem 1.5rem;
             }
 
-            .main-content {
-                margin-top: 80px;
-            }
-
-            .header {
-                padding: 0.8rem 0;
-            }
-
-            .logo img {
-                height: 1cm;
-                width: 4.5cm;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .president-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .president-avatar {
-                width: 80px;
-                height: 80px;
-            }
-
-            .values-title {
-                font-size: 1.8rem;
-            }
-
-            .values-text {
-                font-size: 0.95rem;
-            }
-
-            .values-highlight {
-                padding: 1rem;
-            }
-
-            .values-highlight p {
-                font-size: 1rem;
-            }
-
-            .container {
-                padding: 0 0.5rem;
+            .contact-section {
+                padding: 3rem 0;
             }
         }
     </style>
@@ -568,7 +673,6 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="#accueil" style="color:#7FB77E">QUI SOMMES NOUS ?</a></li>
-
                     <li class="dropdown" onclick="toggleDropdown('besoinsDropdown')">
                         <a href="javascript:void(0)">VOS BESOINS ▼</a>
                         <ul id="besoinsDropdown" class="dropdown-menu">
@@ -578,7 +682,6 @@
                             <li><a href="#besoin4">INDUSTRIE</a></li>
                         </ul>
                     </li>
-
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
@@ -589,7 +692,6 @@
                             <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
-
                     <li><a href="../contacter/index.html">CONTACT</a></li>
                     <li><a href="#actualite">ACTUALITÉS</a></li>
                 </ul>
@@ -603,21 +705,47 @@
         </div>
     </header>
 
-    <!-- ✅ Déplacé ici, à l'extérieur du header -->
-     <div class="mobile-menu" id="mobileMenu">
-        <a href="./nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
         <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
         <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
         <a href="../contacter/index.html" onclick="closeMobileMenu()">Contact</a>
         <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
     </div>
+
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
-        <section class="who-we-are-hero">
+        <section class="hero-section">
             <div class="container">
-                <h1 class="hero-title">Qui sommes nous ?</h1>
-                <p class="hero-subtitle">Découvrez ENELIV, votre partenaire de confiance pour la performance énergétique</p>
+                <h1 class="hero-title">QUI SOMMES NOUS ?</h1>
+            </div>
+        </section>
+
+        <!-- Company Description -->
+        <section class="company-description">
+            <div class="container">
+                <div class="description-content">
+                    <p class="company-intro">
+                        <strong>ENELIV</strong> est un bureau d'études jeune, indépendant et engagé, spécialisé en <strong>ingénierie thermique, bâtiment et énergies renouvelables</strong>. Dirigé par <strong>Akrame EL HIMASS</strong>, ancien ingénieur département, notre entreprise est née d'une volonté claire : rendre la performance énergétique accessible, facile et durable.
+                    </p>
+
+                    <p class="company-intro">
+                        Nous intervenons auprès des <strong>particuliers</strong>, des <strong>copropriétés</strong>, des professionnels du <strong>tertiaire et du secteur industriel</strong>, avec une approche sur mesure, rigoureuse et humaine.
+                    </p>
+
+                    <div class="highlight-text">
+                        <p class="company-intro">
+                            Nous accompagnons celles et ceux qui veulent <strong>mieux comprendre, mieux gérer et mieux valoriser leur patrimoine</strong>.
+                        </p>
+                        <p class="company-intro">
+                            Nos clients cherchent à <strong>se mettre en conformité</strong>, à <strong>réaliser des économies durables</strong> et à <strong>agir pour un meilleur avenir</strong> — nous leur offrons les outils, l'expertise et la clarté nécessaires.
+                        </p>
+                        <p class="company-intro">
+                            <strong>Transformer les obligations en opportunités</strong>, et l'information en <strong>décisions utiles</strong>, c'est notre mission. Toujours avec indépendance, rigueur et sens du service.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -627,13 +755,15 @@
                 <div class="president-card">
                     <div class="president-image">
                         <div class="president-avatar">
-                            <img src="../home/assets/akrame.png" alt="" style="width: 120px;">
+                            <img src="../home/assets/akrame.png" alt="Président ENELIV" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
                         </div>
                     </div>
                     <div class="president-content">
-                        <h2 class="president-title">Président d'ENELIV</h2>
+                        <h2 class="president-title">
+                            <span style="margin-left: 1rem;">Mot du président</span>
+                        </h2>
                         <p class="president-text">
-                            Chez <strong>Eneliv</strong>, nous accompagnons celles et ceux qui veulent <strong>mieux comprendre</strong>, <strong>mieux gérer</strong> et <strong>mieux anticiper leur patrimoine</strong>.
+                            Nous accompagnons celles et ceux qui veulent <strong>mieux comprendre</strong>, <strong>mieux gérer</strong> et <strong>mieux anticiper leur patrimoine</strong>.
                         </p>
                         <p class="president-text">
                             Nos clients cherchent à <strong>se mettre en conformité</strong>, à <strong>réaliser des économies durables</strong> et à <strong>agir pour l'environnement</strong> – nous leur offrons les outils, l'expertise et la clarté nécessaires.
@@ -649,32 +779,147 @@
             </div>
         </section>
 
-        <!-- Company Values Section -->
+        <!-- Values Section -->
         <section class="values-section">
             <div class="container">
-                <div class="values-content">
-                    <h2 class="values-title">ENELIV</h2>
-                    <p class="values-text">
-                        ENELIV votre bureau d'études engagé pour la performance énergétique et la durabilité. 
-                        Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire, 
-                        nous vous aidons à réduire vos consommations énergétiques.
-                    </p>
-                    <p class="values-text">
-                        Nous mettons notre expertise technique au service de la performance de vos édifices, en toute 
-                        transparence. Nos valeurs sont la qualité, notre approche sur-mesure.
-                    </p>
-                    <div class="values-highlight">
-                        <p>
-                            Notre ambition : vous garantir la conformité réglementaire, optimiser vos installations, 
-                            valoriser votre patrimoine et vous accompagner dans la transition énergétique, partout où 
-                            vous en avez besoin.
+                <h2 class="values-title">Nos valeurs</h2>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <img src="./../home/assets/indep.png" alt="">
+                        </div>
+                        <h3 class="value-title">Indépendance</h3>
+                        <p class="value-description">
+                            Aucun lien de profit avec des entreprises, pour des conseils totalement objectifs.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <img src="./../home/assets/eng.png" alt="">
+                        </div>
+                        <h3 class="value-title">Engagement</h3>
+                        <p class="value-description">
+                            Une entreprise pleinement investie dans la transition énergétique.
+                        </p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <img src="./../home/assets/prox.png" alt="">
+                        </div>
+                        <h3 class="value-title">Proximité</h3>
+                        <p class="value-description">
+                            Nous intervenons partout en France.
+                        </p>
+                    </div>
+
+                    <div class="value-card"  style="width: 550px; ">
+                        <div class="value-icon">
+                            <img src="./../home/assets/rigu.png" alt="">
+                        </div>
+                        <h3 class="value-title">Rigueur</h3>
+                        <p class="value-description">
+                            Des analyses techniques précises, conformes aux normes en vigueur.
+                        </p>
+                    </div>
+
+                    <div class="value-card" style="width: 550px;margin-left: 190px;">
+                        <div class="value-icon">
+                            <img src="./../home/assets/acc.png" alt="">
+                        </div>
+                        <h3 class="value-title">Accompagnement</h3>
+                        <p class="value-description">
+                            Un suivi humain sur mesure, pédagogique, accessible et personnalisé.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-           </main>
+        <!-- Contact and Certifications Section -->
+        <section class="contact-section">
+            <div class="container">
+                <!-- France Map -->
+                <div class="france-map-container">
+                    <div class="map-container">
+                        <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
+                        
+                        <!-- Marqueurs pour chaque région -->
+                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
+                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
+                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
+                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
+                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
+                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
+                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
+                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
+                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
+                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
+                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
+                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
+                    </div>
+                    <p class="map-description">
+                        Carte de nos implantations avec <span class="map-link">siège</span> en rouge
+                    </p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h3>Siège : ENELIV</h3>
+                    <p>4 rue de la république</p>
+                    <p>69001 LYON</p>
+                    <p class="email">contact@eneliv.fr</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="certifications-section">
+            <div class="container">
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./../home/assets/resp.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Garantir la fiabilité de nos engagements et la tranquillité de nos clients</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./../home/assets/certif.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">L’expertise de notre personnel est reconnue, gage de fiabilité et de professionnalisme.</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img  style="width: 120px;" src="./../home/assets/logiciel.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Nos logiciels sont tous validés par l’ADEME.</div>
+                    </div>
+                </div>
+
+                <!-- Commitment Text -->
+                <div class="commitment-text">
+                    <h3>Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
+                    <p>
+                        Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
+                        intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
+                        une prestation rigoureuse, première étape essentielle vers une simple conformité 
+                        réglementaire ou une solide rénovation performante.
+                    </p>
+                    <div class="cta-button">
+                        <a href="../contacter/index.html" class="btn-contact">Parler à un référent</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Tooltip pour la carte -->
+    <div id="tooltip" class="tooltip"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -703,14 +948,12 @@
 
         // Dropdown Menu Functions
         function toggleDropdown(id) {
-            // Fermer les autres menus
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 if (menu.id !== id) {
                     menu.classList.remove('show');
                 }
             });
 
-            // Toggle le menu cliqué
             const menu = document.getElementById(id);
             menu.classList.toggle('show');
         }
@@ -735,31 +978,50 @@
             }
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        // Logo navigation
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = '../index.html';
+        });
+
+        // Gestion des marqueurs et tooltips pour la carte
+        document.addEventListener('DOMContentLoaded', function () {
+            const markers = document.querySelectorAll('.marker');
+            const tooltip = document.getElementById('tooltip');
+
+            markers.forEach(marker => {
+                marker.addEventListener('mouseenter', (e) => {
+                    const regionName = e.target.getAttribute('data-region');
+                    const email = e.target.getAttribute('data-email');
+                    
+                    tooltip.innerHTML = `
+                        <h4>${regionName}</h4>
+                        <p>Contact: <span class="email">${email}</span></p>
+                    `;
+                    
+                    tooltip.style.display = 'block';
+                });
+
+                marker.addEventListener('mousemove', (e) => {
+                    tooltip.style.top = (e.clientY + 10) + 'px';
+                    tooltip.style.left = (e.clientX + 10) + 'px';
+                });
+
+                marker.addEventListener('mouseleave', () => {
+                    tooltip.style.display = 'none';
+                });
+
+                // Clic sur un marqueur pour rediriger vers la page contact
+                marker.addEventListener('click', (e) => {
+                    const regionName = e.target.getAttribute('data-region');
+                    const email = e.target.getAttribute('data-email');
+                    
+                    // Redirection vers la page contact avec paramètres
+                    window.location.href = `../contacter/index.html?region=${encodeURIComponent(regionName)}&email=${encodeURIComponent(email)}`;
+                });
             });
         });
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Animation on scroll for service cards
+        // Animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -768,12 +1030,12 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.service-card').forEach(card => {
+        document.querySelectorAll('.value-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             observer.observe(card);
@@ -794,10 +1056,6 @@
             }
         `;
         document.head.appendChild(style);
-
-        document.querySelector('.logo').addEventListener('click', function() {
-        window.location.href = '../index.html'; // Remplacez par le chemin de votre page
-    });
     </script>
 </body>
 </html>
