@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Diagnostic de Performance Énergétique - DPE</title>
+    <title>Mon Accompagnateur Rénov'</title>
     <style>
         * {
             margin: 0;
@@ -216,9 +216,23 @@
             font-weight: bold;
         }
 
+        .intro-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .intro-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
         .content-section {
             display: grid;
-            grid-template-columns: 310px 1fr;
+            grid-template-columns: 250px 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
             align-items: start;
@@ -273,12 +287,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .info-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+            background: #0B3041;
+            border-radius: 50%;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .info-content {
@@ -307,7 +320,7 @@
         }
 
         .arrow-list li::before {
-            content: "➤";
+            content: "•";
             position: absolute;
             left: 0;
             color: #0B3041;
@@ -358,45 +371,33 @@
             background-color: #218838;
         }
 
-        .two-column-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
-
-        .column-content h4 {
-            font-size: 1rem;
-            color: #333;
-            margin-bottom: 0.8rem;
-            font-weight: bold;
-        }
-
-        .content-with-image {
-            display: grid;
-            grid-template-columns: 1fr 200px;
-            gap: 2rem;
-            align-items: start;
-            margin: 1.5rem 0;
-        }
-
-        .side-image {
-            width: 100%;
+        .step-section {
+            background: white;
+            border: 1px solid #ddd;
             border-radius: 8px;
+            margin: 1rem 0;
             overflow: hidden;
         }
 
-        .side-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
+        .step-header {
+            background: #0B3041;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        /* Calendar Section Styles */
-        
+        .step-content {
+            padding: 1.5rem;
+        }
 
-        /* Services Grid Styles */
+        .eligibility-list {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-left: 4px solid #0B3041;
+            margin: 1rem 0;
+        }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -420,7 +421,7 @@
 
         .service-image {
             width: 100%;
-            height: 200px;
+            height: 150px;
             overflow: hidden;
         }
 
@@ -450,7 +451,6 @@
             font-style: italic;
         }
 
-        /* Engagement Section Styles */
         .engagement-section {
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             padding: 3rem 2rem;
@@ -486,6 +486,20 @@
             background-color: #5a8549;
         }
 
+        .two-column-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .column-content h4 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
             .burger-menu {
                 display: flex;
@@ -519,10 +533,6 @@
                 gap: 1.5rem;
             }
 
-            .content-with-image {
-                grid-template-columns: 1fr;
-            }
-
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -548,8 +558,10 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
+                <!-- Remplacez le src par le chemin vers votre logo -->
                 <img src="./../logoblanc.png" alt="Logo" >
-                <div class="logo-placeholder" style="display: none;">LOGO</div>
+                <!-- Placeholder si le logo ne charge pas -->
+                <div class="logo-placeholder" style="display: none;"></div>
             </div>
             <nav>
                 <ul class="nav-menu">
@@ -572,7 +584,7 @@
                         <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
                         <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
                         <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
-                        <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
 
@@ -600,205 +612,274 @@
     <!-- Main Content -->
     <div class="main-container">
         <div class="page-header">
-            <h1 class="page-title">Le Diagnostic de Performance Énergétique - DPE</h1>
+            <h1 class="page-title">Mon Accompagnateur Rénov'</h1>
         </div>
 
-        <h2 class="section-title">Qu'est-ce que le DPE ?</h2>
+        <!-- Introduction Section -->
+        <div class="intro-section">
+            <p class="intro-text">
+                Plusieurs aides existent en France afin de promouvoir la rénovation énergétique, la plus connue est <span class="highlight-blue">MaPrimeRénov'</span> : l'aide publique pour rénover votre logement ou votre copropriétés sans contrainte de revenus.
+            </p>
+        </div>
+
+        <!-- Qu'est-ce que MaPrimeRénov' Section -->
+        <h2 class="section-title">C'est quoi MaPrimeRénov' ?</h2>
 
         <div class="content-section">
             <div class="content-image">
-                <img src="../home/assets/dpe.jpeg">
+                <img src="./../home/assets/image5.png" alt="Maison individuelle">
             </div>
 
             <div class="content-text">
                 <p class="text-paragraph">
-                    Le <span class="highlight-blue">Diagnostic de Performance Énergétique (DPE)</span> est un document réglementaire qui évalue la <span class="highlight-blue">consommation d'énergie</span> et les <span class="highlight-blue">émissions de gaz à effet de serre</span> d'un logement ou d'un bâtiment. Il s'inscrit dans le cadre de la <span class="highlight-blue">loi Climat et Résilience du 22 août 2021</span> et de plusieurs décrets et arrêtés publiés entre 2020 et 2021.
+                    C'est une aide financière pilotée par l'<span class="highlight-blue">ANAH</span> pour encourager la <span class="highlight-blue">rénovation énergétique</span> des logements. Elle remplace le <span class="highlight-blue">CITE</span> (Crédit d'Impôt Transition Énergétique) et s'applique aussi bien aux <span class="highlight-blue">particuliers</span> et aux <span class="highlight-blue">copropriétés</span>. Elle a été renforcée en <span class="highlight">2024 et 2025</span>, avec de nouvelles conditions et une meilleure articulation avec les <span class="highlight-blue">autres énergétiques</span>.
                 </p>
+            </div>
+        </div>
 
+        <!-- MaPrimeRénov' individuelle Section -->
+        <h2 class="section-title">MaPrimeRénov' Individuelle</h2>
+
+        <div class="content-section">
+            <div class="content-image">
+                <img src="./../home/assets/expertise1.jpeg" alt="Maison individuelle">
+            </div>
+
+            <div class="content-text">
+                <h3 class="info-title">À quoi sert MaPrimeRénov' Individuelle ?</h3>
                 <p class="text-paragraph">
-                    <span class="highlight">Deux types de DPE :</span><br>
-                    <span class="highlight">DPE individuel :</span> Obligatoire pour toute <span class="highlight-blue">vente ou location</span> d'un logement.<br>
-                    <span class="highlight">DPE collectif :</span> Obligatoire pour toutes les <span class="highlight-blue">copropriétés de plus de 50 lots</span>.
+                    Elle permet de financer les <span class="highlight-blue">travaux d'intérêt privé</span> dans une maison ou un appartement individuel : isolation, chauffage, ventilation, etc.
                 </p>
-            </div>
-        </div>
 
-        <div class="info-section">
-            <div class="info-icon">
-                <img src="./../ENELIVP.png" alt="">
-                </div>
-            
-            <div class="info-content">
-                <h3 class="info-title">Le saviez-vous ?</h3>
-                <ul class="bullet-list">
-                    <li>Le DPE est valable <span class="highlight">10 ans</span></li>
-                    <li>Toutes les copropriétés doivent avoir un DPE à jour (<span class="highlight">sauf < 50 lots dès le 1er janvier 2026</span>)</li>
-                </ul>
-            </div>
-        </div>
-
-        <h2 class="section-title">Quel est l'objectif du DPE ?</h2>
-
-        <div class="content-text">
-            <p class="text-paragraph">Le DPE vise à :</p>
-            
-            <ul class="arrow-list">
-                <li><span class="highlight">Informer</span> les occupants ou futurs acquéreurs/locataires sur la performance énergétique du bien.</li>
-                <li><span class="highlight">Sensibiliser</span> aux impacts environnementaux (émissions de CO₂).</li>
-                <li><span class="highlight">Identifier</span> les travaux prioritaires pour améliorer le confort thermique et réduire les consommations.</li>
-                <li><span class="highlight">Valoriser</span> le bien immobilier via la <span class="highlight-blue">valeur verte</span> (meilleure étiquette = meilleure revente).</li>
-                <li><span class="highlight">Préparer une stratégie de rénovation énergétique</span>, notamment en copropriété (DPE collectif → PPPT)</li>
-            </ul>
-
-            <div class="cta-button-container">
-                <button class="cta-button">Demander un DPE</button>
-            </div>
-        </div>
-
-        <h2 class="section-title">Qui est concerné par le DPE ?</h2>
-
-        <div class="two-column-section">
-            <div class="column-content">
-                <h4>DPE individuel :</h4>
+                <h4 class="highlight">Qui peut en bénéficier ?</h4>
                 <ul class="arrow-list">
-                    <li><span class="highlight">Tous les logements</span> mis en <span class="highlight-blue">vente ou location</span>, sauf ceux occupés moins de 4 mois/an.</li>
-                    <li>Obligatoire pour les <span class="highlight-blue">propriétaires bailleurs</span> et vendeurs.</li>
-                </ul>
-            </div>
-
-            <div class="column-content">
-                <h4>DPE collectif :</h4>
-                <ul class="arrow-list">
-                    <li><span class="highlight">Toutes les copropriétés</span> de plus de <span class="highlight-blue">50 lots</span>, selon le calendrier réglementaire.</li>
-                    <li>Obligatoire <span class="highlight-blue">même sans projet de vente ou de location</span>, car il constitue une <span class="highlight-blue">base pour le PPPT</span>.</li>
+                    <li>Tous les <span class="highlight-blue">propriétaires occupants ou bailleurs</span>.</li>
+                    <li><span class="highlight-blue">Résidence principale</span> ou mise en location.</li>
+                    <li>Logement <span class="highlight-blue">construit depuis plus de 15 ans</span> (très modestes, modestes, intermédiaires, hauts revenus).</li>
                 </ul>
             </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">
-                <img src="./../ENELIVP.png" alt="">
+            <div class="info-icon">?</div>
+            <div class="info-content">
+                <h3 class="info-title">Quels travaux sont éligibles ?</h3>
+                <ul class="bullet-list">
+                    <li>Isolation des murs, toitures, planchers.</li>
+                    <li>Remplacement de chaudière ou pompe à chaleur.</li>
+                    <li>Ventilation, fenêtres, thermostats.</li>
+                    <li>Travaux induits (amiante, maîtrise d'œuvre...).</li>
+                </ul>
             </div>
-            
+        </div>
+
+        <div class="info-section">
+            <div class="info-icon">💡</div>
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
-                <ul class="bullet-list">
-                    <li>Les copropriétaires peuvent mutualiser les DPE individuels lors de la réalisation du DPE collectif, ce qui permet de réduire les coûts des DPE individuels.</li>
-                    <li>Depuis juillet 2021, le DPE est opposable juridiquement : un acheteur ou locataire peut contester un DPE erroné et demander réparation.</li>
-                </ul>
+                <p>Depuis 2025, pour les logements classés <span class="highlight">F ou G</span>, un <span class="highlight-blue">audit énergétique est obligatoire</span> pour bénéficier de MaPrimeRénov'. Il doit proposer un <span class="highlight-blue">scénario de rénovation</span> avec amélioration d'au moins 2 classes DPE, impliquant des <span class="highlight-blue">gains énergétiques significatifs de la classe DPE</span>.</p>
             </div>
         </div>
 
-        <h2 class="section-title">Quel est le contenu du livrable PPPT ?</h2>
+        <!-- Comment obtenir MaPrimeRénov Section -->
+        <h2 class="section-title">Comment obtenir MaPrimeRénov ?</h2>
 
-        <div class="content-text">
-            <h3 class="info-title">Le DPE doit comporter les éléments suivants :</h3>
-            <ul class="arrow-list">
-                <li>Étiquette <span class="highlight-blue">énergie/climat</span> (de A à G)</li>
-                <li>Estimation des <span class="highlight-blue">consommations</span> (kWh/m²/an) et des émissions de CO₂</li>
-                <li>Estimation des <span class="highlight-blue">charges énergétiques</span></li>
-                <li><span class="highlight-blue">Recommandations de travaux</span></li>
-                <li><span class="highlight-blue">Fichier XML</span> (utile pour les DPE individuels à partir du DPE collectif)</li>
-            </ul>
+        <div class="step-section">
+            <div class="step-header">Étapes pour MaPrimeRénov' Individuelle</div>
+            <div class="step-content">
+                <ol class="arrow-list">
+                    <li><span class="highlight">Vérifier votre éligibilité</span><br>
+                        <ul class="bullet-list">
+                            <li>être <span class="highlight-blue">propriétaire occupant ou bailleur</span></li>
+                            <li>Le logement doit être votre <span class="highlight-blue">résidence principale</span> construite depuis <span class="highlight-blue">plus de 15 ans</span> (ou 2 ans pour remplacement de chaudière fioul).</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Respecter les plafonds de revenus</span><br>
+                        Respecter les plafonds selon votre profil fiscal (très modestes, modestes, intermédiaires, hauts revenus).
+                    </li>
+                    <li><span class="highlight">Réaliser un audit énergétique</span> (si logement classé <span class="highlight">F ou G</span>)<br>
+                        Obligatoire depuis 2025 pour les logements énergivores.
+                    </li>
+                    <li><span class="highlight">Vérifier les entreprises RGE</span><br>
+                        S'adresser aux entreprises <span class="highlight-blue">reconnues garantes de l'environnement</span> avec amélioration de la classe DPE.
+                    </li>
+                    <li><span class="highlight">Créer un compte maprimerenov.gouv.fr</span><br>
+                        Plateforme officielle pour déposer la demande.
+                    </li>
+                    <li><span class="highlight">Fournir les documents</span><br>
+                        d'avis d'imposition, devis des travaux, audit si nécessaire.
+                    </li>
+                    <li><span class="highlight">Choisir des entreprises certifiées RGE</span><br>
+                        Travaux réalisés par des <span class="highlight-blue">professionnels Reconnu Garant de l'Environnement</span>.
+                    </li>
+                    <li><span class="highlight">Déposer la demande de subvention</span><br>
+                        Inscrire les devis, audit, et qualifications.
+                    </li>
+                    <li><span class="highlight">Attendre l'acceptation</span><br>
+                        Notification d'accord avant de réaliser les travaux.
+                    </li>
+                    <li><span class="highlight">Réaliser les travaux</span><br>
+                        Respecter les délais et les prestations validées.<br>
+                        Conserver les <span class="highlight-blue">factures et attestations de conformité</span>.
+                    </li>
+                    <li><span class="highlight">Demander le versement de la prime</span><br>
+                        Une fois les travaux terminés, transmettre les factures et justificatifs via la plateforme, accompagné généralement sur demande du bénéficiaire.
+                    </li>
+                </ol>
+            </div>
         </div>
 
-        <div class="content-with-image">
-            <div style="margin-top: 85px;">
-                <h3 class="info-title">Spécificités du DPE individuel :</h3>
-                <ul class="arrow-list">
-                    <li>Analyse personnalisée du logement (isolation, chauffage, menuiseries...)</li>
-                    <li>Rapport pédagogique avec <span class="highlight-blue">conseils ciblés</span></li>
-                    <li>Valorisation des travaux déjà réalisés</li>
-                </ul>
-            </div>
-            <div class="side-image">
-                <img src="../home/assets/expertise1.jpeg" alt="Maison individuelle">
-            </div>
-        </div>
-
-        <div class="content-with-image">
-            <div>
-                <h3 class="info-title">Spécificités du DPE collectif :</h3>
-                <ul class="arrow-list">
-                    <li>Analyse de <span class="highlight-blue">l'enveloppe du bâtiment</span>, des <span class="highlight-blue">équipements techniques</span>, des <span class="highlight-blue">logements échantillonnés</span></li>
-                    <li><span class="highlight-blue">Plan de travaux budgétisé</span> et scénarisé</li>
-                    <li><span class="highlight-blue">Synergies de travaux</span> identifiées</li>
-                    <li>Compatible avec la réalisation du <span class="highlight-blue">PPPT</span></li>
-                </ul>
-            </div>
-            <div class="side-image">
-                <img src="../home/assets/expertise3.jpeg" alt="">
-
+        <div class="info-section">
+            <div class="info-icon">?</div>
+            <div class="info-content">
+                <h3 class="info-title">Le saviez-vous ?</h3>
+                <p>Depuis 2025, les aides sont modulées selon le <span class="highlight-blue">gain énergétique obtenu</span>, avec des bonus pour les logements sortant des <span class="highlight-blue">passoires énergétiques</span> et les opérations <span class="highlight-blue">très performantes</span>.</p>
             </div>
         </div>
 
         <div class="cta-button-container">
-            <button class="cta-button">Demander un DPE</button>
+            <button class="cta-button">Demander un Accompagnement Rénov' individuel</button>
         </div>
 
-        <h2 class="section-title">Comment mettre en place le DPE ?</h2>
+        <!-- MaPrimeRénov' Copropriété Section -->
+        <h2 class="section-title">MaPrimeRénov' Copropriété</h2>
 
-        <div class="two-column-section">
-            <div class="column-content">
-                <h4>DPE individuel :</h4>
-                <ul class="arrow-list">
-                    <li>Collecte des <span class="highlight-blue">données techniques</span></li>
-                    <li><span class="highlight-blue">Visite</span> du logement</li>
-                    <li><span class="highlight-blue">Calcul réglementaire</span></li>
-                    <li>Remise du <span class="highlight-blue">rapport officiel</span> (valable 10 ans)</li>
-                </ul>
+        <div class="content-section">
+            <div class="content-image">
+                <img src="./../home/assets/expertise3.jpeg" alt="Immeuble copropriété">
             </div>
 
-            <div class="column-content">
-                <h4>DPE collectif :</h4>
+            <div class="content-text">
+                <h3 class="info-title">À quoi sert MaPrimeRénov' Copro ?</h3>
+                <p class="text-paragraph">
+                    Elle finance les <span class="highlight-blue">travaux d'intérêt collectif</span> dans les parties communes ou privatives d'un immeuble en copropriété, sans condition de revenus.
+                </p>
+
+                <h4 class="highlight">Qui peut en bénéficier ?</h4>
                 <ul class="arrow-list">
-                    <li>Réunion de <span class="highlight-blue">lancement</span> avec le syndic et les copropriétaires</li>
-                    <li>Collecte <span class="highlight-blue">documentaire</span> (plans, factures, historique des travaux...)</li>
-                    <li><span class="highlight-blue">Visite</span> technique du bâtiment et des logements échantillonnés</li>
-                    <li><span class="highlight-blue">Analyse et modélisation</span> (logiciel certifié 3CL 2021)</li>
-                    <li>Remise du <span class="highlight-blue">rapport + fichier XML</span></li>
-                    <li>Présentation en <span class="highlight-blue">AG</span></li>
+                    <li><span class="highlight-blue">Copropriétés immatriculées</span> au registre national.</li>
+                    <li>Immeubles de <span class="highlight-blue">plus de 15 ans</span>.</li>
+                    <li>Au moins <span class="highlight-blue">75 % de résidences principales</span>.</li>
+                    <li>Travaux réalisés par des entreprises <span class="highlight-blue">RGE</span>.</li>
+                    <li>Projet accompagné par une <span class="highlight-blue">AMO OPQIBI 1905</span>.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Le calendrier DPE Section -->
-        <h2 class="section-title">Le calendrier DPE ?</h2>
-        
-        <div class="calendar-section">
-            <img src="../home/assets/cald.png" alt="Calendrier DPE" style="width: 100%; max-width: 1300px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+        <div class="info-section">
+            <div class="info-icon">⚙️</div>
+            <div class="info-content">
+                <h3 class="info-title">Quels travaux sont éligibles ?</h3>
+                <ul class="bullet-list">
+                    <li>Isolation thermique globale.</li>
+                    <li>Systèmes de chauffage ou ventilation collectifs.</li>
+                    <li>Travaux induits (CSPS, diagnostics, contrôle...).</li>
+                    <li>Etudes et ingénierie (audit énergétique, maîtrise d'œuvre...).</li>
+                    <li><span class="highlight-blue">AMO MaPrimeRénov'</span> (financée à 30 %, jusqu'à 180 €/logement).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-icon">?</div>
+            <div class="info-content">
+                <h3 class="info-title">Le saviez-vous ?</h3>
+                <p>Depuis 2025, l'audit énergétique est <span class="highlight-blue">obligatoire</span> pour toute copropriété souhaitant bénéficier de MaPrimeRénov'. Il doit permettre un <span class="highlight-blue">gain énergétique</span> d'au moins 35 % après travaux.</p>
+            </div>
+        </div>
+
+        <!-- Étapes MaPrimeRénov' Copropriété -->
+        <div class="step-section">
+            <div class="step-header">Étapes pour MaPrimeRénov' Copropriété</div>
+            <div class="step-content">
+                <ol class="arrow-list">
+                    <li><span class="highlight">Vérifier l'éligibilité de la copropriété</span><br>
+                        <ul class="bullet-list">
+                            <li>Immeuble de <span class="highlight-blue">plus de 15 ans</span></li>
+                            <li><span class="highlight-blue">75 % minimum de résidences principales</span></li>
+                            <li>Copropriété <span class="highlight-blue">immatriculée</span> au registre national</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Choisir une AMO certifiée OPQIBI 1905</span><br>
+                        Il est <span class="highlight-blue">obligatoire</span><br>
+                        Une <span class="highlight-blue">Assistance à Maîtrise d'Ouvrage est obligatoire</span><br>
+                        pour accompagner le projet (conseil, le suivi des travaux, le financement et le dépôt du dossier.
+                    </li>
+                    <li><span class="highlight">Réaliser un audit énergétique collectif</span><br>
+                        <span class="highlight-blue">Obligatoire</span> pour démontrer un <span class="highlight-blue">gain énergétique à 35 %</span> après travaux<br>
+                        Permet de définir un scénario de rénovation cohérent
+                    </li>
+                    <li><span class="highlight">Créer un compte sur maprimerenov.gouv.fr</span><br>
+                        L'<span class="highlight-blue">AMO dépose le dossier</span> au nom de la copropriété<br>
+                        Obtenir les pièces : audit, devis, plan de financement et attestation<br>
+                        Sur l'AMO
+                    </li>
+                    <li><span class="highlight">Choisir des entreprises certifiées RGE</span><br>
+                        Il est <span class="highlight-blue">obligatoire</span> d'intervenir <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.
+                    </li>
+                    <li><span class="highlight">Voter les travaux en assemblée générale</span><br>
+                        L'AMO peut intervenir <span class="highlight-blue">avant le vote</span> pour simuler les aides et convaincre les copropriétaires<br>
+                        Par des entreprises <span class="highlight-blue">RGE</span><br>
+                        Suivi technique et administratif assuré par l'AMO
+                    </li>
+                    <li><span class="highlight">Réaliser les travaux</span><br>
+                        Respecter les délais et les prestations validées<br>
+                        Conserver les <span class="highlight-blue">factures et attestations de conformité</span><br>
+                        Suivi technique et administratif assuré par l'AMO
+                    </li>
+                    <li><span class="highlight">Transmettre les justificatifs</span><br>
+                        Attestation de conformité signée par l'auditeur, les entreprises et le syndic<br>
+                        Liste des entreprises et leurs qualifications
+                    </li>
+                    <li><span class="highlight">Recevoir la subvention</span><br>
+                        Jusqu'à <span class="highlight-blue">3 750 € par logement</span> + aides AMO + CEE + bonus (BBC, sortie de passoire...)
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div class="info-icon">?</div>
+            <div class="info-content">
+                <h3 class="info-title">Le saviez-vous ?</h3>
+                <p>Le financement de l'AMO peut être demandé <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.</p>
+            </div>
+        </div>
+
+        <div class="cta-button-container">
+            <button class="cta-button">Demander un Accompagnement Rénov' copropriété</button>
         </div>
 
         <!-- Services Section -->
-        <h2 class="section-title">Nos autres services</h2>
+        <h2 class="section-title">Découvrez nos autres services</h2>
         
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-image">
-                    <img src="../home/assets/ppt.jpeg" alt="PPPT">
-                </div>
-                <h3 class="service-title">PPPT</h3>
-                <p class="service-subtitle">(Projet de Plan Pluriannuel de Travaux)</p>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-image">
-                    <img src="../home/assets/audit.png" alt="Audit énergétique">
+                    <img src="./../home/assets/audit.png" alt="Audit énergétique">
                 </div>
                 <h3 class="service-title">Audit énergétique</h3>
-                <p class="service-subtitle">(Audit énergétique réglementaire)</p>
+                <p class="service-subtitle">(Audit Énergétique Réglementaire)</p>
             </div>
             
             <div class="service-card">
                 <div class="service-image">
-                    <img src="../home/assets/dtg.png" alt="DTG">
+                    <img src="./../home/assets/dpe.jpeg" alt="DPE">
                 </div>
-                <h3 class="service-title">DTG</h3>
-                <p class="service-subtitle">(Diagnostic Technique Global)</p>
+                <h3 class="service-title">DPE</h3>
+                <p class="service-subtitle">Diagnostic de Performance Énergétique</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="./../home/assets/ppt.jpeg" alt="PPPT">
+                </div>
+                <h3 class="service-title">PPPT</h3>
+                <p class="service-subtitle">Plan de Plan Pluriannuel de Travaux</p>
             </div>
         </div>
 
-        <!-- CTA Section -->
+        <!-- CTA Final Section -->
         <div class="engagement-section">
             <h2 class="engagement-title">Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
             <p class="engagement-text">
@@ -895,17 +976,25 @@
             }
         });
 
-        // Show logo placeholder if image fails to load
-        document.querySelector('.logo img').addEventListener('error', function() {
-            this.style.display = 'none';
-            document.querySelector('.logo-placeholder').style.display = 'flex';
-        });
-
         // Add click handlers for CTA buttons
         document.querySelectorAll('.cta-button').forEach(button => {
             button.addEventListener('click', function() {
                 // Redirect to contact page or show contact modal
-                window.location.href = './contacter/index.html';
+                if (this.textContent.includes('individuel')) {
+                    alert('Redirection vers l\'accompagnement individuel');
+                } else if (this.textContent.includes('copropriété')) {
+                    alert('Redirection vers l\'accompagnement copropriété');
+                } else {
+                    alert('Redirection vers la page de contact');
+                }
+            });
+        });
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.service-title').textContent;
+                alert(`Redirection vers la page ${title}`);
             });
         });
     </script>
