@@ -32,12 +32,12 @@
         }
 
         .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            margin-right: 40px;
         }
 
         .logo {
@@ -78,12 +78,9 @@
             align-items: center;
         }
 
-        .nav-menu li:hover {
-            cursor: pointer;
-        }
-
         .nav-menu li {
             position: relative;
+            cursor: pointer;
         }
 
         .nav-menu a {
@@ -93,49 +90,50 @@
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             cursor: pointer;
             font-size: 14px;
-            margin-left: 10px;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: #1c3a48;
-        }
-
-        .dropdown-menu li:last-child a {
-            border-bottom: none;
+            color: #7dc8e8;
         }
 
         .dropdown-menu {
             position: absolute;
-            margin-top: 16px;
+            top: 100%;
             left: 0;
             background-color: #0B3041;
             padding: 0.5rem 0;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             display: none;
-            min-width: 327px;
+            min-width: 300px;
             z-index: 999;
-            max-width: 480px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
         }
 
         .dropdown-menu li {
             list-style: none;
-            margin-bottom: -15px;
         }
 
         .dropdown-menu a {
             display: block;
-            padding: 1.6rem 0.1rem;
+            padding: 1rem 1.5rem;
             color: white;
             font-weight: 500;
             transition: background 0.3s;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-weight: bold;
             font-size: 14px;
-            margin-top: 14px;
-            margin-block: -16px;
-            height: 90px;
-            width: 90%;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
         }
 
         .dropdown-menu.show {
@@ -189,48 +187,44 @@
             left: 0;
         }
 
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
         /* Hero Section */
-       .hero-section {
-    background-image: url('./../home/assets/besoin.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 1920px auto; /* largeur fixe */
-    width: 1920px; /* fixe */
-    height: 600px; /* ajuste à ta hauteur voulue */
-    margin: 0 auto; /* centré */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
+        .hero-section {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
 
-/* Responsive pour mobile */
-@media (max-width: 768px) {
-    .hero-section {
-        width: 100%;
-        height: 600px;
-        background-size: cover; /* remplissage écran sur mobile */
-    }
-}
-
-@media (max-width: 1670px) {
-    .hero-section {
-        width: 100%;
-        height: 400px;
-        background-size: cover; /* remplissage écran sur mobile */
-    }
-}
-
-
-
-
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./../home/assets/besoin.png') center/cover no-repeat;
+            z-index: 1;
+        }
 
         .hero-title {
-
             font-size: 2.5rem;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
         }
 
         /* Main Content Styles */
@@ -256,31 +250,168 @@
             text-align: center;
             border-bottom: 3px solid #0B3041;
             padding-bottom: 0.5rem;
+            display: inline-block;
+            width: 100%;
         }
 
         .services-container {
             margin: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
         }
 
         .service-item {
             background: white;
             border: 2px solid #e9ecef;
             border-radius: 15px;
-            margin: 2rem 0;
+            padding: 2rem;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: grid;
-            grid-template-columns: 120px 1fr;
-            gap: 1.5rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                #0B3041 0%, 
+                #1a4a5c 25%,
+                #2c5364 50%,
+                #1a4a5c 75%,
+                #0B3041 100%);
+            z-index: -1;
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 15px;
+            opacity: 0;
+        }
+
+        .service-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, 
+                transparent 0deg,
+                rgba(125, 200, 232, 0.3) 90deg,
+                transparent 180deg,
+                rgba(125, 200, 232, 0.3) 270deg,
+                transparent 360deg);
+            z-index: -2;
+            transition: all 0.8s ease;
+            border-radius: 50%;
+            opacity: 0;
+            animation: rotate 0s linear infinite paused;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .service-item:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
+            box-shadow: 0 25px 50px rgba(11, 48, 65, 0.4);
+            border-color: #7dc8e8;
+            border-width: 3px;
+        }
+
+        .service-item:hover::before {
+            top: 0;
+            opacity: 1;
+        }
+
+        .service-item:hover::after {
+            opacity: 1;
+            animation: rotate 3s linear infinite;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: #0B3041;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            line-height: 1.3;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: #0B3041;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            line-height: 1.3;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .service-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.3s;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+        }
+
+        .service-item:hover .service-title {
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .service-item:hover .service-description {
+            color: white;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: #0B3041;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-item:hover .highlight-blue {
+            color: #7dc8e8;
+            text-shadow: 0 0 15px rgba(125, 200, 232, 0.8);
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .service-item:hover .highlight {
+            color: white;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
 
         .service-icon {
@@ -291,6 +422,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-item:hover .service-icon {
+            transform: scale(1.15) rotateZ(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .service-icon img {
@@ -307,23 +449,27 @@
         .service-title {
             font-size: 1.3rem;
             color: #0B3041;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-weight: bold;
+            line-height: 1.3;
         }
 
         .service-description {
             font-size: 1rem;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.6;
+            text-align: justify;
         }
 
         .highlight-blue {
             color: #0B3041;
             font-weight: bold;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
         }
 
         .highlight {
             font-weight: bold;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
         }
 
         /* Engagement Section */
@@ -336,7 +482,7 @@
         }
 
         .engagement-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #0B3041;
             margin-bottom: 1.5rem;
             font-weight: bold;
@@ -353,21 +499,24 @@
         }
 
         .cta-button {
-            background-color: #6c9a5c;
+            background-color: #0B3041;
             color: white;
             border: none;
             padding: 1rem 2.5rem;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            background-color: #5a8549;
+            background-color: #1a4a5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(11, 48, 65, 0.3);
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .burger-menu {
                 display: flex;
@@ -378,38 +527,71 @@
             }
 
             .hero-section {
-                height: 200px;
+                height: 300px;
             }
 
             .hero-title {
                 font-size: 2rem;
             }
 
-            .service-item {
+            .services-container {
                 grid-template-columns: 1fr;
-                text-align: center;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
-            .service-icon {
-                justify-self: center;
+            .service-item {
+                padding: 1.5rem;
             }
 
             .section-title {
                 font-size: 1.5rem;
+                margin: 2rem 0 1.5rem 0;
             }
 
             .engagement-section {
                 padding: 2rem 1rem;
+                margin: 2rem 0;
             }
 
             .engagement-title {
-                font-size: 1.3rem;
+                font-size: 1.4rem;
             }
 
             .engagement-text {
                 font-size: 1rem;
                 text-align: left;
+            }
+
+            .main-container {
+                padding: 1rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .service-title {
+                font-size: 1.1rem;
+            }
+
+            .service-description {
+                font-size: 0.9rem;
+            }
+
+            .engagement-title {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
             }
         }
     </style>
@@ -419,30 +601,25 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <!-- Remplacez le src par le chemin vers votre logo -->
-                <img src="./../logoblanc.png" alt="Logo" >
-                <!-- Placeholder si le logo ne charge pas -->
-                <div class="logo-placeholder" style="display: none;"></div>
+                <img src="./../logoblanc.png" alt="Logo ENELIV" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
             </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
-
-                    <li><a href="./../besoin/index.html">Vos besoins</a></li>
-
-
+                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
-                        <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
-                        <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
-                        <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                        <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
-                        <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                            <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="#exp3">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
-
-                    <li><a href="./contacter/index.html">CONTACT</a></li>
+                    <li><a href="./../contacter/index.html">CONTACT</a></li>
                     <li><a href="#actualite">ACTUALITÉS</a></li>
                 </ul>
 
@@ -453,177 +630,182 @@
                 </div>
             </nav>
         </div>
+        
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="./nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
-            <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
-            <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
-            <a href="./contacter/index.html" onclick="closeMobileMenu()">Contact</a>
-            <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+            <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
+            <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+            <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
+            <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+            <a href="#actualite" onclick="closeMobileMenu()">ACTUALITÉS</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <div class="hero-section">
+    <section class="hero-section">
         <h1 class="hero-title">Votre besoin</h1>
-    </div>
+    </section>
 
     <!-- Main Content -->
-    <div class="main-container">
+    <main class="main-container">
         <p class="intro-text">
             ENELIV accompagne les particuliers, les copropriétés, le secteur tertiaire et les industries dans leurs projets de performance énergétique.
         </p>
 
         <!-- Services pour les particuliers -->
-        <h2 class="section-title">Nos services pour les particuliers</h2>
-
-        <div class="services-container">
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D1.png" alt="DPE individuel">
+        <section>
+            <h2 class="section-title">Nos services pour les particuliers</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D1.png" alt="DPE individuel">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Diagnostic de Performance Énergétique Individuel (DPE)</h3>
+                        <p class="service-description">
+                            Le DPE d'un logement fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
+                            Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
+                            systèmes présents (chauffage, ventilation...).
+                        </p>
+                    </div>
                 </div>
-                <div class="service-content">
-                    <h3 class="service-title">Diagnostic de Performance Énergétique Individuel (DPE)</h3>
-                    <p class="service-description">
-                        Le DPE d'un logement fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
-                        Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
-                        systèmes présents (chauffage, ventilation...).
-                    </p>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D2.png" alt="Audit énergétique individuel">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Audit Énergétique Réglementaire Individuel</h3>
+                        <p class="service-description">
+                            L'audit énergétique réglementaire est un <span class="highlight-blue">état des lieux détaillé</span> de la performance énergétique 
+                            et environnementale des logements les plus énergivores. Il est <span class="highlight">obligatoire au moment de la vente 
+                            en complément du DPE et indispensable pour obtenir des subventions</span> lors d'une rénovation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D3.png" alt="Mon Accompagnateur Rénov' Individuel">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Mon Accompagnateur Rénov' Individuel</h3>
+                        <p class="service-description">
+                            Il intervient dans les <span class="highlight-blue">rénovations d'ampleur</span>, qui consistent à réaliser un ensemble de travaux 
+                            d'amélioration thermique en une seule fois dans le cadre d'un <span class="highlight-blue">parcours accompagné</span>. En 
+                            revanche, il n'intervient pas dans les rénovations mono-geste, qui consistent à réaliser un seul 
+                            type de travaux à la fois dans le cadre d'un parcours non accompagné.
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D2.png" alt="Audit énergétique individuel">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Audit Énergétique Réglementaire Individuel</h3>
-                    <p class="service-description">
-                        L'audit énergétique réglementaire est un <span class="highlight-blue">état des lieux détaillé</span> de la performance énergétique 
-                        et environnementale des logements les plus énergivores. Il est <span class="highlight">obligatoire au moment de la vente 
-                        en complément du DPE et indispensable pour obtenir des subventions</span> lors d'une rénovation.
-                    </p>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D3.png" alt="Mon Accompagnateur Rénov' Individuel">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Mon Accompagnateur Rénov' Individuel</h3>
-                    <p class="service-description">
-                        Il intervient dans les <span class="highlight-blue">rénovations d'ampleur</span>, qui consistent à réaliser un ensemble de travaux 
-                        d'amélioration thermique en une seule fois dans le cadre d'un <span class="highlight-blue">parcours accompagné</span>. En 
-                        revanche, il n'intervient pas dans les rénovations mono-geste, qui consistent à réaliser un seul 
-                        type de travaux à la fois dans le cadre d'un parcours non accompagné.
-                    </p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- Services pour les copropriétés -->
-        <h2 class="section-title">Nos services pour les copropriétés</h2>
-
-        <div class="services-container">
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D4.png" alt="DPE copropriété">
+        <section>
+            <h2 class="section-title">Nos services pour les copropriétés</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D4.png" alt="DPE copropriété">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Diagnostic de Performance Énergétique Copropriété (DPE)</h3>
+                        <p class="service-description">
+                            Le DPE d'un immeuble fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
+                            Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
+                            systèmes présents (chauffage, ventilation...).
+                        </p>
+                    </div>
                 </div>
-                <div class="service-content">
-                    <h3 class="service-title">Diagnostic de Performance Énergétique Copropriété (DPE)</h3>
-                    <p class="service-description">
-                        Le DPE d'un immeuble fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
-                        Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
-                        systèmes présents (chauffage, ventilation...).
-                    </p>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D5.png" alt="Audit énergétique copropriété">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Audit Énergétique Réglementaire Copropriété</h3>
+                        <p class="service-description">
+                            L'audit énergétique réglementaire est un <span class="highlight-blue">état des lieux détaillé</span> de la performance énergétique 
+                            et environnementale des copropriétés des bâtiments les plus énergivores. Il est <span class="highlight">obligatoire au 
+                            moment de la vente en complément du DPE et indispensable pour obtenir des subventions</span> 
+                            lors d'une rénovation.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D3.png" alt="Mon Accompagnateur Rénov' Copropriété">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Mon Accompagnateur Rénov' Copropriété</h3>
+                        <p class="service-description">
+                            Il intervient dans les <span class="highlight-blue">rénovations d'ampleur</span>, qui consistent à réaliser un ensemble de travaux 
+                            d'amélioration thermique en une seule fois dans le cadre d'un <span class="highlight-blue">parcours accompagné</span>. En 
+                            revanche, il n'intervient pas dans les rénovations mono-geste, qui consistent à réaliser un seul 
+                            type de travaux à la fois dans le cadre d'un parcours non accompagné.
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D5.png" alt="Audit énergétique copropriété">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Audit Énergétique Réglementaire Copropriété</h3>
-                    <p class="service-description">
-                        L'audit énergétique réglementaire est un <span class="highlight-blue">état des lieux détaillé</span> de la performance énergétique 
-                        et environnementale des copropriétés des bâtiments les plus énergivores. Il est <span class="highlight">obligatoire au 
-                        moment de la vente en complément du DPE et indispensable pour obtenir des subventions</span> 
-                        lors d'une rénovation.
-                    </p>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D3.png" alt="Mon Accompagnateur Rénov' Copropriété">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Mon Accompagnateur Rénov' Copropriété</h3>
-                    <p class="service-description">
-                        Il intervient dans les <span class="highlight-blue">rénovations d'ampleur</span>, qui consistent à réaliser un ensemble de travaux 
-                        d'amélioration thermique en une seule fois dans le cadre d'un <span class="highlight-blue">parcours accompagné</span>. En 
-                        revanche, il n'intervient pas dans les rénovations mono-geste, qui consistent à réaliser un seul 
-                        type de travaux à la fois dans le cadre d'un parcours non accompagné.
-                    </p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- Services pour le tertiaire -->
-        <h2 class="section-title">Nos services pour le tertiaire</h2>
-
-        <div class="services-container">
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D6.png" alt="DPE tertiaire">
+        <section>
+            <h2 class="section-title">Nos services pour le tertiaire</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D6.png" alt="DPE tertiaire">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Diagnostic de Performance Énergétique Tertiaire (DPE)</h3>
+                        <p class="service-description">
+                            Le DPE d'un immeuble fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
+                            Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
+                            systèmes présents (chauffage, ventilation...).
+                        </p>
+                    </div>
                 </div>
-                <div class="service-content">
-                    <h3 class="service-title">Diagnostic de Performance Énergétique Tertiaire (DPE)</h3>
-                    <p class="service-description">
-                        Le DPE d'un immeuble fournit une <span class="highlight-blue">estimation énergétique du bâtiment à un instant t</span>. 
-                        Il contient une <span class="highlight-blue">analyse complète des caractéristiques du bâti</span> (parois, isolation...) et des 
-                        systèmes présents (chauffage, ventilation...).
-                    </p>
+
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/D7.png" alt="Audit énergétique tertiaire">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Audit Énergétique Réglementaire Tertiaire</h3>
+                        <p class="service-description">
+                            Il permet de <span class="highlight-blue">réduire les consommations, répondre aux obligations</span> du décret tertiaire, et <span class="highlight-blue">planifier des travaux 
+                            efficaces</span>.<br>
+                            Il est <span class="highlight">obligatoire tous les 4 ans</span> selon les conditions suivantes :
+                        </p>
+                    </div>
                 </div>
             </div>
-
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/D7.png" alt="Audit énergétique tertiaire">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Audit Énergétique Réglementaire Tertiaire</h3>
-                    <p class="service-description">
-                        Il permet de <span class="highlight-blue">réduire les consommations, répondre aux obligations</span> du décret tertiaire, et <span class="highlight-blue">planifier des travaux 
-                        efficaces</span>.<br>
-                        Il est <span class="highlight">obligatoire tous les 4 ans</span> selon les conditions suivantes :
-                    </p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- Services pour l'industrie -->
-        <h2 class="section-title">Nos services pour l'industrie</h2>
-
-        <div class="services-container">
-            <div class="service-item">
-                <div class="service-icon">
-                    <img src="./../home/assets/aer.png" alt="Audit énergétique industriel">
-                </div>
-                <div class="service-content">
-                    <h3 class="service-title">Audit Énergétique Réglementaire Industriel</h3>
-                    <p class="service-description">
-                        Il identifie les <span class="highlight-blue">pertes énergétiques</span>, optimise les procédés, et réduit les coûts et les émissions.<br>
-                        Il est <span class="highlight">obligatoire tous les 4 ans</span> selon les conditions suivantes :
-                    </p>
+        <section>
+            <h2 class="section-title">Nos services pour l'industrie</h2>
+            <div class="services-container">
+                <div class="service-item">
+                    <div class="service-icon">
+                        <img src="./../home/assets/aer.png" alt="Audit énergétique industriel">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Audit Énergétique Réglementaire Industriel</h3>
+                        <p class="service-description">
+                            Il identifie les <span class="highlight-blue">pertes énergétiques</span>, optimise les procédés, et réduit les coûts et les émissions.<br>
+                            Il est <span class="highlight">obligatoire tous les 4 ans</span> selon les conditions suivantes :
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- CTA Section -->
-        <div class="engagement-section">
+        <section class="engagement-section">
             <h2 class="engagement-title">Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
             <p class="engagement-text">
                 Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
@@ -631,9 +813,9 @@
                 une prestation rigoureuse, première étape essentielle vers une simple conformité 
                 réglementaire ou une solide rénovation performante.
             </p>
-            <button class="cta-button">Parler à un référent</button>
-        </div>
-    </div>
+            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+        </section>
+    </main>
 
     <script>
         // Mobile Menu Functions
@@ -653,45 +835,6 @@
             burgerMenu.classList.remove('active');
         }
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const burgerMenu = document.querySelector('.burger-menu');
-            
-            if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Logo click redirect
-        document.querySelector('.logo').addEventListener('click', function() {
-            window.location.href = '../index.html';
-        });
-
         // Dropdown functions
         function toggleDropdown(id) {
             // Fermer les autres menus
@@ -703,31 +846,76 @@
 
             // Toggle le menu cliqué
             const menu = document.getElementById(id);
-            menu.classList.toggle('show');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
         }
 
-        // Fermer si clic en dehors
-        document.addEventListener('click', function (event) {
-            const isClickInside = event.target.closest('.dropdown');
-            if (!isClickInside) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const burgerMenu = document.querySelector('.burger-menu');
+                
+                if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function (event) {
+                const isClickInside = event.target.closest('.dropdown');
+                if (!isClickInside) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll effect to header
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(11, 48, 65, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = '#0B3041';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+
+            // Logo click redirect
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', function() {
+                    window.location.href = '../index.html';
                 });
             }
-        });
 
-        // Add click handlers for CTA buttons
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Redirection vers la page de contact');
-            });
-        });
-
-        // Add hover effects to service items
-        document.querySelectorAll('.service-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const title = this.querySelector('.service-title').textContent;
-                alert(`En savoir plus sur : ${title}`);
+            // Add hover effects to service items
+            document.querySelectorAll('.service-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.service-title')?.textContent;
+                    if (title) {
+                        console.log(`Service sélectionné : ${title}`);
+                        // Ici vous pouvez ajouter une redirection ou une modal
+                    }
+                });
             });
         });
     </script>
