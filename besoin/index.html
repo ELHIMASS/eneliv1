@@ -190,15 +190,14 @@
         }
 
         /* Hero Section */
-        .hero-section {
-    background: url('./../home/assets/besoin.png');
+       .hero-section {
+    background-image: url('./../home/assets/besoin.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 1500px auto; /* taille fixe en px */
-    background-attachment: fixed; /* reste fixe même au scroll */
-    width: 100%; /* largeur fixe */
-    height: 400px; /* hauteur fixe */
-    margin: 0 auto; /* centrer */
+    background-size: 1920px auto; /* largeur fixe */
+    width: 1920px; /* fixe */
+    height: 600px; /* ajuste à ta hauteur voulue */
+    margin: 0 auto; /* centré */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,6 +205,22 @@
     color: white;
 }
 
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    .hero-section {
+        width: 100%;
+        height: 250px;
+        background-size: cover; /* remplissage écran sur mobile */
+    }
+}
+
+@media (max-width: 1800px) {
+    .hero-section {
+        width: 100%;
+        height: 400px;
+        background-size: cover; /* remplissage écran sur mobile */
+    }
+}
 
         .hero-title {
 
