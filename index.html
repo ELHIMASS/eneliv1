@@ -18,8 +18,7 @@
             color: #333;
         }
 
-        /* Header */
-        /* Header */
+         /* Header */
         .header {
             background-color: #0B3041;
             color: white;
@@ -29,7 +28,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
@@ -38,7 +36,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            margin-right: 40px;
         }
 
         .logo {
@@ -51,17 +48,12 @@
             height: 1.2cm;
             width: 5.4cm;
             object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
         }
 
         .logo-placeholder {
             width: 120px;
             height: 50px;
-            background: linear-gradient(135deg, #00ff88, #00ccff);
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -69,7 +61,6 @@
             color: white;
             font-weight: bold;
             font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
         }
 
         .nav-menu {
@@ -77,11 +68,6 @@
             display: flex;
             gap: 2rem;
             align-items: center;
-        }
-
-        .nav-menu :hover {
-            cursor: pointer;
-            color: #1c3a48;
         }
 
         .nav-menu li {
@@ -92,52 +78,43 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
         }
 
-       
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #7FB77E;
+        }
 
-.dropdown-menu li:last-child a {
-    border-bottom: none; /* Supprime le trait du dernier élément */
-}
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
 
-.dropdown-menu {
-    position: absolute;
-    margin-top: 16px;
-    left: 0;
-    background-color: #0B3041;
-    padding: 0.5rem 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    display: none;
-    min-width: 327px;
-    z-index: 999;
-    max-width: 480px;
-}
+        .dropdown-menu li {
+            list-style: none;
+        }
 
-.dropdown-menu li {
-    list-style: none;
-    margin-bottom: -15px;
-}
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-.dropdown-menu a {
-    display: block;
-    padding: 1.6rem 0.1rem;
-    color: white;
-    font-weight: 500;
-    transition: background 0.3s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: 14px;
-    margin-block: -16px;
-    height: 90px;
-    width: 90%;
-    border-bottom: 1px solid white;
-}
-
+        .dropdown-menu a:hover {
+            background: rgba(127, 183, 126, 0.2);
+        }
 
         .dropdown-menu.show {
             display: block;
@@ -147,28 +124,18 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
         }
 
         .burger-line {
-            width: 19px;
-            height: 2px;
+            width: 28px;
+            height: 3px;
             background: white;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .burger-menu.active .burger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
 
         .mobile-menu {
     position: fixed;
@@ -1523,6 +1490,65 @@
             mobileMenu.classList.remove('active');
             burgerMenu.classList.remove('active');
         }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logo click redirect
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = '../index.html';
+        });
+
+        // Dropdown functions
+        function toggleDropdown(id) {
+            // Fermer les autres menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle le menu cliqué
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
+        // Fermer si clic en dehors
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Show logo placeholder if image fails to load
+        document.querySelector('.logo img').addEventListener('error', function() {
+            this.style.display = 'none';
+            document.querySelector('.logo-placeholder').style.display = 'flex';
+        });
 
         
 

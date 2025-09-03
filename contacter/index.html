@@ -23,7 +23,8 @@ body {
 }
 
 /* HEADER */
- .header {
+ /* Header */
+        .header {
             background-color: #0B3041;
             color: white;
             padding: 1rem 0;
@@ -32,7 +33,6 @@ body {
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
@@ -41,7 +41,6 @@ body {
             justify-content: space-between;
             align-items: center;
             padding: 0 2rem;
-            margin-right: 40px;
         }
 
         .logo {
@@ -54,17 +53,12 @@ body {
             height: 1.2cm;
             width: 5.4cm;
             object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
         }
 
         .logo-placeholder {
             width: 120px;
             height: 50px;
-            background: linear-gradient(135deg, #00ff88, #00ccff);
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -72,7 +66,6 @@ body {
             color: white;
             font-weight: bold;
             font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
         }
 
         .nav-menu {
@@ -80,11 +73,6 @@ body {
             display: flex;
             gap: 2rem;
             align-items: center;
-        }
-
-        .nav-menu :hover {
-            cursor: pointer;
-            color: #1c3a48;
         }
 
         .nav-menu li {
@@ -95,52 +83,43 @@ body {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            cursor: pointer;
             font-size: 14px;
             margin-left: 10px;
         }
 
-       
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #7FB77E;
+        }
 
-.dropdown-menu li:last-child a {
-    border-bottom: none; /* Supprime le trait du dernier élément */
-}
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
 
-.dropdown-menu {
-    position: absolute;
-    margin-top: 16px;
-    left: 0;
-    background-color: #0B3041;
-    padding: 0.5rem 0;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    display: none;
-    min-width: 327px;
-    z-index: 999;
-    max-width: 480px;
-}
+        .dropdown-menu li {
+            list-style: none;
+        }
 
-.dropdown-menu li {
-    list-style: none;
-    margin-bottom: -15px;
-}
+        .dropdown-menu a {
+            display: block;
+            padding: 1rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-.dropdown-menu a {
-    display: block;
-    padding: 2.2rem 0.1rem;
-    color: white;
-    font-weight: 500;
-    transition: background 0.3s;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: 14px;
-    margin-block: -16px;
-    height: 90px;
-    width: 90%;
-    border-bottom: 1px solid white;
-}
-
+        .dropdown-menu a:hover {
+            background: rgba(127, 183, 126, 0.2);
+        }
 
         .dropdown-menu.show {
             display: block;
@@ -150,28 +129,18 @@ body {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
         }
 
         .burger-line {
-            width: 19px;
-            height: 2px;
+            width: 28px;
+            height: 3px;
             background: white;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
-        .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .burger-menu.active .burger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
 
 /* MENU MOBILE */
 .mobile-menu {
@@ -476,16 +445,16 @@ input:focus, textarea:focus, select:focus {
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOS EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
-                            <li><a href="#exp1">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
-                            <li><a href="#exp2">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
                             <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                            <li><a href="#exp4">AUDIT ÉNERGÉTIQUE</a></li>
-                            <li><a href="#exp5">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="../contacter/index.html" style="color:#7FB77E">CONTACT</a></li>
-                    <li><a href="#actualite">ACTUALITÉS</a></li>
+                    <li><a href="./../contacter/index.html" style="color:#7FB77E">CONTACT</a></li>
+                    <li><a href="./../biographie/index.html">BLOG</a></li>
                 </ul>
 
                 <div class="burger-menu" onclick="toggleMobileMenu()">
