@@ -569,12 +569,174 @@
             color: white;
         }
 
-        /* Footer */
+        /* Footer Professionnel */
         .footer {
-            background: #1e3c72;
+            background: #1a202c;
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 80px 0 30px;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #7FB77E;
+        }
+
+        .footer-section p, .footer-section li {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #7FB77E;
+        }
+
+        .company-info {
+            max-width: 300px;
+        }
+
+        .company-logo {
+            width: 150px;
+            height: 60px;
+            background: transparent;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2d3748;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #7FB77E;
+            transform: translateY(-2px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 20px;
+            color: #7FB77E;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: #718096;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #7FB77E;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: #2d3748;
+            padding: 17px;
+            border-radius: 12px;
+            margin-top: 20px;
+            width: 300px;
+        }
+
+        .newsletter h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter input {
+            flex: 1;
+            padding: 4px;
+            border: none;
+            border-radius: 8px;
+            background: #4a5568;
+            color: white;
+            width: 70px;
+        }
+
+        .newsletter input::placeholder {
+            color: #a0aec0;
+        }
+
+        .newsletter button {
+            background: #7FB77E;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            background: #0B3041;
         }
 
         /* Responsive */
@@ -883,14 +1045,14 @@
                         <div class="cert-icon">
                             <img style="width: 120px;" src="./../home/assets/certif.png" alt="">
                         </div>
-                        <div class="cert-subtitle">L’expertise de notre personnel est reconnue, gage de fiabilité et de professionnalisme.</div>
+                        <div class="cert-subtitle">L'expertise de notre personnel est reconnue, gage de fiabilité et de professionnalisme.</div>
                     </div>
 
                     <div class="certification-card">
                         <div class="cert-icon">
                             <img  style="width: 120px;" src="./../home/assets/logiciel.png" alt="">
                         </div>
-                        <div class="cert-subtitle">Nos logiciels sont tous validés par l’ADEME.</div>
+                        <div class="cert-subtitle">Nos logiciels sont tous validés par l'ADEME.</div>
                     </div>
                 </div>
 
@@ -914,10 +1076,81 @@
     <!-- Tooltip pour la carte -->
     <div id="tooltip" class="tooltip"></div>
 
-    <!-- Footer -->
+    <!-- Footer Professionnel -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+            <div class="footer-content">
+                <!-- Informations de l'entreprise -->
+                <div class="footer-section company-info">
+                    <div class="company-logo">
+                        <img src="../home/assets/ENELIVG.png" alt="" style="width: 150px;">
+                    </div>
+                    <p>Votre bureau d'études engagé pour la performance énergétique et la durabilité. Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="LinkedIn">💼</a>
+                        <a href="#" title="Twitter">🐦</a>
+                        <a href="#" title="YouTube">📺</a>
+                    </div>
+                </div>
+
+                <!-- Nos services -->
+                <div class="footer-section">
+                    <h3>Nos Expertises</h3>
+                    <ul>
+                        <li><a href="../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
+                        <li><a href="../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
+                        <li><a href="../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
+                        <li><a href="../AE/index.html">Audit Énergétique</a></li>
+                        <li><a href="../renov/index.html">Mon Accompagnateur Rénov'</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <p>4 rue de la république<br>69001 LYON, France</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>📞</i>
+                        <p>+33 1 23 45 67 89</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <p>contact@eneliv.fr</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>🕒</i>
+                        <p>Lun-Ven: 8h30-18h30<br>Sam: 9h00-12h00</p>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-section">
+                    <h3>Actualités & Conseils</h3>
+                    <p>Recevez nos dernières actualités et conseils en efficacité énergétique</p>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Votre email" required>
+                            <button type="submit">S'abonner</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="/mentions-legales">Mentions légales</a>
+                    <a href="/politique-confidentialite">Confidentialité</a>
+                    <a href="/conditions-utilisation">CGU</a>
+                    <a href="/plan-site">Plan du site</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -1012,6 +1245,16 @@
                     window.location.href = `../contacter/index.html?region=${encodeURIComponent(regionName)}&email=${encodeURIComponent(email)}`;
                 });
             });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Merci ! Vous êtes maintenant abonné à notre newsletter.');
+                this.reset();
+            }
         });
 
         // Animation on scroll
