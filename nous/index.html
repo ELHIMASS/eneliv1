@@ -294,68 +294,107 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Values Section */
-        .values-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 4rem 0;
-        }
+        /* Values Section - Corrected Grid */
+.values-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 4rem 0;
+}
 
-        .values-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #0B3041;
-            margin-bottom: 3rem;
-            font-weight: bold;
-        }
+.values-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #0B3041;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(124px, 1fr));
-            gap: 9rem;
-            margin-top: 3rem;
-        }
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
-        .value-card {
-            width: 300px;
-            height: 240px;
-            text-align: center;
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(127, 183, 126, 0.1);
-        }
+.value-card {
+    width: 100%;
+    min-height: 280px;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(127, 183, 126, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border-color: #7FB77E;
-        }
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: #7FB77E;
+}
 
-        .value-icon {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
+.value-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .value-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #0B3041;
-            margin-bottom: 1rem;
-        }
+.value-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
-        .value-description {
-            color: #666;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+.value-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0B3041;
+    margin-bottom: 1rem;
+}
 
+.value-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .value-card {
+        min-height: 250px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .values-section {
+        padding: 3rem 0;
+    }
+    
+    .values-title {
+        font-size: 2rem;
+    }
+    
+    .value-card {
+        padding: 1.5rem 1rem;
+    }
+}
 
         /* Engagement Section */
         .engagement-section {
@@ -1034,11 +1073,11 @@
 
         <!-- Values Section -->
         <section class="values-section">
-            <div class="container" style="width: 2000px;max-width: 1600px;">
+            <div class="container" style="max-width: 1400px;">
                 <h2 class="values-title">Nos valeurs</h2>
                 
                 <div class="values-grid">
-                    <div class="value-card">
+                    <div class="value-card" style="width: 300px; ">
                         <div class="value-icon">
                             <img src="./../home/assets/indep.png" alt="">
                         </div>
@@ -1048,7 +1087,7 @@
                         </p>
                     </div>
 
-                    <div class="value-card">
+                    <div class="value-card" style="width: 300px; ">
                         <div class="value-icon">
                             <img src="./../home/assets/eng.png" alt="">
                         </div>
@@ -1058,16 +1097,7 @@
                         </p>
                     </div>
 
-                    <div class="value-card">
-                        <div class="value-icon">
-                            <img src="./../home/assets/prox.png" alt="">
-                        </div>
-                        <h3 class="value-title">Proximité</h3>
-                        <p class="value-description">
-                            Nous intervenons partout en France.
-                        </p>
-                    </div>
-
+                    
                     <div class="value-card"  style="width: 300px; ">
                         <div class="value-icon">
                             <img src="./../home/assets/rigu.png" alt="">
