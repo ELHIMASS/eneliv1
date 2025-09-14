@@ -369,17 +369,21 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .values-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 1rem;
-    }
+@media (max-width: 1668px) {
+    
     
     .value-card {
         min-height: 250px;
         padding: 1.5rem;
     }
+    .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 }
 
 @media (max-width: 480px) {
