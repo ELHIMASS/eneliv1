@@ -354,6 +354,50 @@
             font-size: 0.95rem;
         }
 
+
+        /* Engagement Section */
+        .engagement-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .engagement-title {
+            font-size: 1.8rem;
+            color: #0B3041;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .engagement-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0 auto 2rem auto;
+            text-align: justify;
+        }
+
+        .cta-button {
+            background-color: #0B3041;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #1a4a5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(11, 48, 65, 0.3);
+        }
+
         /* Contact and Certifications Section */
         .contact-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -539,9 +583,23 @@
         }
 
         .cta-button {
-            text-align: center;
-            margin-top: 2rem;
+            background-color: #0B3041;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+
+        .cta-button:hover {
+            background-color: #1a4a5c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(11, 48, 65, 0.3);
+        }
+
 
         .btn-contact {
             background: linear-gradient(135deg, #7FB77E 0%, #56ab2f 100%);
@@ -1058,19 +1116,17 @@
                 </div>
 
                 <!-- Commitment Text -->
-                <div class="commitment-text">
-                    <h3>Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
-                    <p>
+                 <section class="engagement-section">
+                        <h2 class="engagement-title"> Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
+                        <p class="engagement-text">
                         Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
                         intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
                         une prestation rigoureuse, première étape essentielle vers une simple conformité 
                         réglementaire ou une solide rénovation performante.
-                    </p>
-                    <div class="cta-button">
-                        <a href="../contacter/index.html" class="btn-contact">Parler à un référent</a>
-                    </div>
-                </div>
-            </div>
+                     </p>
+            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+        </section>
+        
         </section>
     </main>
 
