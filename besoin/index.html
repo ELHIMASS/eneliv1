@@ -197,9 +197,22 @@
             text-align: center;
         }
 
+        @media  (width: 1000px) and (width: 1600px) {
+            .hero-section {
+            max-height: 400px;
+           min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        }
         /* Hero Section */
         .hero-section {
-            height: 400px;
+            max-height: 500px;
+           min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -211,11 +224,11 @@
         .hero-section::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -3px;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('./../home/assets/besoin.png') center/cover no-repeat;
+            background: url('./../home/assets/besoin1.png') center/cover no-repeat;
             z-index: 1;
         }
 
@@ -827,7 +840,7 @@
                                 <span>Pour un projet réussi et éligible à l'aide MaPrimeRénov' parcours accompagné</span>
                             </div>
                         </div>
-                        <div class="service-image" style="background-image: url('./../home/assets/3.jpeg');"></div>
+                        <div class="service-image" style="background-image: url('./../home/assets/individuel.png');"></div>
                     </div>
                 </div>
 

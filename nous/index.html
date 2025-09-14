@@ -6,17 +6,23 @@
     <link rel="icon" href="ENELIVP.png" type="image/png">
     <title>ENELIV - Qui sommes nous</title>
     <style>
-        * {
+    
+        *{
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
+            
+        
 
         body {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
+            margin-top: 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
+
 
         /* Header */
         .header {
@@ -180,11 +186,15 @@
 
         /* Hero Section */
         .hero-section {
-            background-image: url('../home/assets/nous.png');
+            background-color: #0B3041;
+            top: -3rem;
             color: white;
             text-align: center;
-            padding: 6rem 0 4rem;
+            padding: 3rem 0 4rem;
             position: relative;
+        }
+        .nous-hero {
+            display: flex;
         }
 
         .hero-title {
@@ -195,7 +205,7 @@
         }
 
         /* Company Description */
-        .company-description {
+        .dd {
             background: white;
             padding: 4rem 0;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
@@ -286,7 +296,7 @@
 
         /* Values Section */
         .values-section {
-            background: white;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 4rem 0;
         }
 
@@ -351,25 +361,26 @@
             border-top: 1px solid rgba(0,0,0,0.1);
         }
 
-        .france-map-container {
-            text-align: center;
-            margin-bottom: 3rem;
+        .map-contact-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .map-container {
+            flex: 1;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 2rem;
-            margin-bottom: 2rem;
-            max-width: 500px;
-
         }
 
         .france-map {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
         }
 
         .marker {
@@ -414,47 +425,31 @@
             font-weight: bold;
         }
 
-        .map-description {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-        }
-
-        .map-link {
-            color: #dc3545;
-            text-decoration: underline;
-            font-weight: bold;
-        }
-
         .contact-info {
-            text-align: center;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 3rem;
+            flex: 1;
+            text-align: left;
+            padding: 2.5rem;
+            border-left: 2px solid rgba(0,0,0,0.1);
+            margin-top: 4rem;
         }
 
         .contact-info h3 {
             color: #0B3041;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-info p {
             color: #666;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
         }
 
         .contact-info .email {
             color: #0B3041;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .certifications-section {
@@ -698,7 +693,7 @@
             padding: 17px;
             border-radius: 12px;
             margin-top: 20px;
-            width: 300px;
+            width: 230px;
         }
 
         .newsletter h4 {
@@ -785,7 +780,14 @@
                 padding: 2rem 1.5rem;
             }
 
-            
+            .map-contact-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                text-align: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -793,7 +795,7 @@
                 font-size: 2rem;
             }
 
-            .company-description {
+            .dd {
                 padding: 3rem 0;
             }
 
@@ -871,38 +873,37 @@
     <!-- Main Content -->
     <main class="main-content">
         <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="container">
+        <section class="hero-section"> 
+
+            <div class="nous-hero">
+            <div class="container" style="width: 600px;">
                 <h1 class="hero-title">QUI SOMMES NOUS ?</h1>
+              
+            
+
+                <p class="eneliv" style="font-size: 18px; text-align: justify; margin-top: 40px; ;">
+                        ENELIV est un bureau d’études indépendant et engagé, spécialisé en ingénierie thermique, technique et énergétique. Fondé par Akrame EL HIMASS, ancien ingénieur expérimenté
+
+                    </p>
+        
+            </div>
+
+            <div>
+                <img src="./../home/assets/nous.png" alt="" style="width: 400px; height: 300px; margin-left: 50px; margin-top: 5px; border-radius: 20px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-right: 100px;">
+            </div>
+
+
             </div>
         </section>
 
         <!-- Company Description -->
-        <section class="company-description">
-            <div class="container">
-                <div class="description-content">
-                    <p class="company-intro">
-                        <strong>ENELIV</strong> est un bureau d'études jeune, indépendant et engagé, spécialisé en <strong>ingénierie thermique, bâtiment et énergies renouvelables</strong>. Dirigé par <strong>Akrame EL HIMASS</strong>, ancien ingénieur département, notre entreprise est née d'une volonté claire : rendre la performance énergétique accessible, facile et durable.
-                    </p>
+              <div>
+                <p style="font-size: 18px; text-align: justify;  width: 900px; text-align: center; margin: auto; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                    Notre entreprise est née d’une volonté claire : rendre la performance énergétique accessible, fiable et durable pour tous.
+                    Nous intervenons auprès des particuliers, des copropriétés, des professionnels du tertiaire et du secteur industriel, avec une approche sur mesure, rigoureuse et humaine.
 
-                    <p class="company-intro">
-                        Nous intervenons auprès des <strong>particuliers</strong>, des <strong>copropriétés</strong>, des professionnels du <strong>tertiaire et du secteur industriel</strong>, avec une approche sur mesure, rigoureuse et humaine.
-                    </p>
-
-                    <div class="highlight-text">
-                        <p class="company-intro">
-                            Nous accompagnons celles et ceux qui veulent <strong>mieux comprendre, mieux gérer et mieux valoriser leur patrimoine</strong>.
-                        </p>
-                        <p class="company-intro">
-                            Nos clients cherchent à <strong>se mettre en conformité</strong>, à <strong>réaliser des économies durables</strong> et à <strong>agir pour un meilleur avenir</strong> — nous leur offrons les outils, l'expertise et la clarté nécessaires.
-                        </p>
-                        <p class="company-intro">
-                            <strong>Transformer les obligations en opportunités</strong>, et l'information en <strong>décisions utiles</strong>, c'est notre mission. Toujours avec indépendance, rigueur et sens du service.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </p>
+              </div>
 
         <!-- President Section -->
         <section class="president-section">
@@ -929,6 +930,43 @@
                         <p class="president-text">
                             Toujours avec indépendance, rigueur et sens du service.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+
+        <!-- Contact and Certifications Section -->
+        <section class="contact-section">
+            <div class="container">
+                <!-- France Map and Contact Container -->
+                <div class="map-contact-container">
+                    <!-- Map Container -->
+                    <div class="map-container">
+                        <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
+                        
+                        <!-- Marqueurs pour chaque région -->
+                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
+                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
+                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
+                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
+                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
+                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
+                        <div class="marker" style="top: 53%; left: 62%; background-color: red;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
+                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
+                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
+                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
+                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
+                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
+                    </div>
+                    
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <h3>Siège : ENELIV</h3>
+                        <p>13 Cr de Verdun Gensoul</p>
+                        <p>69002 Lyon</p>
+                        <p class="email">contact@eneliv.fr</p>
                     </div>
                 </div>
             </div>
@@ -989,43 +1027,6 @@
                             Un suivi humain sur mesure, pédagogique, accessible et personnalisé.
                         </p>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact and Certifications Section -->
-        <section class="contact-section">
-            <div class="container">
-                <!-- France Map -->
-                <div class="france-map-container">
-                    <div class="map-container">
-                        <img class="france-map" src="../home/assets/carte-france1.png" alt="Carte de France">
-                        
-                        <!-- Marqueurs pour chaque région -->
-                        <div class="marker" style="top: 27.5%; left: 49.5%;" data-region="Île-de-France" data-email="paris@eneliv.fr"></div>
-                        <div class="marker" style="top: 73%; left: 66%;" data-region="Provence-Alpes-Côte d'Azur" data-email="marseille@eneliv.fr"></div>
-                        <div class="marker" style="top: 21.5%; left: 42.5%;" data-region="Normandie" data-email="rouen@eneliv.fr"></div>
-                        <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
-                        <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
-                        <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
-                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
-                        <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
-                        <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
-                        <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>
-                        <div class="marker" style="top: 35%; left: 47%;" data-region="Centre-Val de Loire" data-email="orleans@eneliv.fr"></div>
-                        <div class="marker" style="top: 39.5%; left: 63%;" data-region="Bourgogne-Franche-Comté" data-email="dijon@eneliv.fr"></div>
-                    </div>
-                    <p class="map-description">
-                        Carte de nos implantations avec <span class="map-link">siège</span> en rouge
-                    </p>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="contact-info">
-                    <h3>Siège : ENELIV</h3>
-                    <p>4 rue de la république</p>
-                    <p>69001 LYON</p>
-                    <p class="email">contact@eneliv.fr</p>
                 </div>
             </div>
         </section>
@@ -1111,7 +1112,7 @@
                     <h3>Contact</h3>
                     <div class="contact-item">
                         <i>📍</i>
-                        <p>4 rue de la république<br>69001 LYON, France</p>
+                        <p>13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
                     </div>
                     <div class="contact-item">
                         <i>📞</i>
