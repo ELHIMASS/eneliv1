@@ -383,7 +383,7 @@
             flex-direction: column;
             gap: 8px;
             font-size: 12px;
-            color: #718096;
+            color: #7FB77E;
             text-align: center;
         }
         
@@ -988,7 +988,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #7FB77E, #764ba2);
+            background: linear-gradient(90deg, #7FB77E);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.3s ease;
@@ -1113,7 +1113,7 @@
         }
 
         .footer-section p, .footer-section li {
-            color: #a0aec0;
+            color: #7FB77E;
             line-height: 1.8;
             margin-bottom: 10px;
         }
@@ -1123,7 +1123,7 @@
         }
 
         .footer-section a {
-            color: #a0aec0;
+            color: #7FB77E;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -1194,7 +1194,7 @@
         }
 
         .footer-bottom p {
-            color: #718096;
+            color: #7FB77E;
             margin: 0;
         }
 
@@ -1204,7 +1204,7 @@
         }
 
         .footer-links a {
-            color: #718096;
+            color: #7FB77E;
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -1386,6 +1386,161 @@
                 font-size: 2rem;
             }
         }
+
+      /* Steps Section */
+        .steps-parallax-section {
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+
+        .steps-floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .steps-floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            animation: stepsFloat 6s ease-in-out infinite;
+        }
+
+        .steps-floating-circle:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .steps-floating-circle:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .steps-floating-circle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes stepsFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .section-titlese {
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 60px;
+            color: #1a202c;
+        }
+
+        .steps-step {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .steps-step.steps-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .steps-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .steps-step-content {
+            flex: 1;
+        }
+
+        .steps-step-number {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            background: #7FB77E;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            animation: stepsPulse 2s infinite;
+        }
+
+        @keyframes stepsPulse {
+            0% {
+                box-shadow: 0 0 0 0 #7FB77E;
+            }
+            70% {
+                box-shadow: 0 0 0 10px #7FB77E;
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .steps-step-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .steps-step-description {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .steps-step-image {
+            flex: 0 0 400px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.6s ease;
+        }
+
+        .steps-step-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .steps-step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .steps-step-image:hover img {
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
@@ -1559,6 +1714,65 @@
     </div>
 </div>
 
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-parallax-section">
+        <div class="steps-floating-elements">
+            <div class="steps-floating-circle"></div>
+            <div class="steps-floating-circle"></div>
+            <div class="steps-floating-circle"></div>
+        </div>
+        
+        <div class="container">
+            <h2 class="section-titlese" style="color: #7FB77E;">Comment on échange ensemble ?</h2>
+
+            <!-- Étape 01 -->
+            <div class="steps-step" data-step="1">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">01</div>
+                    <h2 class="steps-step-title">La demande</h2>
+                    <div class="steps-step-description">
+                        <p>Vous nous contactez pour une étude énergétique ou technique visant à répondre à vos obligations réglementaires, mieux comprendre votre édifice et identifier des solutions d'amélioration durables.</p>
+                    </div>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape1.jpeg" alt="Étape 1 - La demande">
+                </div>
+            </div>
+
+            <!-- Étape 02 -->
+            <div class="steps-step" data-step="2">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">02</div>
+                    <h2 class="steps-step-title">L'étude et conception</h2>
+                    <div class="steps-step-description">
+                        <p>Nos ingénieurs réalisent une étude technique complète de votre projet. Nous analysons la faisabilité, établissons les plans détaillés et définissons les matériaux optimaux.</p>
+                        <br>
+                        <p>Cette phase inclut également l'obtention des autorisations nécessaires et la planification précise des travaux pour garantir leur bon déroulement.</p>
+                    </div>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape2.jpeg" alt="Étape 2 - Étude et conception">
+                </div>
+            </div>
+
+            <!-- Étape 03 -->
+            <div class="steps-step" data-step="3">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">03</div>
+                    <h2 class="steps-step-title">La réalisation</h2>
+                    <div class="steps-step-description">
+                        <p>Notre équipe expérimentée procède à la réalisation de votre projet en respectant les délais convenus et les normes de qualité les plus strictes.</p>
+                        <br>
+                        <p>Nous assurons un suivi constant des travaux avec des points de contrôle réguliers pour garantir votre satisfaction et la conformité du projet final.</p>
+                    </div>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape3.png" alt="Étape 3 - La réalisation">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1781,6 +1995,54 @@
             burgerMenu.classList.toggle('active');
         }
 
+        (function() {
+    // Intersection Observer pour l'animation des étapes
+    const stepsObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const stepsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('steps-visible');
+            }
+        });
+    }, stepsObserverOptions);
+
+    // Observer toutes les étapes
+    document.querySelectorAll('.steps-step').forEach(step => {
+        stepsObserver.observe(step);
+    });
+
+    // Effet parallax sur le scroll
+    function updateStepsParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.steps-floating-circle');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.2);
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+        });
+    }
+
+    // Event listener pour le parallax
+    window.addEventListener('scroll', updateStepsParallax);
+
+    // Animation d'entrée retardée
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.steps-step').forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }, 500);
+    });
+})();
+
         function closeMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const burgerMenu = document.querySelector('.burger-menu');
@@ -1815,7 +2077,7 @@
 
         // Logo click redirect
         document.querySelector('.logo').addEventListener('click', function() {
-            window.location.href = '../index.html';
+            window.location.href = './index.html';
         });
 
         // Dropdown functions
