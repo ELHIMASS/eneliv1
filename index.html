@@ -1594,192 +1594,231 @@
 
 
 
-        @media screen and (max-width: 1600px) {
-    .section-titles {
-        font-size: 20px;
-        line-height: 2.0;
-        color: #1a202c;
-        margin: 0;
-        font-weight: 400;
-        letter-spacing: 1px;
-        width: 1200px;
-    }
+       /* Styles pour le bouton burger (cachés par défaut sur desktop) */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
 }
 
-/* Media Query pour écrans de 1024px et moins */
-@media (max-width: 1024px) {
-    .eneliv-sections {
-        padding: 40px;
-        gap: 40px;
-    }
-    
-    .services-list {
-        grid-template-columns: 1fr;
-    }
+.burger-line {
+    width: 28px;
+    height: 3px;
+    background: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    border-radius: 3px;
 }
 
-/* Media Query pour écrans de 983px et moins (tablettes) */
+/* Animation du burger menu quand actif */
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: rotate(45deg) translate(9px, 9px);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Menu mobile amélioré */
+.mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #0B3041, #1e3c72, #2c5364);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 1rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+/* Liens principaux du menu mobile */
+.mobile-menu > a {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1rem 0;
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mobile-menu > a:hover {
+    color: #7FB77E;
+    background: rgba(127, 183, 126, 0.1);
+    border-radius: 8px;
+}
+
+/* Section avec dropdown dans le menu mobile */
+.mobile-dropdown {
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.mobile-dropdown-toggle {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-dropdown-toggle:hover {
+    background: rgba(127, 183, 126, 0.2);
+    color: #7FB77E;
+}
+
+.mobile-dropdown-toggle::after {
+    content: "▼";
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .mobile-dropdown-toggle::after {
+    transform: rotate(180deg);
+}
+
+/* Contenu du dropdown mobile */
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0 0 8px 8px;
+}
+
+.mobile-dropdown.active .mobile-dropdown-content {
+    max-height: 400px;
+}
+
+.mobile-dropdown-content a {
+    display: block;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+}
+
+.mobile-dropdown-content a:hover {
+    color: #7FB77E;
+    background: rgba(127, 183, 126, 0.1);
+    padding-left: 2rem;
+}
+
+.mobile-dropdown-content a:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Section "Vos besoins" dans le menu mobile */
+.mobile-besoins {
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.mobile-besoins-toggle {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-besoins-toggle:hover {
+    background: rgba(127, 183, 126, 0.2);
+    color: #7FB77E;
+}
+
+.mobile-besoins-toggle::after {
+    content: "▼";
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.mobile-besoins.active .mobile-besoins-toggle::after {
+    transform: rotate(180deg);
+}
+
+.mobile-besoins-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0 0 8px 8px;
+}
+
+.mobile-besoins.active .mobile-besoins-content {
+    max-height: 300px;
+}
+
+.mobile-besoins-content a {
+    display: block;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+}
+
+.mobile-besoins-content a:hover {
+    color: #7FB77E;
+    background: rgba(127, 183, 126, 0.1);
+    padding-left: 2rem;
+}
+
+/* Media Query pour activer le menu burger sur mobile */
 @media (max-width: 983px) {
-    .expertises-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .expertise-card {
-        height: 280px;
+    /* Cacher le menu principal et afficher le burger */
+    .nav-menu {
+        display: none;
     }
     
-    .expertise-title {
-        font-size: 1.1rem;
-    }
-
-    .hero {
-        position: relative;
-        height: 60vh;
-        overflow: hidden;
-    }
-
-    .hero-slide {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .hero-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        text-align: center;
-        color: white;
-        border-radius: 10px;
-    }
-
-    .hero-title {
-        font-size: 0.7rem;
-        margin: 0;
-        line-height: 1.3;
-        word-break: break-word;
-    }
-
-    .hero-subtitle {
-        font-size: 0.4rem;
-        margin-top: 0.5rem;
-    }
-
-    .hero-nav {
-        bottom: 1rem;
-    }
-
-    .logo img {
-        height: 0.7cm;
-        width: 4.1cm;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-}
-
-/* Media Query pour écrans de 768px et moins (smartphones et petites tablettes) */
-@media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-    
-    .eneliv-sections {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px 30px;
-        gap: 40px;
-    }
-    
-    .section-titles {
-        font-size: 18px;
-        line-height: 1.6;
-    }
-    
-    .services-list {
-        margin-top: 25px;
-        justify-content: center;
-    }
-    
-    .contact-button {
-        padding: 16px 32px;
-        font-size: 15px;
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    .button-wrapper {
-        width: 100%;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .steps-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .step-card {
-        padding: 30px;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .footer-links {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-    }
-
-    .eneliv-section {
-        padding: 2.5rem 1.5rem;
-    }
-    
-    .eneliv-intro {
-        font-size: 1rem;
-    }
-    
-    .eneliv-description,
-    .eneliv-ambition {
-        font-size: 0.95rem;
-    }
-    
-    .eneliv-signature {
-        font-size: 2rem;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-    
-    .section-title {
-        margin-top: 50px;
-    }
-    
-    .section-description {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-}
-
-/* Media Query pour écrans de 480px et moins (petits smartphones) */
-@media (max-width: 480px) {
-    .eneliv-sections {
-        padding: 30px 20px;
-    }
-    
-    .section-titles {
-        font-size: 16px;
+    .burger-menu {
+        display: flex;
     }
 }
         
@@ -1827,14 +1866,36 @@
                 </div>
             </nav>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-        <a href="./nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
-        <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
-        <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
-        <a href="./contacter/index.html" onclick="closeMobileMenu()">Contact</a>
-        <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+       <!-- Mobile Menu Amélioré - Remplace le menu mobile existant -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="./nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
+    
+    <!-- Section Vos Besoins avec sous-menus -->
+    <div class="mobile-besoins" id="mobileBesoins">
+        <button class="mobile-besoins-toggle" onclick="toggleMobileBesoins()">VOS BESOINS</button>
+        <div class="mobile-besoins-content">
+            <a href="./besoin/index.html#particulier" onclick="closeMobileMenu()">Particulier</a>
+            <a href="./besoin/index.html#coproprié" onclick="closeMobileMenu()">Copropriété</a>
+            <a href="./besoin/index.html#tertiaire" onclick="closeMobileMenu()">Tertiaire</a>
+            <a href="./besoin/index.html#industrie" onclick="closeMobileMenu()">Industrie</a>
+        </div>
     </div>
+
+    <!-- Section Notre Expertise avec sous-menus -->
+    <div class="mobile-dropdown" id="mobileExpertise">
+        <button class="mobile-dropdown-toggle" onclick="toggleMobileDropdown('mobileExpertise')">NOTRE EXPERTISE</button>
+        <div class="mobile-dropdown-content">
+            <a href="./dpe/index.html" onclick="closeMobileMenu()">Diagnostic de Performance Énergétique</a>
+            <a href="./DTG/index.html" onclick="closeMobileMenu()">Diagnostic Technique Global</a>
+            <a href="./ppt/index.html" onclick="closeMobileMenu()">Plan Pluriannuel de Travaux</a>
+            <a href="./AE/index.html" onclick="closeMobileMenu()">Audit Énergétique</a>
+            <a href="./renov/index.html" onclick="closeMobileMenu()">Mon Accompagnateur Rénov'</a>
+        </div>
+    </div>
+
+    <a href="./contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+    <a href="./biographie/index.html" onclick="closeMobileMenu()">BLOG</a>
+</div>
     </header>
 
     <!-- Hero Section with Slider -->
@@ -2388,6 +2449,80 @@
     }
 });
 
+// Fonction pour toggle le menu mobile principal (à ajouter/remplacer dans le JavaScript existant)
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerMenu = document.querySelector('.burger-menu');
+    
+    mobileMenu.classList.toggle('active');
+    burgerMenu.classList.toggle('active');
+}
+
+// Fonction pour fermer le menu mobile
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerMenu = document.querySelector('.burger-menu');
+    
+    mobileMenu.classList.remove('active');
+    burgerMenu.classList.remove('active');
+    
+    // Fermer aussi tous les dropdowns ouverts
+    document.querySelectorAll('.mobile-dropdown, .mobile-besoins').forEach(dropdown => {
+        dropdown.classList.remove('active');
+    });
+}
+
+// Fonction pour toggle les dropdowns dans le menu mobile
+function toggleMobileDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    
+    // Fermer les autres dropdowns
+    document.querySelectorAll('.mobile-dropdown, .mobile-besoins').forEach(otherDropdown => {
+        if (otherDropdown.id !== dropdownId) {
+            otherDropdown.classList.remove('active');
+        }
+    });
+    
+    // Toggle le dropdown cliqué
+    dropdown.classList.toggle('active');
+}
+
+// Fonction spécifique pour "Vos Besoins"
+function toggleMobileBesoins() {
+    const besoinsDropdown = document.getElementById('mobileBesoins');
+    
+    // Fermer les autres dropdowns
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+        dropdown.classList.remove('active');
+    });
+    
+    // Toggle "Vos Besoins"
+    besoinsDropdown.classList.toggle('active');
+}
+
+// Fermer le menu mobile si on clique en dehors (à remplacer dans le JavaScript existant)
+document.addEventListener('click', (e) => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const burgerMenu = document.querySelector('.burger-menu');
+    
+    if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+        closeMobileMenu();
+    }
+});
+
+// Code à ajouter après le chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Ajouter des event listeners aux liens principaux du menu mobile
+    const mainMenuLinks = document.querySelectorAll('.mobile-menu > a');
+    mainMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Fermer tous les dropdowns quand on clique sur un lien principal
+            document.querySelectorAll('.mobile-dropdown, .mobile-besoins').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+        });
+    });
+});
 
      
 
