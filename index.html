@@ -1053,6 +1053,13 @@
             opacity: 0.1;
             font-size: 2rem;
         }
+        .engagement-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 3rem 0;
+}
 
         .cta-button {
             background: linear-gradient(135deg, #7FB77E);
@@ -1541,6 +1548,96 @@
             transform: scale(1.1);
         }
 
+
+        .certifications-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .certifications-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0B3041;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .certification-card {
+            background: white;
+            border: 3px solid #0B3041;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .cert-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #0B3041;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-subtitle {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.2;
+        }
+
+       .commitment-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #7FB77E;
+        }
+
+        .commitment-text h3 {
+            color: #0B3041;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .commitment-text p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        
+         
+
     </style>
 </head>
 <body>
@@ -1746,11 +1843,9 @@
             <div class="steps-step" data-step="2">
                 <div class="steps-step-content">
                     <div class="steps-step-number">02</div>
-                    <h2 class="steps-step-title">L'étude et conception</h2>
+                    <h2 class="steps-step-title">L'échange</h2>
                     <div class="steps-step-description">
-                        <p>Nos ingénieurs réalisent une étude technique complète de votre projet. Nous analysons la faisabilité, établissons les plans détaillés et définissons les matériaux optimaux.</p>
-                        <br>
-                        <p>Cette phase inclut également l'obtention des autorisations nécessaires et la planification précise des travaux pour garantir leur bon déroulement.</p>
+                        <p>Un conseiller vous rappelle rapidement pour affiner la demande : compréhension du contexte, récupération des documents utiles et clarification de vos enjeux (techniques, financiers, réglementaires).</p>
                     </div>
                 </div>
                 <div class="steps-step-image">
@@ -1762,11 +1857,9 @@
             <div class="steps-step" data-step="3">
                 <div class="steps-step-content">
                     <div class="steps-step-number">03</div>
-                    <h2 class="steps-step-title">La réalisation</h2>
+                    <h2 class="steps-step-title">La rencontre</h2>
                     <div class="steps-step-description">
-                        <p>Notre équipe expérimentée procède à la réalisation de votre projet en respectant les délais convenus et les normes de qualité les plus strictes.</p>
-                        <br>
-                        <p>Nous assurons un suivi constant des travaux avec des points de contrôle réguliers pour garantir votre satisfaction et la conformité du projet final.</p>
+                        <p>Dès validation, un ingénieur vous contacte sous 24h pour organiser une visite sur site et compiler tous les éléments nécessaires à l'étude.</p>
                     </div>
                 </div>
                 <div class="steps-step-image">
@@ -1776,44 +1869,47 @@
         </div>
     </section>
 
-  <section class="process-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-titlese" style="color: white;">Comment on échange ensemble ?</h2>
-                <p class="section-subtitle" style="color: #7FB77E;">Un processus simple et transparent pour vous accompagner dans tous vos projets énergétiques</p>
+  
+
+    <!-- Certifications Section -->
+        <section class="certifications-section">
+            <div class="container">
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./home/assets/resp.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Garantir la fiabilité de nos engagements et la tranquillité de nos clients</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./home/assets/certif.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">L'expertise de notre personnel est reconnue, gage de fiabilité et de professionnalisme.</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img  style="width: 120px;" src="./home/assets/logiciel.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Nos logiciels sont tous validés par l'ADEME.</div>
+                    </div>
+                </div>
+
+                <!-- Commitment Text -->
+                 <section class="engagement-section">
+                        <h2 class="engagement-title"> Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
+                        <p class="engagement-text">
+                        Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
+                        intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
+                        une prestation rigoureuse, première étape essentielle vers une simple conformité 
+                        réglementaire ou une solide rénovation performante.
+                     </p>
+            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+        </section>
             </div>
-
-            <div class="steps-container">
-                <div class="step-card">
-                    <div class="step-icon">📞</div>
-                    <div class="step-number">01</div>
-                    <h3 class="step-title">La demande</h3>
-                    <p class="step-description">
-                        Vous nous contactez pour une étude énergétique ou technique visant à répondre à vos obligations réglementaires, mieux comprendre votre édifice et identifier des solutions d'amélioration durables.
-                    </p>
-                    <a href="./contacter/index.html" class="cta-button">Parler à un référent</a>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">💬</div>
-                    <div class="step-number">02</div>
-                    <h3 class="step-title">L'échange</h3>
-                    <p class="step-description">
-                        Un conseiller vous rappelle rapidement pour affiner la demande : compréhension du contexte, récupération des documents utiles et clarification de vos enjeux (techniques, financiers, réglementaires).
-                    </p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-icon">🤝</div>
-                    <div class="step-number">03</div>
-                    <h3 class="step-title">La rencontre</h3>
-                    <p class="step-description">
-                        Dès validation, un ingénieur vous contacte sous 24h pour organiser une visite sur site et compiler tous les éléments nécessaires à l'étude.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Footer Professionnel -->
     <footer class="footer">
@@ -1850,7 +1946,7 @@
                     <h3>Contact</h3>
                     <div class="contact-item">
                         <i>📍</i>
-                        <p>123 Rue de l'Énergie<br>75000 Paris, France</p>
+                        <p>13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
                     </div>
                     <div class="contact-item">
                         <i>📞</i>
