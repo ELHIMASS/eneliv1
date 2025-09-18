@@ -1907,7 +1907,7 @@
                         une prestation rigoureuse, première étape essentielle vers une simple conformité 
                         réglementaire ou une solide rénovation performante.
                      </p>
-            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+            <button class="cta-button" onclick="window.location.href='./contacter/index.html'">Parler à un référent</button>
         </section>
             </div>
         </section>
@@ -2028,6 +2028,10 @@
                 this.reset();
             }
         });
+    // Define contactConsultant to avoid errors on button click
+    function contactConsultant() {
+        window.location.href = './contacter/index.html';
+    }
     </script>
 
 
@@ -2237,7 +2241,6 @@
         header.classList.remove('scrolled');
     }
 });
-
 
 
      
