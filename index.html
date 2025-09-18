@@ -1591,6 +1591,197 @@
             font-size: 1rem;
         }
 
+
+
+
+        @media screen and (max-width: 1600px) {
+    .section-titles {
+        font-size: 20px;
+        line-height: 2.0;
+        color: #1a202c;
+        margin: 0;
+        font-weight: 400;
+        letter-spacing: 1px;
+        width: 1200px;
+    }
+}
+
+/* Media Query pour écrans de 1024px et moins */
+@media (max-width: 1024px) {
+    .eneliv-sections {
+        padding: 40px;
+        gap: 40px;
+    }
+    
+    .services-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Media Query pour écrans de 983px et moins (tablettes) */
+@media (max-width: 983px) {
+    .expertises-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .expertise-card {
+        height: 280px;
+    }
+    
+    .expertise-title {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        position: relative;
+        height: 60vh;
+        overflow: hidden;
+    }
+
+    .hero-slide {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .hero-title {
+        font-size: 0.7rem;
+        margin: 0;
+        line-height: 1.3;
+        word-break: break-word;
+    }
+
+    .hero-subtitle {
+        font-size: 0.4rem;
+        margin-top: 0.5rem;
+    }
+
+    .hero-nav {
+        bottom: 1rem;
+    }
+
+    .logo img {
+        height: 0.7cm;
+        width: 4.1cm;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+}
+
+/* Media Query pour écrans de 768px et moins (smartphones et petites tablettes) */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+    
+    .eneliv-sections {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 30px;
+        gap: 40px;
+    }
+    
+    .section-titles {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+    
+    .services-list {
+        margin-top: 25px;
+        justify-content: center;
+    }
+    
+    .contact-button {
+        padding: 16px 32px;
+        font-size: 15px;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .button-wrapper {
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .step-card {
+        padding: 30px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .eneliv-section {
+        padding: 2.5rem 1.5rem;
+    }
+    
+    .eneliv-intro {
+        font-size: 1rem;
+    }
+    
+    .eneliv-description,
+    .eneliv-ambition {
+        font-size: 0.95rem;
+    }
+    
+    .eneliv-signature {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+    
+    .section-title {
+        margin-top: 50px;
+    }
+    
+    .section-description {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+}
+
+/* Media Query pour écrans de 480px et moins (petits smartphones) */
+@media (max-width: 480px) {
+    .eneliv-sections {
+        padding: 30px 20px;
+    }
+    
+    .section-titles {
+        font-size: 16px;
+    }
+}
         
          
 
