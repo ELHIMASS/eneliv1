@@ -3076,5 +3076,94 @@ window.addEventListener('resize', () => {
      
 
     </script>
+
+        <script>
+        // ===== AMÉLIORATIONS MOBILE JS =====
+        
+        // Détection du toucher pour améliorer l'UX
+        let isTouchDevice = 'ontouchstart' in document.documentElement;
+        
+        if (isTouchDevice) {
+            document.body.classList.add('touch-device');
+            
+            // Amélioration des hover sur mobile
+            document.querySelectorAll('.expertise-card, .service-item, .step-card').forEach(item => {
+                item.addEventListener('touchstart', function() {
+                    this.classList.add('touched');
+                }, {passive: true});
+                
+                item.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('touched');
+                    }, 150);
+                }, {passive: true});
+            });
+        }
+        
+        // Optimisation du slider pour mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const heroSlider = document.querySelector('.hero-slider');
+        
+        if (heroSlider) {
+            heroSlider.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+            
+            heroSlider.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe gauche - slide suivant
+                currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+                showHeroSlide(currentHeroSlide);
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe droit - slide précédent
+                currentHeroSlide = (currentHeroSlide - 1 + heroSlides.length) % heroSlides.length;
+                showHeroSlide(currentHeroSlide);
+            }
+        }
+        
+        // Amélioration de la fermeture du menu mobile
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            const overlay = document.getElementById('mobileOverlay');
+            
+            if (mobileMenu) mobileMenu.classList.remove('active');
+            if (burgerMenu) burgerMenu.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            
+            document.body.style.overflow = '';
+        }
+        
+        // Fermer les dropdowns en cliquant/touchant ailleurs
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.mobile-dropdown') && !e.target.closest('.burger-menu')) {
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
+        
+        // Optimisation de la performance sur mobile
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            document.body.classList.add('scrolling');
+            
+            scrollTimeout = setTimeout(function() {
+                document.body.classList.remove('scrolling');
+            }, 100);
+        }, {passive: true});
+    </script>
 </body>
 </html>
