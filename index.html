@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="ENELIVP.png" type="image/png">
-    <title>ENELIV - Expertise Énergétique</title>
+    <title>ENELIV - Projet de Plan Pluriannuel de Travaux</title>
     <style>
         * {
             margin: 0;
@@ -14,445 +14,557 @@
 
         body {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 3;
             color: #333;
-            overflow-x: hidden;
         }
 
-        /* Header - Optimisé mobile */
+         /* Header */
         .header {
-            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            background-color: #0B3041;
             color: white;
-            padding: 0.8rem 0;
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-container {
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
         }
 
         .logo img {
             height: 1.2cm;
             width: 5.4cm;
             object-fit: contain;
-            transition: all 0.3s ease;
         }
 
-        /* Menu desktop caché sur mobile */
-        .nav-menu {
-            display: none;
-        }
-
-        /* Burger Menu - Design premium */
-        .burger-menu {
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
         }
 
-        .burger-menu:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #7FB77E;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(127, 183, 126, 0.2);
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
         }
 
         .burger-line {
-            width: 22px;
-            height: 2.5px;
+            width: 28px;
+            height: 3px;
             background: white;
-            border-radius: 2px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-            position: relative;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
         }
 
-        .burger-line:nth-child(1) {
-            margin-bottom: 4px;
-        }
 
-        .burger-line:nth-child(3) {
-            margin-top: 4px;
-        }
-
-        /* Animation du burger actif */
-        .burger-menu.active {
-            background: rgba(127, 183, 126, 0.9);
-        }
-
-        .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translateY(6.5px);
-        }
-
-        .burger-menu.active .burger-line:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-
-        .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translateY(-6.5px);
-        }
-
-        /* Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            z-index: 998;
-            backdrop-filter: blur(5px);
-        }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Menu Mobile Premium */
         .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(90vw, 380px);
-            height: 100vh;
-            background: linear-gradient(145deg, 
-                rgba(11, 48, 65, 0.98) 0%, 
-                rgba(30, 60, 114, 0.95) 50%, 
-                rgba(11, 48, 65, 0.98) 100%);
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+/* Expertises Grid */
+.expertises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+}
+
+.expertise-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 360px;
+    width: 270px;
+    cursor: pointer;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.expertise-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Plus d'espace pour l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Overlay léger pour le contraste */
+    background-blend-mode: multiply;
+    background-color: rgba(30, 60, 114, 0.1);
+}
+
+.expertise-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 85%;
+    background: transparent;
+    padding: 1rem 1.5rem;
+    height: 5%; /* Réduit pour juste le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centré */
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.expertise-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+/* Effet de zoom sur l'image au survol */
+.expertise-card:hover .expertise-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+        
+        .eneliv-sections {
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-left: 1px solid rgba(127, 183, 126, 0.3);
-            display: flex;
-            flex-direction: column;
-            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            overflow-y: auto;
-            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        /* Header du menu mobile */
-        .mobile-menu-header {
-            padding: 2rem 2rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(135deg, rgba(127, 183, 126, 0.2), transparent);
-        }
-
-        .mobile-menu-logo {
-            width: 120px;
-            margin-bottom: 0.5rem;
-        }
-
-        .mobile-menu-tagline {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        /* Navigation mobile */
-        .mobile-nav-section {
-            flex: 1;
-            padding: 1.5rem 0;
-        }
-
-        .mobile-nav-item {
-            margin: 0 1.5rem 0.5rem;
-            opacity: 0;
-            transform: translateX(30px);
-            animation: slideIn 0.6s ease forwards;
-        }
-
-        /* Animation d'entrée progressive */
-        .mobile-menu.active .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
-        .mobile-menu.active .mobile-nav-item:nth-child(2) { animation-delay: 0.2s; }
-        .mobile-menu.active .mobile-nav-item:nth-child(3) { animation-delay: 0.3s; }
-        .mobile-menu.active .mobile-nav-item:nth-child(4) { animation-delay: 0.4s; }
-        .mobile-menu.active .mobile-nav-item:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            padding: 1rem 1.2rem;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            border-radius: 16px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid transparent;
-        }
-
-        .mobile-nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(127, 183, 126, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .mobile-nav-link:hover::before {
-            left: 100%;
-        }
-
-        .mobile-nav-link:hover,
-        .mobile-nav-link:active {
-            background: rgba(127, 183, 126, 0.2);
-            color: #7FB77E;
-            transform: translateX(8px);
-            border-color: rgba(127, 183, 126, 0.5);
-            box-shadow: 0 8px 25px rgba(127, 183, 126, 0.3);
-        }
-
-        .mobile-nav-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 1rem;
-            opacity: 0.8;
-            filter: brightness(1.2);
-        }
-
-        /* Dropdowns mobile */
-        .mobile-dropdown-toggle {
-            width: 100%;
+            padding: 30px 50px;
+            
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 1.2rem;
-            background: transparent;
-            border: 1px solid transparent;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 500;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: all 0.4s ease;
+            gap: 60px;
             position: relative;
             overflow: hidden;
+            margin: 30px 80px 40px 80px;
+        }
+        
+        
+        
+        @keyframes shimmer {
+            /* Animation shimmer supprimée */
+        }
+        
+        .content-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        
+        .section-titles {
+            font-size: 20px;
+            line-height: 2.0;
+            color: #1a202c;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+            width: 1700px;
+            margin-bottom: 30px;
+        }
+        
+        .section-titles strong {
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .mobile-dropdown-toggle::before {
+        @media screen and (max-width: 1600px) {
+            .section-titles {
+            font-size: 20px;
+            line-height: 2.0;
+            color: #1a202c;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+            width: 1200px;
+        }
+            
+        }
+        
+        .services-list {
+            margin-top: 5px;
+            
+           
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: #2d3748;
+            transition: all 0.3s ease;
+            margin-top: -4px;
+        }
+        
+        .service-item::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+        
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .contact-button {
+            background: #7FB77E;
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 25px rgba(102, 126, 234, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: absolute;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+            margin-right: 1700px;
+        }
+        
+        .contact-button::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(127, 183, 126, 0.2), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
         }
-
-        .mobile-dropdown-toggle:hover::before {
+        
+        .contact-button:hover::before {
             left: 100%;
         }
-
-        .mobile-dropdown-toggle:hover {
-            background: rgba(127, 183, 126, 0.2);
+        
+        .contact-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(102, 126, 234, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+        
+        .contact-button:active {
+            transform: translateY(-1px) scale(1.01);
+        }
+        
+        .contact-button .icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-button:hover .icon {
+            transform: translateX(3px);
+        }
+        
+        .trust-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 12px;
             color: #7FB77E;
-            border-color: rgba(127, 183, 126, 0.5);
+            text-align: center;
         }
-
-        .dropdown-arrow {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            transition: transform 0.4s ease;
+        
+        .trust-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
-
-        .dropdown-arrow::after {
-            content: '';
+        
+        .floating-elements {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .floating-dot {
             width: 8px;
             height: 8px;
-            border-right: 2px solid currentColor;
-            border-bottom: 2px solid currentColor;
-            transform: translate(-50%, -70%) rotate(45deg);
-            transition: transform 0.4s ease;
-        }
-
-        .mobile-dropdown.active .dropdown-arrow::after {
-            transform: translate(-50%, -30%) rotate(-135deg);
-        }
-
-        .mobile-dropdown-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            padding-left: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .mobile-dropdown.active .mobile-dropdown-content {
-            max-height: 500px;
-        }
-
-        .mobile-dropdown-item {
-            display: block;
-            padding: 0.8rem 1rem;
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            margin-bottom: 0.3rem;
-            border-left: 3px solid transparent;
-            position: relative;
-        }
-
-        .mobile-dropdown-item:hover {
-            background: rgba(127, 183, 126, 0.15);
-            color: #7FB77E;
-            border-left-color: #7FB77E;
-            transform: translateX(6px);
-        }
-
-        /* Séparateur élégant */
-        .mobile-nav-divider {
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(127, 183, 126, 0.5) 20%, 
-                rgba(127, 183, 126, 0.8) 50%, 
-                rgba(127, 183, 126, 0.5) 80%, 
-                transparent);
-            margin: 1.5rem 2rem;
-            position: relative;
-        }
-
-        .mobile-nav-divider::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 6px;
-            height: 6px;
-            background: #7FB77E;
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(127, 183, 126, 0.5);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.6;
         }
-
-        /* Section contact en bas */
-        .mobile-contact-section {
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: linear-gradient(135deg, rgba(127, 183, 126, 0.1), transparent);
+        
+        .floating-dot:nth-child(2) {
+            animation-delay: 0.5s;
         }
-
-        .mobile-contact-info {
-            text-align: center;
-            margin-bottom: 1.5rem;
+        
+        .floating-dot:nth-child(3) {
+            animation-delay: 1s;
         }
-
-        .mobile-contact-title {
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-
-        .mobile-contact-subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            line-height: 1.4;
+        
+        @media (max-width: 1024px) {
+            .eneliv-sections {
+                padding: 40px;
+                gap: 40px;
+            }
+            
+            .services-list {
+                grid-template-columns: 1fr;
+            }
         }
-
-        .mobile-contact-btn {
-            display: block;
-            width: 100%;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, #7FB77E 0%, #5a9b58 100%);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(127, 183, 126, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .eneliv-sections {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 30px;
+                gap: 40px;
+            }
+            
+            .section-titles {
+                font-size: 18px;
+                line-height: 1.6;
+            }
+            
+            .services-list {
+                margin-top: 25px;
+                justify-content: center;
+            }
+            
+            .contact-button {
+                padding: 16px 32px;
+                font-size: 15px;
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .button-wrapper {
+                width: 100%;
+            }
         }
-
-        .mobile-contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
+        
+        @media (max-width: 480px) {
+            .eneliv-sections {
+                padding: 30px 20px;
+            }
+            
+            .section-titles {
+                font-size: 16px;
+            }
         }
+/* Responsive pour mobile */
+@media (max-width: 983px) {
+    .expertises-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
 
-        .mobile-contact-btn:hover::before {
-            left: 100%;
+    .expertise-card {
+        height: 280px;
+    }
+    
+    .expertise-title {
+        font-size: 1.1rem;
+    }
+}
+
+
+.mobile-menu.active {
+    left: 0;
+}
+.mobile-menu a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 1rem 0;
+    width: 90%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+@media (max-width: 983px) {
+  .hero {
+    position: relative;
+    height: 60vh;
+    overflow: hidden;
+  }
+
+  .hero-slide {
+    width: 100%;
+
+    
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .hero-title {
+    font-size: 0.7rem;
+    margin: 0;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .hero-subtitle {
+    font-size: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero-nav {
+    bottom: 1rem;
+    
+ }
+
+ .logo img {
+            height: 0.7cm;
+            width: 4.1cm;
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
+}
 
-        .mobile-contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(127, 183, 126, 0.5);
-        }
-
-        /* Hero Section - Mobile optimisé */
+    
+        /* Hero Section with Slider */
         .hero {
-            height: 50vh;
+            height: 60vh;
             position: relative;
             overflow: hidden;
-            margin-top: 70px;
+            margin-top: 80px;
         }
 
         .hero-slider {
@@ -468,275 +580,549 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1.2s ease-in-out;
+            transition: opacity 1s ease-in-out;
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #0B3041;
         }
 
         .hero-slide.active {
             opacity: 1;
         }
 
-        .hero-slide:nth-child(1) {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%230B3041" width="100" height="100"/></svg>');
-        }
+      .hero-slide:nth-child(1) {
+    background:  url('./home/assets/image1.png');
+    background-size: cover;
+    background-position: center;
+}
 
-        .hero-slide:nth-child(2) {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%231e3c72" width="100" height="100"/></svg>');
-        }
+.hero-slide:nth-child(2) {
+    background:  url('./home/assets/image2.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-slide:nth-child(3) {
+    background:  url('./home/assets/image3.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-slide:nth-child(4) {
+    background:  url('./home/assets/image4.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-slide:nth-child(5) {
+    background:  url('./home/assets/image5.png');
+    background-size: cover;
+    background-position: center;
+}
 
         .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             color: white;
-            padding: 2rem 1.5rem;
-            max-width: 100%;
             z-index: 2;
         }
 
         .hero-title {
-            font-size: 1.4rem;
+            font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            line-height: 1.3;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         .hero-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero-nav {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 0.8rem;
+            gap: 10px;
+        }
+
+        .hero-nav button {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-nav button.active {
+            background-color: #7FB77E;
+        }
+
+        
+
+
+.etape-slider {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+
+.etape-slide {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  transition: left 0.6s ease-in-out;
+  opacity: 0;
+}
+
+.etape-slide.active {
+  left: 0;
+  opacity: 1;
+  position: relative;
+}
+
+.etape-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-left: 6px solid #1e3c72;
+}
+
+.etape-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-left-color: #7FB77E;
+}
+
+.etape-num {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #1e3c72;
+  color: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-right: 1rem;
+  transition: background 0.3s ease;
+}
+
+.etape-card:hover .etape-num {
+  background: #7FB77E;
+}
+
+
+.etape-content {
+  flex: 1;
+}
+
+.etape-content h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e3c72;
+  margin-bottom: 1rem;
+}
+
+.etape-content p {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.etape-btn {
+  background: #1e3c72;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.etape-btn:hover {
+  background: #7FB77E;
+}
+
+.etape-img {
+  flex-shrink: 0;
+  width: 140px;
+}
+
+.etape-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.etape-nav {
+  text-align: center;
+}
+
+.etape-nav button {
+  background: #1e3c72;
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.etape-nav button:hover {
+  background: #7FB77E;
+}
+
+
+        .hero-content {
+            color: #ffffff;
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 2;
+            
+        }
+
+        .hero-title {
+            font-size: 2.1rem;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: -1rem;
+            margin-left: -400px;
+
+
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-top: -2.5rem;
+            margin-left: -400px;
+
+        }
+
+        .hero-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
             z-index: 3;
         }
 
         .hero-nav button {
-            width: 12px;
-            height: 12px;
+            width: 15px;
+            height: 15px;
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.7);
+            border: 2px solid white;
             background: transparent;
             cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .hero-nav button.active {
-            background: #7FB77E;
-            border-color: #7FB77E;
-            transform: scale(1.3);
-            box-shadow: 0 0 15px rgba(127, 183, 126, 0.6);
-        }
-
-        /* Sections principales - Mobile */
-        .container {
-            max-width: 100%;
-            padding: 0 1.5rem;
-        }
-
-        .section {
-            padding: 3rem 0;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            text-align: center;
-            font-weight: bold;
-            line-height: 1.3;
-            margin-bottom: 1.5rem;
-            color: #0B3041;
-        }
-
-        .section-title .highlight {
-            color: #7FB77E;
-        }
-
-        .section-description {
-            text-align: center;
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        /* Cards expertise - Mobile */
-        .expertises-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            justify-items: center;
-        }
-
-        .expertise-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            height: 300px;
-            width: 100%;
-            max-width: 300px;
-            cursor: pointer;
-        }
-
-        .expertise-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-
-        .expertise-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.4s ease;
-        }
-
-        .expertise-card:hover .expertise-image {
-            transform: scale(1.1);
-        }
-
-        .expertise-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 2rem 1.5rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .expertise-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            text-align: center;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* ENELIV Section - Mobile */
-        .eneliv-sections {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2.5rem 1.5rem;
-            border-radius: 20px;
-            margin: 2rem 1rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-        }
-
-        .section-titles {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #1a202c;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .services-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .service-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 500;
-            color: #2d3748;
-            padding: 0.8rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
 
-        .service-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        .hero-nav button.active {
+            background: white;
+            transform: scale(1.2);
         }
 
-        .service-item::before {
-            content: '✓';
+        /* Sections */
+        
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+       
+       
+        /* Section Comment on échange */
+        .process-section {
+            padding: 100px 0;
+            background-color: #0B3041;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-size: clamp(1rem, 8vw, 30px);
+            
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .section-title .highlight {
+            color: #7FB77E;
+        }
+        
+        .section-description {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section-title {
+                margin-top: 50px;
+            }
+            
+            .section-description {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+        }
+        /* Steps Container */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .step-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:nth-child(1) { animation-delay: 0.2s; }
+        .step-card:nth-child(2) { animation-delay: 0.4s; }
+        .step-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7FB77E);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7FB77E);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 12px;
-            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+            margin-bottom: 30px;
+            position: relative;
         }
 
-        .contact-button {
-            display: block;
+        .step-number::after {
+            content: '';
+            position: absolute;
             width: 100%;
-            max-width: 280px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #7FB77E 0%, #5a9b58 100%);
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7FB77E);
+            opacity: 0.2;
+            transform: scale(1.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1.3); opacity: 0.2; }
+            50% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 15px;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .step-icon {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.1;
+            font-size: 2rem;
+        }
+        .engagement-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 3rem 0;
+}
+
+        .cta-button {
+            background: linear-gradient(135deg, #7FB77E);
             color: white;
-            padding: 1rem 2rem;
+            padding: 15px 30px;
             border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
+            border-radius: 50px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
             text-decoration: none;
-            text-align: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(127, 183, 126, 0.4);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(127, 183, 126, 0.5);
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
 
-        /* Footer - Mobile optimisé */
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer Professionnel */
         .footer {
             background: #1a202c;
             color: white;
-            padding: 3rem 0 2rem;
+            padding: 80px 0 30px;
             margin-top: 0;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 25px;
             color: #7FB77E;
         }
 
         .footer-section p, .footer-section li {
-            color: rgba(255, 255, 255, 0.85);
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
+            color: white;
+            line-height: 1.8;
+            margin-bottom: 10px;
         }
 
         .footer-section ul {
@@ -744,162 +1130,1126 @@
         }
 
         .footer-section a {
-            color: rgba(255, 255, 255, 0.85);
+            color: white;
             text-decoration: none;
             transition: color 0.3s ease;
         }
+
 
         .footer-section a:hover {
             color: #7FB77E;
         }
 
+        .company-info {
+            max-width: 300px;
+        }
+
+        .company-logo {
+            width: 150px;
+            height: 60px;
+            background: transparent;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2d3748;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #7FB77E;
+            transform: translateY(-2px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 20px;
+            color: #7FB77E;
+        }
+
         .footer-bottom {
             border-top: 1px solid #2d3748;
-            padding-top: 2rem;
-            text-align: center;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .footer-bottom p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1rem;
+            color: #7FB77E;
+            margin: 0;
         }
 
         .footer-links {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
+            gap: 30px;
         }
 
         .footer-links a {
             color: #7FB77E;
             text-decoration: none;
-            font-size: 0.9rem;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #a0d4a0;
+            color: #7FB77E;
         }
 
-        /* Animations et interactions */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        /* Newsletter */
+        .newsletter {
+            background: #2d3748;
+            padding: 17px;
+            border-radius: 12px;
+            margin-top: 20px;
+            width: 300px;
         }
 
-        .mobile-contact-btn:active {
-            animation: pulse 0.2s ease;
+        .newsletter h4 {
+            color: white;
+            margin-bottom: 15px;
         }
 
-        /* Touch feedback */
-        .mobile-nav-link:active,
-        .mobile-dropdown-toggle:active,
-        .expertise-card:active {
-            transform: scale(0.98);
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
         }
 
-        /* Responsive amélioré */
-        @media (max-width: 480px) {
+        .newsletter input {
+            flex: 1;
+            padding: 4px;
+            border: none;
+            border-radius: 8px;
+            background: #4a5568;
+            color: white;
+            width: 70px;
+        }
+
+        .newsletter input::placeholder {
+            color: #a0aec0;
+        }
+
+        .newsletter button {
+            background: #7FB77E;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter button:hover {
+            background: #5a67d8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .step-card {
+                padding: 30px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+        .eneliv-section {
+            text-align: center;
+            background: linear-gradient(135deg, #e8e9ea 0%, #f1f2f3 100%);
+            border-radius: 20px;
+            
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            top: auto;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+        
+        
+        
+        .eneliv-intro {
+            font-size: 1rem;
+            color: #34495e;
+            margin: 0 0 1.5rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .eneliv-description {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5a6c7d;
+            line-height: 1.8;
+            margin: 0 0 1.8rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.8rem;
+        }
+        
+        .eneliv-ambition {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @font-face {
+
+            font-family: 'MaSignature';
+
+            src: url('./home/assets/Bastliga\ One.ttf') format('truetype');
+
+            }
+ 
+
+
+ 
+        
+        .eneliv-signature {
+            font-family: 'MaSignature', cursive;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-style: italic;
+        }
+        
+
+        .eneliv-title {
+            width: 120px;
+            height: 80px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+
+        }
+        
+        @media (max-width: 768px) {
+            .eneliv-section {
+                padding: 2.5rem 1.5rem;
+            }
+            
+          
+            
+            .eneliv-intro {
+                font-size: 1rem;
+            }
+            
+            .eneliv-description,
+            .eneliv-ambition {
+                font-size: 0.95rem;
+            }
+            
+            .eneliv-signature {
+                font-size: 2rem;
+            }
+        }
+
+      /* Steps Section */
+        .steps-parallax-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+      
+
+        
+
+    
+        
+        .section-titlese {
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 60px;
+            color: #1a202c;
+        }
+
+        .steps-step {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .steps-step.steps-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .steps-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .steps-step-content {
+            flex: 1;
+        }
+
+        .steps-step-number {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            background: #7FB77E;
+            color: white;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            animation: stepsPulse 2s infinite;
+        }
+
+        @keyframes stepsPulse {
+            0% {
+                box-shadow: 0 0 0 0 #7FB77E;
+            }
+            70% {
+                box-shadow: 0 0 0 10px #7FB77E;
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .steps-step-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .steps-step-description {
+            font-size: 1.1rem;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .steps-step-image {
+            flex: 0 0 400px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.6s ease;
+        }
+
+        .steps-step-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .steps-step-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .steps-step-image:hover img {
+            transform: scale(1.1);
+        }
+
+
+        .certifications-section {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .certifications-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #0B3041;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .certification-card {
+            background: white;
+            border: 3px solid #0B3041;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+
+        .cert-title {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #0B3041;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-subtitle {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.2;
+        }
+
+       .commitment-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border-left: 4px solid #7FB77E;
+        }
+
+        .commitment-text h3 {
+            color: #0B3041;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .commitment-text p {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+
+
+
+       /* Burger Menu - Design Moderne et Professionnel */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1001;
+}
+
+.burger-menu:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.burger-line {
+    width: 24px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    position: relative;
+}
+
+.burger-line:nth-child(1) {
+    margin-bottom: 5px;
+}
+
+.burger-line:nth-child(3) {
+    margin-top: 5px;
+}
+
+/* Animation moderne pour le burger actif */
+.burger-menu.active .burger-line:nth-child(1) {
+    transform: rotate(45deg) translateY(7px);
+}
+
+.burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.burger-menu.active .burger-line:nth-child(3) {
+    transform: rotate(-45deg) translateY(-7px);
+}
+
+/* Menu Mobile - Design Ultra Moderne */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: min(85vw, 400px);
+    height: 100vh;
+    background: rgba(11, 48, 65, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 100px 0 40px 0;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+/* Overlay pour fermer le menu */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Navigation principale */
+.mobile-nav-section {
+    padding: 0 30px;
+    margin-bottom: 20px;
+}
+
+.mobile-nav-item {
+    margin-bottom: 8px;
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(127, 183, 126, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.mobile-nav-link:hover::before {
+    left: 100%;
+}
+
+.mobile-nav-link:hover {
+    background: rgba(127, 183, 126, 0.15);
+    color: #7FB77E;
+    transform: translateX(8px);
+}
+
+/* Icônes modernes */
+.mobile-nav-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    opacity: 0.8;
+}
+
+/* Dropdowns modernes */
+.mobile-dropdown {
+    margin-bottom: 8px;
+}
+
+.mobile-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-dropdown-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(127, 183, 126, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.mobile-dropdown-toggle:hover::before {
+    left: 100%;
+}
+
+.mobile-dropdown-toggle:hover {
+    background: rgba(127, 183, 126, 0.15);
+    color: #7FB77E;
+}
+
+.dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    opacity: 0.7;
+}
+
+.dropdown-arrow::after {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+}
+
+.mobile-dropdown.active .dropdown-arrow::after {
+    transform: rotate(-135deg);
+}
+
+/* Contenu des dropdowns */
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+.mobile-dropdown.active .mobile-dropdown-content {
+    max-height: 400px;
+}
+
+.mobile-dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 4px;
+    position: relative;
+    border-left: 2px solid transparent;
+}
+
+.mobile-dropdown-item:hover {
+    background: rgba(127, 183, 126, 0.1);
+    color: #7FB77E;
+    border-left-color: #7FB77E;
+    transform: translateX(8px);
+}
+
+/* Séparateur élégant */
+.mobile-nav-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 20px 30px;
+}
+
+/* Section contact en bas */
+.mobile-contact-section {
+    margin-top: auto;
+    padding: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-contact-info {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.mobile-contact-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #7FB77E, #5a9b58);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(127, 183, 126, 0.3);
+}
+
+.mobile-contact-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(127, 183, 126, 0.4);
+}
+
+/* Responsive - Activer le menu burger sur mobile */
+@media (max-width: 983px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .burger-menu {
+        display: flex;
+    }
+}
+
+/* Animation d'entrée pour les éléments du menu */
+.mobile-menu.active .mobile-nav-item {
+    animation: slideInRight 0.3s ease forwards;
+}
+
+.mobile-menu.active .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu.active .mobile-nav-item:nth-child(2) { animation-delay: 0.15s; }
+.mobile-menu.active .mobile-nav-item:nth-child(3) { animation-delay: 0.2s; }
+.mobile-menu.active .mobile-nav-item:nth-child(4) { animation-delay: 0.25s; }
+.mobile-menu.active .mobile-nav-item:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scrollbar personnalisée */
+.mobile-menu::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mobile-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu::-webkit-scrollbar-thumb {
+    background: rgba(127, 183, 126, 0.5);
+    border-radius: 2px;
+}
+
+.mobile-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(127, 183, 126, 0.7);
+}
+        
+         
+@media (max-width: 983px) {
+            /* Header amélioré */
+            .header {
+                padding: 0.8rem 0;
+                height: 70px;
+            }
+            
             .nav-container {
                 padding: 0 1rem;
             }
-
+            
             .logo img {
-                height: 1cm;
+                height: 0.9cm;
                 width: 4.5cm;
             }
-
+            
+            /* Burger menu repositionné et amélioré */
+            .burger-menu {
+                display: flex;
+                margin-right: 0.5rem;
+                z-index: 1002;
+            }
+            
+            /* Hero section améliorée */
             .hero {
-                height: 45vh;
-                margin-top: 65px;
+                height: 50vh;
+                margin-top: 70px;
             }
-
+            
             .hero-title {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
+                margin-left: 0;
+                text-align: center;
+                width: 100%;
+                padding: 0 1rem;
+                line-height: 1.3;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
             }
-
+            
             .hero-subtitle {
-                font-size: 0.9rem;
+                font-size: 1rem;
+                margin-left: 0;
+                text-align: center;
+                width: 100%;
+                padding: 0 1rem;
+                margin-top: 0.5rem;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
             }
-
-            .mobile-menu {
-                width: 95vw;
+            
+            .hero-nav {
+                bottom: 1rem;
             }
-
-            .section-title {
-                font-size: 1.6rem;
+            
+            .hero-nav button {
+                width: 12px;
+                height: 12px;
+                border: 2px solid white;
             }
-
+            
+            /* Section ENELIV améliorée */
+            .eneliv-sections {
+                margin: 20px 15px;
+                padding: 25px 20px;
+                flex-direction: column;
+                text-align: center;
+                border-radius: 15px;
+            }
+            
+            .section-titles {
+                width: 100%;
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+            
+            .services-list {
+                margin: 20px 0;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .service-item {
+                justify-content: center;
+                font-size: 14px;
+            }
+            
+            .contact-button {
+                margin-right: 0;
+                position: relative;
+                width: 100%;
+                max-width: 280px;
+                padding: 16px 28px;
+                font-size: 15px;
+                margin-top: 15px;
+            }
+            
+            /* Grid des expertises améliorée */
             .expertises-grid {
                 grid-template-columns: 1fr;
                 gap: 1.2rem;
+                justify-items: center;
+                padding: 0 10px;
             }
-
+            
             .expertise-card {
-                height: 250px;
+                width: 100%;
+                max-width: 300px;
+                height: 220px;
             }
-
-            .eneliv-sections {
-                margin: 1.5rem 0.5rem;
-                padding: 2rem 1rem;
+            
+            .expertise-title {
+                font-size: 1.1rem;
             }
-
-            .services-list {
+            
+            /* Section étapes améliorée */
+            .steps-step {
+                flex-direction: column;
+                gap: 30px;
+                margin-bottom: 60px;
+                text-align: center;
+            }
+            
+            .steps-step:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .steps-step-image {
+                flex: 0 0 250px;
+                height: 180px;
+                order: -1;
+            }
+            
+            .steps-step-title {
+                font-size: 1.5rem;
+            }
+            
+            .steps-step-description {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            /* Certifications améliorées */
+            .certifications-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 10px;
+            }
+            
+            .certification-card {
+                padding: 1.2rem;
+            }
+            
+            .engagement-section {
+                margin: 2rem 0.5rem;
+                padding: 1.8rem 1.2rem;
+            }
+            
+            .engagement-title {
+                font-size: 1.3rem;
+            }
+            
+            /* Footer amélioré */
+            .footer {
+                padding: 50px 0 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-section {
+                padding: 0 15px;
+            }
+            
+            .contact-item {
+                justify-content: center;
+            }
+            
+            .newsletter {
+                width: 100%;
+                max-width: 300px;
+                margin: 20px auto;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            /* Améliorations de l'UX tactile */
+            button, a, .expertise-card {
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .service-item, .mobile-nav-link, .mobile-dropdown-item {
+                padding: 14px;
+            }
+            
+            /* Animation d'apparition pour les éléments */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .expertise-card, .step-card, .certification-card {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            
+            /* Amélioration de la lisibilité */
+            body {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+            
+            h1, h2, h3 {
+                line-height: 1.3;
+            }
+            
+            /* Padding général pour éviter les éléments collés aux bords */
+            .container {
+                padding: 0 15px;
+            }
+            
+            /* Ajustement des espacements */
+            .section {
+                margin-bottom: 60px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-top: 30px;
+            }
+            
+            .section-description {
+                font-size: 1rem;
+                padding: 0 10px;
             }
         }
 
-        /* Micro-animations pour une meilleure UX */
-        .mobile-nav-item {
-            position: relative;
-        }
-
-        .mobile-nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 1.2rem;
-            right: 1.2rem;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        }
-
-        .mobile-nav-item:last-child::after {
-            display: none;
-        }
-
-        /* Scrollbar personnalisée */
-        .mobile-menu::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .mobile-menu::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu::-webkit-scrollbar-thumb {
-            background: rgba(127, 183, 126, 0.5);
-            border-radius: 2px;
-        }
-
-        .mobile-menu::-webkit-scrollbar-thumb:hover {
-            background: rgba(127, 183, 126, 0.7);
-        }
-
-        /* État de chargement */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        /* Amélioration de l'accessibilité */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+        /* Pour les très petits écrans */
+        @media (max-width: 360px) {
+            .hero-title {
+                font-size: 1.2rem;
             }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .section-titles {
+                font-size: 15px;
+            }
+            
+            .expertise-card {
+                height: 200px;
+            }
+        }
+
+        /* Animation de pulse pour les CTA */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .contact-button, .cta-button, .mobile-contact-btn {
+            animation: pulse 2s infinite;
+        }
+        
+        .contact-button:hover, .cta-button:hover, .mobile-contact-btn:hover {
+            animation: none;
+        }
+
+        /* Amélioration du menu mobile */
+        .mobile-menu {
+            padding: 90px 0 40px 0;
+        }
+        
+        .mobile-nav-link, .mobile-dropdown-toggle {
+            padding: 18px 25px;
+            font-size: 17px;
+            margin: 0 15px 8px 15px;
+            border-radius: 15px;
+        }
+        
+        .mobile-dropdown-content {
+            padding-left: 30px;
+        }
+        
+        .mobile-dropdown-item {
+            padding: 15px 20px;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        
+        .mobile-contact-btn {
+            margin: 20px 25px 0 25px;
+            padding: 16px;
+            font-size: 16px;
+            border-radius: 15px;
         }
     </style>
 </head>
@@ -907,82 +2257,90 @@
     <!-- Header -->
     <header class="header">
         <div class="nav-container">
-            <div class="logo" onclick="window.location.href='./index.html'">
-                <div style="color: white; font-size: 1.5rem; font-weight: bold;">ENELIV            </div>
-            
-            <div class="burger-menu" onclick="toggleMobileMenu()">
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
-                <div class="burger-line"></div>
+            <div class="logo">
+                <img src="./logoblanc.png" alt="Logo ENELIV">
+                <div class="logo-placeholder" style="display: none;"></div>
             </div>
-        </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./besoin/index.html">VOS BESOINS</a></li>
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="./dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
+                            <li><a href="./DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="./AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="./renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./contacter/index.html">CONTACT</a></li>
+                    <li><a href="./biographie/index.html">Blog</a></li>
+                </ul>
 
+                <div class="burger-menu" onclick="toggleMobileMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+       
         <!-- Overlay pour fermer le menu -->
         <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
 
-        <!-- Menu Mobile Premium -->
+        <!-- Menu Mobile Moderne et Professionnel -->
         <div class="mobile-menu" id="mobileMenu">
-            <!-- Header du menu -->
-            <div class="mobile-menu-header">
-                <div class="mobile-menu-logo">
-                    <div style="color: white; font-size: 1.8rem; font-weight: bold;">ENELIV</div>
-                </div>
-                <p class="mobile-menu-tagline">Votre expert en performance énergétique</p>
-            </div>
-
             <!-- Navigation principale -->
             <div class="mobile-nav-section">
                 <div class="mobile-nav-item">
                     <a href="./nous/index.html" class="mobile-nav-link" onclick="closeMobileMenu()">
-                        <span>🏢</span>
                         <span>Qui sommes-nous ?</span>
                     </a>
                 </div>
 
+                <!-- Section Vos Besoins -->
                 <div class="mobile-nav-item">
-                    <a href="./besoin/index.html" class="mobile-nav-link" onclick="closeMobileMenu()">
-                        <span>🎯</span>
-                        <span>Vos Besoins</span>
-                    </a>
+                    <div class="mobile-dropdown" id="mobileBesoins">
+                        <button class="mobile-dropdown-toggle" onclick="toggleMobileDropdown('mobileBesoins')">
+                            <span>Vos Besoins</span>
+                            <div class="dropdown-arrow"></div>
+                        </button>
+                        <div class="mobile-dropdown-content">
+                            <a href="./besoin/index.html#particulier" class="mobile-dropdown-item" onclick="closeMobileMenu()">Particulier</a>
+                            <a href="./besoin/index.html#coproprié" class="mobile-dropdown-item" onclick="closeMobileMenu()">Copropriété</a>
+                            <a href="./besoin/index.html#tertiaire" class="mobile-dropdown-item" onclick="closeMobileMenu()">Tertiaire</a>
+                            <a href="./besoin/index.html#industrie" class="mobile-dropdown-item" onclick="closeMobileMenu()">Industrie</a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Section Notre Expertise -->
                 <div class="mobile-nav-item">
                     <div class="mobile-dropdown" id="mobileExpertise">
                         <button class="mobile-dropdown-toggle" onclick="toggleMobileDropdown('mobileExpertise')">
-                            <span>⚡ Notre Expertise</span>
+                            <span>Notre Expertise</span>
                             <div class="dropdown-arrow"></div>
                         </button>
                         <div class="mobile-dropdown-content">
-                            <a href="./dpe/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">
-                                📊 Diagnostic de Performance Énergétique
-                            </a>
-                            <a href="./DTG/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">
-                                🔍 Diagnostic Technique Global
-                            </a>
-                            <a href="./ppt/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">
-                                📋 Plan Pluriannuel de Travaux
-                            </a>
-                            <a href="./AE/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">
-                                🔋 Audit Énergétique
-                            </a>
-                            <a href="./renov/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">
-                                🏠 Mon Accompagnateur Rénov'
-                            </a>
+                            <a href="./dpe/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">Diagnostic de Performance Énergétique</a>
+                            <a href="./DTG/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">Diagnostic Technique Global</a>
+                            <a href="./ppt/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">Plan Pluriannuel de Travaux</a>
+                            <a href="./AE/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">Audit Énergétique</a>
+                            <a href="./renov/index.html" class="mobile-dropdown-item" onclick="closeMobileMenu()">Mon Accompagnateur Rénov'</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="mobile-nav-item">
                     <a href="./contacter/index.html" class="mobile-nav-link" onclick="closeMobileMenu()">
-                        <span>📞</span>
                         <span>Contact</span>
                     </a>
                 </div>
 
                 <div class="mobile-nav-item">
                     <a href="./biographie/index.html" class="mobile-nav-link" onclick="closeMobileMenu()">
-                        <span>📝</span>
                         <span>Blog</span>
                     </a>
                 </div>
@@ -994,17 +2352,16 @@
             <!-- Section contact en bas -->
             <div class="mobile-contact-section">
                 <div class="mobile-contact-info">
-                    <div class="mobile-contact-title">Besoin d'un conseil ?</div>
-                    <p class="mobile-contact-subtitle">Nos experts vous répondent rapidement</p>
+                    <p>Besoin d'un conseil personnalisé ?</p>
                 </div>
                 <a href="./contacter/index.html" class="mobile-contact-btn" onclick="closeMobileMenu()">
-                    ✨ Parler à un expert
+                    Parler à un expert
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section avec Slider -->
+    <!-- Hero Section with Slider -->
     <section class="hero" id="accueil">
         <div class="hero-slider">
             <div class="hero-slide active">
@@ -1015,29 +2372,31 @@
             </div>
             <div class="hero-slide">
                 <div class="hero-content">
-                    <h1 class="hero-title">DPE – Diagnostic de Performance Énergétique</h1>
+                    <h1 class="hero-title">DPE – Diagnostic de Performance Énergétique​</h1>
                     <p class="hero-subtitle">Analysez. Appréhendez. Améliorez!</p>
                 </div>
             </div>
             <div class="hero-slide">
                 <div class="hero-content">
-                    <h1 class="hero-title">DTG – Diagnostic Technique Global</h1>
-                    <p class="hero-subtitle">Identifiez, prévoyez, sécurisez !</p>
+                    <h1 class="hero-title">DTG – Diagnostic Technique Global​</h1>
+                    <p class="hero-subtitle">Identifiez, prévoyez, sécurisez !​</p>
                 </div>
             </div>
             <div class="hero-slide">
                 <div class="hero-content">
-                    <h1 class="hero-title">Audit énergétique</h1>
-                    <p class="hero-subtitle">Attestez, Validez, avancez !</p>
+                    <h1 class="hero-title">Audit énergétique​</h1>
+                    <p class="hero-subtitle">Attestez, Validez, avancez ! ​</p>
                 </div>
             </div>
+
+
+
             <div class="hero-slide">
                 <div class="hero-content">
                     <h1 class="hero-title">Mon Accompagnateur Rénov'</h1>
                     <p class="hero-subtitle">Votre guide vers une rénovation réussie</p>
                 </div>
             </div>
-        </div>
 
         <div class="hero-nav">
             <button class="hero-nav-btn active" onclick="showHeroSlide(0)"></button>
@@ -1048,77 +2407,192 @@
         </div>
     </section>
 
-    <!-- Section ENELIV -->
-    <section class="eneliv-sections">
-        <div class="content-wrapper">
-            <h2 class="section-titles">
-                <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité<br>
-                Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
-            </h2>
+     <section>
+        <div class="eneliv-sections">
+            <div class="floating-elements">
+                <div class="floating-dot"></div>
+                <div class="floating-dot"></div>
+                <div class="floating-dot"></div>
+            </div>
             
-            <div class="services-list">
-                <div class="service-item">Audit énergétique</div>
-                <div class="service-item">Études techniques</div>
-                <div class="service-item">Diagnostics immobiliers</div>
-                <div class="service-item">Accompagnement réglementaire</div>
+            <div class="content-wrapper">
+                <h2 class="section-titles">
+                    <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité<br>
+                    Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
+                </h2>
+                
+                <div class="services-list">
+                    <div class="service-item">Audit énergétique</div>
+                    <div class="service-item">Études techniques</div>
+                    <div class="service-item">Diagnostics immobiliers</div>
+                    <div class="service-item">Accompagnement réglementaire</div>
+                </div>
+            </div>
+            
+            <div class="button-wrapper">
+                <button class="contact-button" onclick="contactConsultant()">
+                    Parler à un référent 
+                    <span class="icon">→</span>
+                </button>
+                
+               
             </div>
         </div>
-        
-        <button class="contact-button" onclick="window.location.href='./contacter/index.html'">
-            Parler à un référent →
-        </button>
     </section>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
+
+   <!-- Services Section -->
+    <section class="section" id="services" style="margin-bottom: 100px;">
         <div class="container">
-            <h2 class="section-title">
-                Découvrez nos <span class="highlight">secteurs</span>
-            </h2>
-            <p class="section-description">
-                Nos 4 pôles d'expertise pour mettre en valeur votre patrimoine.
-            </p>
+        <h2 class="section-title">
+            Découvrez nos <span class="highlight">secteurs</span>
+        </h2>
+        <p class="section-description">
+            Nos 4 pôles d'expertise pour mettre en valeur votre patrimoine.
+        </p>
+            
 
             <div class="expertises-grid">
-                <a href="./besoin/index.html#particulier" class="expertise-card">
-                    <div class="expertise-image"></div>
-                    <div class="expertise-content">
-                        <h3 class="expertise-title">🏡 Particulier</h3>
+    <a href="./besoin/index.html#particulier" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise1.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Particulier</h3>
+        </div>
+    </a>
+    
+    <a href="./besoin/index.html#coproprié"class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise3.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Copropriété</h3>
+        </div>
+    </a>
+    
+    <a href="./besoin/index.html#tertiaire"class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise2.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Tertiaire</h3>
+        </div>
+    </a>
+    
+    <a href="./besoin/index.html#industrie" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./home/assets/expertise4.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Industrie</h3>
+        </div>
+    </a>
+</div>
+
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-parallax-section">
+        <div class="steps-floating-elements">
+            <div class="steps-floating-circle"></div>
+            <div class="steps-floating-circle"></div>
+            <div class="steps-floating-circle"></div>
+        </div>
+        
+        <div class="container">
+            <h2 class="section-titlese" style="color: #7FB77E;">Comment on échange ensemble ?</h2>
+
+            <!-- Étape 01 -->
+            <div class="steps-step" data-step="1">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">01</div>
+                    <h2 class="steps-step-title">La demande</h2>
+                    <div class="steps-step-description">
+                        <p>Vous nous contactez pour une étude énergétique ou technique visant à répondre à vos obligations réglementaires, mieux comprendre votre édifice et identifier des solutions d'amélioration durables.</p>
                     </div>
-                </a>
-                
-                <a href="./besoin/index.html#coproprié" class="expertise-card">
-                    <div class="expertise-image"></div>
-                    <div class="expertise-content">
-                        <h3 class="expertise-title">🏢 Copropriété</h3>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape3.png" alt="Étape 1 - La demande">
+                </div>
+            </div>
+
+            <!-- Étape 02 -->
+            <div class="steps-step" data-step="2">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">02</div>
+                    <h2 class="steps-step-title">L'échange</h2>
+                    <div class="steps-step-description">
+                        <p>Un conseiller vous rappelle rapidement pour affiner la demande : compréhension du contexte, récupération des documents utiles et clarification de vos enjeux (techniques, financiers, réglementaires).</p>
                     </div>
-                </a>
-                
-                <a href="./besoin/index.html#tertiaire" class="expertise-card">
-                    <div class="expertise-image"></div>
-                    <div class="expertise-content">
-                        <h3 class="expertise-title">🏬 Tertiaire</h3>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape2.jpeg" alt="Étape 2 - Étude et conception">
+                </div>
+            </div>
+
+            <!-- Étape 03 -->
+            <div class="steps-step" data-step="3">
+                <div class="steps-step-content">
+                    <div class="steps-step-number">03</div>
+                    <h2 class="steps-step-title">La rencontre</h2>
+                    <div class="steps-step-description">
+                        <p>Dès validation, un ingénieur vous contacte sous 24h pour organiser une visite sur site et compiler tous les éléments nécessaires à l'étude.</p>
                     </div>
-                </a>
-                
-                <a href="./besoin/index.html#industrie" class="expertise-card">
-                    <div class="expertise-image"></div>
-                    <div class="expertise-content">
-                        <h3 class="expertise-title">🏭 Industrie</h3>
-                    </div>
-                </a>
+                </div>
+                <div class="steps-step-image">
+                    <img src="./home/assets/etape1.jpeg" alt="Étape 3 - La réalisation">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Mobile Optimisé -->
+  
+
+    <!-- Certifications Section -->
+        <section class="certifications-section">
+            <div class="container">
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./home/assets/resp.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Garantir la fiabilité de nos engagements et la tranquillité de nos clients</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img style="width: 120px;" src="./home/assets/certif.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">L'expertise de notre personnel est reconnue, gage de fiabilité et de professionnalisme.</div>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="cert-icon">
+                            <img  style="width: 120px;" src="./home/assets/logiciel.png" alt="">
+                        </div>
+                        <div class="cert-subtitle">Nos logiciels sont tous validés par l'ADEME.</div>
+                    </div>
+                </div>
+
+                <!-- Commitment Text -->
+                 <section class="engagement-section">
+                        <h2 class="engagement-title"> Confiez votre projet énergétique à des spécialistes engagés et réactifs</h3>
+                        <p class="engagement-text">
+                        Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à 
+                        intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons 
+                        une prestation rigoureuse, première étape essentielle vers une simple conformité 
+                        réglementaire ou une solide rénovation performante.
+                     </p>
+            <button class="cta-button" onclick="window.location.href='./contacter/index.html'">Parler à un référent</button>
+        </section>
+            </div>
+        </section>
+
+    <!-- Footer Professionnel -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <!-- Informations de l'entreprise -->
-                <div class="footer-section">
-                    <h3>ENELIV</h3>
+                <div class="footer-section company-info">
+                    <div class="company-logo">
+                        <img src="./logoblanc.png" alt="" style="width: 150px;">
+                    </div>
                     <p>Votre bureau d'études engagé pour la performance énergétique et la durabilité. Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire.</p>
+                    
                 </div>
 
                 <!-- Nos services -->
@@ -1136,10 +2610,35 @@
                 <!-- Contact -->
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <p>📍 13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
-                    <p>📞 +33 1 23 45 67 89</p>
-                    <p>✉️ contact@eneliv.fr</p>
-                    <p>🕒 Lun-Ven: 8h30-18h30<br>Sam: 9h00-12h00</p>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <p>13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>📞</i>
+                        <p>+33 1 23 45 67 89</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <p>contact@eneliv.fr</p>
+                    </div>
+                    <div class="contact-item">
+                        <i>🕒</i>
+                        <p>Lun-Ven: 8h30-18h30<br>Sam: 9h00-12h00</p>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="footer-section">
+                    <h3>Actualités & Conseils</h3>
+                    <p>Recevez nos dernières actualités et conseils en efficacité énergétique</p>
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Votre email" required>
+                            <button type="submit">S'abonner</button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -1150,359 +2649,432 @@
                     <a href="/mentions-legales">Mentions légales</a>
                     <a href="/politique-confidentialite">Confidentialité</a>
                     <a href="/conditions-utilisation">CGU</a>
+                    <a href="/plan-site">Plan du site</a>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Menu Mobile Moderne - Classe complète
-        class ModernMobileMenu {
-            constructor() {
-                this.menu = document.getElementById('mobileMenu');
-                this.overlay = document.getElementById('mobileOverlay');
-                this.burger = document.querySelector('.burger-menu');
-                this.isOpen = false;
-                
-                this.init();
-            }
-            
-            init() {
-                // Event listeners
-                if (this.burger) {
-                    this.burger.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        this.toggle();
+        // Animation au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observer tous les cards
+        document.querySelectorAll('.step-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scroll pour les liens
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
-                
-                if (this.overlay) {
-                    this.overlay.addEventListener('click', () => this.close());
-                }
-                
-                // Fermer avec Escape
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && this.isOpen) {
-                        this.close();
-                    }
-                });
-                
-                // Feedback tactile
-                this.addTouchFeedback();
-                
-                // Prévenir le scroll du body
-                this.preventBodyScroll();
-            }
-            
-            toggle() {
-                this.isOpen ? this.close() : this.open();
-            }
-            
-            open() {
-                this.menu.classList.add('active');
-                this.overlay.classList.add('active');
-                this.burger.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                this.isOpen = true;
-                
-                // Animation progressive des éléments
-                this.animateMenuItems();
-                
-                // Feedback haptique sur mobile
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(50);
-                }
-            }
-            
-            close() {
-                this.menu.classList.remove('active');
-                this.overlay.classList.remove('active');
-                this.burger.classList.remove('active');
-                document.body.style.overflow = '';
-                this.isOpen = false;
-                
-                // Fermer tous les dropdowns
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                
-                // Feedback haptique
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(30);
-                }
-            }
-            
-            animateMenuItems() {
-                const items = this.menu.querySelectorAll('.mobile-nav-item');
-                items.forEach((item, index) => {
-                    item.style.animationDelay = `${0.1 + (index * 0.08)}s`;
-                });
-            }
-            
-            addTouchFeedback() {
-                // Ajouter des effets tactiles aux éléments interactifs
-                const interactiveElements = this.menu.querySelectorAll('.mobile-nav-link, .mobile-dropdown-toggle, .mobile-contact-btn');
-                
-                interactiveElements.forEach(element => {
-                    element.addEventListener('touchstart', () => {
-                        element.style.transform = 'scale(0.98)';
-                    });
-                    
-                    element.addEventListener('touchend', () => {
-                        setTimeout(() => {
-                            element.style.transform = '';
-                        }, 150);
-                    });
-                });
-            }
-            
-            preventBodyScroll() {
-                // Empêcher le scroll du body sur iOS
-                this.menu.addEventListener('touchmove', (e) => {
-                    if (e.target === this.menu) {
-                        e.preventDefault();
-                    }
-                }, { passive: false });
-            }
-        }
-
-        // Hero Slider avec transitions fluides
-        class HeroSlider {
-            constructor() {
-                this.currentSlide = 0;
-                this.slides = document.querySelectorAll('.hero-slide');
-                this.navBtns = document.querySelectorAll('.hero-nav-btn');
-                this.autoPlayInterval = null;
-                
-                this.init();
-            }
-            
-            init() {
-                // Event listeners pour les boutons
-                this.navBtns.forEach((btn, index) => {
-                    btn.addEventListener('click', () => this.showSlide(index));
-                });
-                
-                // Auto-play avec pause au hover
-                this.startAutoPlay();
-                
-                // Pause au focus/hover
-                const heroSection = document.querySelector('.hero');
-                heroSection.addEventListener('mouseenter', () => this.pauseAutoPlay());
-                heroSection.addEventListener('mouseleave', () => this.startAutoPlay());
-                
-                // Gestes tactiles pour mobile
-                this.addTouchGestures();
-            }
-            
-            showSlide(index) {
-                // Retirer les classes actives
-                this.slides.forEach(slide => slide.classList.remove('active'));
-                this.navBtns.forEach(btn => btn.classList.remove('active'));
-                
-                // Activer le slide courant
-                this.slides[index].classList.add('active');
-                this.navBtns[index].classList.add('active');
-                
-                this.currentSlide = index;
-                
-                // Feedback haptique léger
-                if ('vibrate' in navigator) {
-                    navigator.vibrate(20);
-                }
-            }
-            
-            nextSlide() {
-                const next = (this.currentSlide + 1) % this.slides.length;
-                this.showSlide(next);
-            }
-            
-            startAutoPlay() {
-                this.pauseAutoPlay();
-                this.autoPlayInterval = setInterval(() => {
-                    this.nextSlide();
-                }, 5000);
-            }
-            
-            pauseAutoPlay() {
-                if (this.autoPlayInterval) {
-                    clearInterval(this.autoPlayInterval);
-                }
-            }
-            
-            addTouchGestures() {
-                let touchStartX = 0;
-                let touchEndX = 0;
-                
-                const heroSection = document.querySelector('.hero');
-                
-                heroSection.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-                
-                heroSection.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    this.handleSwipe();
-                });
-                
-                const handleSwipe = () => {
-                    const swipeThreshold = 50;
-                    const diff = touchStartX - touchEndX;
-                    
-                    if (Math.abs(diff) > swipeThreshold) {
-                        if (diff > 0) {
-                            // Swipe left - next slide
-                            this.nextSlide();
-                        } else {
-                            // Swipe right - previous slide
-                            const prev = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
-                            this.showSlide(prev);
-                        }
-                    }
-                };
-                
-                this.handleSwipe = handleSwipe;
-            }
-        }
-
-        // Fonctions pour les dropdowns
-        function toggleMobileDropdown(dropdownId) {
-            const dropdown = document.getElementById(dropdownId);
-            const isActive = dropdown.classList.contains('active');
-            
-            // Fermer tous les autres dropdowns
-            document.querySelectorAll('.mobile-dropdown').forEach(otherDropdown => {
-                if (otherDropdown.id !== dropdownId) {
-                    otherDropdown.classList.remove('active');
-                }
-            });
-            
-            // Toggle le dropdown cliqué
-            dropdown.classList.toggle('active');
-            
-            // Feedback haptique
-            if ('vibrate' in navigator) {
-                navigator.vibrate(30);
-            }
-        }
-
-        // Fonctions globales
-        function toggleMobileMenu() {
-            if (window.mobileMenu) {
-                window.mobileMenu.toggle();
-            }
-        }
-
-        function closeMobileMenu() {
-            if (window.mobileMenu) {
-                window.mobileMenu.close();
-            }
-        }
-
-        function showHeroSlide(index) {
-            if (window.heroSlider) {
-                window.heroSlider.showSlide(index);
-            }
-        }
-
-        // Optimisations pour mobile
-        function optimizeMobilePerformance() {
-            // Lazy loading des images
-            const images = document.querySelectorAll('.expertise-image[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.style.backgroundImage = `url(${img.dataset.src})`;
-                        img.removeAttribute('data-src');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-            
-            // Preload des pages importantes
-            const importantLinks = document.querySelectorAll('a[href^="./contacter"], a[href^="./dpe"]');
-            importantLinks.forEach(link => {
-                link.addEventListener('mouseenter', () => {
-                    const linkElement = document.createElement('link');
-                    linkElement.rel = 'prefetch';
-                    linkElement.href = link.href;
-                    document.head.appendChild(linkElement);
-                }, { once: true });
-            });
-        }
-
-        // Animation au scroll pour mobile
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observer les éléments animables
-            document.querySelectorAll('.expertise-card, .service-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'all 0.6s ease';
-                observer.observe(el);
-            });
-        }
-
-        // Initialisation au chargement du DOM
-        document.addEventListener('DOMContentLoaded', function() {
-            // Créer les instances globales
-            window.mobileMenu = new ModernMobileMenu();
-            window.heroSlider = new HeroSlider();
-            
-            // Initialiser les optimisations
-            optimizeMobilePerformance();
-            initScrollAnimations();
-            
-            // Gestion du redimensionnement
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    if (window.innerWidth > 983 && window.mobileMenu && window.mobileMenu.isOpen) {
-                        window.mobileMenu.close();
-                    }
-                }, 100);
-            });
-            
-            // Amélioration de la performance tactile
-            document.addEventListener('touchstart', () => {}, { passive: true });
-            
-            // Gestion du changement d'orientation
-            window.addEventListener('orientationchange', () => {
-                setTimeout(() => {
-                    // Recalculer les hauteurs après rotation
-                    const hero = document.querySelector('.hero');
-                    if (hero) {
-                        hero.style.height = window.innerHeight < window.innerWidth ? '45vh' : '50vh';
-                    }
-                }, 100);
             });
         });
 
-        // Service Worker pour le cache (optionnel)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(() => console.log('SW registered'))
-                    .catch(() => console.log('SW registration failed'));
-            });
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Merci ! Vous êtes maintenant abonné à notre newsletter.');
+                this.reset();
+            }
+        });
+    // Define contactConsultant to avoid errors on button click
+    function contactConsultant() {
+        window.location.href = './contacter/index.html';
+    }
+    </script>
+
+
+    <script>
+        // Hero Slider
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroNavBtns = document.querySelectorAll('.hero-nav-btn');
+
+        function showHeroSlide(index) {
+            // Remove active class from all slides and nav buttons
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroNavBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to current slide and nav button
+            heroSlides[index].classList.add('active');
+            heroNavBtns[index].classList.add('active');
+            
+            currentHeroSlide = index;
         }
+
+        // Auto-advance hero slider
+        setInterval(() => {
+            currentHeroSlide = (currentHeroSlide + 1) % heroSlides.length;
+            showHeroSlide(currentHeroSlide);
+        }, 5000);
+
+        // Steps Slider
+        let currentStepSlide = 0;
+        const stepSlides = document.querySelectorAll('.step-slide');
+        const stepBtns = document.querySelectorAll('.steps-nav .step-btn');
+
+        function showStepSlide(index) {
+            // Remove active class from all slides and buttons
+            stepSlides.forEach(slide => slide.classList.remove('active'));
+            stepBtns.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to current slide and button
+            stepSlides[index].classList.add('active');
+            stepBtns[index].classList.add('active');
+            
+            currentStepSlide = index;
+        }
+
+        // Auto-advance step slider
+        setInterval(() => {
+            currentStepSlide = (currentStepSlide + 1) % stepSlides.length;
+            showStepSlide(currentStepSlide);
+        }, 4000);
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        }
+
+        (function() {
+    // Intersection Observer pour l'animation des étapes
+    const stepsObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const stepsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('steps-visible');
+            }
+        });
+    }, stepsObserverOptions);
+
+    // Observer toutes les étapes
+    document.querySelectorAll('.steps-step').forEach(step => {
+        stepsObserver.observe(step);
+    });
+
+    // Effet parallax sur le scroll
+    function updateStepsParallax() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.steps-floating-circle');
+        
+        parallaxElements.forEach((element, index) => {
+            const speed = 0.5 + (index * 0.2);
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.1}deg)`;
+        });
+    }
+
+    // Event listener pour le parallax
+    window.addEventListener('scroll', updateStepsParallax);
+
+    // Animation d'entrée retardée
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.querySelectorAll('.steps-step').forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }, 500);
+    });
+})();
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Logo click redirect
+        document.querySelector('.logo').addEventListener('click', function() {
+            window.location.href = './index.html';
+        });
+
+        // Dropdown functions
+        function toggleDropdown(id) {
+            // Fermer les autres menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle le menu cliqué
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
+        // Fermer si clic en dehors
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Show logo placeholder if image fails to load
+        document.querySelector('.logo img').addEventListener('error', function() {
+            this.style.display = 'none';
+            document.querySelector('.logo-placeholder').style.display = 'flex';
+        });
+
+        
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+    window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Menu Mobile Moderne - JavaScript
+class ModernMobileMenu {
+    constructor() {
+        this.menu = document.getElementById('mobileMenu');
+        this.overlay = document.getElementById('mobileOverlay');
+        this.burger = document.querySelector('.burger-menu');
+        this.isOpen = false;
+        
+        this.init();
+    }
+    
+    init() {
+        // Event listeners
+        if (this.burger) {
+            this.burger.addEventListener('click', () => this.toggle());
+        }
+        
+        if (this.overlay) {
+            this.overlay.addEventListener('click', () => this.close());
+        }
+        
+        // Fermer avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
+                this.close();
+            }
+        });
+        
+        // Prévenir le scroll du body quand le menu est ouvert
+        this.preventBodyScroll();
+    }
+    
+    toggle() {
+        this.isOpen ? this.close() : this.open();
+    }
+    
+    open() {
+        this.menu.classList.add('active');
+        this.overlay.classList.add('active');
+        this.burger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        this.isOpen = true;
+        
+        // Animation des éléments avec délai
+        this.animateMenuItems();
+    }
+    
+    close() {
+        this.menu.classList.remove('active');
+        this.overlay.classList.remove('active');
+        this.burger.classList.remove('active');
+        document.body.style.overflow = '';
+        this.isOpen = false;
+        
+        // Fermer tous les dropdowns
+        document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    }
+    
+    animateMenuItems() {
+        const items = this.menu.querySelectorAll('.mobile-nav-item');
+        items.forEach((item, index) => {
+            item.style.animationDelay = `${0.1 + (index * 0.05)}s`;
+        });
+    }
+    
+    preventBodyScroll() {
+        // Empêcher le scroll du body sur iOS
+        this.menu.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+    }
+}
+
+// Fonctions pour les dropdowns
+function toggleMobileDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    const isActive = dropdown.classList.contains('active');
+    
+    // Fermer tous les autres dropdowns
+    document.querySelectorAll('.mobile-dropdown').forEach(otherDropdown => {
+        if (otherDropdown.id !== dropdownId) {
+            otherDropdown.classList.remove('active');
+        }
+    });
+    
+    // Toggle le dropdown cliqué
+    if (isActive) {
+        dropdown.classList.remove('active');
+    } else {
+        dropdown.classList.add('active');
+    }
+}
+
+// Fonction pour fermer le menu (appelée par les liens)
+function closeMobileMenu() {
+    if (window.mobileMenu) {
+        window.mobileMenu.close();
+    }
+}
+
+// Initialiser le menu quand le DOM est chargé
+document.addEventListener('DOMContentLoaded', function() {
+    // Créer une instance globale du menu
+    window.mobileMenu = new ModernMobileMenu();
+    
+    // Ajouter des interactions touch pour une meilleure UX mobile
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    const menu = document.getElementById('mobileMenu');
+    
+    if (menu) {
+        menu.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        
+        menu.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            
+            // Swipe vers la droite pour fermer (si on swipe depuis le bord)
+            const swipeDistance = touchEndY - touchStartY;
+            if (Math.abs(swipeDistance) < 50) { // Pas un swipe vertical
+                const touchX = e.changedTouches[0].screenX;
+                if (touchX > menu.offsetWidth - 50) { // Proche du bord droit
+                    window.mobileMenu.close();
+                }
+            }
+        });
+    }
+    
+    // Smooth scroll pour les ancres
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                closeMobileMenu();
+            }
+        });
+    });
+});
+
+// Fonctions legacy pour maintenir la compatibilité
+function toggleMobileMenu() {
+    if (window.mobileMenu) {
+        window.mobileMenu.toggle();
+    }
+}
+
+// Gestion du redimensionnement de la fenêtre
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 983 && window.mobileMenu && window.mobileMenu.isOpen) {
+        window.mobileMenu.close();
+    }
+});
+     
+
     </script>
 </body>
 </html>
