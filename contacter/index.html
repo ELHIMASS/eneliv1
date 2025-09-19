@@ -218,7 +218,16 @@ body {
 /* CHAMPS DE FORMULAIRE */
 .form-group {
     margin-bottom: 1rem;
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin 0.3s ease;
 }
+
+.form-group.hidden {
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -280,6 +289,11 @@ input:focus, textarea:focus, select:focus {
 }
 .submit-btn:hover {
     background: #66a267;
+}
+
+.submit-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
 
 /* CARTE ET MARQUEURS */
@@ -378,6 +392,22 @@ input:focus, textarea:focus, select:focus {
     display: block;
     animation: slideInDown 0.5s ease-out;
 }
+
+.error-message {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+.error-message.show {
+    display: block;
+    animation: slideInDown 0.5s ease-out;
+}
+
 @keyframes slideInDown {
     from { opacity: 0; transform: translateY(-30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -651,6 +681,11 @@ input:focus, textarea:focus, select:focus {
                 ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
             </div>
 
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.
+            </div>
+
             <!-- Contact Grid -->
             <div class="contact-grid">
                 <!-- Contact Form -->
@@ -695,6 +730,10 @@ input:focus, textarea:focus, select:focus {
                                     <input type="radio" id="professionnel" name="vous_etes" value="Professionnel" required>
                                     <label for="professionnel">Professionnel</label>
                                 </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="copropriete" name="vous_etes" value="Copropriété" required>
+                                    <label for="copropriete">Copropriété</label>
+                                </div>
                             </div>
                         </div>
 
@@ -711,7 +750,8 @@ input:focus, textarea:focus, select:focus {
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <!-- Champ conditionnel pour la date d'assemblée générale -->
+                        <div class="form-group hidden" id="dateAssembleeGroup">
                             <label for="date_assemblee">Date d'assemblée générale</label>
                             <input type="date" id="date_assemblee" name="date_assemblee">
                         </div>
@@ -860,7 +900,42 @@ input:focus, textarea:focus, select:focus {
         </div>
     </footer>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init("U5w00U90edH6Mj23x"); // Remplace avec ta clé publique EmailJS
+  })();
+</script>
+
+
     <script>
+        // Gestion de l'affichage conditionnel du champ date d'assemblée
+        document.addEventListener('DOMContentLoaded', function () {
+            const radioButtons = document.querySelectorAll('input[name="vous_etes"]');
+            const dateAssembleeGroup = document.getElementById('dateAssembleeGroup');
+            const dateAssembleeInput = document.getElementById('date_assemblee');
+
+            // Fonction pour gérer l'affichage du champ date
+            function toggleDateAssemblee() {
+                const selectedValue = document.querySelector('input[name="vous_etes"]:checked')?.value;
+                
+                if (selectedValue === 'Copropriété') {
+                    dateAssembleeGroup.classList.remove('hidden');
+                } else {
+                    dateAssembleeGroup.classList.add('hidden');
+                    dateAssembleeInput.value = ''; // Réinitialiser la valeur
+                }
+            }
+
+            // Écouter les changements sur les radio buttons
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', toggleDateAssemblee);
+            });
+
+            // Initialiser l'état au chargement
+            toggleDateAssemblee();
+        });
+
         // Gestion des marqueurs et tooltips
         document.addEventListener('DOMContentLoaded', function () {
             const markers = document.querySelectorAll('.marker');
@@ -911,30 +986,128 @@ input:focus, textarea:focus, select:focus {
             });
         });
 
+        // Fonction d'envoi d'email via EmailJS
+        async function sendEmail(formData) {
+            // Configuration EmailJS
+            const serviceID = 'service_eneliv'; // Remplacez par votre Service ID
+            const templateID = 'template_contact'; // Remplacez par votre Template ID
+            const userID = 'your_user_id'; // Remplacez par votre User ID
+
+            const templateParams = {
+                to_email: 'ismail.elhimass@gmail.com',
+                from_name: `${formData.prenom} ${formData.nom}`,
+                from_email: formData.email,
+                phone: formData.telephone,
+                postal_code: formData.code_postal,
+                user_type: formData.vous_etes,
+                request_type: formData.demande || 'Non spécifié',
+                assembly_date: formData.date_assemblee || 'Non applicable',
+                message: formData.message,
+                reply_to: formData.email
+            };
+
+            try {
+                // Utilisation d'EmailJS pour envoyer l'email
+                const response = await emailjs.send(serviceID, templateID, templateParams, userID);
+                console.log('Email envoyé avec succès:', response);
+                return { success: true };
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
+        // Alternative : Envoi via un service backend simple
+        async function sendEmailViaBackend(formData) {
+            try {
+                const response = await fetch('https://formspree.io/f/xqadrpkj', { // Remplacez par votre endpoint Formspree
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'ismail.elhimass@gmail.com',
+                        subject: `Nouveau contact ENELIV - ${formData.vous_etes}`,
+                        message: `
+                            Nouveau message de contact ENELIV :
+                            
+                            Nom : ${formData.prenom} ${formData.nom}
+                            Email : ${formData.email}
+                            Téléphone : ${formData.telephone}
+                            Code postal : ${formData.code_postal}
+                            Type : ${formData.vous_etes}
+                            Demande : ${formData.demande || 'Non spécifié'}
+                            ${formData.date_assemblee ? `Date d'assemblée : ${formData.date_assemblee}` : ''}
+                            
+                            Message :
+                            ${formData.message}
+                        `,
+                        _replyto: formData.email
+                    })
+                });
+
+                if (response.ok) {
+                    return { success: true };
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
         // Gestion du formulaire
         const contactForm = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
 
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Simulation d'envoi
+            // Récupération des données du formulaire
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Animation du bouton
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Envoi en cours...';
             submitBtn.disabled = true;
             
-            setTimeout(() => {
-                successMessage.classList.add('show');
-                contactForm.reset();
+            try {
+                // Tentative d'envoi de l'email
+                // Vous pouvez choisir entre sendEmail (EmailJS) ou sendEmailViaBackend (Formspree)
+                const result = await sendEmailViaBackend(data);
+                
+                if (result.success) {
+                    // Succès
+                    successMessage.classList.add('show');
+                    errorMessage.classList.remove('show');
+                    contactForm.reset();
+                    
+                    // Masquer le message après 5 secondes
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } else {
+                    // Erreur
+                    throw new Error(result.error);
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi:', error);
+                errorMessage.classList.add('show');
+                successMessage.classList.remove('show');
+                
+                // Masquer le message d'erreur après 5 secondes
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 5000);
+            } finally {
+                // Restaurer le bouton
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
-                
-                // Masquer le message après 5 secondes
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 5000);
-            }, 1500);
+            }
         });
 
         // Effet de défilement sur l'en-tête
@@ -946,7 +1119,8 @@ input:focus, textarea:focus, select:focus {
                 header.classList.remove('scrolled');
             }
         });
-         const observerOptions = {
+
+        const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
@@ -960,23 +1134,21 @@ input:focus, textarea:focus, select:focus {
         }, observerOptions);
 
         function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
+            const dropdown = document.getElementById(id);
 
-    // Fermer tous les autres dropdowns avant d'ouvrir le bon
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        if (menu.id !== id) {
-            menu.classList.remove('show');
+            // Fermer tous les autres dropdowns avant d'ouvrir le bon
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            dropdown.classList.toggle('show');
         }
-    });
-
-    dropdown.classList.toggle('show');
-}
-
 
         document.querySelector('.logo').addEventListener('click', function() {
-        window.location.href = '../index.html'; // Remplacez par le chemin de votre page
-    });
-
+            window.location.href = '../index.html';
+        });
 
         // Gestion du menu mobile
         function toggleMobileMenu() {
@@ -995,5 +1167,59 @@ input:focus, textarea:focus, select:focus {
         document.querySelectorAll('.contact-form, .map-section, .contact-info-section').forEach(el => {
             observer.observe(el);
         });
+
+        async function sendEmailViaEmailJS(formData) {
+    try {
+        const templateParams = {
+            to_email: "i.elhimass@esisa.ac.ma", // Ton email de réception
+            subject: `Nouveau contact ENELIV - ${formData.vous_etes}`,
+            prenom: formData.prenom,
+            nom: formData.nom,
+            email: formData.email,
+            telephone: formData.telephone,
+            code_postal: formData.code_postal,
+            vous_etes: formData.vous_etes,
+            demande: formData.demande || "Non spécifié",
+            date_assemblee: formData.date_assemblee || "Non précisé",
+            message: formData.message
+        };
+
+        const response = await emailjs.send(
+            "service_qzs6jjm",   // Remplace par ton Service ID EmailJS
+            "template_d48sg9k",  // Remplace par ton Template ID EmailJS
+            templateParams
+        );
+
+        console.log("Email envoyé avec succès :", response.status, response.text);
+        alert("Votre message a bien été envoyé !");
+    } catch (error) {
+        console.error("Erreur lors de l'envoi :", error);
+        alert("Une erreur est survenue, veuillez réessayer.");
+    }
+}
+
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = {
+        prenom: document.getElementById("prenom").value,
+        nom: document.getElementById("nom").value,
+        email: document.getElementById("email").value,
+        telephone: document.getElementById("telephone").value,
+        code_postal: document.getElementById("code_postal").value,
+        vous_etes: document.getElementById("vous_etes").value,
+        demande: document.getElementById("demande").value,
+        date_assemblee: document.getElementById("date_assemblee").value,
+        message: document.getElementById("message").value
+    };
+
+    sendEmailViaEmailJS(formData);
+});
+
+
     </script>
+
+    
 </body>
+</html>
