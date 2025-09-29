@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="eneliv1.jpg" type="image/png">
-    <title>ENELIV - Blog : PPPT & DPE Guide Complet</title>
+    <title>ENELIV - Blog : Expertise Énergétique</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -38,14 +38,14 @@
         }
 
         body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 3;
             color: var(--text-primary);
             background: var(--bg-secondary);
             overflow-x: hidden;
         }
 
-         /* Header */
+        /* Header Styles - Identique à l'original */
         .header {
             background-color: #0B3041;
             color: white;
@@ -55,6 +55,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
@@ -90,6 +91,7 @@
             font-size: 1.2rem;
         }
 
+
         .nav-menu {
             list-style: none;
             display: flex;
@@ -99,18 +101,22 @@
 
         .nav-menu li {
             position: relative;
+            cursor: pointer;
         }
 
         .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
             font-size: 14px;
-            margin-left: 10px;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
         }
 
-        .nav-menu :hover {
-            cursor: pointer;
+        .nav-menu a:hover {
             color: #7FB77E;
         }
 
@@ -119,13 +125,11 @@
             margin-top: 16px;
             left: 0;
             background-color: #0B3041;
-            padding: 0.5rem 0;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             display: none;
             min-width: 327px;
             z-index: 999;
         }
-
         .dropdown-menu li {
             list-style: none;
         }
@@ -136,11 +140,17 @@
             color: white;
             font-weight: 500;
             transition: background 0.3s;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .dropdown-menu a:hover {
-            background: rgba(127, 183, 126, 0.2);
+            background-color: rgba(127, 183, 126, 0.2);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
         }
 
         .dropdown-menu.show {
@@ -151,18 +161,28 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
-            padding: 8px;
         }
 
         .burger-line {
-            width: 28px;
-            height: 3px;
+            width: 19px;
+            height: 2px;
             background: white;
-            margin: 4px 0;
+            margin: 3px 0;
             transition: all 0.3s ease;
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
 
         .mobile-menu {
             position: fixed;
@@ -183,334 +203,138 @@
         .mobile-menu.active {
             left: 0;
         }
-        /* Hero Section Spectaculaire */
-        .blog-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--gradient-primary);
-            position: relative;
-            overflow: hidden;
-        }
 
-        .blog-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" style="stop-color:rgb(127,183,126);stop-opacity:0.1"/><stop offset="100%" style="stop-color:rgb(127,183,126);stop-opacity:0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="120" fill="url(%23a)"/><circle cx="700" cy="800" r="80" fill="url(%23a)"/></svg>');
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        .hero-content {
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 80%;
             text-align: center;
-            max-width: 900px;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
+        }
+        /* Main Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 2rem 4rem;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(127, 183, 126, 0.2);
+        /* Tags Section */
+        .tags-section {
+            margin-bottom: 3rem;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            background: rgba(127, 183, 126, 0.1);
             color: var(--secondary-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
             border: 1px solid rgba(127, 183, 126, 0.3);
             font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
+        .tag:hover, .tag.active {
+            background: var(--secondary-color);
             color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 3rem;
-            font-weight: 400;
-            line-height: 1.6;
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
         }
 
-        .btn {
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-tag {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+            transition: gap 0.3s ease;
         }
 
-        .btn-primary {
-            background: var(--gradient-secondary);
-            color: white;
-            box-shadow: var(--shadow-lg);
+        .article-card:hover .read-more {
+            gap: 0.8rem;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* Container Principal */
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        /* Cards Modernisées */
-        .section-card {
-            background: var(--bg-primary);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-secondary);
-        }
-
-        .section-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Questions Redesignées */
-        .question-card {
-            background: var(--bg-primary);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .question-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--secondary-color);
-        }
-
-        .question-number {
-            position: absolute;
-            top: -15px;
-            left: 2rem;
-            background: var(--gradient-secondary);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .question-title {
-            color: var(--primary-color);
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
-        }
-
-        .question-content {
-            color: var(--text-primary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .question-content ul {
-            margin: 1.5rem 0;
-            padding-left: 0;
-        }
-
-        .question-content li {
-            list-style: none;
-            padding: 0.75rem 0;
-            padding-left: 2rem;
-            position: relative;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .question-content li:last-child {
-            border-bottom: none;
-        }
-
-        .question-content li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-
-        /* Image Containers Améliorées */
-        .image-container {
-            margin: 4rem 0;
-            text-align: center;
-        }
-
-        .hero-image, .content-image {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: var(--shadow-xl);
-            transition: all 0.3s ease;
-        }
-
-        .content-image {
-            max-width: 600px;
-            height: 300px;
-        }
-
-        .image-container:hover .hero-image,
-        .image-container:hover .content-image {
-            transform: scale(1.02);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-        }
-
-        .image-caption {
-            margin-top: 1rem;
-            color: var(--text-light);
-            font-style: italic;
-            font-size: 0.9rem;
-        }
-
-        /* Highlight Boxes */
-        .highlight-box {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border: 1px solid rgba(0, 204, 255, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .highlight-box::before {
-            content: '💡';
-            position: absolute;
-            top: -10px;
-            left: 2rem;
-            background: var(--bg-primary);
-            padding: 0.5rem;
-            border-radius: 50%;
-            font-size: 1.2rem;
-        }
-
-        .highlight-box h4 {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            margin-left: 1rem;
-        }
-
-        /* CTA Section Spectaculaire */
+        /* CTA Section */
         .cta-section {
             background: var(--gradient-primary);
             border-radius: 24px;
-            padding: 4rem;
+            padding: 4rem 2rem;
             text-align: center;
-            margin: 4rem 0;
+            margin-top: 4rem;
             position: relative;
             overflow: hidden;
         }
@@ -541,7 +365,6 @@
             font-weight: 700;
             color: white;
             margin-bottom: 1.5rem;
-            line-height: 1.3;
         }
 
         .cta-text {
@@ -553,7 +376,32 @@
             margin-right: auto;
         }
 
-        /* Footer Moderne */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Footer */
         .footer {
             background: #0f172a;
             color: white;
@@ -583,6 +431,10 @@
             margin-bottom: 0.5rem;
         }
 
+        .footer-section ul {
+            list-style: none;
+        }
+
         .footer-section a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
@@ -593,7 +445,38 @@
             color: var(--secondary-color);
         }
 
-        /* Animations */
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .main-container {
+                padding: 100px 1rem 2rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tags-container {
+                justify-content: center;
+            }
+
+            .cta-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -605,94 +488,24 @@
             }
         }
 
-        .fade-in-up {
+        .fade-in {
             animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .blog-container {
-                padding: 2rem 1rem;
-            }
-
-            .section-card, .question-card {
-                padding: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .question-title {
-                font-size: 1.2rem;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .hero-image, .content-image {
-                height: 250px;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-        }
-
-        /* Burger Menu Moderne */
-        .burger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .burger-line {
-            width: 28px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
-        }
-
-        @media (max-width: 983px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .burger-menu {
-                display: flex;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Moderne -->
+    <!-- Header -->
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="./../logoblanc.png" alt="Logo ENELIV">
+                <img src="./../logoblanc.png" alt="Logo ENELIV" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="logo-placeholder" style="display: none;">ENELIV</div>
             </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li><a href="./../besoin/index.html" >VOS BESOINS</a></li>
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
@@ -704,7 +517,7 @@
                         </ul>
                     </li>
                     <li><a href="./../contacter/index.html">CONTACT</a></li>
-                    <li><a href="./../blog/index.html" style="color: #7FB77E;">BLOG</a></li>
+                    <li><a href="./../biographie/index.html" style="color: #7FB77E;">BLOG</a></li>
                 </ul>
 
                 <div class="burger-menu" onclick="toggleMobileMenu()">
@@ -714,333 +527,122 @@
                 </div>
             </nav>
         </div>
+        
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <a href="./nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
-            <a href="./besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
-            <a href="./expertise/index.html" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
-            <a href="./contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
-            <a href="./blog/index.html" onclick="closeMobileMenu()" style="color: #7FB77E;">BLOG</a>
+            <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
+            <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+            <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
+            <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+            <a href="#actualite" onclick="closeMobileMenu()">ACTUALITÉS</a>
         </div>
     </header>
 
-    <!-- Hero Section Spectaculaire -->
-    <section class="blog-hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                Guide Expert 2025
-            </div>
-            <h1 class="hero-title">BLOG</h1>
-            <p class="hero-subtitle">
-                Maîtrisez les enjeux du Plan Pluriannuel de Travaux et du Diagnostic de Performance Énergétique avec notre guide complet
-            </p>
-            <div class="hero-cta">
-                <a href="./../ppt/index.html" class="btn btn-primary">
-                    Découvrir le PPPT
-                </a>
-                <a href="./../dpe/index.html" class="btn btn-secondary">
-                    Comprendre le DPE
-                </a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div>Découvrir</div>
-            <div style="font-size: 1.5rem; margin-top: 0.5rem;">↓</div>
-        </div>
-    </section>
-
-    <!-- Container Principal -->
-    <div class="blog-container">
-        <!-- Introduction -->
-        <div class="section-card fade-in-up">
-            <div class="section-header">
-                <h2 class="section-title">Introduction</h2>
-                <p class="section-subtitle">
-                    Depuis l'entrée en vigueur de la loi Climat et Résilience, le <strong>Plan Pluriannuel de Travaux (PPT)</strong> est devenu incontournable pour les copropriétés. Le <strong>DPE</strong> reste quant à lui un audit essentiel pour évaluer la performance énergétique des bâtiments.
-                </p>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Tags Section -->
+        <div class="tags-section">
+            <div class="tags-container">
+                <div class="tag active" data-filter="tous">Tous</div>
+                <div class="tag" data-filter="aides-financieres">Aides financières</div>
+                <div class="tag" data-filter="AMO-copropriete">AMO de copropriété</div>
+                <div class="tag" data-filter="audit-energetique">Audit énergétique</div>
+                <div class="tag" data-filter="Étude thermique RE2020">Étude thermique RE2020</div>
+                <div class="tag" data-filter="accompagnateur-renov">Mon Accompagnateur Rénov</div>
+                <div class="tag" data-filter="Plan pluriannuel de travaux (PPT)">Plan pluriannuel de travaux (PPT)</div>
+                <div class="tag" data-filter="renovation-energetique">Rénovation énergétique</div>
+                <div class="tag" data-filter="tertiaire">Tertiaire</div>
             </div>
         </div>
 
-        <!-- Section PPPT -->
-        <div id="pppt-section" class="section-card fade-in-up">
-            <div class="section-header">
-                <h2 class="section-title">Plan Pluriannuel de Travaux</h2>
-                <p class="section-subtitle">Tout comprendre sur cette obligation réglementaire</p>
-            </div>
-
-            <!-- Image héros pour PPPT -->
-            <div class="image-container">
-                <img src="./../home/assets/ppptblog.jpg" alt="Plan Pluriannuel de Travaux" class="hero-image">
-                <div class="image-caption">Planification stratégique des travaux en copropriété</div>
-            </div>
-
-            <!-- Questions PPPT -->
-            <div class="question-card fade-in-up">
-                <div class="question-number">1</div>
-                <h3 class="question-title">Qu'est-ce que le PPPT ?</h3>
-                <div class="question-content">
-                    <p>Le PPPT est un document stratégique qui liste les travaux à réaliser dans les parties communes d'un immeuble sur une période de <strong>10 ans</strong>. Il vise à :</p>
-                    <ul>
-                        <li>Préserver la sécurité et la santé des occupants</li>
-                        <li>Assurer la conservation du bâti</li>
-                        <li>Améliorer la performance énergétique du bâtiment</li>
-                    </ul>
+        <!-- Articles Grid -->
+        <div class="articles-grid">
+            <!-- Article 1 -->
+            <article class="article-card fade-in" data-category="Plan pluriannuel de travaux (PPT)" onclick="window.open('#audit-energetique-rennes', '_blank')">
+                <img src="./../home/assets/ppptblog.jpg" alt="Plan pluriannuel de travaux (PPT)" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Plan pluriannuel de travaux (PPT)</span>
+                    <h3 class="article-title">Plan Pluriannuel de Travaux Copropriété : les 10 choses à connaître sur le PPPT</h3>
+                    <div class="read-more">Lire l'article →</div>
                 </div>
-            </div>
+            </article>
 
-            <div class="question-card fade-in-up">
-                <div class="question-number">2</div>
-                <h3 class="question-title">Différence entre PPPT et PPT</h3>
-                <div class="question-content">
-                    <p>Le <strong>PPPT</strong> est le projet initial, élaboré à partir d'une analyse technique. Une fois voté en assemblée générale, il devient un <strong>PPT</strong>. Le PPPT constitue donc la phase d'étude qui précède l'adoption du document par les copropriétaires.</p>
+            <!-- Article 2 -->
+            <article class="article-card fade-in" data-category="Étude thermique RE2020" onclick="window.open('#prime-renov-parcours', '_blank')">
+                <img src="./../home/assets/dpeguid.jpg" alt="Étude thermique RE2020" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Étude thermique RE2020</span>
+                    <h3 class="article-title">Diagnostic de Performance Énergétique (DPE) : les 10 choses à connaître </h3>
+                    <div class="read-more">Lire l'article →</div>
                 </div>
-            </div>
+            </article>
 
-            <div class="question-card fade-in-up">
-                <div class="question-number">3</div>
-                <h3 class="question-title">Copropriétés concernées</h3>
-                <div class="question-content">
-                    <p>Depuis le <strong>1er janvier 2023</strong>, toutes les copropriétés de plus de <strong>15 ans</strong> sont concernées, <strong>sans condition de nombre de lots</strong>.</p>
-                    
-                    <div class="highlight-box">
-                        <h4>Point important :</h4>
-                        <p>Même les petites copropriétés de quelques lots sont désormais soumises à cette obligation.</p>
-                    </div>
+            <!-- Article 3 -->
+            <article class="article-card fade-in" data-category="Plan pluriannuel de travaux (PPT)" onclick="window.open('#accompagnateur-renov-albi', '_blank')">
+                <img src="./../home/assets/ppt.jpeg" alt="Plan pluriannuel de travaux (PPT)" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Plan pluriannuel de travaux (PPT)</span>
+                    <h3 class="article-title">Qu’est-ce que le PPPT ?</h3>
+                    <div class="read-more">Lire l'article →</div>
                 </div>
-            </div>
+            </article>
 
-            <div class="question-card fade-in-up">
-                <div class="question-number">4</div>
-                <h3 class="question-title">Contenu du PPPT</h3>
-                <div class="question-content">
-                    <p>Le PPPT doit inclure :</p>
-                    <ul>
-                        <li>Une liste des travaux nécessaires</li>
-                        <li>Une estimation des coûts</li>
-                        <li>Un classement par priorité</li>
-                        <li>Un échéancier sur 10 ans</li>
-                        <li>Une évaluation du gain énergétique</li>
-                    </ul>
+            <!-- Article 4 -->
+            <article class="article-card fade-in" data-category="Plan pluriannuel de travaux (PPT)" onclick="window.open('#accompagnateur-renov-dijon', '_blank')">
+                <img src="./../home/assets/pptblog1.jpg" alt="Plan pluriannuel de travaux (PPT)" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Plan pluriannuel de travaux (PPT)</span>
+                    <h3 class="article-title">Qui peut réaliser un PPPT ?</h3>
+                    <div class="read-more">Lire l'article →</div>
                 </div>
-            </div>
+            </article>
 
-            <div class="question-card fade-in-up">
-                <div class="question-number">5</div>
-                <h3 class="question-title">Qui peut réaliser un PPPT ?</h3>
-                <div class="question-content">
-                    <p>Le PPPT doit être réalisé par un <strong>professionnel certifié et indépendant</strong> :</p>
-                    <ul>
-                        <li>Bureau d'études thermiques</li>
-                        <li>Architecte</li>
-                        <li>Thermicien</li>
-                        <li>Diagnostiqueur immobilier</li>
-                    </ul>
+            <!-- Article 5 -->
+            <article class="article-card fade-in" data-category="Étude thermique RE2020" onclick="window.open('#trouver-accompagnateur-renov', '_blank')">
+                <img src="./../home/assets/energieguid.jpg" alt="Étude thermique RE2020" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Étude thermique RE2020</span>
+                    <h3 class="article-title">Quelle est la durée de validité d’un DPE ?</h3>
+                    <div class="read-more">Lire l'article →</div>
                 </div>
-            </div>
+            </article>
 
-            <!-- Image d'illustration -->
-            <div class="image-container">
-                <img src="./../home/assets/pptblog1.jpg" alt="Travaux de rénovation" class="content-image">
-                <div class="image-caption">Travaux de rénovation énergétique en cours</div>
-            </div>
-
+            <!-- Article 6 -->
+            <article class="article-card fade-in" data-category="Étude thermique RE2020" onclick="window.open('#faq-accompagnateur-renov', '_blank')">
+                <img src="./../home/assets/perceau.jpg" alt="Étude thermique RE2020" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Étude thermique RE2020</span>
+                    <h3 class="article-title">Quelles sont les conséquences d’un mauvais DPE ?</h3>
+                    <div class="read-more">Lire l'article →</div>
+                </div>
+            </article>
         </div>
 
         <!-- CTA Section -->
         <div class="cta-section">
             <div class="cta-content">
-                <h3 class="cta-title">Besoin d'un accompagnement expert ?</h3>
+                <h3 class="cta-title">Besoin d'un accompagnement personnalisé ?</h3>
                 <p class="cta-text">
-                    Notre équipe ENELIV vous accompagne dans l'élaboration de votre PPPT avec une expertise technique reconnue depuis 2009.
+                    Notre équipe d'experts ENELIV vous accompagne dans tous vos projets énergétiques avec une approche technique et humaine depuis 2009.
                 </p>
-                <a href="./../contacter/index.html" class="btn btn-primary">
+                <a href="#contact" class="btn btn-primary">
                     Prendre rendez-vous
-                </a>
-            </div>
-        </div>
-
-        <!-- Section DPE -->
-        <div id="dpe-section" class="section-card fade-in-up">
-            <div class="section-header">
-                <h2 class="section-title">Diagnostic de Performance Énergétique</h2>
-                <p class="section-subtitle">Les 10 points essentiels à connaître</p>
-            </div>
-
-            <!-- Image DPE -->
-            <div class="image-container">
-                <img src="./../home/assets/dpeguid.jpg" alt="Diagnostic DPE" class="hero-image">
-                <div class="image-caption">Exemple d'étiquette DPE avec classifications énergétiques</div>
-            </div>
-
-            <!-- Questions DPE -->
-            <div class="question-card fade-in-up">
-                <div class="question-number">1</div>
-                <h3 class="question-title">Qu'est-ce que le DPE ?</h3>
-                <div class="question-content">
-                    <p>Le <strong>DPE</strong> mesure :</p>
-                    <ul>
-                        <li>La consommation énergétique d'un bâtiment</li>
-                        <li>Les émissions de gaz à effet de serre</li>
-                        <li>La qualité des équipements</li>
-                    </ul>
-                    <p>Il attribue une <strong>étiquette énergétique</strong> de A à G.</p>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">2</div>
-                <h3 class="question-title">DPE individuel : obligations</h3>
-                <div class="question-content">
-                    <p>Le DPE est <strong>obligatoire</strong> pour :</p>
-                    <ul>
-                        <li>Toute vente ou location d'un logement</li>
-                        <li>Les logements neufs</li>
-                        <li>Attention : logements G interdits à la location depuis 2023</li>
-                        <li>Logements F interdits à partir de 2028</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">3</div>
-                <h3 class="question-title">DPE collectif : calendrier progressif</h3>
-                <div class="question-content">
-                    <p>Le <strong>DPE collectif</strong> concerne l'ensemble d'un immeuble en copropriété :</p>
-                    <ul>
-                        <li>Depuis 2024 : copropriétés de plus de 200 lots</li>
-                        <li>Dès 2025 : copropriétés de 50 à 200 lots</li>
-                        <li>Dès 2026 : copropriétés de moins de 50 lots</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">4</div>
-                <h3 class="question-title">DPE tertiaire</h3>
-                <div class="question-content">
-                    <p>Le DPE tertiaire s'applique aux bâtiments professionnels :</p>
-                    <ul>
-                        <li>Supérieurs à 250 m²</li>
-                        <li>Soumis au décret tertiaire</li>
-                        <li>Concernés par la vente ou location</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">5</div>
-                <h3 class="question-title">Durée de validité</h3>
-                <div class="question-content">
-                    <ul>
-                        <li>DPE après juillet 2021 : valide <strong>10 ans</strong></li>
-                        <li>DPE 2018-2021 : valide jusqu'au 31 décembre 2024</li>
-                        <li>DPE antérieur à 2018 : <strong>non valide</strong></li>
-                    </ul>
-                    
-                    <div class="image-container">
-                        <img src="./../home/assets/energieguid.jpg" alt="Étiquettes énergie" class="content-image">
-                        <div class="image-caption">Échelle des étiquettes énergétiques</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">6</div>
-                <h3 class="question-title">Qui peut réaliser un DPE ?</h3>
-                <div class="question-content">
-                    <p>Le DPE doit être réalisé par un <strong>diagnostiqueur certifié</strong>, indépendant et assuré, qui respecte les méthodes réglementaires et transmet le diagnostic à l'ADEME.</p>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">7</div>
-                <h3 class="question-title">Contenu du rapport DPE</h3>
-                <div class="question-content">
-                    <p>Le rapport DPE inclut :</p>
-                    <ul>
-                        <li>Les étiquettes énergie et climat</li>
-                        <li>Une analyse thermique du bâtiment</li>
-                        <li>Des recommandations de travaux</li>
-                        <li>Une estimation des consommations</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">8</div>
-                <h3 class="question-title">Intégration avec autres diagnostics</h3>
-                <div class="question-content">
-                    <p>Le DPE peut être réalisé en complément :</p>
-                    <ul>
-                        <li>Du PPPT (Plan Pluriannuel de Travaux)</li>
-                        <li>Du DTG (Diagnostic Technique Global)</li>
-                        <li>D'un audit énergétique pour logements F ou G</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">9</div>
-                <h3 class="question-title">Conséquences d'un mauvais DPE</h3>
-                <div class="question-content">
-                    <p>Un DPE classé F ou G peut entraîner :</p>
-                    <ul>
-                        <li>Des restrictions de location selon les échéances légales</li>
-                        <li>Une dévalorisation du bien immobilier</li>
-                        <li>Une obligation de rénovation énergétique</li>
-                    </ul>
-                    
-                    <div class="image-container">
-                        <img src="./../home/assets/perceau.jpg" alt="Conséquences mauvais DPE" class="content-image">
-                        <div class="image-caption">Impact d'un mauvais DPE sur la valeur immobilière</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="question-card fade-in-up">
-                <div class="question-number">10</div>
-                <h3 class="question-title">Pourquoi choisir un bureau d'études ?</h3>
-                <div class="question-content">
-                    <p>Un bureau d'études thermiques apporte :</p>
-                    <ul>
-                        <li>Une expertise technique approfondie</li>
-                        <li>Une analyse fiable et réglementaire</li>
-                        <li>Un accompagnement dans les projets de rénovation</li>
-                    </ul>
-                    
-                    <div class="highlight-box">
-                        <h4>L'expertise ENELIV :</h4>
-                        <p>Spécialisé depuis 2009, ENELIV vous accompagne avec une approche technique complète et un service personnalisé pour tous vos projets énergétiques.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- CTA Final -->
-        <div class="cta-section">
-            <div class="cta-content">
-                <h3 class="cta-title">Prêt à optimiser la performance énergétique de votre bien ?</h3>
-                <p class="cta-text">
-                    Contactez nos experts ENELIV pour un accompagnement complet : PPPT, DPE, audit énergétique et bien plus encore.
-                </p>
-                <a href="./../contacter/index.html" class="btn btn-primary">
-                    Demander un devis gratuit
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Footer Moderne -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <img src="./../logoblanc.png" alt="ENELIV" style="height: 50px; margin-bottom: 1rem;">
-                <p>Votre bureau d'études engagé pour la performance énergétique et la durabilité depuis 2009.</p>
+                <h3>ENELIV</h3>
+                <p>Votre bureau d'études énergétiques engagé pour la performance et la durabilité depuis 2009.</p>
             </div>
 
             <div class="footer-section">
-                <h3>Nos Expertises</h3>
-                <ul style="list-style: none;">
+                <h3>Nos Services</h3>
+                <ul>
                     <li><a href="./../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
                     <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
                     <li><a href="./../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
@@ -1065,7 +667,31 @@
     </footer>
 
     <script>
-         // Mobile Menu Functions
+        // Filter functionality
+        const tags = document.querySelectorAll('.tag');
+        const articles = document.querySelectorAll('.article-card');
+
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Remove active class from all tags
+                tags.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tag
+                tag.classList.add('active');
+
+                const filter = tag.getAttribute('data-filter');
+
+                articles.forEach(article => {
+                    if (filter === 'tous' || article.getAttribute('data-category') === filter) {
+                        article.style.display = 'block';
+                        article.classList.add('fade-in');
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Mobile Menu Functions
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const burgerMenu = document.querySelector('.burger-menu');
@@ -1082,41 +708,66 @@
             burgerMenu.classList.remove('active');
         }
 
-        // Dropdown menu function
+        // Dropdown functions
         function toggleDropdown(id) {
+            // Fermer les autres menus
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 if (menu.id !== id) {
                     menu.classList.remove('show');
                 }
             });
 
+            // Toggle le menu cliqué
             const menu = document.getElementById(id);
-            menu.classList.toggle('show');
+            if (menu) {
+                menu.classList.toggle('show');
+            }
         }
 
-        // Close dropdown and mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const burgerMenu = document.querySelector('.burger-menu');
-            const isClickInside = e.target.closest('.dropdown');
-            
-            if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
-                closeMobileMenu();
-            }
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                const burgerMenu = document.querySelector('.burger-menu');
+                
+                if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    closeMobileMenu();
+                }
+            });
 
-            if (!isClickInside) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function (event) {
+                const isClickInside = event.target.closest('.dropdown');
+                if (!isClickInside) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('show');
+                    });
+                }
+            });
+        });
+
+         // Add scroll effect to header
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(11, 48, 65, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = '#0B3041';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+
+            // Logo click redirect
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.addEventListener('click', function() {
+                    window.location.href = '../index.html';
                 });
             }
-        });
 
-        // Logo click handler
-        document.querySelector('.logo').addEventListener('click', function() {
-            window.location.href = './../index.html';
-        });
-
-        // Smooth scrolling animation for question sections
+        // Animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1125,59 +776,14 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    entry.target.classList.add('fade-in');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.question-section, .image-container').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            observer.observe(section);
-        });
-
-        // Animation keyframes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-
-            .image-container:hover img {
-                animation: pulse 0.6s ease-in-out;
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Effet parallax léger pour les images
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.hero-image, .content-image');
-            
-            parallaxElements.forEach(element => {
-                const speed = 0.1;
-                const rect = element.getBoundingClientRect();
-                const elementTop = rect.top + scrolled;
-                const windowHeight = window.innerHeight;
-                
-                if (rect.bottom >= 0 && rect.top <= windowHeight) {
-                    const yPos = -(scrolled - elementTop) * speed;
-                    element.style.transform = `translateY(${yPos}px)`;
-                }
-            });
+        // Observe all article cards
+        articles.forEach(article => {
+            observer.observe(article);
         });
     </script>
 </body>

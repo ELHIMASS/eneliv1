@@ -17,7 +17,7 @@
 }
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    line-height: 3;
+    line-height: 2;
     color: #333;
     background: #f8f9fa;
 }
@@ -361,7 +361,6 @@ input:focus, textarea:focus, select:focus {
 .contact-info-item {
     display: flex;
     align-items: center;
-    margin-top: 1rem;
 }
 .contact-info-icon {
     margin-right: 10px;
@@ -378,7 +377,7 @@ input:focus, textarea:focus, select:focus {
 
 /* MESSAGE DE SUCCÈS */
 .success-message {
-    background: linear-gradient(135deg, #00b894, #7FB77E);
+    background:  #7FB77E;
     color: white;
     padding: 1rem;
     border-radius: 12px;
@@ -675,15 +674,7 @@ input:focus, textarea:focus, select:focus {
                 <p>Des experts spécialisés à votre disposition sur toute la France.</p>
             </div>
 
-            <!-- Success Message -->
-            <div class="success-message" id="successMessage">
-                ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
-            </div>
-
-            <!-- Error Message -->
-            <div class="error-message" id="errorMessage">
-                ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.
-            </div>
+            
 
             <!-- Contact Grid -->
             <div class="contact-grid">
@@ -763,7 +754,7 @@ input:focus, textarea:focus, select:focus {
                         <div class="checkbox-group">
                             <div class="checkbox-item">
                                 <input type="checkbox" id="accepte" name="accepte" required>
-                                <label for="accepte">J'accepte que mes données soient utilisées exclusivement par Eneliv et sont uniquement destinées au traitement de votre demande. Vous disposez d'un droit d'opposition en vous inscrivant gratuitement sur le site <a href="https://www.bloctel.gouv.fr/" style="color: #0B3041;">https://www.bloctel.gouv.fr/</a>.</label>
+                                <label for="accepte">J'accepte que mes données soient utilisées exclusivement par Eneliv et sont uniquement destinées au traitement de votre demande.</a></label>
                             </div>
                         </div>
 
@@ -812,7 +803,15 @@ input:focus, textarea:focus, select:focus {
                 </div>
 
                 <!-- Contact Info Section -->
-                
+                <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage">
+                ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.
+            </div>
             </div>
 
            

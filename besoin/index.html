@@ -200,37 +200,38 @@
             position: relative;
         }
         }
-        /* Hero Section */
-        .hero-section {
-            max-height: 500px;
-           min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
+         /* Main Content */
+        .main-content {
+            padding: 2rem 0;
+            min-height: calc(100vh - 100px);
         }
 
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('./../home/assets/besoin1.png') center/cover no-repeat;
-            z-index: 1;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #0B3041;
+            top: -3rem;
+            color: white;
+            text-align: center;
+            padding: 3rem 0 4rem;
+            position: relative;
+        }
+        .nous-hero {
+            display: flex;
         }
 
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            position: relative;
-            margin-right: 900px;
-            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
+
 
         .certifications-section {
             background: white;
@@ -318,6 +319,182 @@
             font-size: 1rem;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #0B3041;
+        }
+
+        /* Expertises Grid */
+.expertises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+}
+
+.expertise-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 360px;
+    width: 270px;
+    cursor: pointer;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.expertise-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Plus d'espace pour l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Overlay léger pour le contraste */
+    background-blend-mode: multiply;
+    background-color: rgba(30, 60, 114, 0.1);
+}
+
+.expertise-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 85%;
+    background: transparent;
+    padding: 1rem 1.5rem;
+    height: 5%; /* Réduit pour juste le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centré */
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.expertise-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+/* Effet de zoom sur l'image au survol */
+.expertise-card:hover .expertise-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+        
+        .eneliv-sections {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px 50px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            position: relative;
+            overflow: hidden;
+            margin: 30px 80px 40px 80px;
+        }
+        
+        
+        
+        @keyframes shimmer {
+            /* Animation shimmer supprimée */
+        }
+        
+        .content-wrapper {
+            flex: 1;
+            position: relative;
+        }
+        
+        .section-titles {
+            font-size: 20px;
+            line-height: 2.0;
+            color: #1a202c;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+            width: 1700px;
+            margin-bottom: 30px;
+        }
+        
+        .section-titles strong {
+            font-weight: 700;
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media screen and (max-width: 1600px) {
+            .section-titles {
+            font-size: 20px;
+            line-height: 2.0;
+            color: #1a202c;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+            width: 1200px;
+        }
+            
+        }
+        
+        .services-list {
+            margin-top: 5px;
+            
+           
+        }
+        
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            color: #2d3748;
+            transition: all 0.3s ease;
+            margin-top: -4px;
+        }
+        
+        .service-item::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+        
+
         /* Main Content Styles */
         .main-container {
             max-width: 1600px;
@@ -334,14 +511,28 @@
         }
 
         .section-title {
-            font-size: 1.8rem;
-            color: #0B3041;
-            font-weight: bold;
+            font-size: clamp(1rem, 8vw, 30px);
+            
             text-align: center;
-            border-bottom: 3px solid #0B3041;
-            padding-bottom: 0.5rem;
-            display: inline-block;
-            width: 100%;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .section-title .highlight {
+            color: #7FB77E;
+        }
+        
+        .section-description {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Services Grid - 2 colonnes */
@@ -890,16 +1081,75 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1 class="hero-title">Votre besoin</h1>
+   <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section"> 
+
+            <div class="nous-hero">
+            <div class="container" style="width: 600px;">
+                <h1 class="hero-title">VOTRE BESOIN</h1>
+              
+            
+
+                <p class="eneliv" style="font-size: 18px; text-align: justify; margin-top: -30px; ;">
+                        ENELIV accompagne les particuliers, les copropriétés, le secteur tertiaire et les industries dans leurs projets de performance énergétique. </p>
+        
+            </div>
+
+            <div>
+                <img src="./../home/assets/besoin1.png" alt="" style="width: 400px; height: 300px; margin-left: 50px; margin-top: 5px; border-radius: 20px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-right: 100px;">
+            </div>
+
+
+            </div>
+        </section>
+
+        <!-- Services Section -->
+    <section class="section" id="services" style="margin-bottom: 100px;">
+        <div class="container">
+        <h2 class="section-title">
+            Découvrez nos <span class="highlight">secteurs</span>
+        </h2>
+        <p class="section-description">
+            Nos 4 pôles d'expertise pour mettre en valeur votre patrimoine.
+        </p>
+            
+
+            <div class="expertises-grid">
+    <a href="#particulier" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise1.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Particulier</h3>
+        </div>
+    </a>
+    
+    <a href="#coproprié"class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise3.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Copropriété</h3>
+        </div>
+    </a>
+    
+    <a href="#tertiaire"class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise2.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Tertiaire</h3>
+        </div>
+    </a>
+    
+    <a href="#industrie" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise4.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Industrie</h3>
+        </div>
+    </a>
+</div>
+
+        </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="particulier" class="main-container">
-        <p class="intro-text">
-            ENELIV accompagne les particuliers, les copropriétés, le secteur tertiaire et les industries dans leurs projets de performance énergétique.
-        </p>
+
 
         <!-- Services pour les particuliers -->
         <section  >
@@ -1262,7 +1512,7 @@
             const logo = document.querySelector('.logo');
             if (logo) {
                 logo.addEventListener('click', function() {
-                    window.location.href = '../index.html';
+                    window.location.href = './../index.html';
                 });
             }
 
