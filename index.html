@@ -524,12 +524,12 @@
             align-items: center;
             gap: 12px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: absolute;
+            position: relative;
             overflow: hidden;
             white-space: nowrap;
             font-family: inherit;
             letter-spacing: 0.5px;
-            margin: 0px 700px 100px 0;
+            margin-top: 2px;
         }
         
         .contact-button::before {
@@ -2643,6 +2643,16 @@
                 width: 340px;
             }
         }
+
+        .spacer {
+            display: flex;
+            justify-content: center;
+        }
+
+        .services-wrapper {
+            display: flex;
+            align-items: center;
+        }
         
     </style>
 </head>
@@ -2752,6 +2762,7 @@
                     <br> Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
                 </h2>
                 
+            <div class="services-wrapper">
                 <div class="services-list">
                     <div class="service-item">Audit énergétique</div>
                     <div class="service-item">Études techniques</div>
@@ -2768,6 +2779,8 @@
                 </button>
                 
                
+            </div>
+
             </div>
         </div>
 
