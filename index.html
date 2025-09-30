@@ -449,6 +449,7 @@
             letter-spacing: 1px;
             width: 1700px;
             margin-bottom: 30px;
+            
         }
         
         .section-titles strong {
@@ -1289,6 +1290,7 @@
     margin: 3rem 0;
     text-align: center;
     margin-right: 100px;
+    display: none;
 }
 
         .cta-button {
@@ -2624,10 +2626,7 @@
         }
 
          @media (max-width: 768px) {
-            .spacer {
-                display: block;
-                text-align: center;
-            }
+            
             .engagement-text{
                 margin: 57px -90px 20px 0;
             }
@@ -2638,10 +2637,14 @@
                 margin: 57px -90px 20px 0;
                 width: 340px;
             }
+            .services-wrapper{
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         .spacer {
-            display: flex;
+            display: grid;
             justify-content: center;
         }
 
