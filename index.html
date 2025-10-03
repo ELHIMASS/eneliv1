@@ -2465,144 +2465,65 @@
             border-radius: 15px;
         }
 
-         .partenaires {
-            padding: 80px 20px;
-            background: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
+        .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Logos scrollables */
+.partenaires-logos {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px;
+    scrollbar-width: none; /* cacher scrollbar sur Firefox */
+}
+.partenaires-logos::-webkit-scrollbar {
+    display: none; /* cacher scrollbar sur Chrome */
+}
+
+/* Chaque logo */
+.logo-wrapper img {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.logo-wrapper img:hover {
+    transform: scale(1.1);
+}
+
+/* Boutons flèches */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+    z-index: 10;
+}
+.arrow:hover {
+    background: #f0f0f0;
+}
+.arrow.left {
+    left: -10px;
+}
+.arrow.right {
+    right: -10px;
+}
+
 
        
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            color: #7FB77E;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(-30px);
-            animation: fadeInDown 0.8s ease forwards;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1rem;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.3s forwards;
-        }
-
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        .partenaires-logos {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
-            gap: 10px;
-            align-items: center;
-            justify-items: center;
-        }
-
-        .logo-wrapper {
-            width: 100%;
-            max-width: 220px;
-            height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transform: translateY(30px) scale(0.9);
-        }
-
-        .logo-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(127, 183, 126, 0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .logo-wrapper:hover::before {
-            left: 100%;
-        }
-
-        .logo-wrapper:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(127, 183, 126, 0.25);
-            border: 2px solid rgba(127, 183, 126, 0.3);
-        }
-
-        .partenaires-logos img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(0.7);
-            transition: filter 0.4s ease;
-        }
-
-        .logo-wrapper:hover img {
-            filter: grayscale(0%) opacity(1);
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 80px;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.5s forwards;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #7FB77E;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        
 
         @media (max-width: 768px) {
             .section-title {
@@ -2844,43 +2765,32 @@
 
 
     <section class="partenaires">
-        <div class="container">
-            <h2 class="section-title">Nos partenaires</h2>
-            <p class="section-subtitle">Des partenaires de confiance qui partagent notre vision</p>
-            
+    <div class="container">
+        <h2 class="section-title" style="margin-top: 100px;">Nos partenaires</h2>
+        <p class="section-subtitle" style="justify-self:center">Des partenaires de confiance qui partagent notre vision</p>
+
+        <div class="carousel-wrapper">
+            <!-- Flèche gauche -->
+            <button class="arrow left" id="prevBtn">&#10094;</button>
+
+            <!-- Logos -->
             <div class="partenaires-logos" id="logosContainer">
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire1.png" alt="Partenaire 1">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire2.png" alt="Partenaire 2">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire3.png" alt="Partenaire 3">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire4.png" alt="Partenaire 4">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire5.png" alt="Partenaire 5">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire6.png" alt="Partenaire 6">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire7.png" alt="Partenaire 7">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire8.png" alt="Partenaire 8">
-                </div>
-                <div class="logo-wrapper">
-                    <img src="./home/assets/partenaire9.png" alt="Partenaire 9">
-                </div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire1.png" alt="Partenaire 1"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire2.png" alt="Partenaire 2"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire3.png" alt="Partenaire 3"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire4.png" alt="Partenaire 4"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire5.png" alt="Partenaire 5"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire6.png" alt="Partenaire 6"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire7.png" alt="Partenaire 7"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire8.png" alt="Partenaire 8"></div>
+                <div class="logo-wrapper"><img src="./home/assets/partenaire9.png" alt="Partenaire 9"></div>
             </div>
 
-            
+            <!-- Flèche droite -->
+            <button class="arrow right" id="nextBtn">&#10095;</button>
         </div>
-    </section>
+    </div>
+</section>
 
 
     <!-- Steps Section -->
@@ -3429,7 +3339,19 @@ console.log('Script chargé successfully');
 
 
 
+const container = document.getElementById("logosContainer");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
+// Largeur de défilement = largeur visible du container
+const scrollAmount = container.clientWidth;
+
+prevBtn.addEventListener("click", () => {
+    container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+});
+nextBtn.addEventListener("click", () => {
+    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+});
 
 
     </script>
