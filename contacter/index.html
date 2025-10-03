@@ -308,16 +308,16 @@ input:focus, textarea:focus, select:focus {
     max-width: 500px;
 }
 .marker {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: #7FB77E;
-    border: 3px solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #7FB77E;
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
 .marker:hover {
     transform: scale(1.5);
     background-color: #0B3041;
@@ -336,10 +336,9 @@ input:focus, textarea:focus, select:focus {
     pointer-events: none;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     z-index: 1000;
-    border: 2px solid #7FB77E;
+    border: 2px solid #7FB77E ;
 }
 .tooltip h4 {
-    margin-bottom: 0.5rem;
     font-size: 1rem;
 }
 .tooltip .email {
@@ -775,7 +774,7 @@ input:focus, textarea:focus, select:focus {
                         <div class="marker" style="top: 60%; left: 33%;" data-region="Nouvelle-Aquitaine" data-email="bordeaux@eneliv.fr"></div>
                         <div class="marker" style="top: 12%; left: 52.7%;" data-region="Hauts-de-France" data-email="lille@eneliv.fr"></div>
                         <div class="marker" style="top: 33%; left: 28%;" data-region="Bretagne" data-email="rennes@eneliv.fr"></div>
-                        <div class="marker" style="top: 53%; left: 62%;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
+                        <div class="marker" style="top: 53%; left: 62%;background-color: red;" data-region="Auvergne Rhône Alpes" data-email="lyon@eneliv.fr"></div>
                         <div class="marker" style="top: 71%; left: 44%;" data-region="Occitanie" data-email="toulouse@eneliv.fr"></div>
                         <div class="marker" style="top: 28%; left: 76.4%;" data-region="Grand Est" data-email="strasbourg@eneliv.fr"></div>
                         <div class="marker" style="top: 40%; left: 29%;" data-region="Pays de la Loire" data-email="nantes@eneliv.fr"></div>

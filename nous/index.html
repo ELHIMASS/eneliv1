@@ -474,8 +474,8 @@
 
         .marker {
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             background-color: #7FB77E;
             border: 3px solid white;
             border-radius: 50%;
@@ -490,30 +490,26 @@
         }
 
         .tooltip {
-            position: fixed;
-            background-color: white;
-            color: #0B3041;
-            min-width: 200px;
-            padding: 1rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            display: none;
-            pointer-events: none;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            z-index: 1000;
-            border: 2px solid #7FB77E;
-        }
-
-        .tooltip h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .tooltip .email {
-            color: #7FB77E;
-            font-weight: bold;
-        }
-
+    position: fixed;
+    background-color: white;
+    color: #0B3041;
+    min-width: 100px;
+    padding: 1.5px;
+    font-size: 0rem;
+    display: none;
+    pointer-events: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    z-index: 1000;
+    border: 2px solid #7FB77E ;
+    border-radius: 5%;
+}
+.tooltip h4 {
+    font-size: 1rem;
+}
+.tooltip .email {
+    color: #7FB77E;
+    font-weight: bold;
+}
         .contact-info {
             flex: 1;
             text-align: left;
@@ -526,12 +522,10 @@
             color: #0B3041;
             font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 1.5rem;
         }
 
         .contact-info p {
             color: #666;
-            margin-bottom: 0.8rem;
             font-size: 1.1rem;
         }
 
@@ -1083,7 +1077,7 @@
                 <div class="values-grid">
                     <div class="value-card" style="width: 300px; ">
                         <div class="value-icon">
-                            <img src="./../home/assets/indep.png" alt="">
+                            <img src="./../home/assets/independ.png" alt="">
                         </div>
                         <h3 class="value-title">Indépendance</h3>
                         <p class="value-description">
@@ -1093,7 +1087,7 @@
 
                     <div class="value-card" style="width: 300px; ">
                         <div class="value-icon">
-                            <img src="./../home/assets/eng.png" alt="">
+                            <img src="./../home/assets/Engag.png" alt="">
                         </div>
                         <h3 class="value-title">Engagement</h3>
                         <p class="value-description">
@@ -1114,7 +1108,7 @@
 
                     <div class="value-card" style="width: 300px;">
                         <div class="value-icon">
-                            <img src="./../home/assets/acc.png" alt="">
+                            <img src="./../home/assets/aproxim.png" alt="">
                         </div>
                         <h3 class="value-title">Accompagnement</h3>
                         <p class="value-description">
@@ -1128,6 +1122,7 @@
         <!-- Certifications Section -->
         <section class="certifications-section">
             <div class="container">
+                    <h2 class="values-title">Nos Engagements</h2>
                 <div class="certifications-grid">
                     <div class="certification-card">
                         <div class="cert-icon">
@@ -1309,7 +1304,7 @@
                     
                     tooltip.innerHTML = `
                         <h4>${regionName}</h4>
-                        <p>Contact: <span class="email">${email}</span></p>
+
                     `;
                     
                     tooltip.style.display = 'block';

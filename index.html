@@ -338,6 +338,12 @@
             margin-bottom: 2rem;
             color: #0B3041;
         }
+        .section-title-small {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #0B3041;
+        }
 
         .footer {
             background: #1a202c;
@@ -667,6 +673,10 @@
         }
 /* Responsive pour mobile */
 @media (max-width: 983px) {
+    .hero{
+        height: 50vh;
+        
+    }
     .expertises-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
@@ -2564,6 +2574,88 @@
             display: flex;
             align-items: center;
         }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-tag {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .article-card:hover .read-more {
+            gap: 0.8rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         
     </style>
 </head>
@@ -2805,6 +2897,15 @@
                     <div class="steps-step-description">
                         <p>Vous nous contactez pour une étude énergétique ou technique visant à répondre à vos obligations réglementaires, mieux comprendre votre édifice et identifier des solutions d'amélioration durables.</p>
                     </div>
+                    <div class="button-wrapper" style="margin-left: 250px;">
+                <button class="contact-button" onclick="contactConsultant()">
+
+                Parler à un expert  
+                 <span class="icon">→</span>
+                </button>
+                
+               
+            </div>
                 </div>
                 <div class="steps-step-image">
                     <img src="./home/assets/etape3.png" alt="Étape 1 - La demande">
@@ -2825,6 +2926,8 @@
                 </div>
             </div>
 
+
+
             <!-- Étape 03 -->
             <div class="steps-step" data-step="3">
                 <div class="steps-step-content">
@@ -2839,6 +2942,35 @@
                 </div>
             </div>
         </div>
+    </section>
+
+
+    <section>
+        <div class="main-container">
+            <h1 class="section-title-small">Nos Actualités</h1>
+        <div class="articles-grid">
+            <!-- Article 1 -->
+            <article class="article-card fade-in" data-category="Plan pluriannuel de travaux (PPT)" onclick="window.open('#audit-energetique-rennes', '_blank')">
+                <img src="./home/assets/ppptblog.jpg" alt="Plan pluriannuel de travaux (PPT)" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Plan pluriannuel de travaux (PPT)</span>
+                    <h3 class="article-title">Plan Pluriannuel de Travaux Copropriété : les 10 choses à connaître sur le PPPT</h3>
+                    <div class="read-more">Lire l'article →</div>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-card fade-in" data-category="Étude thermique RE2020" onclick="window.open('#prime-renov-parcours', '_blank')">
+                <img src="./home/assets/dpeguid.jpg" alt="Étude thermique RE2020" class="article-image">
+                <div class="article-content">
+                    <span class="article-tag">Étude thermique RE2020</span>
+                    <h3 class="article-title">Diagnostic de Performance Énergétique (DPE) : les 10 choses à connaître </h3>
+                    <div class="read-more">Lire l'article →</div>
+                </div>
+            </article>
+        </div>
+    </div>
+
     </section>
 
   
