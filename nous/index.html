@@ -190,7 +190,6 @@
             top: -3rem;
             color: white;
             text-align: center;
-            padding: 3rem 0 4rem;
             position: relative;
         }
         .nous-hero {
@@ -831,8 +830,13 @@
             background: #0B3041;
         }
 
+        
+
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 983px) {
+            .header {
+                padding: 0.5rem 0;width: 100%;
+            }
             .nav-menu {
                 display: none;
             }
@@ -846,16 +850,17 @@
             }
 
             .container {
-                padding: 0 1rem;
+                padding: 7px 1rem;
             }
 
             .hero-title {
                 font-size: 2.5rem;
             }
-
-            .hero-section {
-                padding: 4rem 0 3rem;
+            .eneliv {
+                font-size: 15px;
             }
+
+            
 
             .president-card {
                 flex-direction: column;
@@ -884,12 +889,31 @@
 
             .contact-info {
                 text-align: center;
+                border-left: none;
+                border-top: 2px solid rgba(0,0,0,0.1);
+                padding: 2rem 0 0 0;
+                margin-top: 0;
+                margin:0 80px;
+
             }
+            .expert {
+                width: 700px;
+            }
+            .president-avatar{
+                margin: 0 120px;
+            }
+            .president-content{
+                font-size: 15px;
+            }
+
         }
 
+        .eneliv {
+            text-align: justify;
+        }
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
 
             .dd {
@@ -920,6 +944,13 @@
             .contact-section {
                 padding: 3rem 0;
             }
+            .image-hero {
+                display: none;
+            }
+            
+        }
+        .president-avatar{
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
         }
     </style>
 </head>
@@ -978,14 +1009,14 @@
               
             
 
-                <p class="eneliv" style="font-size: 18px; text-align: justify; margin-top: 40px; ;">
+                <p class="eneliv">
                         ENELIV est un bureau d’études indépendant et engagé, spécialisé en ingénierie thermique, technique et énergétique. Fondé par Akrame EL HIMASS, ancien ingénieur expérimenté
 
                     </p>
         
             </div>
 
-            <div>
+            <div class="image-hero" style="margin-top: 20px;">
                 <img src="./../home/assets/nous.png" alt="" style="width: 400px; height: 300px; margin-left: 50px; margin-top: 5px; border-radius: 20px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-right: 100px;">
             </div>
 
@@ -994,8 +1025,8 @@
         </section>
 
         <!-- Company Description -->
-              <div>
-                <p style="font-size: 18px; text-align: justify;  width: 900px; text-align: center; margin: auto; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+              <div class="president-content" style="margin: 0 50px 0 50px;">
+                <p >
                     Notre entreprise est née d’une volonté claire : rendre la performance énergétique accessible, fiable et durable pour tous.
                     Nous intervenons auprès des particuliers, des copropriétés, des professionnels du tertiaire et du secteur industriel, avec une approche sur mesure, rigoureuse et humaine.
 
@@ -1007,8 +1038,8 @@
             <div class="container">
                 <div class="president-card">
                     <div class="president-image">
-                        <div class="president-avatar">
-                            <img src="../home/assets/akrame.png" alt="Président ENELIV" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover;">
+                        <div >
+                            <img class="president-avatar" src="../home/assets/akrame.png" alt="Président ENELIV" >
                         </div>
                     </div>
                     <div class="president-content">
