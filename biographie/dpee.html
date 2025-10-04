@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic de Performance Énergétique (DPE) - ENELIV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding-top: 80px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 1.2cm;
+            width: 5.4cm;
+            object-fit: contain;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #7FB77E;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(127, 183, 126, 0.2);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .burger-line {
+            width: 19px;
+            height: 2px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: #0B3041;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: -5px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .intro {
+            background: #f8f9fa;
+            padding: 30px 40px;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%230B3041" width="800" height="400"/><text x="400" y="200" font-size="30" fill="white" text-anchor="middle" font-family="Arial">Diagnostic Énergétique</text></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .question-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #7FB77E;
+        }
+
+        .question-number {
+            background: #0B3041;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .question-title {
+            font-size: 1.4em;
+            color: #0B3041;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer {
+            color: #555;
+            margin-left: 55px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .answer.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer ul, .answer ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .answer li:before {
+            content: "▸";
+            color: #7FB77E;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #7FB77E;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .etiquette-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .etiquette-box {
+            text-align: center;
+        }
+
+        .etiquette-box h4 {
+            margin-bottom: 15px;
+            color: #0B3041;
+            font-size: 1.2em;
+        }
+
+        .etiquette-box img {
+            max-width: 200px;
+            height: auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .info-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0B3041 0%, #7FB77E 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0B3041;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: #7FB77E;
+            color: white;
+        }
+
+        footer {
+            background: #0B3041;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .toggle-icon {
+            float: right;
+            transition: transform 0.3s ease;
+            color: #7FB77E;
+        }
+
+        .toggle-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .question-title {
+                font-size: 1.1em;
+            }
+
+            .answer {
+                margin-left: 0;
+            }
+
+            .etiquette-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./../logoblanc.png" alt="Logo ENELIV" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./../contacter/index.html">CONTACT</a></li>
+                    <li><a href="./../biographie/index.html">BLOG</a></li>
+                </ul>
+
+                <div class="burger-menu" onclick="toggleMobileMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
+            <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+            <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
+            <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+            <a href="./../biographie/index.html" onclick="closeMobileMenu()">BLOG</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Diagnostic de Performance Énergétique (DPE)</h1>
+            <p>Les 10 choses à connaître</p>
+        </div>
+
+        <div class="intro">
+            <p>Le <strong>DPE</strong> est un outil réglementaire essentiel pour évaluer la performance énergétique des bâtiments. Il concerne les logements individuels, les copropriétés et les bâtiments tertiaires. Voici les <strong>10 points clés</strong> à connaître pour comprendre ses enjeux et obligations.</p>
+        </div>
+
+
+        <div class="content">
+            <div class="question-card" onclick="toggleAnswer(1)">
+                <div class="question-title">
+                    <span class="question-number">1</span>
+                    Qu'est-ce que le DPE ?
+                    <span class="toggle-icon" id="icon-1">▼</span>
+                </div>
+                <div class="answer" id="answer-1">
+                    <p>Le <strong>Diagnostic de Performance Énergétique</strong> mesure :</p>
+                    <ul>
+                        <li><strong>La consommation énergétique</strong> d'un bâtiment</li>
+                        <li><strong>Les émissions de gaz à effet de serre</strong></li>
+                        <li><strong>La qualité des équipements</strong> (chauffage, isolation, ventilation...)</li>
+                    </ul>
+                    <p style="margin-top: 15px;">Il attribue une <strong>étiquette énergie</strong> (de A à G) et une <strong>étiquette climat</strong>, permettant de situer le bâtiment dans la transition énergétique.</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(2)">
+                <div class="question-title">
+                    <span class="question-number">2</span>
+                    DPE individuel : une obligation pour les logements
+                    <span class="toggle-icon" id="icon-2">▼</span>
+                </div>
+                <div class="answer" id="answer-2">
+                    <p>Le DPE est <strong>obligatoire</strong> pour :</p>
+                    <ul>
+                        <li><strong>Toute vente ou location</strong> d'un logement</li>
+                        <li><strong>Les logements neufs</strong></li>
+                        <li><strong>Les logements classés G</strong> et sont <strong>interdits à la location depuis janvier 2025</strong></li>
+                        <li><strong>Les logements classés F</strong> seront <strong>interdits à la location à partir de janvier 2028</strong></li>
+                        <li><strong>Les logements classés E</strong> seront concernés <strong>à partir de 2034</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(3)">
+                <div class="question-title">
+                    <span class="question-number">3</span>
+                    DPE collectif : une obligation progressive
+                    <span class="toggle-icon" id="icon-3">▼</span>
+                </div>
+                <div class="answer" id="answer-3">
+                    <p>Le <strong>DPE collectif</strong> concerne l'ensemble d'un immeuble en copropriété. Il devient obligatoire :</p>
+                    <ul>
+                        <li><strong>Depuis 2024</strong> : copropriétés de plus de 200 lots</li>
+                        <li><strong>Dès 2025</strong> : copropriétés de 50 à 200 lots</li>
+                        <li><strong>Dès 2026</strong> : copropriétés de moins de 50 lots 2</li>
+                    </ul>
+                    <div class="highlight-box">
+                        Il permet une vision globale de la performance énergétique du bâtiment et facilite les décisions collectives de rénovation.
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(4)">
+                <div class="question-title">
+                    <span class="question-number">4</span>
+                    DPE tertiaire : un levier pour les bâtiments professionnels
+                    <span class="toggle-icon" id="icon-4">▼</span>
+                </div>
+                <div class="answer" id="answer-4">
+                    <p>Le DPE tertiaire s'applique aux bâtiments à usage professionnel ou commercial :</p>
+                    <ul>
+                        <li><strong>Supérieurs à 250 m²</strong></li>
+                        <li>Soumis à des <strong>obligations de performance</strong> dans le cadre du <strong>décret tertiaire</strong></li>
+                        <li>Concerné par la <strong>vente ou la location</strong> 3</li>
+                    </ul>
+                    <p style="margin-top: 15px;">Les étiquettes énergie et climat sont adaptées à <strong>l'usage du bâtiment</strong> (bureaux, hôpitaux, commerces...).</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(5)">
+                <div class="question-title">
+                    <span class="question-number">5</span>
+                    Quelle est la durée de validité d'un DPE ?
+                    <span class="toggle-icon" id="icon-5">▼</span>
+                </div>
+                <div class="answer" id="answer-5">
+                    <ul>
+                        <li>DPE réalisé <strong>après juillet 2021</strong> : <strong>valide 10 ans</strong></li>
+                        <li>DPE réalisé <strong>entre 2018 et juin 2021</strong> : <strong>valide jusqu'au 31 décembre 2024</strong></li>
+                        <li>DPE <strong>antérieur à 2018</strong> : <strong>non valide</strong></li>
+                    </ul>
+                    
+                    <div class="etiquette-container">
+                        <div class="etiquette-box">
+                            <h4>Étiquette Énergie</h4>
+                            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                                <div style="font-size: 3em; color: #7FB77E; font-weight: bold;">A-G</div>
+                                <p style="margin-top: 10px; color: #666;">221 kWh/m²/an</p>
+                            </div>
+                        </div>
+                        <div class="etiquette-box">
+                            <h4>Étiquette Climat</h4>
+                            <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; border: 2px solid #e0e0e0;">
+                                <div style="font-size: 3em; color: #0B3041; font-weight: bold;">B</div>
+                                <p style="margin-top: 10px; color: #666;">6 kg CO₂/m²/an</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(6)">
+                <div class="question-title">
+                    <span class="question-number">6</span>
+                    Qui peut réaliser un DPE ?
+                    <span class="toggle-icon" id="icon-6">▼</span>
+                </div>
+                <div class="answer" id="answer-6">
+                    <p>Le DPE doit être réalisé par un <strong>diagnostiqueur certifié</strong>, indépendant et assuré. Il doit respecter les méthodes de calcul réglementaires et transmettre le diagnostic à <strong>l'ADEME</strong> pour enregistrement.</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(7)">
+                <div class="question-title">
+                    <span class="question-number">7</span>
+                    Que contient un DPE ?
+                    <span class="toggle-icon" id="icon-7">▼</span>
+                </div>
+                <div class="answer" id="answer-7">
+                    <p>Le rapport DPE inclut :</p>
+                    <ul>
+                        <li><strong>Les étiquettes énergie et climat</strong></li>
+                        <li><strong>Une analyse thermique</strong> du bâtiment</li>
+                        <li><strong>Des recommandations de travaux</strong></li>
+                        <li><strong>Une estimation des consommations théoriques</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(8)">
+                <div class="question-title">
+                    <span class="question-number">8</span>
+                    Comment le DPE s'intègre aux autres diagnostics ?
+                    <span class="toggle-icon" id="icon-8">▼</span>
+                </div>
+                <div class="answer" id="answer-8">
+                    <p>Le DPE peut être réalisé en complément :</p>
+                    <ul>
+                        <li><strong>Du PPPT</strong> (Projet de Plan Pluriannuel de Travaux)</li>
+                        <li><strong>Du DTG</strong> (Diagnostic Technique Global)</li>
+                        <li><strong>D'un audit énergétique</strong>, notamment pour les logements classés F ou G</li>
+                    </ul>
+                    <p style="margin-top: 15px;">Cela permet une approche cohérente et complète de la rénovation énergétique.</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(9)">
+                <div class="question-title">
+                    <span class="question-number">9</span>
+                    Quelles sont les conséquences d'un mauvais DPE ?
+                    <span class="toggle-icon" id="icon-9">▼</span>
+                </div>
+                <div class="answer" id="answer-9">
+                    <p>Un DPE classé F ou G peut entraîner :</p>
+                    <ul>
+                        <li><strong>Des restrictions de location</strong> à partir des échéances légales</li>
+                        <li><strong>Une dévalorisation du bien</strong> sur le marché immobilier</li>
+                        <li><strong>Une obligation de rénovation énergétique</strong> pour rester conforme</li>
+                    </ul>
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%230B3041' width='400' height='300'/%3E%3Ctext x='200' y='150' font-size='24' fill='white' text-anchor='middle' font-family='Arial'%3EConséquences juridiques%3C/text%3E%3C/svg%3E" class="info-image" alt="Conséquences juridiques">
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(10)">
+                <div class="question-title">
+                    <span class="question-number">10</span>
+                    Pourquoi faire appel à un bureau d'études thermiques ?
+                    <span class="toggle-icon" id="icon-10">▼</span>
+                </div>
+                <div class="answer" id="answer-10">
+                    <p>Un bureau d'études thermiques apporte :</p>
+                    <ul>
+                        <li><strong>Une expertise technique approfondie</strong></li>
+                        <li><strong>Une analyse fiable et réglementaire</strong></li>
+                        <li><strong>Un accompagnement personnalisé</strong> pour vos démarches de rénovation et d'aides financières</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
+            <p style="margin-top: 15px; font-size: 1.1em;">Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons une prestation rigoureuse première étape essentielle vers une unique conformité réglementaire ou une rénovation performante.</p>
+            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 ENELIV - Guide DPE | Tous droits réservés</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(num) {
+            const answer = document.getElementById(`answer-${num}`);
+            const icon = document.getElementById(`icon-${num}`);
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('show');
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(11, 48, 65, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#0B3041';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.addEventListener('click', function() {
+                window.location.href = './../index.html';
+            });
+        }
+
+        const cards = document.querySelectorAll('.question-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Pluriannuel de Travaux Copropriété - PPPT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding-top: 80px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 1.2cm;
+            width: 5.4cm;
+            object-fit: contain;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0.5rem 0;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #7FB77E;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(127, 183, 126, 0.2);
+        }
+
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .burger-line {
+            width: 19px;
+            height: 2px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 3rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: #0B3041;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: -5px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .intro {
+            background: #f8f9fa;
+            padding: 30px 40px;
+        }
+
+        .intro p {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #0B3041 0%, #7FB77E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .question-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #7FB77E;
+        }
+
+        .question-number {
+            background: #0B3041;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        .question-title {
+            font-size: 1.4em;
+            color: #0B3041;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer {
+            color: #555;
+            margin-left: 55px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .answer.active {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer ul, .answer ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .answer li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .answer li:before {
+            content: "▸";
+            color: #7FB77E;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .answer ol li {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .answer ol li:before {
+            content: none;
+        }
+
+        .highlight-box {
+            background: #e8f5e9;
+            border-left: 4px solid #7FB77E;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0B3041 0%, #7FB77E 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0B3041;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: #7FB77E;
+            color: white;
+        }
+
+        footer {
+            background: #0B3041;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .toggle-icon {
+            float: right;
+            transition: transform 0.3s ease;
+            color: #7FB77E;
+        }
+
+        .toggle-icon.active {
+            transform: rotate(180deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .question-title {
+                font-size: 1.1em;
+            }
+
+            .answer {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./../logoblanc.png" alt="Logo ENELIV" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./../contacter/index.html">CONTACT</a></li>
+                    <li><a href="./../biographie/index.html">BLOG</a></li>
+                </ul>
+
+                <div class="burger-menu" onclick="toggleMobileMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
+            <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+            <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
+            <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+            <a href="./../biographie/index.html" onclick="closeMobileMenu()">BLOG</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Plan Pluriannuel de Travaux Copropriété</h1>
+            <p>Les 10 choses à connaître sur le PPPT</p>
+        </div>
+
+        <div class="intro">
+            <p>Depuis l'entrée en vigueur de la loi Climat et Résilience, le <strong>Projet de Plan Pluriannuel de Travaux (PPPT)</strong> est devenu un outil incontournable pour les copropriétés. Que vous soyez syndic, copropriétaire ou professionnel de l'immobilier, voici les <strong>10 points essentiels</strong> à maîtriser pour comprendre et mettre en œuvre efficacement ce dispositif.</p>
+        </div>
+
+
+        <div class="content">
+            <div class="question-card" onclick="toggleAnswer(1)">
+                <div class="question-title">
+                    <span class="question-number">1</span>
+                    Qu'est-ce que le PPPT ?
+                    <span class="toggle-icon" id="icon-1">▼</span>
+                </div>
+                <div class="answer" id="answer-1">
+                    <p>Le PPPT est un document stratégique qui liste les travaux à réaliser dans les parties communes d'une copropriété sur une période de 10 ans. Il vise à :</p>
+                    <ul>
+                        <li>Planifier les travaux des copropriétés</li>
+                        <li>Assurer la conservation du bâti</li>
+                        <li>Améliorer la performance énergétique du bâtiment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(2)">
+                <div class="question-title">
+                    <span class="question-number">2</span>
+                    Quelle est la différence entre PPPT et PPT ?
+                    <span class="toggle-icon" id="icon-2">▼</span>
+                </div>
+                <div class="answer" id="answer-2">
+                    <p>Le PPPT est le projet initial, élaboré à partir d'une analyse technique. Une fois voté en assemblée générale, il devient le <strong>PPT (Plan Pluriannuel de Travaux)</strong> qui engage la copropriété à réaliser les travaux selon l'échéancier prévu.</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(3)">
+                <div class="question-title">
+                    <span class="question-number">3</span>
+                    Quelles copropriétés sont concernées ?
+                    <span class="toggle-icon" id="icon-3">▼</span>
+                </div>
+                <div class="answer" id="answer-3">
+                    <div class="highlight-box">
+                        <strong>Depuis le 1er janvier 2025</strong>, toutes les copropriétés de plus de 15 ans sont concernées, <strong>sans condition de nombre de lots</strong>. Seule exception : si un DTG conduit à l'absence de travaux nécessaires pendant 10 ans.
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(4)">
+                <div class="question-title">
+                    <span class="question-number">4</span>
+                    Que contient un PPPT ?
+                    <span class="toggle-icon" id="icon-4">▼</span>
+                </div>
+                <div class="answer" id="answer-4">
+                    <p>Le PPPT doit inclure :</p>
+                    <ul>
+                        <li>Une liste des travaux nécessaires</li>
+                        <li>Une estimation des coûts</li>
+                        <li>Un classement par priorité</li>
+                        <li>Un échéancier sur 10 ans</li>
+                        <li>Une évaluation de la performance énergétique et de la réduction des émissions de gaz à effet de serre</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(5)">
+                <div class="question-title">
+                    <span class="question-number">5</span>
+                    Qui peut réaliser un PPPT ?
+                    <span class="toggle-icon" id="icon-5">▼</span>
+                </div>
+                <div class="answer" id="answer-5">
+                    <p>Le PPPT doit être réalisé par un <strong>professionnel certifié et indépendant</strong> :</p>
+                    <ul>
+                        <li>Bureau d'études</li>
+                        <li>Architecte</li>
+                        <li>Thermicien</li>
+                        <li>Diagnostiqueur immobilier</li>
+                    </ul>
+                    <div class="highlight-box">
+                        Ce professionnel doit fournir une <strong>attestation d'assurance responsabilité civile</strong> précisant ses compétences.
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(6)">
+                <div class="question-title">
+                    <span class="question-number">6</span>
+                    Comment est voté le PPT ?
+                    <span class="toggle-icon" id="icon-6">▼</span>
+                </div>
+                <div class="answer" id="answer-6">
+                    <p>La procédure se déroule en plusieurs étapes :</p>
+                    <ol>
+                        <li>Vote en AG pour lancer le PPPT (majorité simple)</li>
+                        <li>Présentation du PPPT en AG suivante</li>
+                        <li>Vote d'adoption du PPT (majorité absolue)</li>
+                        <li>Mise en œuvre des travaux par le syndic</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(7)">
+                <div class="question-title">
+                    <span class="question-number">7</span>
+                    Comment financer les travaux ?
+                    <span class="toggle-icon" id="icon-7">▼</span>
+                </div>
+                <div class="answer" id="answer-7">
+                    <p>Le financement des <strong>travaux</strong> alimente par une cotisation annuelle des copropriétaires. Ce fonds doit représenter :</p>
+                    <ul>
+                        <li>Au moins <strong>2,5 %</strong> du montant estimé des travaux</li>
+                        <li>Ou <strong>5 %</strong> du budget prévisionnel</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(8)">
+                <div class="question-title">
+                    <span class="question-number">8</span>
+                    Quels sont les avantages du PPPT ?
+                    <span class="toggle-icon" id="icon-8">▼</span>
+                </div>
+                <div class="answer" id="answer-8">
+                    <p>Le PPPT permet :</p>
+                    <ul>
+                        <li>D'anticiper les dépenses</li>
+                        <li>De sécuriser juridiquement les décisions</li>
+                        <li>De valoriser le patrimoine immobilier</li>
+                        <li>De prévenir les sinistres et désordres techniques</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(9)">
+                <div class="question-title">
+                    <span class="question-number">9</span>
+                    Que se passe-t-il en cas de non-respect ?
+                    <span class="toggle-icon" id="icon-9">▼</span>
+                </div>
+                <div class="answer" id="answer-9">
+                    <p>Les autorités compétentes (maire, préfet, EPCI) peuvent exiger la transmission du PPT. En cas de manquements, elles peuvent <strong>imposer un plan d'office</strong> aux frais du syndic et des copropriétaires.</p>
+                </div>
+            </div>
+
+            <div class="question-card" onclick="toggleAnswer(10)">
+                <div class="question-title">
+                    <span class="question-number">10</span>
+                    Pourquoi faire appel à un bureau d'études thermiques ?
+                    <span class="toggle-icon" id="icon-10">▼</span>
+                </div>
+                <div class="answer" id="answer-10">
+                    <p>Un bureau comme <strong>ENELIV</strong>, spécialisé depuis 2009, offre :</p>
+                    <ul>
+                        <li>Une analyse technique complète</li>
+                        <li>Une expertise en rénovation énergétique</li>
+                        <li>Un accompagnement personnalisé pour chaque copropriété</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
+            <p style="margin-top: 15px; font-size: 1.1em;">Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons rigueur et transparence, que ce soit pour un audit réglementaire, une étude énergétique ou une rénovation performante.</p>
+            <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 ENELIV - Guide PPPT pour Copropriétés | Tous droits réservés</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleAnswer(num) {
+            const answer = document.getElementById(`answer-${num}`);
+            const icon = document.getElementById(`icon-${num}`);
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('show');
+            
+            // Fermer les autres dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const burgerMenu = document.querySelector('.burger-menu');
+            
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+
+        // Fermer les dropdowns en cliquant ailleurs
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(11, 48, 65, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#0B3041';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Logo click redirect
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.addEventListener('click', function() {
+                window.location.href = './../index.html';
+            });
+        }
+
+        // Animation au scroll
+        const cards = document.querySelectorAll('.question-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.5s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
