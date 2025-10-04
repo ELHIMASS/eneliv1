@@ -20,6 +20,7 @@ body {
     line-height: 2;
     color: #333;
     background: #f8f9fa;
+    
 }
 
 /* HEADER */
@@ -599,7 +600,7 @@ input:focus, textarea:focus, select:focus {
         grid-template-columns: 1fr;
     }
     .contact-form {
-        padding: 1.5rem;
+        padding: 0.7rem;
     }
     .map-container {
         padding: 1rem;
@@ -615,55 +616,92 @@ input:focus, textarea:focus, select:focus {
         width: 100%;
     }
 }
+.mobile-dropdown {
+    width: 100%;
+}
+
+.mobile-dropdown > a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.mobile-dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.mobile-dropdown-menu.active {
+    max-height: 500px;
+}
+
+.mobile-dropdown-menu a {
+    padding: 12px 20px 12px 40px;
+    font-size: 14px;
+}
   
 </style>
    
 </head>
 <body>
     <header class="header">
-        <div class="nav-container">
-            <div class="logo" onclick="window.location.href='./index.html'">
-                <img src="../logoblanc.png" alt="Logo ENELIV">
-                <div class="logo-placeholder" style="display: none;">ENELIV</div>
-            </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="../nous/index.html">QUI SOMMES NOUS ?</a></li>
-
-                    <li><a href="./../besoin/index.html">VOS BESOINS </a>
-
-
-                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
-                        <a href="javascript:void(0)">NOS EXPERTISE ▼</a>
-                        <ul id="expertiseDropdown" class="dropdown-menu">
-                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
-                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
-                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
-                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="./../contacter/index.html" style="color:#7FB77E">CONTACT</a></li>
-                    <li><a href="./../biographie/index.html">BLOG</a></li>
-                </ul>
-
-                <div class="burger-menu" onclick="toggleMobileMenu()">
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                </div>
-            </nav>
+    <div class="nav-container">
+        <div class="logo" onclick="window.location.href='./index.html'">
+            <img src="../logoblanc.png" alt="Logo ENELIV">
+            <div class="logo-placeholder" style="display: none;">ENELIV</div>
         </div>
-        <!-- Mobile Menu -->
-         <div class="mobile-menu" id="mobileMenu">
-        <a href="./nous/index.html" onclick="closeMobileMenu()" style="color: #555;">QUI SOMMES NOUS ?</a>
-        <a href="#services" onclick="closeMobileMenu()">Vos besoins</a>
-        <a href="#expertise" onclick="closeMobileMenu()">Notre expertise</a>
-        <a href="../contacter/index.html" onclick="closeMobileMenu()">Contact</a>
-        <a href="#actualite" onclick="closeMobileMenu()">Actualités</a>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+
+                <li><a href="./../besoin/index.html">VOS BESOINS </a></li>
+
+                <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                    <a href="javascript:void(0)">NOS EXPERTISE ▼</a>
+                    <ul id="expertiseDropdown" class="dropdown-menu">
+                        <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                        <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                        <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                        <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                        <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="./../contacter/index.html" style="color:#7FB77E">CONTACT</a></li>
+                <li><a href="./../biographie/index.html">BLOG</a></li>
+            </ul>
+
+            <div class="burger-menu" onclick="toggleMobileMenu()">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
+        </nav>
     </div>
-    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="./../nous/index.html" onclick="closeMobileMenu()" style="color: #7FB77E;">QUI SOMMES NOUS ?</a>
+        <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+        
+        <!-- Dropdown pour mobile -->
+        <div class="mobile-dropdown">
+            <a href="javascript:void(0)" onclick="toggleMobileDropdown('mobileExpertiseDropdown')">NOS EXPERTISE ▼</a>
+            <div id="mobileExpertiseDropdown" class="mobile-dropdown-menu">
+                <a href="./../dpe/index.html" onclick="closeMobileMenu()">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a>
+                <a href="./../DTG/index.html" onclick="closeMobileMenu()">DIAGNOSTIC TECHNIQUE GLOBAL</a>
+                <a href="./../ppt/index.html" onclick="closeMobileMenu()">PLAN PLURIANNUEL DE TRAVAUX</a>
+                <a href="./../AE/index.html" onclick="closeMobileMenu()">AUDIT ÉNERGÉTIQUE</a>
+                <a href="./../renov/index.html" onclick="closeMobileMenu()">MON ACCOMPAGNATEUR RÉNOV'</a>
+            </div>
+        </div>
+        
+        <a href="../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
+        <a href="../biographie/index.html" onclick="closeMobileMenu()">BLOG</a>
+    </div>
+</header>
 
     <main class="main-content">
         <div class="container">
@@ -1193,8 +1231,13 @@ input:focus, textarea:focus, select:focus {
         console.error("Erreur lors de l'envoi :", error);
         alert("Une erreur est survenue, veuillez réessayer.");
     }
+
 }
 
+function toggleMobileDropdown(id) {
+    const dropdown = document.getElementById(id);
+    dropdown.classList.toggle('active');
+}
 
 document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
