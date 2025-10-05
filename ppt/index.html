@@ -1262,6 +1262,14 @@
         object-fit: contain;
         transition: transform 0.3s ease;
     }
+    .power{
+        width: 360px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;           
+        object-fit: cover;
+
+    }
 }
 
 /* Media Query pour écrans de 768px et moins (smartphones et petites tablettes) */
@@ -1367,8 +1375,7 @@
     }
 }
 .power{
-            width: 900px;
-            /*je veux que l image soit centre au milieu  */
+            max-width: 900px;
             display: block;
             margin-left: auto;
             margin-right: auto;           
@@ -1430,14 +1437,9 @@
     <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
     
     <!-- Section Vos Besoins avec sous-menus -->
-    <div class="mobile-besoins" id="mobileBesoins">
-        <button class="mobile-besoins-toggle" onclick="toggleMobileBesoins()">VOS BESOINS</button>
-        <div class="mobile-besoins-content">
-            <a href="./../besoin/index.html#particulier" onclick="closeMobileMenu()">Particulier</a>
-            <a href="./../besoin/index.html#coproprié" onclick="closeMobileMenu()">Copropriété</a>
-            <a href="./../besoin/index.html#tertiaire" onclick="closeMobileMenu()">Tertiaire</a>
-            <a href="./../besoin/index.html#industrie" onclick="closeMobileMenu()">Industrie</a>
-        </div>
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
+        
     </div>
 
     <!-- Section Notre Expertise avec sous-menus -->
