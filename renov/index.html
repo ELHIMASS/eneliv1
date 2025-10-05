@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: 'Franklin Gothic Medium', 'Arial Nbullet', Arial, sans-serif;
             line-height: 3;
             color: #333;
             margin-top: 80px;
@@ -278,21 +278,21 @@
             font-weight: bold;
         }
 
-        .arrow-list {
+        .bullet-list {
             list-style: none;
-            padding: 0;
             margin: 1rem 0;
+            line-height: 2;
+
         }
 
-        .arrow-list li {
+        .bullet-list .high {
             margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
             position: relative;
             font-size: 18px;
             line-height: 3;
         }
 
-        .arrow-list li::before {
+        .bullet-list li::before {
             position: absolute;
             left: 0;
             color: #0B3041;
@@ -307,14 +307,12 @@
 
         .bullet-list li {
             margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
             position: relative;
             font-size: 18px;
             line-height: 1.4;
         }
 
         .bullet-list li::before {
-            content: "⤷";
             position: absolute;
             left: 0;
             color: #333;
@@ -1100,8 +1098,8 @@ h1 {
                     Elle permet de financer les <span class="highlight-blue">travaux d'intérêt privé</span> dans une maison ou un appartement individuel : isolation, chauffage, ventilation, etc.
                 </p>
 
-                <h4 class="highlight"> Qui peut en bénéficier ?</h4>
-                <ul class="arrow-list">
+                <h4 class="info-title"> Qui peut en bénéficier ?</h4>
+                <ul class="bullet-list">
                     <li>Tous les <span class="highlight-blue">propriétaires occupants ou bailleurs</span>.</li>
                     <li><span class="highlight-blue">Résidence principale</span> ou mise en location.</li>
                     <li>Logement <span class="highlight-blue">construit depuis plus de 15 ans</span> (très modestes, modestes, intermédiaires, hauts revenus).</li>
@@ -1140,44 +1138,42 @@ h1 {
 
         <div class="step-section">
             <div class="step-header">Étapes pour MaPrimeRénov' Individuelle</div>
-                <div class="step-content">
-                    <ol class="arrow-list">
+                <div class="bullet-list">
+                    
                         <li><span class="highlight">1 - Vérifier votre éligibilité</span><br>
-                            <ul class="bullet-list">
-                                <li>être <span class="highlight-blue">propriétaire occupant ou bailleur</span></li>
-                                <li>Le logement doit être votre <span class="highlight-blue">résidence principale</span> construite depuis <span class="highlight-blue">plus de 15 ans</span> (ou 2 ans pour remplacement de chaudière fioul).</li>
-                            </ul>
+                                <li class="li">être <span class="highlight-blue">propriétaire occupant ou bailleur</span></li>
+                                <li class="li">Le logement doit être votre <span class="highlight-blue">résidence principale</span> construite depuis <span class="highlight-blue">plus de 15 ans</span> (ou 2 ans pour remplacement de chaudière fioul).</li>
                         </li>
                         <li><span class="highlight">2 - Respecter les plafonds de revenus</span><br>
-                            Respecter les plafonds selon votre profil fiscal (très modestes, modestes, intermédiaires, hauts revenus).
+                          <li>  Respecter les plafonds selon votre profil fiscal (très modestes, modestes, intermédiaires, hauts revenus).</li>
                         </li>
                         <li><span class="highlight">3 - Réaliser un audit énergétique</span> (si logement classé <span class="highlight">1 - F ou G</span>)<br>
-                            Obligatoire depuis 2025 pour les logements énergivores.
+                           <li> Obligatoire depuis 2025 pour les logements énergivores.
                         </li>
                         <li><span class="highlight">4 - Vérifier les entreprises RGE</span><br>
-                            S'adresser aux entreprises <span class="highlight-blue">reconnues garantes de l'environnement</span> avec amélioration de la classe DPE.
+                            <li>S'adresser aux entreprises <span class="highlight-blue">reconnues garantes de l'environnement</span> avec amélioration de la classe DPE.
                         </li>
                         <li><span class="highlight">5 - Créer un compte maprimerenov.gouv.fr</span><br>
-                            Plateforme officielle pour déposer la demande.
+                            <li>Plateforme officielle pour déposer la demande.
                         </li>
                         <li><span class="highlight">6 - Fournir les documents</span><br>
-                            d'avis d'imposition, devis des travaux, audit si nécessaire.
+                           <li> d'avis d'imposition, devis des travaux, audit si nécessaire.
                         </li>
                         <li><span class="highlight">7 - Choisir des entreprises certifiées RGE</span><br>
-                            Travaux réalisés par des <span class="highlight-blue">professionnels Reconnu Garant de l'Environnement</span>.
+                            <li>Travaux réalisés par des <span class="highlight-blue">professionnels Reconnu Garant de l'Environnement</span>.
                         </li>
                         <li><span class="highlight">8 - Déposer la demande de subvention</span><br>
-                            Inscrire les devis, audit, et qualifications.
+                            <li>Inscrire les devis, audit, et qualifications.
                         </li>
                         <li><span class="highlight">9 - Attendre l'acceptation</span><br>
-                            Notification d'accord avant de réaliser les travaux.
+                            <li>Notification d'accord avant de réaliser les travaux.
                         </li>
                         <li><span class="highlight">10 - Réaliser les travaux</span><br>
-                            Respecter les délais et les prestations validées.<br>
-                            Conserver les <span class="highlight-blue">factures et attestations de conformité</span>.
+                            <li>Respecter les délais et les prestations validées.<br>
+                            <li>Conserver les <span class="highlight-blue">factures et attestations de conformité</span>.
                         </li>
                         <li><span class="highlight">11 - Demander le versement de la prime</span><br>
-                            Une fois les travaux terminés, transmettre les factures et justificatifs via la plateforme, accompagné généralement sur demande du bénéficiaire.
+                            <li>Une fois les travaux terminés, transmettre les factures et justificatifs via la plateforme, accompagné généralement sur demande du bénéficiaire.
                         </li>
                     </ol>
                 </div>
@@ -1207,7 +1203,7 @@ h1 {
                     Elle finance les <span class="highlight-blue">travaux d'intérêt collectif</span> dans les parties communes ou privatives d'un immeuble en copropriété, sans condition de revenus.
                 </p>
 
-                <h4 class="highlight"> Qui peut en bénéficier ?</h4>
+                <h4 class="info-title"> Qui peut en bénéficier ?</h4>
                 <ul class="bullet-list">
                     <li><span class="highlight-blue">Copropriétés immatriculées</span> au registre national.</li>
                     <li>Immeubles de <span class="highlight-blue">plus de 15 ans</span>.</li>
@@ -1248,7 +1244,7 @@ h1 {
         <div class="step-section">
             <div class="step-header">Étapes pour MaPrimeRénov' Copropriété</div>
             <div class="step-content">
-                <ol class="arrow-list">
+                <ol class="bullet-list">
                     <li><span class="highlight">1 - Vérifier l'éligibilité de la copropriété</span><br>
                         <ul class="bullet-list">
                             <li>Immeuble de <span class="highlight-blue">plus de 15 ans</span></li>
