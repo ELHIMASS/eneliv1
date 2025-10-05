@@ -411,13 +411,15 @@ input:focus, textarea:focus, select:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Footer Professionnel */
+ /* Footer Professionnel */
         .footer {
             background: #1a202c;
             color: white;
             padding: 80px 0 30px;
             margin-top: 0;
             text-align: start;
+           
+
         }
 
         .footer-content {
@@ -438,6 +440,7 @@ input:focus, textarea:focus, select:focus {
             color: white;
             line-height: 1.8;
             margin-bottom: 10px;
+            text-align: justify;
         }
 
         .footer-section ul {
@@ -524,6 +527,7 @@ input:focus, textarea:focus, select:focus {
         .footer-links {
             display: flex;
             gap: 30px;
+            display: none;
         }
 
         .footer-links a {
@@ -536,54 +540,7 @@ input:focus, textarea:focus, select:focus {
             color: #7FB77E;
         }
 
-        /* Newsletter */
-        .newsletter {
-            background: #2d3748;
-            padding: 17px;
-            border-radius: 12px;
-            margin-top: 20px;
-            width: 300px;
-        }
-
-        .newsletter h4 {
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter input {
-            flex: 1;
-            padding: 4px;
-            border: none;
-            border-radius: 8px;
-            background: #4a5568;
-            color: white;
-            width: 70px;
-        }
-
-        .newsletter input::placeholder {
-            color: #a0aec0;
-        }
-
-        .newsletter button {
-            background: #7FB77E;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .newsletter button:hover {
-            background: #5a67d8;
-        }
-
-
+       
 /* RESPONSIVE */
 @media (max-width: 983px) {
     .nav-menu {
@@ -863,7 +820,7 @@ input:focus, textarea:focus, select:focus {
 
      <!-- Footer Professionnel -->
     <footer class="footer">
-        <div class="container">
+        <div class="containers">
             <div class="footer-content">
                 <!-- Informations de l'entreprise -->
                 <div class="footer-section company-info">
@@ -871,12 +828,7 @@ input:focus, textarea:focus, select:focus {
                         <img src="./../logoblanc.png" alt="" style="width: 150px;">
                     </div>
                     <p>Votre bureau d'études engagé pour la performance énergétique et la durabilité. Spécialisé dans l'audit énergétique, l'étude thermique et l'accompagnement réglementaire.</p>
-                    <div class="social-links">
-                        <a href="#" title="Facebook">ⓕ</a>
-                        <a href="#" title="LinkedIn">💼</a>
-                        <a href="#" title="Twitter">🐦</a>
-                        <a href="#" title="YouTube">📺</a>
-                    </div>
+                    
                 </div>
 
                 <!-- Nos services -->
@@ -895,35 +847,21 @@ input:focus, textarea:focus, select:focus {
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <div class="contact-item">
-                        <i>📍</i>
-                        <p>13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
+                        <p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
                     </div>
                     <div class="contact-item">
-                        <i>📞</i>
-                        <p>+33 1 23 45 67 89</p>
+                        
+                        <p>☎     +33 6 63 34 98 10</p>
                     </div>
                     <div class="contact-item">
-                        <i>✉️</i>
-                        <p>contact@eneliv.fr</p>
+                        <p>✉︎ contact@eneliv.fr</p>
                     </div>
                     <div class="contact-item">
-                        <i>🕒</i>
-                        <p>Lun-Ven: 8h30-18h30<br>Sam: 9h00-12h00</p>
+                        <p>🕒 Lun-Ven: 8h30-18h30<br>Sam: 9h00-12h00</p>
                     </div>
                 </div>
 
-                <!-- Newsletter -->
-                <div class="footer-section">
-                    <h3>Actualités & Conseils</h3>
-                    <p>Recevez nos dernières actualités et conseils en efficacité énergétique</p>
-                    <div class="newsletter">
-                        <h4>Newsletter</h4>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Votre email" required>
-                            <button type="submit">S'abonner</button>
-                        </form>
-                    </div>
-                </div>
+                
             </div>
 
             <!-- Footer Bottom -->
