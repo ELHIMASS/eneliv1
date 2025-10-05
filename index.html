@@ -466,18 +466,9 @@
             background-clip: text;
         }
 
-        @media screen and (max-width: 1600px) {
-            .section-titles {
-            font-size: 20px;
-            line-height: 2.0;
-            color: #1a202c;
-            margin: 0;
-            font-weight: 400;
-            letter-spacing: 1px;
-            width: 1200px;
-        }
+       
             
-        }
+        
         
         .services-list {
             margin-top: 5px;
@@ -502,7 +493,7 @@
             justify-content: center;
             width: 24px;
             height: 24px;
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: #7FB77E;
             color: white;
             border-radius: 50%;
             font-weight: bold;
@@ -627,50 +618,8 @@
             }
         }
         
-        @media (max-width: 768px) {
-            body {
-                width: 100%;
-            }
-            
-            .eneliv-sections {
-                flex-direction: column;
-                text-align: center;
-                gap: 0px;
-            }
-            
-            .section-titles {
-                font-size: 18px;
-                line-height: 1.6;
-            }
-            
-            .services-list {
-                margin-top: 25px;
-                justify-content: center;
-            }
-            
-            .contact-button {
-                padding: 16px 32px;
-                font-size: 15px;
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .button-wrapper {
-                width: 100%;
-                height: 40px;
-            }
-        }
         
-        @media (max-width: 480px) {
-           
-            body {
-                width: 100%;
-            }
-            
-            .section-titles {
-                font-size: 16px;
-            }
-        }
+        
 /* Responsive pour mobile */
 @media (max-width: 983px) {
     .hero{
@@ -707,10 +656,7 @@
         text-align: center;
         gap: 0;
     }
-    .contact-button {
-        margin-right: 0;
-        position: relative;
-    }
+    
 
     .section-titles {
         font-size: 18px;
@@ -1646,10 +1592,6 @@
             overflow: hidden;
         }
 
-      
-
-        
-
     
         
         .section-titlese {
@@ -2263,14 +2205,15 @@
             }
             
             .contact-button {
-                margin-right: 0;
-                position: relative;
-                width: 100%;
-                max-width: 280px;
-                padding: 26px 28px;
-                font-size: 15px;
-                margin-top: 15px;
-            }
+        margin-right: 0px;
+        position: relative;
+        width: 47%;
+        max-width: 280px;
+        padding: 18px 17px;
+        font-size: 15px;
+        margin-top: 15px;
+        right: 242px;
+    }
             
             /* Grid des expertises améliorée */
             .expertises-grid {
@@ -2776,11 +2719,8 @@
             </div>
             
             <div class="button-wrapper">
-                <button class="contact-button" onclick="contactConsultant()">
+            <button class="cta-button" onclick="window.location.href='./contacter/index.html'" >Je demande mon devis</button>
 
-                Je demande mon devis  
-                 <span class="icon">→</span>
-                </button>
                 
                
             </div>
@@ -2887,7 +2827,7 @@
         </div>
         
         <div class="container">
-            <h2 class="section-titlese" style="color: #7FB77E;">Comment on échange ensemble ?</h2>
+            <h2 class="section-title" style="margin-bottom: 60px;" >Comment on échange ensemble ?</h2>
 
             <!-- Étape 01 -->
             <div class="steps-step" data-step="1">
@@ -2897,12 +2837,9 @@
                     <div class="steps-step-description">
                         <p>Vous nous contactez pour une étude énergétique ou technique visant à répondre à vos obligations réglementaires, mieux comprendre votre édifice et identifier des solutions d'amélioration durables.</p>
                     </div>
-                    <div class="button-wrapper" style="margin-left: 250px;">
-                <button class="contact-button" onclick="contactConsultant()">
+                    <div class="button-wrapper" >
+                            <button class="cta-button" onclick="window.location.href='./contacter/index.html'">Parler à un expert</button>
 
-                Parler à un expert  
-                 <span class="icon">→</span>
-                </button>
                 
                
             </div>
