@@ -132,7 +132,7 @@
             color: #333;
         }
 
-         /* Header Styles - Identique à l'original */
+        /* Header */
         .header {
             background-color: #0B3041;
             color: white;
@@ -142,7 +142,6 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: background 0.3s ease, backdrop-filter 0.3s ease;
         }
 
         .nav-container {
@@ -159,12 +158,6 @@
             cursor: pointer;
         }
 
-        .logo img {
-            height: 1.2cm;
-            width: 5.4cm;
-            object-fit: contain;
-        }
-
         .logo-placeholder {
             width: 120px;
             height: 50px;
@@ -178,7 +171,6 @@
             font-size: 1.2rem;
         }
 
-
         .nav-menu {
             list-style: none;
             display: flex;
@@ -186,81 +178,37 @@
             align-items: center;
         }
 
-        .nav-menu li {
-            position: relative;
-            cursor: pointer;
-        }
-
         .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            cursor: pointer;
             font-size: 14px;
-            padding: 0.5rem 0;
-            display: block;
-            transition: color 0.3s ease;
         }
 
         .nav-menu a:hover {
             color: #7FB77E;
         }
 
-        .dropdown-menu {
-            position: absolute;
-            margin-top: 16px;
-            left: 0;
-            background-color: #0B3041;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            min-width: 327px;
-            z-index: 999;
-        }
-        .dropdown-menu li {
-            list-style: none;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.8rem;
-            color: white;
-            font-weight: 500;
-            transition: background 0.3s;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            font-size: 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-menu a:hover {
-            background-color: rgba(127, 183, 126, 0.2);
-        }
-
-        .dropdown-menu li:last-child a {
-            border-bottom: none;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
+        /* Burger Menu */
         .burger-menu {
             display: none;
             flex-direction: column;
             cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
         }
 
         .burger-line {
-            width: 19px;
-            height: 2px;
+            width: 28px;
+            height: 3px;
             background: white;
-            margin: 3px 0;
+            margin: 4px 0;
             transition: all 0.3s ease;
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .burger-menu.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
+            transform: rotate(45deg) translate(8px, 8px);
         }
 
         .burger-menu.active .burger-line:nth-child(2) {
@@ -268,39 +216,166 @@
         }
 
         .burger-menu.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
+        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            top: 0;
+            right: -100%;
+            width: min(85vw, 400px);
+            height: 100vh;
+            background: rgba(11, 48, 65, 0.98);
+            backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 3rem;
-            transition: left 0.3s ease;
+            padding: 100px 0 40px 0;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
         }
 
         .mobile-menu.active {
-            left: 0;
+            right: 0;
         }
 
-        .mobile-menu a {
+        /* Mobile Menu Links */
+        .mobile-nav-section {
+            padding: 0 30px;
+        }
+
+        .mobile-nav-item {
+            margin-bottom: 8px;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            padding: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            width: 80%;
-            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
         }
 
+        .mobile-nav-link:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        /* Dropdown Mobile */
+        .mobile-dropdown {
+            margin-bottom: 8px;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .mobile-dropdown-toggle:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown.active .dropdown-arrow::after {
+            transform: rotate(-135deg);
+        }
+
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 20px;
+        }
+
+        .mobile-dropdown.active .mobile-dropdown-content {
+            max-height: 400px;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 4px;
+            border-left: 2px solid transparent;
+        }
+
+        .mobile-dropdown-item:hover {
+            background: rgba(127, 183, 126, 0.1);
+            color: #7FB77E;
+            border-left-color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        /* Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 983px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
         /* Styles pour les autres sections */
         .hero {
             height: 60vh;
@@ -2603,48 +2678,74 @@
     </style>
 </head>
 <body>
-     <!-- Header -->
-    <header class="header">
+      <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="./logoblanc.png" alt="Logo ENELIV" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+                <img src="./logoblanc.png" alt="Logo" >
+                <div class="logo-placeholder" style="display: none;">LOGO</div>
             </div>
             <nav>
                 <ul class="nav-menu">
                     <li><a href="./nous/index.html">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="./besoin/index.html" >VOS BESOINS</a></li>
+                    <li><a href="./besoin/index.html">VOS BESOINS</a></li>
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
-                            <li><a href="./dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
-                            <li><a href="./DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
-                            <li><a href="./ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                            <li><a href="./AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
-                            <li><a href="./renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        <li><a href="./dpe/index.html" >DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
+                        <li><a href="./DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                        <li><a href="./ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                        <li><a href="./AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                        <li><a href="./renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
                     <li><a href="./contacter/index.html">CONTACT</a></li>
                     <li><a href="./biographie/index.html">BLOG</a></li>
                 </ul>
 
-                <div class="burger-menu" onclick="toggleMobileMenu()">
+                <div class="burger-menu" id="burgerMenu">
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
                 </div>
             </nav>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
-            <a href="#" onclick="closeMobileMenu()">VOS BESOINS</a>
-            <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
-            <a href="#" onclick="closeMobileMenu()">CONTACT</a>
-            <a href="#" onclick="closeMobileMenu()">ACTUALITÉS</a>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-item">
+                <a href="./nous/index.html" class="mobile-nav-link">QUI SOMMES NOUS ?</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./besoin/index.html" class="mobile-nav-link">VOS BESOINS</a>
+            </div>
+            
+            <div class="mobile-dropdown" id="mobileExpertise">
+                <button class="mobile-dropdown-toggle">
+                    NOTRE EXPERTISE
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="./dpe/index.html" class="mobile-dropdown-item">DPE</a>
+                    <a href="./DTG/index.html" class="mobile-dropdown-item">DTG</a>
+                    <a href="./ppt/index.html" class="mobile-dropdown-item">Plan Pluriannuel</a>
+                    <a href="./AE/index.html" class="mobile-dropdown-item">Audit Énergétique</a>
+                    <a href="./renov/index.html" class="mobile-dropdown-item">Accompagnateur Rénov'</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <a href="./contacter/index.html" class="mobile-nav-link">CONTACT</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./biographie/index.html" class="mobile-nav-link">BLOG</a>
+            </div>
         </div>
+    </div>
     </header>
 
     <!-- Hero Section with Slider -->
@@ -3111,152 +3212,74 @@ function initHeroSlider() {
     }
 }
 
-// Mobile Menu Functions
+ const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const body = document.body;
+
         function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const burgerMenu = document.querySelector('.burger-menu');
+            const isActive = mobileMenu.classList.contains('active');
             
-            mobileMenu.classList.toggle('active');
-            burgerMenu.classList.toggle('active');
-        }
-
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const burgerMenu = document.querySelector('.burger-menu');
-            
-            mobileMenu.classList.remove('active');
-            burgerMenu.classList.remove('active');
-        }
-
-        // Dropdown functions
-        function toggleDropdown(id) {
-            // Fermer les autres menus
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu.id !== id) {
-                    menu.classList.remove('show');
-                }
-            });
-
-            // Toggle le menu cliqué
-            const menu = document.getElementById(id);
-            if (menu) {
-                menu.classList.toggle('show');
+            if (isActive) {
+                mobileMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                body.style.overflow = '';
+            } else {
+                mobileMenu.classList.add('active');
+                burgerMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
             }
         }
 
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', (e) => {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const burgerMenu = document.querySelector('.burger-menu');
-                
-                if (!burgerMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
-                    closeMobileMenu();
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+            
+            const isActive = dropdown.classList.contains('active');
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.classList.remove('active');
                 }
             });
+            
+            dropdown.classList.toggle('active');
+        }
 
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function (event) {
-                const isClickInside = event.target.closest('.dropdown');
-                if (!isClickInside) {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.classList.remove('show');
-                    });
+        burgerMenu.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.closest('.mobile-dropdown');
+                toggleMobileDropdown(dropdown.id);
+            });
+        });
+
+        document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!this.classList.contains('mobile-dropdown-toggle')) {
+                    closeMobileMenu();
                 }
             });
         });
 
-
-// ===== DROPDOWN MOBILE =====
-function toggleMobileDropdown(dropdownId) {
-    console.log('Toggling dropdown:', dropdownId);
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 983) {
+                closeMobileMenu();
+            }
+        });
     
-    const dropdown = document.getElementById(dropdownId);
-    if (!dropdown) {
-        console.error('Dropdown non trouvé:', dropdownId);
-        return;
-    }
-    
-    const isActive = dropdown.classList.contains('active');
-    
-    // Fermer tous les autres dropdowns
-    document.querySelectorAll('.mobile-dropdown').forEach(otherDropdown => {
-        if (otherDropdown.id !== dropdownId) {
-            otherDropdown.classList.remove('active');
-        }
-    });
-    
-    // Toggle le dropdown cliqué
-    if (isActive) {
-        dropdown.classList.remove('active');
-    } else {
-        dropdown.classList.add('active');
-    }
-}
-
-// ===== DROPDOWN DESKTOP =====
-function toggleDropdown(id) {
-    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-        if (menu.id !== id) {
-            menu.classList.remove('show');
-        }
-    });
-
-    const menu = document.getElementById(id);
-    if (menu) {
-        menu.classList.toggle('show');
-    }
-}
-
-// ===== AUTRES FONCTIONS =====
-function contactConsultant() {
-    window.location.href = './contacter/index.html';
-}
-
-// ===== INITIALISATION =====
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM chargé, initialisation...');
-    
-    // Vérifier que les éléments existent
-    const burgerMenu = document.querySelector('.burger-menu');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    console.log('Burger menu trouvé:', !!burgerMenu);
-    console.log('Mobile menu trouvé:', !!mobileMenu);
-    
-    // Initialiser le slider
-    initHeroSlider();
-    
-    // Event listener pour le burger menu (avec delegation)
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.burger-menu')) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Burger menu cliqué');
-            toggleMobileMenu();
-        }
-        
-        // Fermer dropdowns desktop si clic ailleurs
-        if (!e.target.closest('.dropdown')) {
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
-            });
-        }
-        
-        // Fermer menu mobile si clic sur overlay
-        if (e.target.id === 'mobileOverlay') {
-            closeMobileMenu();
-        }
-    });
-    
-    // Fermer menu avec Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && mobileMenuOpen) {
-            closeMobileMenu();
-        }
-    });
-    
+   
     // Logo click
     const logo = document.querySelector('.logo');
     if (logo) {
@@ -3292,20 +3315,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (header) {
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(11, 48, 65, 0.95)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.background = '#0B3041';
-                header.style.backdropFilter = 'none';
-            }
-        }
-    });
-    
+         
     // Steps animation
     const stepsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -3337,7 +3347,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.step-card').forEach(card => {
         cardsObserver.observe(card);
     });
-});
+
 
 // ===== TOUCH GESTURES =====
 document.addEventListener('DOMContentLoaded', function() {
