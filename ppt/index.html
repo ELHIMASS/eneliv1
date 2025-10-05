@@ -360,6 +360,8 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            background-color: #7FB77E;
+            text-decoration: none;
         }
 
       
@@ -1364,6 +1366,25 @@
         font-size: 16px;
     }
 }
+.power{
+            width: 900px;
+            /*je veux que l image soit centre au milieu  */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;           
+            object-fit: cover;
+
+        }
+
+        .powere {
+            width: 400px;
+            height: auto;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body>
@@ -1480,25 +1501,7 @@
 
         <h2 class="section-title">Quel est l'objectif du PPPT ?</h2>
 
-        <div class="objectives-section">
-            <p class="text-paragraph">Le PPPT poursuit plusieurs objectifs majeurs :</p>
-            
-            <ul class="arrow-list">
-                <li><span class="highlight">Préserver la sécurité et la santé</span> des occupants.</li>
-                <li><span class="highlight">Assurer la conservation</span> du bâti et des équipements collectifs.</li>
-                <li><span class="highlight">Améliorer la performance énergétique</span> des immeubles.</li>
-                <li><span class="highlight">Réduire les émissions de gaz à effet de serre.</span></li>
-                <li><span class="highlight">Anticiper les coûts et les interventions</span>, pour une gestion durable et préventive de la copropriété</li>
-            </ul>
-
-            <p class="text-paragraph">
-                Il constitue un <span class="highlight-blue">outil d'aide à la décision</span> pour les syndics et les copropriétaires, tout en facilitant les démarches de financement et de valorisation patrimoniale
-            </p>
-
-            <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un PPPT</a>
-            </div>
-        </div>
+       <img class="power" src="./../home/assets/PPTI.png" alt="">
 
         <h2 class="section-title">Qui est concerné par le PPPT ?</h2>
 
@@ -1531,25 +1534,30 @@
         </div>
 
         <h2 class="section-title">Quel est le contenu du livrable PPPT ?</h2>
+        <div class="content-section">
+            <div class="content-text">
+                <p class="text-paragraph">Le PPPT doit comporter les éléments suivants :</p>
+                
+                <ul class="arrow-list">
+                    <li><span class="highlight-blue">Liste des travaux</span> nécessaires à la sauvegarde, sécurité et performance énergétique.</li>
+                    <li><span class="highlight-blue">Estimation des gains énergétiques</span> et de réduction des émissions de GES.</li>
+                    <li><span class="highlight-blue">Estimation des coûts</span> des travaux.</li>
+                    <li><span class="highlight-blue">Classement par priorité</span> (urgence, impact, coût).</li>
+                    <li><span class="highlight-blue">Échéancier sur 10 ans.</span></li>
+                    <li><span class="highlight-blue">Intégration dans le carnet d'entretien</span> de l'immeuble</li>
+                </ul>
 
-        <div class="content-text">
-            <p class="text-paragraph">Le PPPT doit comporter les éléments suivants :</p>
-            
-            <ul class="arrow-list">
-                <li><span class="highlight-blue">Liste des travaux</span> nécessaires à la sauvegarde, sécurité et performance énergétique.</li>
-                <li><span class="highlight-blue">Estimation des gains énergétiques</span> et de réduction des émissions de GES.</li>
-                <li><span class="highlight-blue">Estimation des coûts</span> des travaux.</li>
-                <li><span class="highlight-blue">Classement par priorité</span> (urgence, impact, coût).</li>
-                <li><span class="highlight-blue">Échéancier sur 10 ans.</span></li>
-                <li><span class="highlight-blue">Intégration dans le carnet d'entretien</span> de l'immeuble</li>
-            </ul>
+                <p class="text-paragraph">
+                    Une fois voté, le PPPT devient un <span class="highlight-blue">PPT</span>, qui engage la copropriété à réaliser les travaux selon le calendrier prévu.
+                </p>
 
-            <p class="text-paragraph">
-                Une fois voté, le PPPT devient un <span class="highlight-blue">PPT</span>, qui engage la copropriété à réaliser les travaux selon le calendrier prévu.
-            </p>
+                <div class="cta-button-container">
+                    <a class="cta-button" href="./../contacter/index.html">Demander un PPPT</a>
+                </div>
+            </div>
+            <div>
+             <img class="powere" src="./../home/assets/livrable.png" alt="">
 
-            <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un PPPT</a>
             </div>
         </div>
 

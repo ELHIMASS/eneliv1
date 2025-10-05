@@ -238,6 +238,7 @@
             color: #0B3041;
             font-weight: bold;
         }
+       
 
         .info-section {
             background: #e9ecef;
@@ -256,11 +257,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0B3041;
-            border-radius: 50%;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
+        }
+
+        .info-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .info-content {
@@ -346,8 +348,7 @@
         }
 
         .step-header {
-            background: #0B3041;
-            color: white;
+            color: #0B3041;
             padding: 1rem;
             font-weight: bold;
             font-size: 1.1rem;
@@ -815,6 +816,194 @@
                 font-size: 2rem;
             }
         }
+        
+        .expertise-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 360px;
+    width: 270px;
+    cursor: pointer;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.expertise-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Plus d'espace pour l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Overlay léger pour le contraste */
+    background-blend-mode: multiply;
+    background-color: rgba(30, 60, 114, 0.1);
+}
+
+.expertise-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 85%;
+    background: transparent;
+    padding: 1rem 1.5rem;
+    height: 5%; /* Réduit pour juste le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centré */
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.expertise-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+h1 {
+            color: #7FB77E;
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7FB77E;
+            font-size: 1.3em;
+            margin-bottom: 60px;
+            font-weight: 500;
+        }
+
+        .step {
+            margin-bottom: 45px;
+            padding-left: 80px;
+            position: relative;
+        }
+
+       
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: #7FB77E;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.6em;
+        }
+
+        
+
+        .step-title {
+            color: #7FB77E;
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .sub-item {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .sub-item::before {
+            content: "→";
+            color: #7FB77E;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .info-box {
+            background: rgba(127, 183, 126, 0.1);
+            padding: 15px 20px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #7FB77E;
+        }
+
+        .info-box strong {
+            color: #7FB77E;
+        }
+
+        .highlight {
+            color: #7FB77E;
+            font-weight: 600;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.05s; }
+        .step:nth-child(2) { animation-delay: 0.1s; }
+        .step:nth-child(3) { animation-delay: 0.15s; }
+        .step:nth-child(4) { animation-delay: 0.2s; }
+        .step:nth-child(5) { animation-delay: 0.25s; }
+        .step:nth-child(6) { animation-delay: 0.3s; }
+        .step:nth-child(7) { animation-delay: 0.35s; }
+        .step:nth-child(8) { animation-delay: 0.4s; }
+        .step:nth-child(9) { animation-delay: 0.45s; }
+        .step:nth-child(10) { animation-delay: 0.5s; }
+        .step:nth-child(11) { animation-delay: 0.55s; }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .step {
+                padding-left: 70px;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -884,12 +1073,12 @@
 
         <div class="content-section">
             <div class="content-image">
-                <img src="./../home/assets/re.png" alt="Maison individuelle">
+                <img src="./../home/assets/ren.png" alt="Maison individuelle">
             </div>
 
             <div class="content-text">
                 <p class="text-paragraph">
-                    C'est une aide financière pilotée par l'<span class="highlight-blue">ANAH</span> pour encourager la <span class="highlight-blue">rénovation énergétique</span> des logements. Elle remplace le <span class="highlight-blue">CITE</span> (Crédit d'Impôt Transition Énergétique) et s'applique aussi bien aux <span class="highlight-blue">particuliers</span> et aux <span class="highlight-blue">copropriétés</span>. Elle a été renforcée en <span class="highlight">2024 et 2025</span>, avec de nouvelles conditions et une meilleure articulation avec les <span class="highlight-blue">autres énergétiques</span>.
+                    C'est une aide financière pilotée par l'<span class="highlight-blue">ANAH</span> pour encourager la <span class="highlight-blue">rénovation énergétique</span> des logements. Elle remplace le <span class="highlight-blue">CITE</span> (Crédit d'Impôt Transition Énergétique) et s'applique aussi bien aux <span class="highlight-blue">particuliers</span> et aux <span class="highlight-blue">copropriétés</span>. Elle a été renforcée en <span class="highlight"> 2024 et 2025</span>, avec de nouvelles conditions et une meilleure articulation avec les <span class="highlight-blue">autres énergétiques</span>.
                 </p>
             </div>
         </div>
@@ -898,9 +1087,11 @@
         <h2 class="section-title">MaPrimeRénov' Individuelle</h2>
 
         <div class="content-section">
-            <div class="content-image">
-                <img src="./../home/assets/expertise1.jpeg" alt="Maison individuelle">
-            </div>
+            <a href="#particulier" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/individuel.png');"></div>
+        <div class="expertise-content">
+        </div>
+        </a>
 
             <div class="content-text">
                 <h3 class="info-title">À quoi sert MaPrimeRénov' Individuelle ?</h3>
@@ -908,7 +1099,7 @@
                     Elle permet de financer les <span class="highlight-blue">travaux d'intérêt privé</span> dans une maison ou un appartement individuel : isolation, chauffage, ventilation, etc.
                 </p>
 
-                <h4 class="highlight">Qui peut en bénéficier ?</h4>
+                <h4 class="highlight">1 - Qui peut en bénéficier ?</h4>
                 <ul class="arrow-list">
                     <li>Tous les <span class="highlight-blue">propriétaires occupants ou bailleurs</span>.</li>
                     <li><span class="highlight-blue">Résidence principale</span> ou mise en location.</li>
@@ -918,7 +1109,7 @@
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Quels travaux sont éligibles ?</h3>
                 <ul class="bullet-list">
@@ -931,10 +1122,10 @@
         </div>
 
         <div class="info-section">
-            <div class="info-icon">💡</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
-                <p>Depuis 2025, pour les logements classés <span class="highlight">F ou G</span>, un <span class="highlight-blue">audit énergétique est obligatoire</span> pour bénéficier de MaPrimeRénov'. Il doit proposer un <span class="highlight-blue">scénario de rénovation</span> avec amélioration d'au moins 2 classes DPE, impliquant des <span class="highlight-blue">gains énergétiques significatifs de la classe DPE</span>.</p>
+                <p>Depuis 2025, pour les logements classés <span class="highlight"> F ou G</span>, un <span class="highlight-blue">audit énergétique est obligatoire</span> pour bénéficier de MaPrimeRénov'. Il doit proposer un <span class="highlight-blue">scénario de rénovation</span> avec amélioration d'au moins 2 classes DPE, impliquant des <span class="highlight-blue">gains énergétiques significatifs de la classe DPE</span>.</p>
             </div>
         </div>
 
@@ -943,51 +1134,51 @@
 
         <div class="step-section">
             <div class="step-header">Étapes pour MaPrimeRénov' Individuelle</div>
-            <div class="step-content">
-                <ol class="arrow-list">
-                    <li><span class="highlight">Vérifier votre éligibilité</span><br>
-                        <ul class="bullet-list">
-                            <li>être <span class="highlight-blue">propriétaire occupant ou bailleur</span></li>
-                            <li>Le logement doit être votre <span class="highlight-blue">résidence principale</span> construite depuis <span class="highlight-blue">plus de 15 ans</span> (ou 2 ans pour remplacement de chaudière fioul).</li>
-                        </ul>
-                    </li>
-                    <li><span class="highlight">Respecter les plafonds de revenus</span><br>
-                        Respecter les plafonds selon votre profil fiscal (très modestes, modestes, intermédiaires, hauts revenus).
-                    </li>
-                    <li><span class="highlight">Réaliser un audit énergétique</span> (si logement classé <span class="highlight">F ou G</span>)<br>
-                        Obligatoire depuis 2025 pour les logements énergivores.
-                    </li>
-                    <li><span class="highlight">Vérifier les entreprises RGE</span><br>
-                        S'adresser aux entreprises <span class="highlight-blue">reconnues garantes de l'environnement</span> avec amélioration de la classe DPE.
-                    </li>
-                    <li><span class="highlight">Créer un compte maprimerenov.gouv.fr</span><br>
-                        Plateforme officielle pour déposer la demande.
-                    </li>
-                    <li><span class="highlight">Fournir les documents</span><br>
-                        d'avis d'imposition, devis des travaux, audit si nécessaire.
-                    </li>
-                    <li><span class="highlight">Choisir des entreprises certifiées RGE</span><br>
-                        Travaux réalisés par des <span class="highlight-blue">professionnels Reconnu Garant de l'Environnement</span>.
-                    </li>
-                    <li><span class="highlight">Déposer la demande de subvention</span><br>
-                        Inscrire les devis, audit, et qualifications.
-                    </li>
-                    <li><span class="highlight">Attendre l'acceptation</span><br>
-                        Notification d'accord avant de réaliser les travaux.
-                    </li>
-                    <li><span class="highlight">Réaliser les travaux</span><br>
-                        Respecter les délais et les prestations validées.<br>
-                        Conserver les <span class="highlight-blue">factures et attestations de conformité</span>.
-                    </li>
-                    <li><span class="highlight">Demander le versement de la prime</span><br>
-                        Une fois les travaux terminés, transmettre les factures et justificatifs via la plateforme, accompagné généralement sur demande du bénéficiaire.
-                    </li>
-                </ol>
-            </div>
+                <div class="step-content">
+                    <ol class="arrow-list">
+                        <li><span class="highlight">1 - Vérifier votre éligibilité</span><br>
+                            <ul class="bullet-list">
+                                <li>être <span class="highlight-blue">propriétaire occupant ou bailleur</span></li>
+                                <li>Le logement doit être votre <span class="highlight-blue">résidence principale</span> construite depuis <span class="highlight-blue">plus de 15 ans</span> (ou 2 ans pour remplacement de chaudière fioul).</li>
+                            </ul>
+                        </li>
+                        <li><span class="highlight">2 - Respecter les plafonds de revenus</span><br>
+                            Respecter les plafonds selon votre profil fiscal (très modestes, modestes, intermédiaires, hauts revenus).
+                        </li>
+                        <li><span class="highlight">3 - Réaliser un audit énergétique</span> (si logement classé <span class="highlight">1 - F ou G</span>)<br>
+                            Obligatoire depuis 2025 pour les logements énergivores.
+                        </li>
+                        <li><span class="highlight">4 - Vérifier les entreprises RGE</span><br>
+                            S'adresser aux entreprises <span class="highlight-blue">reconnues garantes de l'environnement</span> avec amélioration de la classe DPE.
+                        </li>
+                        <li><span class="highlight">5 - Créer un compte maprimerenov.gouv.fr</span><br>
+                            Plateforme officielle pour déposer la demande.
+                        </li>
+                        <li><span class="highlight">6 - Fournir les documents</span><br>
+                            d'avis d'imposition, devis des travaux, audit si nécessaire.
+                        </li>
+                        <li><span class="highlight">7 - Choisir des entreprises certifiées RGE</span><br>
+                            Travaux réalisés par des <span class="highlight-blue">professionnels Reconnu Garant de l'Environnement</span>.
+                        </li>
+                        <li><span class="highlight">8 - Déposer la demande de subvention</span><br>
+                            Inscrire les devis, audit, et qualifications.
+                        </li>
+                        <li><span class="highlight">9 - Attendre l'acceptation</span><br>
+                            Notification d'accord avant de réaliser les travaux.
+                        </li>
+                        <li><span class="highlight">10 - Réaliser les travaux</span><br>
+                            Respecter les délais et les prestations validées.<br>
+                            Conserver les <span class="highlight-blue">factures et attestations de conformité</span>.
+                        </li>
+                        <li><span class="highlight">11 - Demander le versement de la prime</span><br>
+                            Une fois les travaux terminés, transmettre les factures et justificatifs via la plateforme, accompagné généralement sur demande du bénéficiaire.
+                        </li>
+                    </ol>
+                </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p>Depuis 2025, les aides sont modulées selon le <span class="highlight-blue">gain énergétique obtenu</span>, avec des bonus pour les logements sortant des <span class="highlight-blue">passoires énergétiques</span> et les opérations <span class="highlight-blue">très performantes</span>.</p>
@@ -1002,9 +1193,11 @@
         <h2 class="section-title">MaPrimeRénov' Copropriété</h2>
 
         <div class="content-section">
-            <div class="content-image">
-                <img src="./../home/assets/expertise3.jpeg" alt="Immeuble copropriété">
-            </div>
+            <a href="#particulier" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/coproprié.png');"></div>
+        <div class="expertise-content">
+        </div>
+    </a>
 
             <div class="content-text">
                 <h3 class="info-title">À quoi sert MaPrimeRénov' Copro ?</h3>
@@ -1012,7 +1205,7 @@
                     Elle finance les <span class="highlight-blue">travaux d'intérêt collectif</span> dans les parties communes ou privatives d'un immeuble en copropriété, sans condition de revenus.
                 </p>
 
-                <h4 class="highlight">Qui peut en bénéficier ?</h4>
+                <h4 class="highlight">1 - Qui peut en bénéficier ?</h4>
                 <ul class="arrow-list">
                     <li><span class="highlight-blue">Copropriétés immatriculées</span> au registre national.</li>
                     <li>Immeubles de <span class="highlight-blue">plus de 15 ans</span>.</li>
@@ -1024,7 +1217,7 @@
         </div>
 
         <div class="info-section">
-            <div class="info-icon">⚙️</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Quels travaux sont éligibles ?</h3>
                 <ul class="bullet-list">
@@ -1038,7 +1231,7 @@
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p>Depuis 2025, l'audit énergétique est <span class="highlight-blue">obligatoire</span> pour toute copropriété souhaitant bénéficier de MaPrimeRénov'. Il doit permettre un <span class="highlight-blue">gain énergétique</span> d'au moins 35 % après travaux.</p>
@@ -1050,45 +1243,45 @@
             <div class="step-header">Étapes pour MaPrimeRénov' Copropriété</div>
             <div class="step-content">
                 <ol class="arrow-list">
-                    <li><span class="highlight">Vérifier l'éligibilité de la copropriété</span><br>
+                    <li><span class="highlight">1 - Vérifier l'éligibilité de la copropriété</span><br>
                         <ul class="bullet-list">
                             <li>Immeuble de <span class="highlight-blue">plus de 15 ans</span></li>
                             <li><span class="highlight-blue">75 % minimum de résidences principales</span></li>
                             <li>Copropriété <span class="highlight-blue">immatriculée</span> au registre national</li>
                         </ul>
                     </li>
-                    <li><span class="highlight">Choisir une AMO certifiée OPQIBI 1905</span><br>
+                    <li><span class="highlight">2 - Choisir une AMO certifiée OPQIBI 1905</span><br>
                         Il est <span class="highlight-blue">obligatoire</span><br>
                         Une <span class="highlight-blue">Assistance à Maîtrise d'Ouvrage est obligatoire</span><br>
                         pour accompagner le projet (conseil, le suivi des travaux, le financement et le dépôt du dossier.
                     </li>
-                    <li><span class="highlight">Réaliser un audit énergétique collectif</span><br>
+                    <li><span class="highlight">3 - Réaliser un audit énergétique collectif</span><br>
                         <span class="highlight-blue">Obligatoire</span> pour démontrer un <span class="highlight-blue">gain énergétique à 35 %</span> après travaux<br>
                         Permet de définir un scénario de rénovation cohérent
                     </li>
-                    <li><span class="highlight">Créer un compte sur maprimerenov.gouv.fr</span><br>
+                    <li><span class="highlight">4 - Créer un compte sur maprimerenov.gouv.fr</span><br>
                         L'<span class="highlight-blue">AMO dépose le dossier</span> au nom de la copropriété<br>
                         Obtenir les pièces : audit, devis, plan de financement et attestation<br>
                         Sur l'AMO
                     </li>
-                    <li><span class="highlight">Choisir des entreprises certifiées RGE</span><br>
+                    <li><span class="highlight">5 - Choisir des entreprises certifiées RGE</span><br>
                         Il est <span class="highlight-blue">obligatoire</span> d'intervenir <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.
                     </li>
-                    <li><span class="highlight">Voter les travaux en assemblée générale</span><br>
+                    <li><span class="highlight">6 - Voter les travaux en assemblée générale</span><br>
                         L'AMO peut intervenir <span class="highlight-blue">avant le vote</span> pour simuler les aides et convaincre les copropriétaires<br>
                         Par des entreprises <span class="highlight-blue">RGE</span><br>
                         Suivi technique et administratif assuré par l'AMO
                     </li>
-                    <li><span class="highlight">Réaliser les travaux</span><br>
+                    <li><span class="highlight">7 - Réaliser les travaux</span><br>
                         Respecter les délais et les prestations validées<br>
                         Conserver les <span class="highlight-blue">factures et attestations de conformité</span><br>
                         Suivi technique et administratif assuré par l'AMO
                     </li>
-                    <li><span class="highlight">Transmettre les justificatifs</span><br>
+                    <li><span class="highlight">8 - Transmettre les justificatifs</span><br>
                         Attestation de conformité signée par l'auditeur, les entreprises et le syndic<br>
                         Liste des entreprises et leurs qualifications
                     </li>
-                    <li><span class="highlight">Recevoir la subvention</span><br>
+                    <li><span class="highlight">9 - Recevoir la subvention</span><br>
                         Jusqu'à <span class="highlight-blue">3 750 € par logement</span> + aides AMO + CEE + bonus (BBC, sortie de passoire...)
                     </li>
                 </ol>
@@ -1096,7 +1289,7 @@
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p>Le financement de l'AMO peut être demandé <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.</p>
@@ -1151,7 +1344,7 @@
         </div>
 
     </div>
-
+</div>
 
     <!-- Footer Professionnel -->
     <footer class="footer">
