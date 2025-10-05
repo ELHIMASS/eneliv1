@@ -1007,6 +1007,70 @@ h1 {
                 font-size: 18px;
             }
         }
+
+        .question-section {
+            background: #e9ecef;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: 60px 1fr 150px;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .question-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .question-content {
+            flex: 1;
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .checkmark-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checkmark-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .checkmark-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .question-side-image {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
     </style>
 </head>
 <body>
@@ -1125,13 +1189,25 @@ h1 {
             </div>
         </div>
 
-        <div class="info-section">
-            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
-            <div class="info-content">
-                <h3 class="info-title">Le saviez-vous ?</h3>
-                <p>Depuis 2025, pour les logements classés <span class="highlight"> F ou G</span>, un <span class="highlight-blue">audit énergétique est obligatoire</span> pour bénéficier de MaPrimeRénov'. Il doit proposer un <span class="highlight-blue">scénario de rénovation</span> avec amélioration d'au moins 2 classes DPE, impliquant des <span class="highlight-blue">gains énergétiques significatifs de la classe DPE</span>.</p>
+      
+
+        <div class="question-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <ul class="checkmark-list">
+                <li>Depuis 2025, pour les logements classés <span class="highlight"> F ou G</span>, un <span class="highlight-blue">audit énergétique est obligatoire</span> pour bénéficier de MaPrimeRénov'. Il doit proposer un <span class="highlight-blue">scénario de rénovation</span> avec amélioration d'au moins 2 classes DPE, impliquant des <span class="highlight-blue">gains énergétiques significatifs de la classe DPE</span>.</li>
+                </ul>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
             </div>
         </div>
+
 
         <!-- Comment obtenir MaPrimeRénov Section -->
         <h2 class="section-title">Comment obtenir MaPrimeRénov ?</h2>
@@ -1179,11 +1255,20 @@ h1 {
                 </div>
         </div>
 
-        <div class="info-section">
-            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
-            <div class="info-content">
-                <h3 class="info-title">Le saviez-vous ?</h3>
-                <p>Depuis 2025, les aides sont modulées selon le <span class="highlight-blue">gain énergétique obtenu</span>, avec des bonus pour les logements sortant des <span class="highlight-blue">passoires énergétiques</span> et les opérations <span class="highlight-blue">très performantes</span>.</p>
+        <div class="question-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <ul class="checkmark-list">
+                <li>Depuis 2025, les aides sont modulées selon le <span class="highlight-blue">gain énergétique obtenu</span>, avec des bonus pour les logements sortant des <span class="highlight-blue">passoires énergétiques</span> et les opérations <span class="highlight-blue">très performantes</span>.</li>
+                </ul>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
             </div>
         </div>
 
@@ -1232,13 +1317,25 @@ h1 {
             </div>
         </div>
 
-        <div class="info-section">
-            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
-            <div class="info-content">
-                <h3 class="info-title">Le saviez-vous ?</h3>
-                <p>Depuis 2025, l'audit énergétique est <span class="highlight-blue">obligatoire</span> pour toute copropriété souhaitant bénéficier de MaPrimeRénov'. Il doit permettre un <span class="highlight-blue">gain énergétique</span> d'au moins 35 % après travaux.</p>
+        
+
+        <div class="question-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <ul class="checkmark-list">
+                <li>Depuis 2025, l'audit énergétique est <span class="highlight-blue">obligatoire</span> pour toute copropriété souhaitant bénéficier de MaPrimeRénov'. Il doit permettre un <span class="highlight-blue">gain énergétique</span> d'au moins 35 % après travaux.</li>
+                </ul>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
             </div>
         </div>
+
 
         <!-- Étapes MaPrimeRénov' Copropriété -->
         <div class="step-section">
@@ -1290,13 +1387,29 @@ h1 {
             </div>
         </div>
 
-        <div class="info-section">
-            <img class="info-icon" src="./../nous/ENELIVP.png" alt="Icone travaux">
-            <div class="info-content">
-                <h3 class="info-title">Le saviez-vous ?</h3>
-                <p>Le financement de l'AMO peut être demandé <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.</p>
+        <div class="question-section">
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
+            
+            <div class="question-content">
+                <h3 class="question-title">Le saviez-vous ?</h3>
+                <ul class="checkmark-list">
+                <li>Le financement de l'AMO peut être demandé <span class="highlight-blue">avant le vote des travaux</span>, pour aider à la prise de décision collective.</li>
+                </ul>
+            </div>
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
             </div>
         </div>
+
+
+            <div class="question-side-image">
+                <!-- Espace pour image supplémentaire si nécessaire -->
+            </div>
+        </div>
+
 
         <div class="cta-button-container">
             <a class="cta-button" href="./../contacter/index.html">Demander un Accompagnement Rénov' copropriété<an>
