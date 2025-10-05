@@ -319,6 +319,8 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            background-color: #7FB77E;
+            text-decoration: none;
         }
 
     
@@ -342,7 +344,7 @@
             grid-template-columns: 1fr 200px;
             gap: 2rem;
             align-items: start;
-            margin: 1.5rem 0;
+            margin: -4.5rem 0;
         }
 
         .side-image {
@@ -806,6 +808,101 @@
                 font-size: 2rem;
             }
         }
+        .power{
+            width: 900px;
+            /*je veux que l image soit centre au milieu  */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;           
+            object-fit: cover;
+
+        }
+
+        /* Expertises Grid */
+.expertises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+}
+
+.expertise-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 270px;
+    width: 360px;
+    cursor: pointer;
+         /*je veux que l image soit centre au milieu  */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.expertise-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.expertise-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Plus d'espace pour l'image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Overlay léger pour le contraste */
+    background-blend-mode: multiply;
+    background-color: rgba(30, 60, 114, 0.1);
+
+    
+
+}
+
+.expertise-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 85%;
+    background: transparent;
+    padding: 1rem 1.5rem;
+    height: 5%; /* Réduit pour juste le titre */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centré */
+    border-radius: 0 0 20px 20px;
+    z-index: 2;
+}
+
+.expertise-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
+
+/* Effet de zoom sur l'image au survol */
+.expertise-card:hover .expertise-image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.section-titlese {
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #1a202c;
+            margin-top: 60px;
+        }
+
     </style>
 </head>
 <body>
@@ -897,16 +994,9 @@
 
         <h2 class="section-title">Quel est l'objectif du DPE ?</h2>
 
+        <img class="power" src="./../home/assets/vsionDPE.png" alt="">
         <div class="content-text">
-            <p class="text-paragraph">Le DPE vise à :</p>
-            
-            <ul class="arrow-list">
-                <li><span class="highlight">Informer</span> les occupants ou futurs acquéreurs/locataires sur la performance énergétique du bien.</li>
-                <li><span class="highlight">Sensibiliser</span> aux impacts environnementaux (émissions de CO₂).</li>
-                <li><span class="highlight">Identifier</span> les travaux prioritaires pour améliorer le confort thermique et réduire les consommations.</li>
-                <li><span class="highlight">Valoriser</span> le bien immobilier via la <span class="highlight-blue">valeur verte</span> (meilleure étiquette = meilleure revente).</li>
-                <li><span class="highlight">Préparer une stratégie de rénovation énergétique</span>, notamment en copropriété (DPE collectif → PPPT)</li>
-            </ul>
+           
 
             <div class="cta-button-container">
                  <a class="cta-button" href="./../contacter/index.html">Demander un DPE</a>
@@ -933,6 +1023,22 @@
             </div>
         </div>
 
+             <div class="expertises-grid">
+    <a href="./../besoin/index.html#particulier" class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise1.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Particulier</h3>
+        </div>
+    </a>
+    
+    <a href="./../besoin/index.html#coproprié"class="expertise-card">
+        <div class="expertise-image" style="background-image: url('./../home/assets/expertise3.jpeg');"></div>
+        <div class="expertise-content">
+            <h3 class="expertise-title">Copropriété</h3>
+        </div>
+    </a>
+</div>
+
         <div class="info-section">
             <div class="info-icon">
                 <img src="./../ENELIVP.png" alt="">
@@ -946,6 +1052,14 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Le calendrier DPE Section -->
+        <h2 class="section-title">Le calendrier DPE ?</h2>
+        
+        <div class="calendar-section">
+            <img src="../home/assets/cald.png" alt="Calendrier DPE" style="width: 100%; max-width: 1300px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
+        </div>
+
 
         <h2 class="section-title">Quel est le contenu du livrable PPPT ?</h2>
 
@@ -966,12 +1080,10 @@
                 <ul class="arrow-list">
                     <li>Analyse personnalisée du logement (isolation, chauffage, menuiseries...)</li>
                     <li>Rapport pédagogique avec <span class="highlight-blue">conseils ciblés</span></li>
-                    <li>Valorisation des travaux déjà réalisés</li>
+                    <li>Valorisation des travaux déjà réalisés</li><br>
                 </ul>
             </div>
-            <div class="side-image">
-                <img src="../home/assets/expertise1.jpeg" alt="Maison individuelle">
-            </div>
+            
         </div>
 
         <div class="content-with-image">
@@ -984,10 +1096,7 @@
                     <li>Compatible avec la réalisation du <span class="highlight-blue">PPPT</span></li>
                 </ul>
             </div>
-            <div class="side-image">
-                <img src="../home/assets/expertise3.jpeg" alt="">
-
-            </div>
+            
         </div>
 
         <div class="cta-button-container">
@@ -996,39 +1105,12 @@
 
         <h2 class="section-title">Comment mettre en place le DPE ?</h2>
 
-        <div class="two-column-section">
-            <div class="column-content">
-                <h4>DPE individuel :</h4>
-                <ul class="arrow-list">
-                    <li>Collecte des <span class="highlight-blue">données techniques</span></li>
-                    <li><span class="highlight-blue">Visite</span> du logement</li>
-                    <li><span class="highlight-blue">Calcul réglementaire</span></li>
-                    <li>Remise du <span class="highlight-blue">rapport officiel</span> (valable 10 ans)</li>
-                </ul>
-            </div>
+        <img class="power" src="./../home/assets/DPEI.png" alt="">
+        <div class="content-text">
 
-            <div class="column-content">
-                <h4>DPE collectif :</h4>
-                <ul class="arrow-list">
-                    <li>Réunion de <span class="highlight-blue">lancement</span> avec le syndic et les copropriétaires</li>
-                    <li>Collecte <span class="highlight-blue">documentaire</span> (plans, factures, historique des travaux...)</li>
-                    <li><span class="highlight-blue">Visite</span> technique du bâtiment et des logements échantillonnés</li>
-                    <li><span class="highlight-blue">Analyse et modélisation</span> (logiciel certifié 3CL 2021)</li>
-                    <li>Remise du <span class="highlight-blue">rapport + fichier XML</span></li>
-                    <li>Présentation en <span class="highlight-blue">AG</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Le calendrier DPE Section -->
-        <h2 class="section-title">Le calendrier DPE ?</h2>
         
-        <div class="calendar-section">
-            <img src="../home/assets/cald.png" alt="Calendrier DPE" style="width: 100%; max-width: 1300px; height: auto; border-radius: 8px; margin: 0 auto; display: block;">
-        </div>
-
         <!-- Services Section -->
-        <h2 class="section-title">Nos autres services</h2>
+        <h2 class="section-titlese">Nos autres services</h2>
         
         <div class="services-grid">
             <div class="service-card">
