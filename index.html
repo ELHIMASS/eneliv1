@@ -3436,6 +3436,58 @@ console.log('Script chargé successfully');
         });
 
 
+        let currentSlide = 0;
+let autoSlideInterval;
+
+function showHeroSlide(index) {
+    const slides = document.querySelectorAll('.hero-slide');
+    const navBtns = document.querySelectorAll('.hero-nav-btn');
+    
+    // Retirer la classe active de tous les slides et boutons
+    slides.forEach(slide => slide.classList.remove('active'));
+    navBtns.forEach(btn => btn.classList.remove('active'));
+    
+    // Ajouter la classe active au slide et bouton correspondant
+    slides[index].classList.add('active');
+    navBtns[index].classList.add('active');
+    
+    currentSlide = index;
+    
+    // Réinitialiser le timer automatique
+    resetAutoSlide();
+}
+
+function nextSlide() {
+    const slides = document.querySelectorAll('.hero-slide');
+    currentSlide = (currentSlide + 1) % slides.length;
+    showHeroSlide(currentSlide);
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 2000); // 5000ms = 5 secondes
+}
+
+function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+}
+
+// Démarrer le défilement automatique au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    startAutoSlide();
+    
+    // Optionnel : mettre en pause au survol
+    const heroSlider = document.querySelector('.hero-slider');
+    heroSlider.addEventListener('mouseenter', function() {
+        clearInterval(autoSlideInterval);
+    });
+    
+    heroSlider.addEventListener('mouseleave', function() {
+        startAutoSlide();
+    });
+});
+
+
     </script>
 </body>
 </html>
