@@ -449,8 +449,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
+        
+
         .president-image {
-            flex-shrink: 0;
+            padding: 0rem 8rem;
         }
 
         .president-avatar {
@@ -1104,7 +1106,10 @@
                 width: 700px;
             }
             .president-avatar{
-                margin: 0 120px;
+               /*je veux que l image soit cetre au milieu*/                
+                margin-left: auto;
+                margin-right: auto;
+                
             }
             .president-content-home{
                 font-size: 15px;
@@ -1126,7 +1131,6 @@
             margin-bottom: 20px;
             margin-left: 20px;
             margin-right: 20px; 
-            
 
         }
 
@@ -1134,7 +1138,7 @@
             text-align: justify;
         }
        
-        @media (max-width: 480px) {
+        @media (max-width: 983px) {
             .hero-title {
                 font-size: 1.5rem;
             }
@@ -1143,10 +1147,7 @@
                 padding: 3rem 0;
             }
 
-            .president-card {
-                padding: 1.5rem;
-            }
-
+            
             .values-section {
                 padding: 3rem 0;
             }
@@ -1293,10 +1294,10 @@
             <div class="container">
                 <div class="president-card">
                     <div class="president-image">
-                        <div >
+                        <div>
                             <img class="president-avatar" src="../home/assets/akrame.png" alt="Président ENELIV" >
+                            </div>
                         </div>
-                    </div>
                     <div class="president-content">
                         <h2 class="president-title">
                             <span style="margin-left: 1rem;">Mot du président</span>
