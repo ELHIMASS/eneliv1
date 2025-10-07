@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./../eneliv1.png" type="image/png">
 
-    <title>Diagnostic de Performance Énergétique (DPE) - ENELIV</title>
+    <title>Plan Pluriannuel de Travaux Copropriété - PPPT</title>
     <style>
         * {
             margin: 0;
@@ -199,6 +199,7 @@
 
         /* Hero Section */
         .hero-section {
+            background: white;
             color: #0B3041;
             padding: 60px 40px;
             text-align: center;
@@ -208,7 +209,6 @@
         .hero-section h1 {
             font-size: 2.5em;
             margin-bottom: 15px;
-            color: #0B3041;
         }
 
         .hero-section p {
@@ -229,9 +229,13 @@
         .hero-image {
             width: 100%;
             height: 300px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%230B3041" width="800" height="400"/><text x="400" y="200" font-size="30" fill="white" text-anchor="middle" font-family="Arial">Diagnostic Énergétique</text></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #0B3041 0%, #7FB77E 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
         }
 
         .content {
@@ -317,6 +321,15 @@
             left: 0;
         }
 
+        .answer ol li {
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .answer ol li:before {
+            content: none;
+        }
+
         .highlight-box {
             background: #e8f5e9;
             border-left: 4px solid #7FB77E;
@@ -325,43 +338,7 @@
             border-radius: 5px;
         }
 
-        .etiquette-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .etiquette-box {
-            text-align: center;
-        }
-
-        .etiquette-box h4 {
-            margin-bottom: 15px;
-            color: #0B3041;
-            font-size: 1.2em;
-        }
-
-        .etiquette-box img {
-            max-width: 850px;
-            height: auto;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-        }
-
-        .info-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin: 20px auto;
-            display: block;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .cta-section {
+         .cta-section {
             background: linear-gradient(135deg, #f8f9fa , #f5f5f5);
             color: #555;
             padding: 60px 40px;
@@ -388,6 +365,7 @@
             margin-top: 20px;
         }
 
+
         .cta-button:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -395,7 +373,7 @@
             color: white;
         }
 
-           /* Footer Professionnel */
+          /* Footer Professionnel */
         .footer {
             background: #1a202c;
             color: white;
@@ -543,14 +521,6 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
-
-            .etiquette-box img {
-            display: none;
-        }
-
-            .dd {
-            display: none;
-        }
             
             
         }
@@ -651,7 +621,6 @@
                 font-size: 2rem;
             }
         }
-
         .toggle-icon {
             float: right;
             transition: transform 0.3s ease;
@@ -687,10 +656,6 @@
             .answer {
                 margin-left: 0;
             }
-
-            .etiquette-container {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
@@ -718,7 +683,7 @@
                         </ul>
                     </li>
                     <li><a href="./../contacter/index.html">CONTACT</a></li>
-                    <li><a href="./../biographie/index.html">BLOG</a></li>
+                    <li><a href="./../blog/index.html">BLOG</a></li>
                 </ul>
 
                 <div class="burger-menu" onclick="toggleMobileMenu()">
@@ -735,18 +700,18 @@
             <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
             <a href="#expertise" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
             <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
-            <a href="./../biographie/index.html" onclick="closeMobileMenu()">BLOG</a>
+            <a href="./../blog/index.html" onclick="closeMobileMenu()">BLOG</a>
         </div>
     </header>
 
     <div class="container">
         <div class="hero-section">
-            <h1>Diagnostic de Performance Énergétique (DPE)</h1>
-            <p>Les 10 choses à connaître</p>
+            <h1>Plan Pluriannuel de Travaux Copropriété</h1>
+            <p>Les 10 choses à connaître sur le PPPT</p>
         </div>
 
         <div class="intro">
-            <p>Le <strong>DPE</strong> est un outil réglementaire essentiel pour évaluer la performance énergétique des bâtiments. Il concerne les logements individuels, les copropriétés et les bâtiments tertiaires. Voici les <strong>10 points clés</strong> à connaître pour comprendre ses enjeux et obligations.</p>
+            <p>Depuis l'entrée en vigueur de la loi Climat et Résilience, le <strong>Projet de Plan Pluriannuel de Travaux (PPPT)</strong> est devenu un outil incontournable pour les copropriétés. Que vous soyez syndic, copropriétaire ou professionnel de l'immobilier, voici les <strong>10 points essentiels</strong> à maîtriser pour comprendre et mettre en œuvre efficacement ce dispositif.</p>
         </div>
 
 
@@ -754,53 +719,39 @@
             <div class="question-card" onclick="toggleAnswer(1)">
                 <div class="question-title">
                     <span class="question-number">1</span>
-                    Qu'est-ce que le DPE ?
+                    Qu'est-ce que le PPPT ?
                     <span class="toggle-icon" id="icon-1">▼</span>
                 </div>
                 <div class="answer" id="answer-1">
-                    <p>Le <strong>Diagnostic de Performance Énergétique</strong> mesure :</p>
+                    <p>Le PPPT est un document stratégique qui liste les travaux à réaliser dans les parties communes d'une copropriété sur une période de 10 ans. Il vise à :</p>
                     <ul>
-                        <li><strong>La consommation énergétique</strong> d'un bâtiment</li>
-                        <li><strong>Les émissions de gaz à effet de serre</strong></li>
-                        <li><strong>La qualité des équipements</strong> (chauffage, isolation, ventilation...)</li>
+                        <li>Planifier les travaux des copropriétés</li>
+                        <li>Assurer la conservation du bâti</li>
+                        <li>Améliorer la performance énergétique du bâtiment</li>
                     </ul>
-                    <p style="margin-top: 15px;">Il attribue une <strong>étiquette énergie</strong> (de A à G) et une <strong>étiquette climat</strong>, permettant de situer le bâtiment dans la transition énergétique.</p>
                 </div>
             </div>
 
             <div class="question-card" onclick="toggleAnswer(2)">
                 <div class="question-title">
                     <span class="question-number">2</span>
-                    DPE individuel : une obligation pour les logements
+                    Quelle est la différence entre PPPT et PPT ?
                     <span class="toggle-icon" id="icon-2">▼</span>
                 </div>
                 <div class="answer" id="answer-2">
-                    <p>Le DPE est <strong>obligatoire</strong> pour :</p>
-                    <ul>
-                        <li><strong>Toute vente ou location</strong> d'un logement</li>
-                        <li><strong>Les logements neufs</strong></li>
-                        <li><strong>Les logements classés G</strong> et sont <strong>interdits à la location depuis janvier 2025</strong></li>
-                        <li><strong>Les logements classés F</strong> seront <strong>interdits à la location à partir de janvier 2028</strong></li>
-                        <li><strong>Les logements classés E</strong> seront concernés <strong>à partir de 2034</strong></li>
-                    </ul>
+                    <p>Le PPPT est le projet initial, élaboré à partir d'une analyse technique. Une fois voté en assemblée générale, il devient le <strong>PPT (Plan Pluriannuel de Travaux)</strong> qui engage la copropriété à réaliser les travaux selon l'échéancier prévu.</p>
                 </div>
             </div>
 
             <div class="question-card" onclick="toggleAnswer(3)">
                 <div class="question-title">
                     <span class="question-number">3</span>
-                    DPE collectif : une obligation progressive
+                    Quelles copropriétés sont concernées ?
                     <span class="toggle-icon" id="icon-3">▼</span>
                 </div>
                 <div class="answer" id="answer-3">
-                    <p>Le <strong>DPE collectif</strong> concerne l'ensemble d'un immeuble en copropriété. Il devient obligatoire :</p>
-                    <ul>
-                        <li><strong>Depuis 2024</strong> : copropriétés de plus de 200 lots</li>
-                        <li><strong>Dès 2025</strong> : copropriétés de 50 à 200 lots</li>
-                        <li><strong>Dès 2026</strong> : copropriétés de moins de 50 lots 2</li>
-                    </ul>
-                    <div class="highlight-box">
-                        Il permet une vision globale de la performance énergétique du bâtiment et facilite les décisions collectives de rénovation.
+                    <div class="highlight-box1">
+                        <strong>Depuis le 1er janvier 2025</strong>, toutes les copropriétés de plus de 15 ans sont concernées, <strong>sans condition de nombre de lots</strong>. Seule exception : si un DTG conduit à l'absence de travaux nécessaires pendant 10 ans.
                     </div>
                 </div>
             </div>
@@ -808,40 +759,37 @@
             <div class="question-card" onclick="toggleAnswer(4)">
                 <div class="question-title">
                     <span class="question-number">4</span>
-                    DPE tertiaire : un levier pour les bâtiments professionnels
+                    Que contient un PPPT ?
                     <span class="toggle-icon" id="icon-4">▼</span>
                 </div>
                 <div class="answer" id="answer-4">
-                    <p>Le DPE tertiaire s'applique aux bâtiments à usage professionnel ou commercial :</p>
+                    <p>Le PPPT doit inclure :</p>
                     <ul>
-                        <li><strong>Supérieurs à 250 m²</strong></li>
-                        <li>Soumis à des <strong>obligations de performance</strong> dans le cadre du <strong>décret tertiaire</strong></li>
-                        <li>Concerné par la <strong>vente ou la location</strong> 3</li>
+                        <li>Une liste des travaux nécessaires</li>
+                        <li>Une estimation des coûts</li>
+                        <li>Un classement par priorité</li>
+                        <li>Un échéancier sur 10 ans</li>
+                        <li>Une évaluation de la performance énergétique et de la réduction des émissions de gaz à effet de serre</li>
                     </ul>
-                    <p style="margin-top: 15px;">Les étiquettes énergie et climat sont adaptées à <strong>l'usage du bâtiment</strong> (bureaux, hôpitaux, commerces...).</p>
                 </div>
             </div>
 
             <div class="question-card" onclick="toggleAnswer(5)">
                 <div class="question-title">
                     <span class="question-number">5</span>
-                    Quelle est la durée de validité d'un DPE ?
+                    Qui peut réaliser un PPPT ?
                     <span class="toggle-icon" id="icon-5">▼</span>
                 </div>
                 <div class="answer" id="answer-5">
+                    <p>Le PPPT doit être réalisé par un <strong>professionnel certifié et indépendant</strong> :</p>
                     <ul>
-                        <li>DPE réalisé <strong>après juillet 2021</strong> : <strong>valide 10 ans</strong></li>
-                        <li>DPE réalisé <strong>entre 2018 et juin 2021</strong> : <strong>valide jusqu'au 31 décembre 2024</strong></li>
-                        <li>DPE <strong>antérieur à 2018</strong> : <strong>non valide</strong></li>
+                        <li>Bureau d'études</li>
+                        <li>Architecte</li>
+                        <li>Thermicien</li>
+                        <li>Diagnostiqueur immobilier</li>
                     </ul>
-                    
-                    <div class="etiquette-container">
-                        <div class="etiquette-box">
-                            <div class="dd" style="background: #f5f5f5; padding: 20px; border-radius: 8px; border: 2px solid #e0e0e0;">
-                                <img src="./../home/assets/energieguid.jpg" alt="">
-                            </div>
-                        </div>
-                        
+                    <div class="highlight-box">
+                        Ce professionnel doit fournir une <strong>attestation d'assurance responsabilité civile</strong> précisant ses compétences.
                     </div>
                 </div>
             </div>
@@ -849,27 +797,31 @@
             <div class="question-card" onclick="toggleAnswer(6)">
                 <div class="question-title">
                     <span class="question-number">6</span>
-                    Qui peut réaliser un DPE ?
+                    Comment est voté le PPT ?
                     <span class="toggle-icon" id="icon-6">▼</span>
                 </div>
                 <div class="answer" id="answer-6">
-                    <p>Le DPE doit être réalisé par un <strong>diagnostiqueur certifié</strong>, indépendant et assuré. Il doit respecter les méthodes de calcul réglementaires et transmettre le diagnostic à <strong>l'ADEME</strong> pour enregistrement.</p>
+                    <p>La procédure se déroule en plusieurs étapes :</p>
+                    <ol>
+                        <li>Vote en AG pour lancer le PPPT (majorité simple)</li>
+                        <li>Présentation du PPPT en AG suivante</li>
+                        <li>Vote d'adoption du PPT (majorité absolue)</li>
+                        <li>Mise en œuvre des travaux par le syndic</li>
+                    </ol>
                 </div>
             </div>
 
             <div class="question-card" onclick="toggleAnswer(7)">
                 <div class="question-title">
                     <span class="question-number">7</span>
-                    Que contient un DPE ?
+                    Comment financer les travaux ?
                     <span class="toggle-icon" id="icon-7">▼</span>
                 </div>
                 <div class="answer" id="answer-7">
-                    <p>Le rapport DPE inclut :</p>
+                    <p>Le financement des <strong>travaux</strong> alimente par une cotisation annuelle des copropriétaires. Ce fonds doit représenter :</p>
                     <ul>
-                        <li><strong>Les étiquettes énergie et climat</strong></li>
-                        <li><strong>Une analyse thermique</strong> du bâtiment</li>
-                        <li><strong>Des recommandations de travaux</strong></li>
-                        <li><strong>Une estimation des consommations théoriques</strong></li>
+                        <li>Au moins <strong>2,5 %</strong> du montant estimé des travaux</li>
+                        <li>Ou <strong>5 %</strong> du budget prévisionnel</li>
                     </ul>
                 </div>
             </div>
@@ -877,34 +829,28 @@
             <div class="question-card" onclick="toggleAnswer(8)">
                 <div class="question-title">
                     <span class="question-number">8</span>
-                    Comment le DPE s'intègre aux autres diagnostics ?
+                    Quels sont les avantages du PPPT ?
                     <span class="toggle-icon" id="icon-8">▼</span>
                 </div>
                 <div class="answer" id="answer-8">
-                    <p>Le DPE peut être réalisé en complément :</p>
+                    <p>Le PPPT permet :</p>
                     <ul>
-                        <li><strong>Du PPPT</strong> (Projet de Plan Pluriannuel de Travaux)</li>
-                        <li><strong>Du DTG</strong> (Diagnostic Technique Global)</li>
-                        <li><strong>D'un audit énergétique</strong>, notamment pour les logements classés F ou G</li>
+                        <li>D'anticiper les dépenses</li>
+                        <li>De sécuriser juridiquement les décisions</li>
+                        <li>De valoriser le patrimoine immobilier</li>
+                        <li>De prévenir les sinistres et désordres techniques</li>
                     </ul>
-                    <p style="margin-top: 15px;">Cela permet une approche cohérente et complète de la rénovation énergétique.</p>
                 </div>
             </div>
 
             <div class="question-card" onclick="toggleAnswer(9)">
                 <div class="question-title">
                     <span class="question-number">9</span>
-                    Quelles sont les conséquences d'un mauvais DPE ?
+                    Que se passe-t-il en cas de non-respect ?
                     <span class="toggle-icon" id="icon-9">▼</span>
                 </div>
                 <div class="answer" id="answer-9">
-                    <p>Un DPE classé F ou G peut entraîner :</p>
-                    <ul>
-                        <li><strong>Des restrictions de location</strong> à partir des échéances légales</li>
-                        <li><strong>Une dévalorisation du bien</strong> sur le marché immobilier</li>
-                        <li><strong>Une obligation de rénovation énergétique</strong> pour rester conforme</li>
-                    </ul>
-                    <img src="./../home/assets/perceau.jpg" class="info-image" alt="Conséquences juridiques">
+                    <p>Les autorités compétentes (maire, préfet, EPCI) peuvent exiger la transmission du PPT. En cas de manquements, elles peuvent <strong>imposer un plan d'office</strong> aux frais du syndic et des copropriétaires.</p>
                 </div>
             </div>
 
@@ -915,11 +861,11 @@
                     <span class="toggle-icon" id="icon-10">▼</span>
                 </div>
                 <div class="answer" id="answer-10">
-                    <p>Un bureau d'études thermiques apporte :</p>
+                    <p>Un bureau comme <strong>ENELIV</strong>, spécialisé depuis 2009, offre :</p>
                     <ul>
-                        <li><strong>Une expertise technique approfondie</strong></li>
-                        <li><strong>Une analyse fiable et réglementaire</strong></li>
-                        <li><strong>Un accompagnement personnalisé</strong> pour vos démarches de rénovation et d'aides financières</li>
+                        <li>Une analyse technique complète</li>
+                        <li>Une expertise en rénovation énergétique</li>
+                        <li>Un accompagnement personnalisé pour chaque copropriété</li>
                     </ul>
                 </div>
             </div>
@@ -927,11 +873,9 @@
 
         <div class="cta-section">
             <h2>Confiez votre projet énergétique à des spécialistes engagés et réactifs</h2>
-            <p style="margin-top: 15px; font-size: 1.1em;">Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons une prestation rigoureuse première étape essentielle vers une unique conformité réglementaire ou une rénovation performante.</p>
+            <p style="margin-top: 15px; font-size: 1.1em;">Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons rigueur et transparence, que ce soit pour un audit réglementaire, une étude énergétique ou une rénovation performante.</p>
             <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
         </div>
-
-
     </div>
 
         <!-- Footer Professionnel -->
@@ -958,7 +902,6 @@
                         <li><a href="./../renov/index.html">Mon Accompagnateur Rénov'</a></li>
                     </ul>
                 </div>
-            
 
                 <!-- Contact -->
                 <div class="footer-section">
@@ -1009,6 +952,7 @@
             const dropdown = document.getElementById(id);
             dropdown.classList.toggle('show');
             
+            // Fermer les autres dropdowns
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 if (menu.id !== id) {
                     menu.classList.remove('show');
@@ -1032,6 +976,7 @@
             burgerMenu.classList.remove('active');
         }
 
+        // Fermer les dropdowns en cliquant ailleurs
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -1040,6 +985,7 @@
             }
         });
 
+        // Add scroll effect to header
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
@@ -1051,6 +997,7 @@
             }
         });
 
+        // Logo click redirect
         const logo = document.querySelector('.logo');
         if (logo) {
             logo.addEventListener('click', function() {
@@ -1058,6 +1005,7 @@
             });
         }
 
+        // Animation au scroll
         const cards = document.querySelectorAll('.question-card');
         
         const observer = new IntersectionObserver((entries) => {
