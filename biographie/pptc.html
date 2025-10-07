@@ -374,13 +374,254 @@
             color: white;
         }
 
-        footer {
-            background: #0B3041;
+          /* Footer Professionnel */
+        .footer {
+            background: #1a202c;
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 4rem 0 2rem;
+            margin-top: 0;
         }
 
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #7FB77E;
+        }
+
+        .footer-section p, .footer-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+            color: white;
+        }
+
+        .footer-section a:hover {
+            color: #7FB77E;
+        }
+
+        .company-info {
+            max-width: 300px;
+        }
+
+        .company-logo {
+            width: 150px;
+            height: 60px;
+            background: transparent;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: #2d3748;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #7FB77E;
+            transform: translateY(-2px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-item i {
+            width: 20px;
+            color: #7FB77E;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 50px;
+        }
+
+        .footer-bottom p {
+            color: #7FB77E;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #7FB77E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #7FB77E;
+        }
+
+       
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .step-card {
+                padding: 30px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            
+        }
+        .eneliv-section {
+            text-align: center;
+            background: linear-gradient(135deg, #e8e9ea 0%, #f1f2f3 100%);
+            border-radius: 20px;
+            
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            top: auto;
+            margin-bottom: 50px;
+            margin-top: 50px;
+        }
+        
+        
+        
+        .eneliv-intro {
+            font-size: 1rem;
+            color: #34495e;
+            margin: 0 0 1.5rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .eneliv-description {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #5a6c7d;
+            line-height: 1.8;
+            margin: 0 0 1.8rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.8rem;
+        }
+        
+        .eneliv-ambition {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @font-face {
+
+            font-family: 'MaSignature';
+
+            src: url('./home/assets/Bastliga\ One.ttf') format('truetype');
+
+            }
+ 
+
+
+ 
+        
+        .eneliv-signature {
+            font-family: 'MaSignature', cursive;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            font-style: italic;
+        }
+        
+
+        .eneliv-title {
+            width: 120px;
+            height: 80px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-size: cover;
+            background-position: center;
+
+        }
+        
+        @media (max-width: 768px) {
+            .eneliv-section {
+                padding: 2.5rem 1.5rem;
+            }
+            
+          
+            
+            .eneliv-intro {
+                font-size: 1rem;
+            }
+            
+            .eneliv-description,
+            .eneliv-ambition {
+                font-size: 0.95rem;
+            }
+            
+            .eneliv-signature {
+                font-size: 2rem;
+            }
+        }
         .toggle-icon {
             float: right;
             transition: transform 0.3s ease;
@@ -636,10 +877,67 @@
             <p style="margin-top: 15px; font-size: 1.1em;">Notre bureau d'études thermiques met à votre disposition des experts à l'écoute, prêts à intervenir rapidement pour vous conseiller et vous accompagner. Nous vous garantissons rigueur et transparence, que ce soit pour un audit réglementaire, une étude énergétique ou une rénovation performante.</p>
             <button class="cta-button" onclick="window.location.href='./../contacter/index.html'">Parler à un référent</button>
         </div>
+    </div>
 
-        <footer>
-            <p>&copy; 2025 ENELIV - Guide PPPT pour Copropriétés | Tous droits réservés</p>
-        </footer>
+        <!-- Footer Professionnel -->
+    <footer class="footer">
+        <div class="containers">
+            <div class="footer-content">
+                <!-- Informations de l'entreprise -->
+                <div class="footer-section company-info">
+                    <div class="company-logo">
+                        <img src="./../logoblanc.png" alt="" style="width: 150px;">
+                    </div>
+                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes : sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
+                    
+                </div>
+
+                <!-- Nos services -->
+                <div class="footer-section">
+                    <h3>Nos Expertises</h3>
+                    <ul>
+                        <li><a href="./../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
+                        <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
+                        <li><a href="./../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
+                        <li><a href="./../AE/index.html">Audit Énergétique</a></li>
+                        <li><a href="./../renov/index.html">Mon Accompagnateur Rénov'</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-item">
+                        <p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
+                    </div>
+                    <div class="contact-item">
+                        
+                        <p>✆     +33 6 63 34 98 10</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>✉︎ contact@eneliv.fr</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>Lun-Jeu : 8h30-12h30 | 13h30-18h30<br>Ven-Sam : 8h30-12h30</p>
+                    </div>
+                </div>
+
+                
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="/mentions-legales">Mentions légales</a>
+                    <a href="/politique-confidentialite">Confidentialité</a>
+                    <a href="/conditions-utilisation">CGU</a>
+                    <a href="/plan-site">Plan du site</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     </div>
 
     <script>
