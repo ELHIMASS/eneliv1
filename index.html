@@ -112,6 +112,7 @@
         }
 
         /* Mobile Menu */
+          /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -132,7 +133,6 @@
         .mobile-menu.active {
             right: 0;
         }
-
        
 
         
@@ -446,28 +446,7 @@
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(85vw, 400px);
-            height: 100vh;
-            background: rgba(11, 48, 65, 0.98);
-            backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            padding: 100px 0 40px 0;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
+       
         /* Mobile Menu Links */
         .mobile-nav-section {
             padding: 0 30px;
@@ -888,7 +867,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
+            transition: right 0.6s;
         }
         
         .contact-button:hover::before {
@@ -1040,10 +1019,6 @@
 
 }
 
-
-.mobile-menu.active {
-    left: 0;
-}
 
 @media (max-width: 983px) {
     .engagement-section1 {
@@ -1246,7 +1221,7 @@
   top: 0;
   left: 100%;
   width: 100%;
-  transition: left 0.6s ease-in-out;
+  transition: right 0.6s ease-in-out;
   opacity: 0;
 }
 
@@ -2104,51 +2079,12 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 3rem;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
+        
 
         
 
 
-/* Menu Mobile - Design Ultra Moderne */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: min(85vw, 400px);
-    height: 100vh;
-    background: rgba(11, 48, 65, 0.95);
-    backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    flex-direction: column;
-    padding: 100px 0 40px 0;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    overflow-y: auto;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-}
 
-.mobile-menu.active {
-    right: 0;
-}
 
 /* Overlay pour fermer le menu */
 .mobile-menu-overlay {
