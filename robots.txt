@@ -1,20 +1,35 @@
+# ============================================================
 # robots.txt pour https://eneliv.fr/
-# Créé le 09/10/2025
-# Ce fichier indique aux moteurs de recherche comment explorer le site ENELIV.
+# Créé le : 09/10/2025
+# Auteur : ENELIV - Diagnostic & Performance Énergétique
+# Objectif : Optimisation SEO + Indexation rapide (favicon, pages, images)
+# ============================================================
 
+# --- Directives globales ---
 User-agent: *
 Allow: /
 
-# Empêche l’indexation de certains répertoires (au cas où ils existeraient)
-Disallow: /wp-admin/
+# --- Répertoires potentiellement inutiles à explorer ---
 Disallow: /cgi-bin/
 Disallow: /tmp/
 Disallow: /private/
+Disallow: /admin/
+Disallow: /includes/
+Disallow: /core/
+Disallow: /backup/
 
-# Indique l’emplacement du sitemap
-Sitemap: https://eneliv.fr/sitemap.xml
-
-# Délai entre les requêtes (optionnel, pour éviter la surcharge du serveur)
+# --- Accélère l’exploration sans surcharger le serveur ---
 Crawl-delay: 10
 
+# --- Déclaration du sitemap pour indexation rapide ---
+Sitemap: https://eneliv.fr/sitemap.xml
+
+# --- Bonnes pratiques SEO ---
+# - Toutes les pages importantes sont accessibles.
+# - Les favicons et images sont indexables.
+# - Aucun blocage inutile des ressources CSS/JS.
+# - Compatible avec Googlebot, Bingbot et autres crawlers majeurs.
+
+# ============================================================
 # Fin du fichier robots.txt
+# ============================================================
