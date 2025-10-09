@@ -1,0 +1,20 @@
+# robots.txt pour https://eneliv.fr/
+# Créé le 09/10/2025
+# Ce fichier indique aux moteurs de recherche comment explorer le site ENELIV.
+
+User-agent: *
+Allow: /
+
+# Empêche l’indexation de certains répertoires (au cas où ils existeraient)
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+
+# Indique l’emplacement du sitemap
+Sitemap: https://eneliv.fr/sitemap.xml
+
+# Délai entre les requêtes (optionnel, pour éviter la surcharge du serveur)
+Crawl-delay: 10
+
+# Fin du fichier robots.txt
