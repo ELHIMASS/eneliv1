@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            line-height: 3;
+            line-height: 2;
             color: #333;
             margin-top: 80px;
         }
@@ -121,17 +121,7 @@
             display: block;
         }
 
-       * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            line-height: 3;
-            color: #333;
-        }
+     
 
         /* Header */
         .header {
@@ -199,13 +189,14 @@
             z-index: 1001;
         }
 
-        .burger-line {
-            width: 28px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
+       .burger-line {
+               width: 19px;
+                height: 2px;
+                background: white;
+                margin: 3px 0;
+                transition: all 0.3s 
+                ease;
+                border-radius: 2px
         }
 
         .burger-menu.active .burger-line:nth-child(1) {
@@ -359,6 +350,9 @@
 
             .nav-menu {
                 display: none;
+            }
+            .eneliv {
+                font-size: 15px !important;
             }
         } /* Header */
         .header {
@@ -462,17 +456,7 @@
             display: block;
         }
 
-       * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            line-height: 3;
-            color: #333;
-        }
+    
 
         /* Header */
         .header {
@@ -540,14 +524,7 @@
             z-index: 1001;
         }
 
-        .burger-line {
-            width: 28px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
-        }
+        
 
         .burger-menu.active .burger-line:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
@@ -701,6 +678,12 @@
             .nav-menu {
                 display: none;
             }
+            .logo img {
+                height: 0.9cm !important;
+                width: 4.5cm !important;
+                margin-left: -40px;
+            }
+                    
         }
 
         @media  (width: 1000px) and (width: 1600px) {
@@ -728,12 +711,12 @@
         }
 
         /* Hero Section */
+       /* Hero Section */
         .hero-section {
             background-color: #0B3041;
             top: -3rem;
             color: white;
             text-align: center;
-            padding: 3rem 0 4rem;
             position: relative;
         }
         .nous-hero {
@@ -746,6 +729,7 @@
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
+
 
 
         .certifications-section {
@@ -1184,7 +1168,7 @@
         }
 
         .service-title {
-            font-size: 13px;
+            font-size: 18px;
             color: #0B3041;
             margin-bottom: 1rem;
             font-weight: bold;
@@ -1193,7 +1177,7 @@
         }
 
         .service-description {
-            font-size: 10px;
+            font-size: 15px;
             color: #555;
             line-height: 1.7;
             margin-bottom: 1.5rem;
@@ -1364,6 +1348,10 @@
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
+            .container {
+                padding: 30px 1rem;
+            }
             
             .step-card {
                 padding: 30px;
@@ -1508,7 +1496,7 @@
             color: white;
             border: none;
             padding: 1rem 2.5rem;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
@@ -1550,12 +1538,10 @@
                 display: none;
             }
 
-            .hero-section {
-                height: 300px;
-            }
+            
 
             .hero-title {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
 
             .services-container {
@@ -1591,7 +1577,6 @@
 
             .section-title {
                 font-size: 1.5rem;
-                margin: 2rem 0 1.5rem 0;
             }
 
             .engagement-section {
@@ -1646,7 +1631,7 @@
 
         @media (max-width: 983px) {
             .hero-title {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .service-title {
@@ -1766,7 +1751,7 @@
               
             
 
-                <p class="eneliv" style="font-size: 18px; text-align: justify; margin-top: -30px; ;">
+                <p class="eneliv" style="font-size: 18px; text-align: justify;">
                         ENELIV accompagne les particuliers, les copropriétés, le secteur tertiaire et les industries dans leurs projets de performance énergétique. </p>
         
             </div>
@@ -1781,7 +1766,7 @@
 
         <!-- Services Section -->
     <section class="section" id="services" style="margin-bottom: 100px;">
-        <div class="container" style="padding: 4rem;">
+        <div class="container">
         <h2 class="section-title">
             Découvrez nos <span class="highlight">secteurs</span>
         </h2>
@@ -1819,15 +1804,16 @@
         </div>
     </a>
 </div>
+<div id="particulier"></div>
 
         </div>
     </section>
 
 
-
+        
         <!-- Services pour les particuliers -->
         <section  >
-            <h2 class="section-title">Nos services pour les particuliers</h2>
+            <h2 class="section-title" >Nos services pour les particuliers</h2>
             <div class="services-container">
                 <div class="service-item">
                     <div class="service-content">
@@ -1871,6 +1857,7 @@
                         
                     </div>
                 </div>
+                <div id="coproprié"></div>
             </div>
         </section >
 
@@ -1930,6 +1917,8 @@
                         <div class="service-image" style="background-image: url('./../home/assets/5.jpeg');"></div>
                     </div>
                 </div>
+                    <div id="tertiaire"></div>
+
             </div>
         </section>
 
@@ -2034,7 +2023,7 @@
                     <div class="company-logo">
                         <img src="./../logoblanc.png" alt="" style="width: 150px;">
                     </div>
-                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes : sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
+                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes: sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
                     
                 </div>
 
