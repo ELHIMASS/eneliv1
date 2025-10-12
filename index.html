@@ -1131,10 +1131,14 @@
             align-items: center;
             justify-content: center;
             color: #0B3041;
+            pointer-events: none; /* ⛔ Désactive les clics sur les slides cachées */
+
         }
 
         .hero-slide.active {
             opacity: 1;
+            pointer-events: auto; /* ✅ Active les clics uniquement sur la slide visible */
+
         }
 
       .hero-slide:nth-child(1) {
@@ -3302,6 +3306,7 @@ let mobileMenuOpen = false;
 function initHeroSlider() {
     const heroSlides = document.querySelectorAll('.hero-slide');
     const heroNavBtns = document.querySelectorAll('.hero-nav-btn');
+    
 
     function showHeroSlide(index) {
         heroSlides.forEach(slide => slide.classList.remove('active'));
