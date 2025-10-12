@@ -31,117 +31,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .logo img {
-            height: 1.2cm;
-            width: 5.4cm;
-            object-fit: contain;
-        }
-
-        .logo-placeholder {
-            width: 120px;
-            height: 50px;
-            background: linear-gradient(135deg, #7FB77E, #00ccff);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-menu li {
-            position: relative;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        .nav-menu :hover {
-            cursor: pointer;
-            color: #7FB77E;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            margin-top: 16px;
-            left: 0;
-            background-color: #0B3041;
-            padding: 0.5rem 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            display: none;
-            min-width: 327px;
-            z-index: 999;
-        }
-
-        .dropdown-menu li {
-            list-style: none;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.8rem;
-            color: white;
-            font-weight: 500;
-            transition: background 0.3s;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .dropdown-menu a:hover {
-            background: rgba(127, 183, 126, 0.2);
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
-     
-
-        /* Header */
-        .header {
-            background-color: #0B3041;
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+       
 
         .logo {
             display: flex;
@@ -189,15 +79,7 @@
             z-index: 1001;
         }
 
-       .burger-line {
-               width: 19px;
-                height: 2px;
-                background: white;
-                margin: 3px 0;
-                transition: all 0.3s 
-                ease;
-                border-radius: 2px
-        }
+        
 
         .burger-menu.active .burger-line:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
@@ -212,6 +94,7 @@
         }
 
         /* Mobile Menu */
+          /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -232,16 +115,9 @@
         .mobile-menu.active {
             right: 0;
         }
+       
 
-        /* Mobile Menu Links */
-        .mobile-nav-section {
-            padding: 0 30px;
-        }
-
-        .mobile-nav-item {
-            margin-bottom: 8px;
-        }
-
+        
         .mobile-nav-link {
             display: flex;
             align-items: center;
@@ -281,6 +157,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
         .mobile-dropdown-toggle:hover {
@@ -322,13 +199,13 @@
 
         .mobile-dropdown-item {
             display: block;
-            padding: 12px 20px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 12px;
+            padding: 9px 10px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            margin-bottom: 4px;
+            border-bottom: solid 2px #7FB77E;
             border-left: 2px solid transparent;
         }
 
@@ -351,10 +228,29 @@
             .nav-menu {
                 display: none;
             }
-            .eneliv {
-                font-size: 15px !important;
+        
+        } 
+        @media (max-width: 983px) {
+            /* Header amélioré */
+            .header {
+                height: 70px !important;
             }
-        } /* Header */
+            
+           
+            
+            .logo img {
+                height: 0.9cm !important;
+                width: 4.5cm !important;
+                        margin-left: -40px;
+            }
+            
+            /* Burger menu repositionné et amélioré */
+            .burger-menu {
+                display: flex;
+                z-index: 1002;
+            }
+        }
+        /* Header */
         .header {
             background-color: #0B3041;
             color: white;
@@ -366,13 +262,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+       
 
         .logo {
             display: flex;
@@ -456,7 +346,17 @@
             display: block;
         }
 
-    
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 3;
+            color: #333;
+        }
 
         /* Header */
         .header {
@@ -524,7 +424,15 @@
             z-index: 1001;
         }
 
-        
+        .burger-line {
+               width: 19px;
+                height: 2px;
+                background: white;
+                margin: 3px 0;
+                transition: all 0.3s 
+                ease;
+                border-radius: 2px
+        }
 
         .burger-menu.active .burger-line:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
@@ -538,28 +446,7 @@
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: min(85vw, 400px);
-            height: 100vh;
-            background: rgba(11, 48, 65, 0.98);
-            backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-            padding: 100px 0 40px 0;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
+       
         /* Mobile Menu Links */
         .mobile-nav-section {
             padding: 0 30px;
@@ -569,24 +456,9 @@
             margin-bottom: 8px;
         }
 
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
+       
 
-        .mobile-nav-link:hover {
-            background: rgba(127, 183, 126, 0.15);
-            color: #7FB77E;
-            transform: translateX(8px);
-        }
+      
 
         /* Dropdown Mobile */
         .mobile-dropdown {
@@ -647,24 +519,24 @@
             max-height: 400px;
         }
 
-        .mobile-dropdown-item {
-            display: block;
-            padding: 12px 20px;
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 14px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            margin-bottom: 4px;
-            border-left: 2px solid transparent;
+        
+
+        
+
+        
+        
+
+        /* Responsive */
+        @media (max-width: 983px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
         }
 
-        .mobile-dropdown-item:hover {
-            background: rgba(127, 183, 126, 0.1);
-            color: #7FB77E;
-            border-left-color: #7FB77E;
-            transform: translateX(8px);
-        }
 
         
         
@@ -1679,7 +1551,7 @@
             <nav>
                 <ul class="nav-menu">
                     <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li><a href="./../besoin/index.html" style="color: #7FB77E;">VOS BESOINS</a></li>
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
@@ -1712,7 +1584,7 @@
             </div>
             
             <div class="mobile-nav-item">
-                <a href="./../besoin/index.html" class="mobile-nav-link">VOS BESOINS</a>
+                <a href="./../besoin/index.html" class="mobile-nav-link"  style="color: #7FB77E;">VOS BESOINS</a>
             </div>
             
             <div class="mobile-dropdown" id="mobileExpertise">
@@ -1724,8 +1596,8 @@
                     <a href="./../dpe/index.html" class="mobile-dropdown-item">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a>
                     <a href="./../DTG/index.html" class="mobile-dropdown-item">DIAGNOSTIC TECHNIQUE GLOBAL</a>
                     <a href="./../ppt/index.html" class="mobile-dropdown-item">PLAN PLURIANNUEL DE TRAVAUX</a>
-                    <a href="./../AE/index.html" class="mobile-dropdown-item">Audit Énergétique</a>
-                    <a href="./../renov/index.html" class="mobile-dropdown-item">Accompagnateur Rénov'</a>
+                   <a href="./../AE/index.html" class="mobile-dropdown-item">AUDIT ÉNERGÉTIQUE</a>
+                    <a href="./../renov/index.html" class="mobile-dropdown-item">MON ACCOMPAGNATEUR RÉNOV'</a>
                 </div>
             </div>
 
