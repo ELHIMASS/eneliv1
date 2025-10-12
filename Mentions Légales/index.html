@@ -41,9 +41,10 @@
 <body>
   <div class="wrap">
     <header>
-      <div class=".question-icon">
-        <img style="width: 100px;" href="./../index.html" src="./../ENELIVP.png" alt="Icône information">
-      </div>
+      <div class=".question-icon" >
+                <img src="./../ENELIVP.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+            </div>
       <div>
         <h1>Mentions légales — <strong>ENELIV</strong></h1>
         <p class="lead">Version publique des mentions légales.</p>
@@ -209,6 +210,12 @@
         updated.textContent=new Date().toLocaleDateString('fr-FR');
       }
     });
+
+    document.querySelector('.logo').addEventListener('click', function() {
+                window.location.href = './../index.html';
+            });
+
+
   </script>
 </body>
 </html>
