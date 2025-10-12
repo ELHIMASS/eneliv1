@@ -21,6 +21,7 @@
         }
 
         /* Header Styles */
+         /* Header */
         .header {
             background-color: #0B3041;
             color: white;
@@ -32,13 +33,238 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
-            margin: 0 auto;
+       
+
+        .logo {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
+            cursor: pointer;
         }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-menu a:hover {
+            color: #7FB77E;
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Mobile Menu */
+          /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85vw, 400px);
+            height: 100vh;
+            background: rgba(11, 48, 65, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 0 40px 0;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+       
+
+        
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        /* Dropdown Mobile */
+        .mobile-dropdown {
+            margin-bottom: 8px;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .mobile-dropdown-toggle:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown.active .dropdown-arrow::after {
+            transform: rotate(-135deg);
+        }
+
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 20px;
+        }
+
+        .mobile-dropdown.active .mobile-dropdown-content {
+            max-height: 400px;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 12px;
+            padding: 9px 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-bottom: solid 2px #7FB77E;
+            border-left: 2px solid transparent;
+        }
+
+        .mobile-dropdown-item:hover {
+            background: rgba(127, 183, 126, 0.1);
+            color: #7FB77E;
+            border-left-color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        
+        
+
+        /* Responsive */
+        @media (max-width: 983px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        
+        } 
+        @media (max-width: 983px) {
+            /* Header amélioré */
+            .header {
+                height: 70px !important;
+            }
+            
+           
+            
+            .logo img {
+                height: 0.9cm !important;
+                width: 4.5cm !important;
+                        margin-left: -40px;
+            }
+            
+            /* Burger menu repositionné et amélioré */
+            .burger-menu {
+                display: flex;
+                z-index: 1002;
+            }
+        }
+        /* Header */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+       
 
         .logo {
             display: flex;
@@ -84,7 +310,7 @@
             margin-left: 10px;
         }
 
-        .nav-menu a:hover {
+        .nav-menu :hover {
             cursor: pointer;
             color: #7FB77E;
         }
@@ -94,6 +320,7 @@
             margin-top: 16px;
             left: 0;
             background-color: #0B3041;
+            padding: 0.5rem 0;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             display: none;
             min-width: 327px;
@@ -121,54 +348,197 @@
             display: block;
         }
 
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 3;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-menu a:hover {
+            color: #7FB77E;
+        }
+
+        /* Burger Menu */
         .burger-menu {
             display: none;
             flex-direction: column;
             cursor: pointer;
             padding: 8px;
+            z-index: 1001;
         }
 
         .burger-line {
-            width: 28px;
-            height: 3px;
-            background: white;
-            margin: 4px 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
+               width: 19px;
+                height: 2px;
+                background: white;
+                margin: 3px 0;
+                transition: all 0.3s 
+                ease;
+                border-radius: 2px
         }
 
-        .mobile-menu {
-            position: fixed;
-            top: 80px;
-            left: -100%;
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+       
+        /* Mobile Menu Links */
+        .mobile-nav-section {
+            padding: 0 30px;
+        }
+
+        .mobile-nav-item {
+            margin-bottom: 8px;
+        }
+
+       
+
+      
+
+        /* Dropdown Mobile */
+        .mobile-dropdown {
+            margin-bottom: 8px;
+        }
+
+        .mobile-dropdown-toggle {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding-top: 3rem;
-            transition: left 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            left: 0;
-        }
-
-        .mobile-menu a {
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
             color: white;
-            text-decoration: none;
-            padding: 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 0.5rem 0;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
         }
 
-        .mobile-menu a:hover {
+        .mobile-dropdown-toggle:hover {
+            background: rgba(127, 183, 126, 0.15);
             color: #7FB77E;
         }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown.active .dropdown-arrow::after {
+            transform: rotate(-135deg);
+        }
+
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 20px;
+        }
+
+        .mobile-dropdown.active .mobile-dropdown-content {
+            max-height: 400px;
+        }
+
+        
+
+        
+
+        
+        
+
+        /* Responsive */
+        @media (max-width: 983px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
 
         /* Main Content Styles */
         .main-container {
@@ -212,8 +582,8 @@
         }
 
         .content-image img {
-            width: 100%;
-            height: auto;
+            width: 93%;
+            height: 630px;
             object-fit: cover;
             border-radius: 8px;
         }
@@ -323,17 +693,18 @@
         }
 
         .cta-button {
-            background-color: #7FB77E;
+            background-color: #0B3041;
             color: white;
             border: none;
-            padding: 0.1rem 1rem;
-            border-radius: 6px;
-            font-size: 1rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s 
+        ease;
+            width: 250px;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
@@ -458,16 +829,7 @@
             text-align: justify;
         }
 
-        .engagement-cta {
-            background-color: #6c9a5c;
-            font-size: 1.1rem;
-            padding: 1rem 2.5rem;
-        }
-
-        .engagement-cta:hover {
-            background-color: #5a8549;
-        }
-
+        
         /* Audit Specific Styles */
         .audit-intro {
             background: #f8f9fa;
@@ -477,7 +839,6 @@
         }
 
         .category-section {
-            border: 2px solid #e9ecef;
             border-radius: 12px;
             margin: 2rem 0;
             padding: 1.5rem;
@@ -742,6 +1103,12 @@
             background-size: cover;
             background-position: center;
         }
+        .imo {
+            width: 1000px;
+            margin: 1rem auto;
+            display: block;
+
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -838,7 +1205,28 @@
             .obligations-grid {
                 grid-template-columns: 1fr;
             }
+            .imo {
+            width: 300px;
+            margin: 0.5rem auto;
+            display: block;
+
         }
+        }
+
+        .question-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
     </style>
 </head>
 <body>
@@ -846,42 +1234,71 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="./../logoblanc.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-placeholder" style="display: none;">ENELIV</div>
+                <img src="./../logoblanc.png" alt="Logo" >
+                <div class="logo-placeholder" style="display: none;">LOGO</div>
             </div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./../nous/index.html" >QUI SOMMES NOUS ?</a></li>
                     <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
                     <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
                         <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
                         <ul id="expertiseDropdown" class="dropdown-menu">
-                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
-                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
-                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                            <li><a href="./../AE/index.html" style="color: #7FB77E;">AUDIT ÉNERGÉTIQUE</a></li>
-                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        <li><a href="./../dpe/index.html" >DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
+                        <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                        <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                        <li><a href="./../AE/index.html" style="color: #7FB77E;" >AUDIT ÉNERGÉTIQUE</a></li>
+                        <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
                         </ul>
                     </li>
                     <li><a href="./../contacter/index.html">CONTACT</a></li>
                     <li><a href="./../blog/index.html">BLOG</a></li>
                 </ul>
 
-                <div class="burger-menu" onclick="toggleMobileMenu()">
+                <div class="burger-menu" id="burgerMenu">
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
                     <div class="burger-line"></div>
                 </div>
             </nav>
         </div>
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="./../nous/index.html" onclick="closeMobileMenu()">QUI SOMMES NOUS ?</a>
-            <a href="./../besoin/index.html" onclick="closeMobileMenu()">VOS BESOINS</a>
-            <a href="#" onclick="closeMobileMenu()">NOTRE EXPERTISE</a>
-            <a href="./../contacter/index.html" onclick="closeMobileMenu()">CONTACT</a>
-            <a href="./../blog/index.html" onclick="closeMobileMenu()">BLOG</a>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-item">
+                <a href="./../nous/index.html" class="mobile-nav-link"  >QUI SOMMES NOUS ?</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./../besoin/index.html" class="mobile-nav-link">VOS BESOINS</a>
+            </div>
+            
+            <div class="mobile-dropdown" id="mobileExpertise">
+                <button class="mobile-dropdown-toggle">
+                    NOTRE EXPERTISE
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="./../dpe/index.html" class="mobile-dropdown-item">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a>
+                    <a href="./../DTG/index.html" class="mobile-dropdown-item">DIAGNOSTIC TECHNIQUE GLOBAL</a>
+                    <a href="./../ppt/index.html" class="mobile-dropdown-item">PLAN PLURIANNUEL DE TRAVAUX</a>
+                    <a href="./../AE/index.html" class="mobile-dropdown-item" style="color: #7FB77E;" >AUDIT ÉNERGÉTIQUE</a>
+                    <a href="./../renov/index.html" class="mobile-dropdown-item">MON ACCOMPAGNATEUR RÉNOV'</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <a href="./../contacter/index.html" class="mobile-nav-link">CONTACT</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./../blog/index.html" class="mobile-nav-link">BLOG</a>
+            </div>
         </div>
+    </div>
     </header>
 
     <!-- Main Content -->
@@ -903,20 +1320,15 @@
                 </p>
 
                 <p class="text-paragraph">
-                    <span class="highlight">Il est plus complet que le DPE, car il inclut :</span>
-                </p>
-
-                <ul class="arrow-list">
-                    <li>Des relevés techniques sur site</li>
-                    <li>Des solutions chiffrées et hiérarchisées</li>
-                    <li>Des estimations de gains énergétiques et financiers</li>
-                    <li>Un accompagnement dans le choix des travaux</li>
-                </ul>
-
-                <p class="text-paragraph">
                     Depuis 2023, <span class="highlight-blue">plusieurs obligations légales</span> rendent l'audit énergétique indispensable dans les secteurs concernés.
                 </p>
+
             </div>
+        </div>
+
+        <div>
+        <img src="./../home/assets/AEI.png" class="imo" alt="audit energitique"  onerror="this.style.display='none';">
+
         </div>
 
         <!-- Audit Individuel Section -->
@@ -952,12 +1364,14 @@
             </ul>
 
             <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un audit énergétique individuel</a>
+                <a class="cta-button" href="./../contacter/index.html">Demander un devis</a>
             </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+            <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p class="text-paragraph">
@@ -999,12 +1413,14 @@
             </ul>
 
             <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un audit énergétique en copropriété</a>
+                <a class="cta-button" href="./../contacter/index.html">Demander un devis</a>
             </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
+             <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>
             <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p class="text-paragraph">
@@ -1052,13 +1468,14 @@
             </ul>
 
             <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un audit énergétique tertiaire</a>
+                <a class="cta-button" href="./../contacter/index.html">Demander un devis</a>
             </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
-            <div class="info-content">
+ <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>            <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p class="text-paragraph">
                     Les bâtiments tertiaires doivent réduire leur consommation de <span class="highlight">40 % d'ici 2030, 50 % d'ici 2040, et 60 % d'ici 2050</span>, sous peine de sanctions.
@@ -1105,13 +1522,14 @@
             </ul>
 
             <div class="cta-button-container">
-                <a class="cta-button" href="./../contacter/index.html">Demander un audit énergétique industriel</a>
+                <a class="cta-button" href="./../contacter/index.html">Demander un devis</a>
             </div>
         </div>
 
         <div class="info-section">
-            <div class="info-icon">?</div>
-            <div class="info-content">
+ <div class="question-icon">
+                <img src="./../ENELIVP.png" alt="Icône information">
+            </div>            <div class="info-content">
                 <h3 class="info-title">Le saviez-vous ?</h3>
                 <p class="text-paragraph">
                     Le non-respect des obligations peut entraîner une <span class="highlight">amende jusqu'à 4 % du chiffre d'affaires</span>, et une <span class="highlight">perte d'accès aux aides publiques</span>.
@@ -1173,7 +1591,7 @@
                     <div class="company-logo">
                         <img src="./../logoblanc.png" alt="" style="width: 150px;">
                     </div>
-                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes : sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
+                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes: sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
                     
                 </div>
 
@@ -1197,7 +1615,7 @@
                     </div>
                     <div class="contact-item">
                         
-                        <p>✆     +33 4 44 05 07 18</p>
+                        <p>✆     +33 4 87 62 67 74</p>
                     </div>
                     <div class="contact-item">
                         <p>✉︎ contact@eneliv.fr</p>
@@ -1355,28 +1773,177 @@
             });
         });
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
+       const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const body = document.body;
+
+        function toggleMobileMenu() {
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                mobileMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                body.style.overflow = '';
             } else {
-                header.classList.remove('scrolled');
+                mobileMenu.classList.add('active');
+                burgerMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
             }
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+            
+            const isActive = dropdown.classList.contains('active');
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.classList.remove('active');
+                }
+            });
+            
+            dropdown.classList.toggle('active');
+        }
+
+        burgerMenu.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.closest('.mobile-dropdown');
+                toggleMobileDropdown(dropdown.id);
+            });
         });
 
-        // Keyboard navigation support
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                // Close mobile menu
+        document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!this.classList.contains('mobile-dropdown-toggle')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 983) {
                 closeMobileMenu();
-                
-                // Close dropdown menus
+            }
+        });
+    
+   
+    // Logo click
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            window.location.href = './../index.html';
+        });
+    }
+    
+    
+        
+         
+   
+
+    // Mobile menu swipe to close
+    const mobileMenuSwipe = document.getElementById('mobileMenu');
+    if (mobileMenuSwipe) {
+        let startX = 0;
+        
+        mobileMenuSwipe.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        }, {passive: true});
+        
+        mobileMenuSwipe.addEventListener('touchmove', function(e) {
+            if (!mobileMenuOpen) return;
+            
+            const currentX = e.touches[0].clientX;
+            const diffX = startX - currentX;
+            
+            // Swipe vers la droite pour fermer
+            if (diffX < -50) {
+                closeMobileMenu();
+            }
+        }, {passive: true});
+    }
+
+// ===== RESPONSIVE =====
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 983 && mobileMenuOpen) {
+        closeMobileMenu();
+    }
+});
+
+// ===== DEBUG =====
+console.log('Script chargé successfully');
+
+// Dropdown functions
+        function toggleDropdown(id) {
+            // Fermer les autres menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+
+            // Toggle le menu cliqué
+            const menu = document.getElementById(id);
+            menu.classList.toggle('show');
+        }
+
+        // Fermer si clic en dehors
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
                     menu.classList.remove('show');
                 });
             }
         });
+
+
+
+
+       
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.value-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+
+        // Add fadeInUp animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
