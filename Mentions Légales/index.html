@@ -31,7 +31,7 @@
     .btn{padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
     .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(11,118,209,0.12)}
     @media (max-width:640px){body{padding:18px}.cookie-banner{flex-direction:column;align-items:stretch}}
-    .logo {
+    .question-icon {
             width: 50px;
             height: 50px;
          
@@ -41,10 +41,9 @@
 <body>
   <div class="wrap">
     <header>
-      <div class=".logo" >
-                <img src="./../ENELIVP.png" alt="Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-placeholder" style="display: none;">ENELIV</div>
-            </div>
+      <div class=".question-icon">
+        <img style="width: 100px;" src="./../ENELIVP.png" alt="Icône information">
+      </div>
       <div>
         <h1>Mentions légales — <strong>ENELIV</strong></h1>
         <p class="lead">Version publique des mentions légales.</p>
@@ -210,12 +209,6 @@
         updated.textContent=new Date().toLocaleDateString('fr-FR');
       }
     });
-
-    document.querySelector('.logo').addEventListener('click', function() {
-                window.location.href = './../index.html';
-            });
-
-
   </script>
 </body>
 </html>
