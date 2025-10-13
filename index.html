@@ -2732,65 +2732,107 @@
         }
         
         
-         .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 20px;
-            padding: 30px 0;
-        }
+      .carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 30px 0;
+  background: linear-gradient(135deg, #f9f9f9, #eef2f3);
+}
 
-        #reviews {
-            display: flex;
-            gap: 20px;
-            animation: scroll-left 40s linear infinite;
-            width: fit-content;
-        }
+#reviews {
+  display: flex;
+  gap: 30px;
+  animation: scroll-left 40s linear infinite;
+  width: fit-content;
+}
 
-        #reviews:hover {
-            animation-play-state: paused;
-        }
+#reviews:hover {
+  animation-play-state: paused;
+}
 
-        @keyframes scroll-left {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-        .review {
-    border: 1px solid #ddd;
-    padding: 10px;
+.review {
+  border: none;
+  padding: 20px;
+  border-radius: 20px;
+  background: #fff;
+  width: 400px;
+  min-width: 400px;
+  flex-shrink: 0;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-weight: 700;
+  color: #0B3041;
+  font-size: 1.1em;
+}
+
+.rating {
+  color: #FFB800;
+  font-weight: 600;
+}
+
+.text {
+  font-style: italic;
+  color: #333;
+  line-height: 1.4em;
+}
+
+
+
+.google-summary {
     
-    border-radius: 80px;
-    background: rgb(237 237 237 / 98%);
-    width: 700px;
-    min-width: 700px;
-    flex-shrink: 0;
-    JUSTIFY-ITEMS: CENTER;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-        }
+    gap: 15px;
+    border-radius: 15px;
+    padding: 15px 25px;
+    max-width: 450px;
+    font-family: Arial, sans-serif;
+    position: relative;
+    text-align: center;
+    justify-self: center;
 
-        .author {
-            font-weight: 700;
-            color: #0B3041;
-        }
-
-        .rating {
-            color: #FFB800;
-            font-weight: 600;
-        }
+}
 
 
-    .author {
-      font-weight: bold;
-    }
-    .rating {
-      color: #f39c12;
-    }
+
+
+.google-rating .score {
+ 
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #7FB77E;
+}
+
+.google-rating .stars {
+  font-size: 1em;
+  color: #FFB800;
+}
+
+.google-rating .count {
+  font-size: 0.6em;
+  color: #7FB77E;
+}
 
         
     </style>
@@ -2904,6 +2946,8 @@
                 </div>
             </a>
 
+                 
+
         <div class="hero-nav">
             <button class="hero-nav-btn active" onclick="showHeroSlide(0)"></button>
             <button class="hero-nav-btn" onclick="showHeroSlide(1)"></button>
@@ -2911,8 +2955,11 @@
             <button class="hero-nav-btn" onclick="showHeroSlide(3)"></button>
             <button class="hero-nav-btn" onclick="showHeroSlide(4)"></button>
         </div>
+
+        </div>
     </section>
 
+   
      <section>
         <div class="spacer">
         <div class="eneliv-sections">
@@ -2927,6 +2974,10 @@
                     <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité
                     <br> Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
                 </h2>
+
+                
+
+
                 
             <div class="services-wrapper">
                 <div class="services-list">
@@ -2940,14 +2991,25 @@
                          <img src="./home/assets/visio.png" style="width: 250px; " alt="">
 
                     </div>
+
+                    
                 </div>
+                 
+                    
+                    </div>
+
+                    <div class="google-summary">
+                    <div class="google-rating">
+                        <span style="font-size: 26px; color: #0B3041; font-weight: bold;">Les évaluations de nos clients</span><br>
+                        <span class="score">0.0</span> / 5
+                        <div class="stars"></div>
+                        <p class="count">Chargement des avis...</p>
+                    </div>
             </div>
             
             <div class="button-wrapper">
             <button class="cta-button" onclick="window.location.href='./contacter/index.html'" >Je demande mon devis</button>
 
-                
-               
             </div>
 
             </div>
@@ -2957,6 +3019,8 @@
 
         </div>
     </section>
+
+  
 
 
    <!-- Services Section -->
@@ -3005,6 +3069,8 @@
 
         </div>
     </section>
+
+    
 
 
     <section class="partenaires">
@@ -3175,46 +3241,9 @@
         </section>
     </div>
 
-    <div>
-        <h2 class="section-titlese" style="color: #0B3041;">⭐ Avis de nos clients sur Google</h2>
-        <div class="carousel-wrapper">
-            <div id="reviews"></div>
-        </div>
-    </div>
-   <script>
-        function initMap() {
-            const service = new google.maps.places.PlacesService(document.createElement('div'));
-            service.getDetails({
-                placeId: 'ChIJ69ZaBD3r9EcRc_xWMH9SdRM',
-                fields: ['reviews']
-            }, (place, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK && place.reviews) {
-                    const reviewsContainer = document.getElementById('reviews');
-                    
-                    // Afficher les avis deux fois pour l'effet infini
-                    const doubledReviews = [...place.reviews, ...place.reviews];
-                    
-                    doubledReviews.forEach(review => {
-                        const div = document.createElement('div');
-                        div.classList.add('review');
-                        div.innerHTML = `
-                            <p class="author">${review.author_name}</p>
-                            <p class="rating">Note : ${'⭐'.repeat(review.rating)}</p>
-                            <p>${review.text}</p>
-                        `;
-                        reviewsContainer.appendChild(div);
-                    });
-                }
-            });
-        }
-    </script>
-
-  <!-- Script Google Maps avec ta clé API -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEKMqk_34JgcIS_oP-zv5aJqJRNxaawNc&libraries=places&callback=initMap">
-  </script>
-
-    </div>
+   
+   
+    
 
     <!-- Footer Professionnel -->
     <footer class="footer">
@@ -3682,6 +3711,40 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoSlide();
     });
 });
+
+
+
+  function initMap() {
+    const service = new google.maps.places.PlacesService(document.createElement('div'));
+
+    service.getDetails({
+      placeId: 'ChIJ69ZaBD3r9EcRc_xWMH9SdRM', // Remplace par ton vrai Place ID
+      fields: ['rating','user_ratings_total']
+    }, (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        // Note moyenne
+        document.querySelector('.score').textContent = place.rating.toFixed(1);
+
+        // Nombre total d’avis
+        document.querySelector('.count').innerHTML =
+          `Basé sur <strong>${place.user_ratings_total} avis Google</strong>`;
+
+        // Génération des étoiles dynamiques
+        const stars = Math.round(place.rating);
+        document.querySelector('.stars').textContent = '⭐'.repeat(stars);
+      }
+    }, );
+  }
+
+
+  
+
+
+
+
+
+
+
 
 
     </script>
