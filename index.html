@@ -767,11 +767,11 @@
 
 
         
+      /* ENELIV Section */
         .eneliv-sections {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             padding: 30px 50px;
-            
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -780,18 +780,12 @@
             overflow: hidden;
             margin: 30px 80px 40px 80px;
         }
-        
-        
-        
-        @keyframes shimmer {
-            /* Animation shimmer supprimée */
-        }
-        
+
         .content-wrapper {
             flex: 1;
             position: relative;
         }
-        
+
         .section-titles {
             font-size: 20px;
             line-height: 2.0;
@@ -800,9 +794,8 @@
             font-weight: 400;
             letter-spacing: 1px;
             width: 1700px;
-            
         }
-        
+
         .section-titles strong {
             font-weight: 700;
             background: linear-gradient(135deg, #2d3748, #1a202c);
@@ -811,19 +804,13 @@
             background-clip: text;
         }
 
-       
-            
-        
-        
-     
-        
         .button-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
         }
-        
+
         .contact-button {
             background: #7FB77E;
             color: white;
@@ -843,9 +830,8 @@
             white-space: nowrap;
             font-family: inherit;
             letter-spacing: 0.5px;
-        
         }
-        
+
         .contact-button::before {
             content: '';
             position: absolute;
@@ -856,42 +842,15 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
             transition: right 0.6s;
         }
-        
+
         .contact-button:hover::before {
             left: 100%;
         }
-        
-        
-        
+
         .contact-button:active {
             transform: translateY(-1px) scale(1.01);
         }
-        
-        .contact-button .icon {
-            font-size: 18px;
-            transition: transform 0.3s ease;
-        }
-        
-        .contact-button:hover .icon {
-            transform: translateX(3px);
-        }
-        
-        .trust-indicators {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 12px;
-            color: #7FB77E;
-            text-align: center;
-        }
-        
-        .trust-indicator {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        
+
         .floating-elements {
             position: absolute;
             top: 20px;
@@ -899,7 +858,7 @@
             display: flex;
             gap: 8px;
         }
-        
+
         .floating-dot {
             width: 8px;
             height: 8px;
@@ -908,31 +867,53 @@
             animation: float 3s ease-in-out infinite;
             opacity: 0.6;
         }
-        
+
         .floating-dot:nth-child(2) {
             animation-delay: 0.5s;
         }
-        
+
         .floating-dot:nth-child(3) {
             animation-delay: 1s;
         }
-        
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        
-        @media (max-width: 1024px) {
-            .eneliv-sections {
-                flex-direction: column;
-                text-align: center;
-                gap: 0;
-            }
-            
-            .services-list {
-                grid-template-columns: 1fr;
-            }
+
+        .services-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 520px;
+            flex-wrap: wrap;
         }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-item::before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .engagement-section1 {
+            margin: 3rem 0;
+            text-align: center;
+            margin-right: 100px;
+        }
+
         
         
         
@@ -1078,7 +1059,7 @@
 @media (max-width: 1760px) {
 
     .services-wrapper {
-    gap: 0px !important;
+    gap: 150px ;
     align-items: center;
     justify-content: center;
     margin: 0;
@@ -2654,7 +2635,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 520px;
+            gap: 150px;
             flex-wrap: wrap;
         }
 
@@ -2831,7 +2812,7 @@
 }
 
 .google-rating .count {
-  font-size: 0.6em;
+  font-size: 1.6em;
   color: #7FB77E;
 }
 
@@ -2960,8 +2941,6 @@
         </div>
     </section>
 
-   
-     <section>
         <div class="spacer">
         <div class="eneliv-sections">
             <div class="floating-elements">
@@ -2970,41 +2949,37 @@
                 <div class="floating-dot"></div>
             </div>
             
-            <div class="content-wrapper">
-                <h2 class="section-titles" style="width: auto;">
-                    <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité
-                    <br> Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
-                </h2>
+             <div class="content-wrapper">
+                    <h2 class="section-titles" style="width: auto;">
+                        <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité
+                        <br> Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
+                    </h2>
 
-                
-
-
-                
-            <div class="services-wrapper">
-                <div class="services-list">
-                    <div class="service-item">Audit énergétique</div>
-                    <div class="service-item">Études techniques</div>
-                    <div class="service-item">Diagnostics immobiliers</div>
-                    <div class="service-item">Accompagnement réglementaire</div>
-                </div>
-                    <div class="engagement-section1">
-                        <div >
-                         <img src="./home/assets/visio.png" style="width: 250px; " alt="">
-
+                    <div class="services-wrapper">
+                        <div class="services-list">
+                            <div class="service-item">Audit énergétique</div>
+                            <div class="service-item">Études techniques</div>
+                            <div class="service-item">Diagnostics immobiliers</div>
+                            <div class="service-item">Accompagnement réglementaire</div>
+                        </div>
+                        <div class="engagement-section1">
+                            <div>
+                                <img src="./home/assets/visio.png" style="width: 250px;" alt="">
+                            </div>
+                        </div>
                     </div>
 
                     
-                </div>
-                 
-                    
-                    </div>
+
+         
+
 
                     <div  class="google-summary">
                     <div class="google-rating">
                         <span style="font-size: 26px; color: #0B3041; font-weight: bold;">Les évaluations de nos clients</span><br>
-                        <a  href="https://g.page/r/CXP8VjB_UnUTEBM/review" class="score">0.0</a> / 5
+                        <a  href="https://g.page/r/CXP8VjB_UnUTEBM/review" class="score">4.9</a> / 5
                         <div class="stars"></div>
-                        <p class="count">Chargement des avis...</p>
+                        <p class="count">⭐⭐⭐⭐⭐</p>
                     </div>
                     
                         <script async defer
@@ -3724,7 +3699,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const service = new google.maps.places.PlacesService(document.createElement('div'));
 
     service.getDetails({
-      placeId: 'ChIJ69ZaBD3r9EcRc_xWMH9SdRM', // Remplace par ton vrai Place ID
+      placeId: 'ChIJJYP-ZbPr9EcRCFeS5sQ3pq8', // Remplace par ton vrai Place ID
       fields: ['rating','user_ratings_total']
     }, (place, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
