@@ -32,12 +32,13 @@
         .header {
             background-color: #0B3041;
             color: white;
-            padding: 1rem 0;
+            
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            
         }
 
         
@@ -78,6 +79,7 @@
         .nav-menu a:hover {
             color: #7FB77E;
         }
+        
 
         /* Burger Menu */
         .burger-menu {
@@ -249,7 +251,7 @@
         .header {
             background-color: #0B3041;
             color: white;
-            padding: 1rem 0;
+            
             position: fixed;
             width: 100%;
             top: 0;
@@ -357,7 +359,7 @@
         .header {
             background-color: #0B3041;
             color: white;
-            padding: 1rem 0;
+            
             position: fixed;
             width: 100%;
             top: 0;
@@ -366,11 +368,10 @@
         }
 
         .nav-container {
-            margin: 0 auto;
+            margin: 5px auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo {
@@ -2815,7 +2816,37 @@
   color: #7FB77E;
 }
 
-        
+.cta-trapeze {
+  position: relative;
+  color: #7FB77E; /* adapte à ton thème */
+  padding: 2px 17px 1px 30px;
+    background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+  min-height: 70px;
+  clip-path: polygon(100% 0%, 83% 0%, 106% 100%, -15% 56%);
+  
+}
+
+/* Texte */
+.cta-text {
+  font-size: 14px;
+  
+}
+.cta-text:hover {
+  transition: color 0.3s ease;
+  font-style: italic;
+  color: #5a9b58;
+}
+
+.cta-phone {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
     </style>
 </head>
 <body>
@@ -2825,30 +2856,37 @@
                 <img src="./logoblanc.png" alt="Logo" >
                 <div class="logo-placeholder" style="display: none;">LOGO</div>
             </div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="./nous/index.html">QUI SOMMES NOUS ?</a></li>
-                    <li><a href="./besoin/index.html">VOS BESOINS</a></li>
-                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
-                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
-                        <ul id="expertiseDropdown" class="dropdown-menu">
-                        <li><a href="./dpe/index.html" >DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
+           <nav>
+            <ul class="nav-menu">
+                <li><a href="./nous/index.html">QUI SOMMES NOUS ?</a></li>
+                <li><a href="./besoin/index.html">VOS BESOINS</a></li>
+
+                <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                    <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                    <ul id="expertiseDropdown" class="dropdown-menu">
+                        <li><a href="./dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
                         <li><a href="./DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
                         <li><a href="./ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
                         <li><a href="./AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
                         <li><a href="./renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="./contacter/index.html">CONTACT</a></li>
-                    <li><a href="./blog/index.html">BLOG</a></li>
-                </ul>
+                    </ul>
+                </li>
 
-                <div class="burger-menu" id="burgerMenu">
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
-                    <div class="burger-line"></div>
+                <li><a href="./contacter/index.html">CONTACT</a></li>
+                <li><a href="./blog/index.html">BLOG</a></li>
+                <div class="cta-trapeze">
+                <span> <a class="cta-text" href="https://calendly.com/akrame-elhimass-eneliv/30min" style="color: #7FB77E;">PRENDRE RENDEZ-VOUS</a></span>
                 </div>
-            </nav>
+            </ul>
+            </div>
+           
+            <!-- BURGER -->
+            <div class="burger-menu" id="burgerMenu">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </div>
+        </nav>
         </div>
     </header>
 
