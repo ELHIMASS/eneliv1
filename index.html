@@ -247,6 +247,9 @@
             .nav-menu {
                 display: none;
             }
+            .cta-trapeze {
+                display: none;
+            }
         } /* Header */
         .header {
             background-color: #0B3041;
@@ -368,10 +371,10 @@
         }
 
         .nav-container {
-            margin: 5px auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin: 5px auto;
         }
 
         .logo {
@@ -516,8 +519,9 @@
 
         /* Responsive */
         @media (max-width: 983px) {
-            .burger-menu {
-                display: flex;
+            
+            .cta-trapeze {
+                display: none;
             }
 
             .nav-menu {
@@ -526,7 +530,11 @@
         }
 
         @media  (width: 1000px) and (width: 1600px) {
+            .cta-trapeze {
+                display: none;
+            }
             .hero-section {
+                
             max-height: 400px;
            min-height: 600px;
             display: flex;
@@ -537,6 +545,53 @@
             position: relative;
         }
         }
+
+        /* ===== FIX HEADER MOBILE ===== */
+@media (max-width: 983px) {
+
+  .header {
+    height: 70px;
+  }
+
+  .nav-container {
+    height: 100%;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* LOGO */
+  .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  /* BURGER */
+  .burger-menu {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .burger-line {
+    width: 20px;
+    height: 2px;
+    margin: 3px 0;
+  }
+
+  /* NAV DESKTOP OFF */
+  .nav-menu {
+    display: none;
+  }
+
+  .cta-trapeze {
+    display: none;
+  }
+}
+
         /* Styles pour les autres sections */
         .hero {
             height: 60vh;
@@ -1058,6 +1113,9 @@
 
 @media (max-width: 1760px) {
 
+    .cta-trapeze {
+                display: none;
+            }
     .services-wrapper {
     gap: 150px ;
     align-items: center;
@@ -2309,6 +2367,18 @@
                 bottom: 1rem;
             }
             
+            .cta-rdv{
+                margin-left: 0;
+                position: relative;
+                left: 0;
+                margin-top: 10px;
+                color: white;
+                background-color: #7FB77E;
+                width: auto;
+                padding: 12px 20px;
+                font-size: 14px;
+                margin-bottom: 30px;
+            }
             .hero-nav button {
                 width: 12px;
                 height: 12px;
@@ -2436,7 +2506,6 @@
                 gap: 30px;
                 text-align: center;
             }
-            
             
             
             
@@ -2846,9 +2915,16 @@
   font-weight: 700;
 }
 
+.cta-rdv button {
+    display: none;
+}
+
 
     </style>
+
+    
 </head>
+
 <body>
       <header class="header">
         <div class="nav-container">
@@ -2878,7 +2954,7 @@
                 <span> <a class="cta-text" href="https://calendly.com/akrame-elhimass-eneliv/30min" style="color: #7FB77E;">PRENDRE RENDEZ-VOUS</a></span>
                 </div>
             </ul>
-            </div>
+            
            
             <!-- BURGER -->
             <div class="burger-menu" id="burgerMenu">
@@ -2930,10 +3006,12 @@
     <!-- Hero Section with Slider -->
     <section class="hero" id="accueil">
         <div class="hero-slider">
+           
             <a href="./ppt/index.html" class="hero-slide active">
             <div class="hero-content">
               <h1 class="hero-title">PPPT - Projet de Plan Pluriannuel de Travaux</h1>
               <p class="hero-subtitle">Planifiez vos travaux sur plusieurs années</p>
+
             </div>
             </a>
 
@@ -2941,18 +3019,21 @@
                 <div class="hero-content">
                     <h1 class="hero-title">DPE – Diagnostic de Performance Énergétique​</h1>
                     <p class="hero-subtitle">Analysez. Appréhendez. Améliorez!</p>
+                    
                 </div>
             </a>
             <a href="./DTG/index.html" class="hero-slide">
                 <div class="hero-content">
                     <h1 class="hero-title">DTG – Diagnostic Technique Global​</h1>
                     <p class="hero-subtitle">Identifiez, prévoyez, sécurisez !​</p>
+                    
                 </div>
             </a>
             <a href="./AE/index.html" class="hero-slide">
                 <div class="hero-content">
                     <h1 class="hero-title">Audit énergétique​</h1>
                     <p class="hero-subtitle">Attestez, Validez, avancez ! ​</p>
+                    
                 </div>
             </a>
 
@@ -2962,6 +3043,7 @@
                 <div class="hero-content">
                     <h1 class="hero-title">Mon Accompagnateur Rénov'</h1>
                     <p class="hero-subtitle">Votre guide vers une rénovation réussie</p>
+                    
                 </div>
             </a>
 
