@@ -969,11 +969,30 @@
             text-align: center;
         }
 
+        .cta-rdv {
+            display: none;
+        }
+
         
         
         
 /* Responsive pour mobile */
 @media (max-width: 983px) {
+    .cta-rdv {
+       
+        display: block;
+        margin-bottom: 20px;
+        background-color: #7FB77E;
+        color: white;
+        padding: 0px 16px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+
+        }
     .hero{
         height: 50vh;
         
@@ -1100,6 +1119,7 @@
 .cta-button {
     margin-top: 30px;
 }
+
 
 
  .logo img {
@@ -2367,18 +2387,7 @@
                 bottom: 1rem;
             }
             
-            .cta-rdv{
-                margin-left: 0;
-                position: relative;
-                left: 0;
-                margin-top: 10px;
-                color: white;
-                background-color: #7FB77E;
-                width: auto;
-                padding: 12px 20px;
-                font-size: 14px;
-                margin-bottom: 30px;
-            }
+            
             .hero-nav button {
                 width: 12px;
                 height: 12px;
@@ -2915,9 +2924,7 @@
   font-weight: 700;
 }
 
-.cta-rdv button {
-    display: none;
-}
+
 
 
     </style>
@@ -3067,9 +3074,15 @@
                 <div class="floating-dot"></div>
                 <div class="floating-dot"></div>
             </div>
+            <div>
+            <a href="https://calendly.com/akrame-elhimass-eneliv/30min" class="cta-rdv">PRENDRE UN RENDEZ-VOUS</a>
+
+            </div>
             
              <div class="content-wrapper">
+               
                     <h2 class="section-titles" style="width: auto;">
+
                         <strong>ENELIV</strong> votre bureau d'études engagé pour la performance énergétique et la durabilité
                         <br> Nous vous accompagnons dans l'optimisation énergétique de vos bâtiments, avec une approche sur mesure, transparente et conforme aux exigences réglementaires.
                     </h2>
