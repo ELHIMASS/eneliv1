@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./../eneliv1.png" type="image/png">
+
+    <title>PPPT Vichy 2026 - Eneliv</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+            padding-top: 80px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .logo img {
+            height: 1.2cm;
+            width: 5.4cm;
+            object-fit: contain;
+            margin-left: -40px;
+        }
+
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            position: relative;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+
+        .nav-menu :hover {
+            cursor: pointer;
+            color: #7FB77E;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            margin-top: 16px;
+            left: 0;
+            background-color: #0B3041;
+            padding: 0.5rem 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            display: none;
+            min-width: 327px;
+            z-index: 999;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.8rem;
+            color: white;
+            font-weight: 500;
+            transition: background 0.3s;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(127, 183, 126, 0.2);
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .burger-line {
+            width: 28px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* Animation d'entrée pour les éléments du menu */
+        .mobile-menu.active .mobile-nav-item {
+            animation: slideInRight 0.3s ease forwards;
+        }
+
+        .mobile-menu.active .mobile-nav-item:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(4) { animation-delay: 0.25s; }
+        .mobile-menu.active .mobile-nav-item:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scrollbar personnalisée */
+        .mobile-menu::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .mobile-menu::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu::-webkit-scrollbar-thumb {
+            background: rgba(127, 183, 126, 0.5);
+            border-radius: 2px;
+        }
+
+        .mobile-menu::-webkit-scrollbar-thumb:hover {
+            background: rgba(127, 183, 126, 0.7);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: min(85vw, 400px);
+            height: 100vh;
+            background: rgba(11, 48, 65, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 0 40px 0;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            overflow-y: auto;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 80%;
+            text-align: center;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        /* Mobile Menu Links */
+        .mobile-nav-section {
+            padding: 0 30px;
+        }
+
+        .mobile-nav-item {
+            margin-bottom: 8px;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        /* Dropdown Mobile */
+        .mobile-dropdown {
+            margin-bottom: 8px;
+        }
+
+        .mobile-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .mobile-dropdown-toggle:hover {
+            background: rgba(127, 183, 126, 0.15);
+            color: #7FB77E;
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-dropdown.active .dropdown-arrow::after {
+            transform: rotate(-135deg);
+        }
+
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding-left: 20px;
+        }
+
+        .mobile-dropdown.active .mobile-dropdown-content {
+            max-height: 400px;
+        }
+
+        .mobile-dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 4px;
+            border-left: 2px solid transparent;
+        }
+
+        .mobile-dropdown-item:hover {
+            background: rgba(127, 183, 126, 0.1);
+            color: #7FB77E;
+            border-left-color: #7FB77E;
+            transform: translateX(8px);
+        }
+
+        /* Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: white;
+            color: #0B3041;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: -5px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* Contact Banner */
+        .contact-banner {
+            padding: 20px 40px;
+            margin: 30px 40px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0B3041;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .contact-info-item:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            background: #7FB77E;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .contact-value {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #0B3041;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 40px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Section Box */
+        .section-box {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 40px;
+            transition: all 0.3s ease;
+        }
+
+        .section-box:hover {
+            border-color: #7FB77E;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #0B3041;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            background: #7FB77E;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .text-block {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid #7FB77E;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #0B3041;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #f8f9fa, #f5f5f5);
+            color: #555;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #0B3041;
+        }
+
+        .cta-button {
+            background: #0B3041;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: #7FB77E;
+            color: white;
+        }
+
+        /* Footer Professionnel */
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #7FB77E;
+        }
+
+        .footer-section p, .footer-section li {
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+            color: white;
+        }
+
+        .footer-section a:hover {
+            color: #7FB77E;
+        }
+
+        .company-info {
+            max-width: 300px;
+        }
+
+        .company-logo {
+            width: 150px;
+            height: 60px;
+            background: transparent;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2d3748;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 50px;
+        }
+
+        .footer-bottom p {
+            color: #7FB77E;
+            margin: 0;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #7FB77E;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 983px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 1.8em;
+            }
+
+            .contact-banner {
+                flex-direction: column;
+                gap: 20px;
+                margin: 0 20px 20px 20px;
+                padding: 20px;
+            }
+
+            .contact-info-item {
+                font-size: 1rem;
+            }
+
+            .contact-value {
+                font-size: 1.1rem;
+            }
+
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-box {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .footer-content {
+                margin: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                margin: 30px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./../logoblanc.png" alt="Logo">
+                <div class="logo-placeholder" style="display: none;">LOGO</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./../contacter/index.html">CONTACT</a></li>
+                    <li><a href="./../blog/index.html">BLOG</a></li>
+                </ul>
+
+                <div class="burger-menu" id="burgerMenu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-item">
+                <a href="./../nous/index.html" class="mobile-nav-link">QUI SOMMES NOUS ?</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./../besoin/index.html" class="mobile-nav-link">VOS BESOINS</a>
+            </div>
+            
+            <div class="mobile-dropdown" id="mobileExpertise">
+                <button class="mobile-dropdown-toggle">
+                    NOTRE EXPERTISE
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="./../dpe/index.html" class="mobile-dropdown-item">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a>
+                    <a href="./../DTG/index.html" class="mobile-dropdown-item">DIAGNOSTIC TECHNIQUE GLOBAL</a>
+                    <a href="./../ppt/index.html" class="mobile-dropdown-item">PLAN PLURIANNUEL DE TRAVAUX</a>
+                    <a href="./../AE/index.html" class="mobile-dropdown-item">AUDIT ÉNERGÉTIQUE</a>
+                    <a href="./../renov/index.html" class="mobile-dropdown-item">MON ACCOMPAGNATEUR RÉNOV'</a>
+                </div>
+            </div>
+
+            <div class="mobile-nav-item">
+                <a href="./../contacter/index.html" class="mobile-nav-link">CONTACT</a>
+            </div>
+            
+            <div class="mobile-nav-item">
+                <a href="./../blog/index.html" class="mobile-nav-link">BLOG</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-section">
+            <h1>Copropriétés : Réussir son Projet de Plan Pluriannuel de Travaux (PPPT) à Vichy en 2026</h1>
+            <p>Depuis le 1er janvier 2025, le Plan Pluriannuel de Travaux (PPT) est une obligation légale pour toutes les copropriétés de plus de 15 ans. Que votre immeuble se trouve au cœur de Vichy, dans des villes dynamiques comme Montluçon, ou dans des communes proches comme Moulins, Vesoul, ou Cusset, ce document est désormais essentiel pour anticiper et gérer les travaux futurs de votre copropriété.</p>
+        </div>
+
+        <div class="image-grid">
+            <img src="./../home/assets/img/titleV.png" alt="Copropriété Vichy">
+            <img src="./../home/assets/img/PPTV.png" alt="PPPT Allier Vichy">
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">
+                <span class="section-number">1</span>
+                Pourquoi le PPT est-il devenu indispensable à Vichy et dans l'Allier ?
+            </div>
+            <p>Le PPT n'est pas qu'un simple diagnostic : il devient un outil de gestion proactive pour les copropriétaires, permettant d'anticiper les dépenses futures et d'assurer la sécurité financière de votre copropriété.</p>
+            <br>
+            <div class="text-block">
+                <span class="highlight">Anticipation budgétaire :</span> Planifiez les travaux lourds (ravalement, toiture, chauffage collectif) sur 10 ans et évitez les appels de fonds imprévus, souvent source de tensions en assemblée générale.
+            </div>
+            <div class="text-block">
+                <span class="highlight">Accès aux aides financières :</span> Le PPT est essentiel pour bénéficier de MaPrimeRénov' Copropriété, un atout majeur pour les copropriétés situées à Vichy, Montluçon, Moulins, Cusset, et même dans des communes comme Gannat et Vesoul.
+            </div>
+            <div class="text-block">
+                <span class="highlight">Valorisation de votre patrimoine :</span> Un PPT actualisé rassure les futurs acheteurs. Dans des zones comme Vichy, où la demande est élevée, un bien avec un plan d’entretien à jour se vend plus rapidement et à un meilleur prix.
+            </div>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">
+                <span class="section-number">2</span>
+                Le calendrier de mise en conformité
+            </div>
+            <div class="text-block">
+                <p>👉 Le PPT est désormais obligatoire depuis le 1er janvier 2025. Cela inclut également les petites copropriétés situées dans des communes comme Vichy, Moulins, Montluçon, ou encore Cusset.</p>
+            </div>
+        </div>
+
+        <div class="section-box" style="background: #e8f5e9;">
+            <div class="section-title">
+                <span class="section-number">3</span>
+                L’astuce gagnante : PPPT + DPE Collectif
+            </div>
+            <p>Le PPT doit obligatoirement être accompagné d’un DPE Collectif. Pour optimiser le processus, il est avantageux de réaliser les deux diagnostics en même temps.</p>
+            <br>
+            <p><strong>Le conseil d’Eneliv :</strong> En combinant le PPT et le DPE Collectif, vous réduisez les coûts de déplacement et d’honoraires. Une seule visite sur site est suffisante, que votre copropriété soit située à Vichy, Montluçon, ou dans des communes comme Moulins et Cusset.</p>
+        </div>
+
+        <div class="section-box">
+            <div class="section-title">
+                <span class="section-number">4</span>
+                Un expert de proximité dans tout le département de l’Allier (03)
+            </div>
+            <p>Pour garantir la validité de votre PPT, il doit être réalisé par un bureau d’études indépendant, qualifié et assuré. Eneliv intervient sur l’ensemble du département de l'Allier avec une connaissance fine des spécificités locales, notamment :</p>
+            <br>
+            <div class="text-block">
+                Nous intervenons sur le <span class="highlight">Secteur Vichy</span> (Vichy, Cusset, Abrest), le <span class="highlight">Secteur Montluçon</span> (Montluçon, Commentry, Néris-les-Bains), le <span class="highlight">Secteur Moulins</span> (Moulins, Yzeure, Avermes) ainsi que le <span class="highlight">Secteur Gannat et Bourbon-Lancy</span> (Gannat, Bourbon-Lancy, Saint-Pourçain-sur-Sioule).
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Comment lancer la démarche ?</h2>
+            <p style="margin-top: 15px; font-size: 1.1em;">La première étape consiste à soumettre le choix du bureau d’études au vote en Assemblée Générale. Eneliv vous fournit des devis détaillés et conformes aux exigences légales, facilitant l’adoption du plan par l’ensemble des copropriétaires.</p>
+            <a href="./../contacter/index.html" class="cta-button">Demander un devis gratuit</a>
+            <p style="margin-top: 20px; font-size: 1.05em;"><strong>👉 Ne laissez pas votre copropriété en situation d’illégalité et prenez les devants pour anticiper vos charges futures dès aujourd'hui.</strong></p>
+        </div>
+
+        <!-- Contact Banner -->
+        <div class="contact-banner">
+            <a href="tel:+33487626774" class="contact-info-item">
+                <div class="contact-icon">📞</div>
+                <div class="contact-text">
+                    <span class="contact-label">Appelez-nous</span>
+                    <span class="contact-value">04 87 62 67 74</span>
+                </div>
+            </a>
+            <a href="mailto:contact@eneliv.fr" class="contact-info-item">
+                <div class="contact-icon">✉️</div>
+                <div class="contact-text">
+                    <span class="contact-label">Écrivez-nous</span>
+                    <span class="contact-value">contact@eneliv.fr</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer Professionnel -->
+    <footer class="footer">
+        <div class="containers">
+            <div class="footer-content">
+                <!-- Informations de l'entreprise -->
+                <div class="footer-section company-info">
+                    <div class="company-logo">
+                        <img src="./../logoblanc.png" alt="" style="width: 150px;">
+                    </div>
+                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes : sauvegarde du bâtiment, économies d'énergie et la valorisation de votre patrimoine.</p>
+                </div>
+
+                <!-- Nos services -->
+                <div class="footer-section">
+                    <h3>Nos Expertises</h3>
+                    <ul>
+                        <li><a href="./../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
+                        <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
+                        <li><a href="./../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
+                        <li><a href="./../AE/index.html">Audit Énergétique</a></li>
+                        <li><a href="./../renov/index.html">Mon Accompagnateur Rénov'</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-item">
+                        <p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>✆ +33 4 87 62 67 74</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>✉︎ contact@eneliv.fr</p>
+                    </div>
+                    <div class="contact-item">
+                        <p>Lun-Jeu : 8h30-12h30 | 13h30-18h30<br>Ven-Sam : 8h30-12h30</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="./../Mentions Légales/index.html">Mentions légales</a>
+                    <a href="./../Confidentialité/index.html">Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('show');
+            
+            // Fermer les autres dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('show');
+                }
+            });
+        }
+
+        // Fermer les dropdowns au clic ailleurs
+        document.addEventListener('click', function (event) {
+            const isClickInside = event.target.closest('.dropdown');
+            if (!isClickInside) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+        });
+
+        const burgerMenu = document.getElementById('burgerMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const body = document.body;
+
+        function toggleMobileMenu() {
+            const isActive = mobileMenu.classList.contains('active');
+            
+            if (isActive) {
+                mobileMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                body.style.overflow = '';
+            } else {
+                mobileMenu.classList.add('active');
+                burgerMenu.classList.add('active');
+                mobileMenuOverlay.classList.add('active');
+                body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            burgerMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+
+        function toggleMobileDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+            
+            const isActive = dropdown.classList.contains('active');
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.classList.remove('active');
+                }
+            });
+            
+            dropdown.classList.toggle('active');
+        }
+
+        burgerMenu.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dropdown = this.closest('.mobile-dropdown');
+                toggleMobileDropdown(dropdown.id);
+            });
+        });
+
+        document.querySelectorAll('.mobile-nav-link, .mobile-dropdown-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!this.classList.contains('mobile-dropdown-toggle')) {
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 983) {
+                closeMobileMenu();
+            }
+        });
+
+        // Logo click
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.addEventListener('click', function() {
+                window.location.href = './../index.html';
+            });
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
