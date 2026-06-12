@@ -1109,8 +1109,8 @@
                         <li><a href="./../dpe/index.html" >DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE </a></li>
                         <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
                         <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
-                        <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE</a></li>
-                        <li><a href="./../renov/index.html">MON ACCOMPAGNATEUR RÉNOV'</a></li>
+                        <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE BÂTIMENT</a></li>
+                        <li><a href="./../renov/index.html">AUDIT ÉNERGÉTIQUE INDUSTRIE</a></li>
                         </ul>
                     </li>
                     <li><a href="./../contacter/index.html">CONTACT</a></li>
@@ -1148,7 +1148,7 @@
                     <a href="./../DTG/index.html" class="mobile-dropdown-item">DIAGNOSTIC TECHNIQUE GLOBAL</a>
                     <a href="./../ppt/index.html" class="mobile-dropdown-item">PLAN PLURIANNUEL DE TRAVAUX</a>
                     <a href="./../AE/index.html" class="mobile-dropdown-item">Audit Énergétique</a>
-                    <a href="./../renov/index.html" class="mobile-dropdown-item">Accompagnateur Rénov'</a>
+                    <a href="./../renov/index.html" class="mobile-dropdown-item">AUDIT ÉNERGÉTIQUE INDUSTRIE</a>
                 </div>
             </div>
 
@@ -1173,7 +1173,7 @@
                 <div class="tag" data-filter="AMO-copropriete">AMO de copropriété</div>
                 <div class="tag" data-filter="audit-energetique">Audit énergétique</div>
                 <div class="tag" data-filter="Étude thermique RE2020">Étude thermique RE2020</div>
-                <div class="tag" data-filter="accompagnateur-renov">Mon Accompagnateur Rénov</div>
+                <div class="tag" data-filter="audit-industrie">Audit Énergétique Industrie</div>
                 <div class="tag" data-filter="Plan pluriannuel de travaux (PPT)">Plan pluriannuel de travaux (PPT)</div>
                 <div class="tag" data-filter="renovation-energetique">Rénovation énergétique</div>
                 <div class="tag" data-filter="tertiaire">Tertiaire</div>
@@ -1181,7 +1181,8 @@
         </div>
 
         <!-- Articles Grid -->
-        <div class="articles-grid">
+        <div class="articles-grid" id="articlesGrid">
+            <!-- Dynamic articles injected here by JS -->
             <!-- Article 1 -->
             <article class="article-card fade-in" data-category="Plan pluriannuel de travaux (PPT)" onclick="window.open('./pptc.html', '_blank')">
                 <img src="./../home/assets/ppptblog.jpg" alt="Plan pluriannuel de travaux (PPT)" class="article-image">
@@ -1296,7 +1297,7 @@
                         <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
                         <li><a href="./../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
                         <li><a href="./../AE/index.html">Audit Énergétique</a></li>
-                        <li><a href="./../renov/index.html">Mon Accompagnateur Rénov'</a></li>
+                        <li><a href="./../renov/index.html">Audit Énergétique Industrie</a></li>
                     </ul>
                 </div>
 
@@ -1713,6 +1714,70 @@ console.log('Script chargé successfully');
                 });
             }
         });
+    </script>
+
+    <!-- Dynamic Blog Articles from Admin Panel -->
+    <script>
+    (function() {
+        try {
+            const data = localStorage.getItem('eneliv_blog_articles');
+            if (!data) return;
+            const articles = JSON.parse(data);
+            if (!articles || !articles.length) return;
+
+            const grid = document.getElementById('articlesGrid');
+            if (!grid) return;
+
+            const firstStatic = grid.querySelector('.article-card');
+            
+            articles.forEach(article => {
+                const card = document.createElement('article');
+                card.className = 'article-card fade-in dynamic-article';
+                card.setAttribute('data-category', article.category);
+                card.style.cursor = 'pointer';
+                card.onclick = function() {
+                    // Open a preview modal for dynamic articles
+                    const w = window.open('', '_blank');
+                    w.document.write(`<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${article.title} - ENELIV Blog</title><style>body{font-family:'Segoe UI',sans-serif;max-width:800px;margin:0 auto;padding:2rem;line-height:1.8;color:#333}h1{color:#0B3041;margin-bottom:1rem}img{max-width:100%;border-radius:12px;margin-bottom:1.5rem}.tag{background:#7FB77E;color:white;padding:4px 12px;border-radius:20px;font-size:0.8rem;display:inline-block;margin-bottom:1rem}</style></head><body><span class="tag">${article.category}</span><h1>${article.title}</h1>${article.image ? '<img src="'+article.image+'" alt="'+article.title+'">' : ''}${article.content}</body></html>`);
+                    w.document.close();
+                };
+                
+                card.innerHTML = `
+                    ${article.image 
+                        ? '<img src="'+article.image+'" alt="'+article.title+'" class="article-image">' 
+                        : '<div style="width:100%;height:200px;background:linear-gradient(135deg,#0B3041,#1e3c72);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.3);font-size:3rem;">📄</div>'}
+                    <div class="article-content">
+                        <span class="article-tag">${article.category}</span>
+                        <h3 class="article-title">${article.title}</h3>
+                        <div class="read-more">Lire l'article →</div>
+                    </div>`;
+                
+                if (firstStatic) {
+                    grid.insertBefore(card, firstStatic);
+                } else {
+                    grid.appendChild(card);
+                }
+            });
+
+            // Re-bind tag filtering to include dynamic articles
+            const allTags = document.querySelectorAll('.tag');
+            const allArticles = document.querySelectorAll('.article-card');
+            allTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    allTags.forEach(t => t.classList.remove('active'));
+                    tag.classList.add('active');
+                    const filter = tag.getAttribute('data-filter');
+                    allArticles.forEach(a => {
+                        if (filter === 'tous' || a.getAttribute('data-category') === filter) {
+                            a.style.display = 'block';
+                        } else {
+                            a.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        } catch(e) { console.warn('Erreur chargement articles dynamiques:', e); }
+    })();
     </script>
 </body>
 </html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="./../eneliv1.png" type="image/png">
+    <title>ENELIV - Administration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-card">
+        <img src="./../ENELIVP.png" alt="Eneliv" class="login-logo">
+        <h1 class="login-title">Administration</h1>
+        <p class="login-subtitle">Accès réservé à l'équipe Eneliv</p>
+        <form id="loginForm">
+            <div class="login-input-group">
+                <span class="login-icon">🔒</span>
+                <input type="password" id="loginPassword" class="login-input" placeholder="Mot de passe" autocomplete="current-password" autofocus>
+            </div>
+            <button type="submit" class="login-btn">Se connecter</button>
+            <div class="login-error" id="loginError"></div>
+        </form>
+    </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div class="app hidden" id="app">
+    <!-- Mobile Toggle -->
+    <button class="mobile-toggle" id="mobileToggle">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="./../ENELIVP.png" alt="Eneliv">
+            <div class="sidebar-badge">ADMIN PANEL</div>
+        </div>
+        <nav class="sidebar-nav">
+            <a class="nav-item active" href="#"><span class="icon">📊</span> Dashboard</a>
+            <a class="nav-item" href="./../blog/index.html" target="_blank"><span class="icon">📰</span> Voir le blog</a>
+            <a class="nav-item" href="./../index.html" target="_blank"><span class="icon">🏠</span> Voir le site</a>
+        </nav>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()">
+                <span>🚪</span> Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="page-title">Gestion du <span>Blog</span></h1>
+            <div class="header-actions">
+                <button class="btn btn-primary" onclick="openEditor()">➕ Nouvel article</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total articles</div>
+                <div class="stat-value green" id="statTotal">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Catégories utilisées</div>
+                <div class="stat-value blue" id="statCategories">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Ce mois-ci</div>
+                <div class="stat-value orange" id="statMonth">0</div>
+            </div>
+        </div>
+
+        <!-- Filter -->
+        <div class="articles-section">
+            <div class="section-header">
+                <h2 class="section-title-admin">📰 Articles</h2>
+                <div class="filter-bar" id="filterBar"></div>
+            </div>
+            <div class="admin-grid" id="articlesGrid"></div>
+        </div>
+    </main>
+</div>
+
+<!-- ===== EDITOR PANEL ===== -->
+<div class="editor-panel" id="editorPanel">
+    <div class="editor-container">
+        <div class="editor-header">
+            <h2 class="editor-title" id="editorTitle">➕ Nouvel article</h2>
+            <button class="close-btn" onclick="closeEditor()">✕</button>
+        </div>
+
+        <!-- Title -->
+        <div class="form-group">
+            <label class="form-label">Titre de l'article</label>
+            <input type="text" id="articleTitle" class="form-input" placeholder="Ex: Plan Pluriannuel de Travaux à Lyon">
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+            <label class="form-label">Catégorie</label>
+            <select id="articleCategory" class="form-select">
+                <option value="">-- Sélectionner --</option>
+                <option value="Aides financières">Aides financières</option>
+                <option value="AMO de copropriété">AMO de copropriété</option>
+                <option value="Audit énergétique">Audit énergétique</option>
+                <option value="Étude thermique RE2020">Étude thermique RE2020</option>
+                <option value="Audit Énergétique Industrie">Audit Énergétique Industrie</option>
+                <option value="Plan pluriannuel de travaux (PPT)">Plan pluriannuel de travaux (PPT)</option>
+                <option value="Rénovation énergétique">Rénovation énergétique</option>
+                <option value="Tertiaire">Tertiaire</option>
+            </select>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="form-group">
+            <label class="form-label">Image de couverture</label>
+            <div class="image-upload">
+                <div class="upload-icon">📷</div>
+                <div class="upload-text">Glissez une image ici ou cliquez pour parcourir</div>
+                <div class="upload-hint">JPG, PNG, WebP — Max 5 Mo</div>
+                <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)">
+                <img id="imagePreview" class="image-preview" alt="Prévisualisation">
+                <button class="remove-image" onclick="removeImage(event)" title="Supprimer l'image">✕</button>
+            </div>
+        </div>
+
+        <!-- Rich Text Editor -->
+        <div class="form-group">
+            <label class="form-label">Contenu de l'article</label>
+            <div class="editor-toolbar">
+                <button class="toolbar-btn" onclick="execCmd('bold')" title="Gras"><b>B</b></button>
+                <button class="toolbar-btn" onclick="execCmd('italic')" title="Italique"><i>I</i></button>
+                <button class="toolbar-btn" onclick="execCmd('underline')" title="Souligné"><u>U</u></button>
+                <div class="toolbar-sep"></div>
+                <button class="toolbar-btn" onclick="execCmd('formatBlock', 'h2')" title="Titre">H2</button>
+                <button class="toolbar-btn" onclick="execCmd('formatBlock', 'h3')" title="Sous-titre">H3</button>
+                <button class="toolbar-btn" onclick="execCmd('formatBlock', 'p')" title="Paragraphe">P</button>
+                <div class="toolbar-sep"></div>
+                <button class="toolbar-btn" onclick="execCmd('insertUnorderedList')" title="Liste">• Liste</button>
+                <button class="toolbar-btn" onclick="execCmd('insertOrderedList')" title="Liste numérotée">1. Liste</button>
+                <div class="toolbar-sep"></div>
+                <button class="toolbar-btn" onclick="insertLink()" title="Lien">🔗</button>
+            </div>
+            <div class="rich-editor" id="richEditor" contenteditable="true" placeholder="Rédigez votre article ici..."></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="form-actions">
+            <button class="btn btn-secondary" onclick="closeEditor()">Annuler</button>
+            <button class="btn btn-primary" onclick="saveArticle()">💾 Enregistrer</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== DELETE MODAL ===== -->
+<div class="modal-overlay" id="deleteModal">
+    <div class="modal-box">
+        <div class="modal-icon">⚠️</div>
+        <h3 class="modal-title">Supprimer cet article ?</h3>
+        <p class="modal-text">« <strong id="deleteTitle"></strong> » sera définitivement supprimé.</p>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" onclick="cancelDelete()">Annuler</button>
+            <button class="btn btn-danger" onclick="executeDelete()">🗑️ Supprimer</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="admin.js"></script>
+</body>
+</html>
