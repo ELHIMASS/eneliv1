@@ -17,11 +17,11 @@
             padding-top: 80px; margin-top: 0;
         }
 
-        /* ===== HEADER ===== */
+        /* Header */
         .header {
             background-color: #0B3041;
             color: white;
-            padding: 1.1rem;
+            padding: 1.1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -37,27 +37,44 @@
             padding: 0 2rem;
         }
 
-        .logo { display: flex; align-items: center; cursor: pointer; }
-        .logo img { height: 1.2cm; width: 5.4cm; object-fit: contain; }
-        .logo-placeholder { width: 120px; height: 50px; background: linear-gradient(135deg, #7FB77E, #00ccff); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; }
-
-        .nav-menu { list-style: none; display: flex; gap: 2rem; align-items: center; }
-        .nav-menu a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; }
-        .nav-menu a:hover { color: #7FB77E; }
-
-        .dropdown { position: relative; }
-        .dropdown-menu {
-            display: none; position: absolute; top: 100%; left: 0;
-            background: #0B3041; border-radius: 8px; min-width: 320px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3); padding: 0.5rem 0; z-index: 100;
-            list-style: none;
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
         }
-        .dropdown-menu.show { display: block; }
-        .dropdown-menu li a { display: block; padding: 10px 20px; font-size: 13px; white-space: nowrap; }
-        .dropdown-menu li a:hover { background: rgba(127,183,126,0.15); color: #7FB77E; }
 
-        .cta-trapeze { background: #0B3041; border: 2px solid #7FB77E; padding: 8px 20px; clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%); }
-        .cta-text { color: #7FB77E !important; font-weight: bold; font-size: 13px; text-decoration: none; }
+        .logo-placeholder {
+            width: 120px;
+            height: 50px;
+            background: linear-gradient(135deg, #7FB77E, #00ccff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-menu a:hover {
+            color: #7FB77E;
+        }
+
+      
 
         /* Burger */
         .burger-menu { display: none; flex-direction: column; cursor: pointer; padding: 8px; z-index: 1001; }
