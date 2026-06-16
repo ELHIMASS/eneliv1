@@ -2959,9 +2959,6 @@
                 <li><a href="./contacter/index.html">CONTACT</a></li>
                 <li><a href="./blog/index.html">BLOG</a></li>
                 <li><a href="./references/index.html">RÉFÉRENCES</a></li>
-                <div class="cta-trapeze">
-                <span> <a class="cta-text" href="https://calendly.com/akrame-elhimass-eneliv/30min" style="color: #7FB77E;">PRENDRE RENDEZ-VOUS</a></span>
-                </div>
             </ul>
             
            
@@ -3868,5 +3865,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     </script>
+<!-- Floating CTA -->
+<a href="https://calendly.com/akrame-elhimass-eneliv/30min" class="floating-cta" target="_blank">
+    <span class="floating-cta-icon">📅</span>
+    <span class="floating-cta-text">PRENDRE RENDEZ-VOUS</span>
+</a>
+<style>
+.floating-cta {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #7FB77E, #5a9e58);
+    color: white;
+    text-decoration: none;
+    padding: 14px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 25px rgba(127,183,126,0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+.floating-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(127,183,126,0.5);
+    background: linear-gradient(135deg, #6fa86d, #4a8e48);
+}
+.floating-cta-icon { font-size: 1.1rem; }
+@media (max-width: 768px) {
+    .floating-cta {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 18px;
+        font-size: 0.8rem;
+    }
+}
+</style>
 </body>
 </html>
