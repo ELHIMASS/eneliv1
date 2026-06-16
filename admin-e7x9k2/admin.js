@@ -8,7 +8,7 @@ const CATEGORIES = [
     'AMO de copropriété',
     'Audit énergétique',
     'Étude thermique RE2020',
-    'Mon Accompagnateur Rénov',
+    'Audit Énergétique Industrie',
     'Plan pluriannuel de travaux (PPT)',
     'Rénovation énergétique',
     'Tertiaire'
@@ -285,13 +285,210 @@ function showToast(message, type = 'info') {
     setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
+// ===== TAB SWITCHING =====
+let currentTab = 'blog';
+
+function switchTab(tab) {
+    currentTab = tab;
+    document.getElementById('blogTab').style.display = tab === 'blog' ? '' : 'none';
+    document.getElementById('refsTab').style.display = tab === 'refs' ? '' : 'none';
+
+    document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
+    const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+    if (tab === 'blog') navItems[0].classList.add('active');
+    if (tab === 'refs') navItems[1].classList.add('active');
+
+    if (tab === 'refs') renderRefsDashboard();
+}
+
+// ===== REFERENCES MANAGEMENT (Railway API) =====
+// ===== CHANGE THIS URL AFTER RAILWAY DEPLOYMENT =====
+const API_URL = window.ENELIV_API_URL || 'https://your-app.railway.app';
+
+let references = [];
+let editingRefId = null;
+let deleteRefTargetId = null;
+
+async function loadRefs() {
+    try {
+        const res = await fetch(API_URL + '/api/references');
+        if (!res.ok) throw new Error('API error ' + res.status);
+        references = await res.json();
+    } catch (err) {
+        console.error('Failed to load refs:', err);
+        showToast('Erreur de connexion au serveur', 'error');
+        references = [];
+    }
+}
+
+async function renderRefsDashboard() {
+    await loadRefs();
+    renderRefsStats();
+    renderRefsGrid();
+}
+
+function renderRefsStats() {
+    document.getElementById('statRefsTotal').textContent = references.length;
+    const thisMonth = references.filter(r => {
+        const d = new Date(r.created_at);
+        const now = new Date();
+        return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+    }).length;
+    document.getElementById('statRefsMonth').textContent = thisMonth;
+}
+
+function renderRefsGrid() {
+    const grid = document.getElementById('refsGrid');
+    if (references.length === 0) {
+        grid.innerHTML = `
+            <div class="empty-state" style="grid-column: 1/-1;">
+                <div class="empty-icon">⭐</div>
+                <div class="empty-title">Aucune référence</div>
+                <div class="empty-text">Ajoutez vos réalisations pour les afficher sur le site</div>
+                <button class="btn btn-primary" onclick="openRefEditor()">➕ Ajouter une référence</button>
+            </div>`;
+        return;
+    }
+
+    grid.innerHTML = references.map(ref => {
+        const date = new Date(ref.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+        const excerpt = ref.text ? ref.text.substring(0, 120) + (ref.text.length > 120 ? '...' : '') : '';
+        return `
+        <div class="admin-card" data-id="${ref.id}">
+            ${ref.image
+                ? `<img src="${ref.image}" alt="Référence" class="card-image">`
+                : `<div class="card-image-placeholder">🏗️</div>`}
+            <div class="card-body">
+                <span class="card-tag">Référence</span>
+                <p class="card-excerpt">${excerpt}</p>
+                <div class="card-date">📅 ${date}</div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary btn-sm" onclick="openRefEditor('${ref.id}')">✏️ Modifier</button>
+                    <button class="btn btn-danger btn-sm" onclick="confirmRefDelete('${ref.id}')">🗑️ Supprimer</button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function openRefEditor(id = null) {
+    editingRefId = id;
+    const panel = document.getElementById('refEditorPanel');
+    const title = document.getElementById('refEditorTitle');
+
+    if (id) {
+        const ref = references.find(r => r.id === id);
+        if (!ref) return;
+        title.textContent = '✏️ Modifier la référence';
+        document.getElementById('refText').value = ref.text || '';
+        if (ref.image) {
+            document.getElementById('refImagePreview').src = ref.image;
+            document.getElementById('refImageUploadZone').classList.add('has-image');
+        }
+    } else {
+        title.textContent = '➕ Nouvelle référence';
+        document.getElementById('refText').value = '';
+        document.getElementById('refImagePreview').src = '';
+        document.getElementById('refImageUploadZone').classList.remove('has-image');
+    }
+
+    panel.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRefEditor() {
+    document.getElementById('refEditorPanel').classList.remove('active');
+    document.body.style.overflow = '';
+    editingRefId = null;
+}
+
+async function saveRef() {
+    const text = document.getElementById('refText').value.trim();
+    const imageEl = document.getElementById('refImagePreview');
+    const image = imageEl.src && !imageEl.src.includes('about:blank') ? imageEl.src : '';
+
+    if (!text && !image) { showToast('Ajoutez au moins une image ou du texte', 'error'); return; }
+
+    try {
+        if (editingRefId) {
+            const res = await fetch(API_URL + '/api/references/' + editingRefId, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text, image })
+            });
+            if (!res.ok) throw new Error('Update failed');
+            showToast('Référence modifiée ✅', 'success');
+        } else {
+            const res = await fetch(API_URL + '/api/references', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text, image })
+            });
+            if (!res.ok) throw new Error('Create failed');
+            showToast('Référence ajoutée ✅', 'success');
+        }
+    } catch (err) {
+        console.error('Save ref error:', err);
+        showToast('Erreur lors de la sauvegarde', 'error');
+        return;
+    }
+
+    closeRefEditor();
+    renderRefsDashboard();
+}
+
+function handleRefImageUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { showToast('Fichier non valide. Utilisez une image.', 'error'); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast('Image trop volumineuse (max 5 Mo)', 'error'); return; }
+
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('refImagePreview').src = ev.target.result;
+        document.getElementById('refImageUploadZone').classList.add('has-image');
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeRefImage(e) {
+    e.stopPropagation();
+    document.getElementById('refImagePreview').src = '';
+    document.getElementById('refImageUploadZone').classList.remove('has-image');
+    document.getElementById('refImageInput').value = '';
+}
+
+function confirmRefDelete(id) {
+    deleteRefTargetId = id;
+    document.getElementById('deleteRefModal').classList.add('active');
+}
+
+function cancelRefDelete() {
+    document.getElementById('deleteRefModal').classList.remove('active');
+    deleteRefTargetId = null;
+}
+
+async function executeRefDelete() {
+    if (!deleteRefTargetId) return;
+    try {
+        const res = await fetch(API_URL + '/api/references/' + deleteRefTargetId, { method: 'DELETE' });
+        if (!res.ok) throw new Error('Delete failed');
+        showToast('Référence supprimée 🗑️', 'info');
+    } catch (err) {
+        console.error('Delete ref error:', err);
+        showToast('Erreur lors de la suppression', 'error');
+    }
+    cancelRefDelete();
+    renderRefsDashboard();
+}
+
 // ===== EVENTS =====
 function setupEventListeners() {
     // Login
     document.getElementById('loginForm').addEventListener('submit', handleLogin);
-    
-    // Image upload drag & drop
-    const uploadZone = document.querySelector('.image-upload');
+
+    // Image upload drag & drop (blog)
+    const uploadZone = document.querySelector('#editorPanel .image-upload');
     if (uploadZone) {
         uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
         uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
@@ -303,17 +500,35 @@ function setupEventListeners() {
         });
     }
 
+    // Image upload drag & drop (refs)
+    const refUploadZone = document.getElementById('refImageUploadZone');
+    if (refUploadZone) {
+        refUploadZone.addEventListener('dragover', e => { e.preventDefault(); refUploadZone.classList.add('drag-over'); });
+        refUploadZone.addEventListener('dragleave', () => refUploadZone.classList.remove('drag-over'));
+        refUploadZone.addEventListener('drop', e => {
+            e.preventDefault();
+            refUploadZone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file) { document.getElementById('refImageInput').files = e.dataTransfer.files; handleRefImageUpload({ target: { files: [file] } }); }
+        });
+    }
+
     // Close editor on escape
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             closeEditor();
+            closeRefEditor();
             cancelDelete();
+            cancelRefDelete();
         }
     });
 
     // Editor panel backdrop click
     document.getElementById('editorPanel').addEventListener('click', e => {
         if (e.target === document.getElementById('editorPanel')) closeEditor();
+    });
+    document.getElementById('refEditorPanel').addEventListener('click', e => {
+        if (e.target === document.getElementById('refEditorPanel')) closeRefEditor();
     });
 
     // Mobile sidebar
@@ -335,4 +550,7 @@ function setupEventListeners() {
 
     // Render filter tags
     renderFilterTags();
+
+    // Load refs data
+    loadRefs();
 }

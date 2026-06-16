@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./../eneliv1.png" type="image/png">
+    <title>Nos Références - ENELIV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8fafc;
+            margin-top: 80px;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background-color: #0B3041;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo { display: flex; align-items: center; cursor: pointer; }
+        .logo img { height: 1.2cm; width: 5.4cm; object-fit: contain; }
+        .logo-placeholder { width: 120px; height: 50px; background: linear-gradient(135deg, #7FB77E, #00ccff); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; }
+
+        .nav-menu { list-style: none; display: flex; gap: 2rem; align-items: center; }
+        .nav-menu a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .nav-menu a:hover { color: #7FB77E; }
+
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: #0B3041; border-radius: 8px; min-width: 320px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3); padding: 0.5rem 0; z-index: 100;
+            list-style: none;
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu li a { display: block; padding: 10px 20px; font-size: 13px; white-space: nowrap; }
+        .dropdown-menu li a:hover { background: rgba(127,183,126,0.15); color: #7FB77E; }
+
+        .cta-trapeze { background: #0B3041; border: 2px solid #7FB77E; padding: 8px 20px; clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%); }
+        .cta-text { color: #7FB77E !important; font-weight: bold; font-size: 13px; text-decoration: none; }
+
+        /* Burger */
+        .burger-menu { display: none; flex-direction: column; cursor: pointer; padding: 8px; z-index: 1001; }
+        .burger-line { width: 28px; height: 3px; background: white; margin: 4px 0; transition: all 0.3s ease; border-radius: 3px; }
+        .burger-menu.active .burger-line:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+        .burger-menu.active .burger-line:nth-child(2) { opacity: 0; }
+        .burger-menu.active .burger-line:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; top: 0; right: -100%; width: min(85vw, 400px); height: 100vh;
+            background: rgba(11, 48, 65, 0.98); backdrop-filter: blur(20px);
+            display: flex; flex-direction: column; padding: 100px 0 40px 0;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999;
+            overflow-y: auto; box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; }
+        .mobile-menu-overlay.active { display: block; }
+
+        .mobile-nav-section { padding: 0 30px; }
+        .mobile-nav-link { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; color: white; text-decoration: none; font-size: 16px; font-weight: 500; border-radius: 12px; transition: all 0.3s ease; }
+        .mobile-nav-link:hover { background: rgba(127, 183, 126, 0.15); color: #7FB77E; transform: translateX(8px); }
+
+        .mobile-dropdown { margin-bottom: 8px; }
+        .mobile-dropdown-toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 16px 20px; background: transparent; border: none; color: white; font-size: 16px; font-weight: 500; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; text-align: left; font-family: inherit; }
+        .mobile-dropdown-toggle:hover { background: rgba(127, 183, 126, 0.15); color: #7FB77E; }
+        .dropdown-arrow { width: 16px; height: 16px; transition: transform 0.3s ease; }
+        .dropdown-arrow::after { content: ''; display: block; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform 0.3s ease; }
+        .mobile-dropdown.active .dropdown-arrow::after { transform: rotate(-135deg); }
+        .mobile-dropdown-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding-left: 20px; }
+        .mobile-dropdown.active .mobile-dropdown-content { max-height: 400px; }
+        .mobile-dropdown-item { display: block; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 12px; padding: 9px 10px; border-radius: 8px; transition: all 0.3s ease; border-bottom: solid 2px #7FB77E; border-left: 2px solid transparent; }
+        .mobile-dropdown-item:hover { background: rgba(127, 183, 126, 0.1); color: #7FB77E; border-left-color: #7FB77E; transform: translateX(8px); }
+
+        @media (max-width: 983px) {
+            .burger-menu { display: flex; }
+            .nav-menu { display: none; }
+            .header { height: 70px !important; }
+            .logo img { height: 0.9cm !important; width: 4.5cm !important; margin-left: -40px; }
+        }
+
+        /* ===== PAGE CONTENT ===== */
+        .page-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(135deg, #0B3041 0%, #1e3c72 100%);
+            color: white;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CAROUSEL ===== */
+        .carousel-container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .carousel-wrapper {
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            touch-action: pan-y;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .carousel-track.dragging {
+            transition: none;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+
+        .slide-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slide-image-placeholder {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #0B3041, #1e3c72);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 4rem;
+        }
+
+        .slide-content {
+            padding: 24px;
+        }
+
+        .slide-date {
+            font-size: 0.8rem;
+            color: #7FB77E;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .slide-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+        }
+
+        /* Navigation arrows */
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid #0B3041;
+            background: white;
+            color: #0B3041;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: #0B3041;
+            color: white;
+        }
+
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .carousel-counter {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0B3041;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #7FB77E;
+            transform: scale(1.3);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .empty-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.4; }
+        .empty-title { font-size: 1.3rem; font-weight: 700; color: #0B3041; margin-bottom: 0.5rem; }
+        .empty-text { color: #666; font-size: 0.95rem; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: #0B3041;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        .containers { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-section h3 { font-size: 1.2rem; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: #7FB77E; }
+        .footer-section p { color: #b0c4d4; font-size: 0.95rem; line-height: 1.8; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 10px; }
+        .footer-section ul li a { color: #b0c4d4; text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .footer-section ul li a:hover { color: #7FB77E; }
+        .contact-item p { color: #b0c4d4; font-size: 0.95rem; margin-bottom: 10px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .footer-bottom p { color: #b0c4d4; font-size: 0.85rem; }
+        .footer-links a { color: #b0c4d4; text-decoration: none; margin-left: 20px; font-size: 0.85rem; }
+        .footer-links a:hover { color: #7FB77E; }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 1.8rem; }
+            .carousel-container { margin: 30px auto; }
+            .slide-content { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="./../logoblanc.png" alt="Logo">
+                <div class="logo-placeholder" style="display: none;">LOGO</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="./../nous/index.html">QUI SOMMES NOUS ?</a></li>
+                    <li><a href="./../besoin/index.html">VOS BESOINS</a></li>
+                    <li class="dropdown" onclick="toggleDropdown('expertiseDropdown')">
+                        <a href="javascript:void(0)">NOTRE EXPERTISE ▼</a>
+                        <ul id="expertiseDropdown" class="dropdown-menu">
+                            <li><a href="./../dpe/index.html">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a></li>
+                            <li><a href="./../DTG/index.html">DIAGNOSTIC TECHNIQUE GLOBAL</a></li>
+                            <li><a href="./../ppt/index.html">PLAN PLURIANNUEL DE TRAVAUX</a></li>
+                            <li><a href="./../AE/index.html">AUDIT ÉNERGÉTIQUE BÂTIMENT</a></li>
+                            <li><a href="./../renov/index.html">AUDIT ÉNERGÉTIQUE INDUSTRIE</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./../contacter/index.html">CONTACT</a></li>
+                    <li><a href="./../blog/index.html">BLOG</a></li>
+                    <li><a href="./../references/index.html" style="color: #7FB77E;">RÉFÉRENCES</a></li>
+                    <div class="cta-trapeze">
+                        <span><a class="cta-text" href="https://calendly.com/akrame-elhimass-eneliv/30min">PRENDRE RENDEZ-VOUS</a></span>
+                    </div>
+                </ul>
+
+                <div class="burger-menu" id="burgerMenu">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-section">
+            <div class="mobile-nav-item">
+                <a href="./../nous/index.html" class="mobile-nav-link">QUI SOMMES NOUS ?</a>
+            </div>
+            <div class="mobile-nav-item">
+                <a href="./../besoin/index.html" class="mobile-nav-link">VOS BESOINS</a>
+            </div>
+            <div class="mobile-dropdown" id="mobileExpertise">
+                <button class="mobile-dropdown-toggle">
+                    NOTRE EXPERTISE
+                    <span class="dropdown-arrow"></span>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="./../dpe/index.html" class="mobile-dropdown-item">DIAGNOSTIC DE PERFORMANCE ÉNERGÉTIQUE</a>
+                    <a href="./../DTG/index.html" class="mobile-dropdown-item">DIAGNOSTIC TECHNIQUE GLOBAL</a>
+                    <a href="./../ppt/index.html" class="mobile-dropdown-item">PLAN PLURIANNUEL DE TRAVAUX</a>
+                    <a href="./../AE/index.html" class="mobile-dropdown-item">AUDIT ÉNERGÉTIQUE BÂTIMENT</a>
+                    <a href="./../renov/index.html" class="mobile-dropdown-item">AUDIT ÉNERGÉTIQUE INDUSTRIE</a>
+                </div>
+            </div>
+            <div class="mobile-nav-item">
+                <a href="./../contacter/index.html" class="mobile-nav-link">CONTACT</a>
+            </div>
+            <div class="mobile-nav-item">
+                <a href="./../blog/index.html" class="mobile-nav-link">BLOG</a>
+            </div>
+            <div class="mobile-nav-item">
+                <a href="./../references/index.html" class="mobile-nav-link" style="color: #7FB77E;">RÉFÉRENCES</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Nos Références</h1>
+        <p>Découvrez nos réalisations et projets récents en audit énergétique et diagnostic</p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="carousel-container">
+        <div id="carouselContent"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="containers">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ENELIV</h3>
+                    <p>Bureau d'études thermiques spécialisé dans la performance énergétique des bâtiments. Nous accompagnons les particuliers, copropriétés et entreprises dans leurs projets de rénovation et de conformité réglementaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li><a href="./../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
+                        <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
+                        <li><a href="./../ppt/index.html">Plan Pluriannuel de Travaux</a></li>
+                        <li><a href="./../AE/index.html">Audit Énergétique</a></li>
+                        <li><a href="./../renov/index.html">Audit Énergétique Industrie</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="contact-item"><p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p></div>
+                    <div class="contact-item"><p>✆ +33 4 87 62 67 74</p></div>
+                    <div class="contact-item"><p>✉︎ contact@eneliv.fr</p></div>
+                    <div class="contact-item"><p>Lun-Jeu : 8h30-12h30 | 13h30-18h30<br>Ven-Sam : 8h30-12h30</p></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
+                <div class="footer-links">
+                    <a href="./../Mentions Légales/index.html">Mentions légales</a>
+                    <a href="./../Confidentialité/index.html">Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== CONFIGURATION — change this URL after Railway deployment =====
+        const API_URL = window.ENELIV_API_URL || 'https://your-app.railway.app';
+
+        let cachedRefs = [];
+
+        async function loadReferences() {
+            try {
+                const res = await fetch(API_URL + '/api/references');
+                if (!res.ok) throw new Error('API error');
+                cachedRefs = await res.json();
+                return cachedRefs;
+            } catch (err) {
+                console.error('Failed to load references:', err);
+                return [];
+            }
+        }
+
+        async function renderCarousel() {
+            const container = document.getElementById('carouselContent');
+            container.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Chargement...</div></div>';
+
+            const refs = await loadReferences();
+
+            if (refs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">📋</div>
+                        <div class="empty-title">Aucune référence pour le moment</div>
+                        <div class="empty-text">Nos réalisations seront bientôt disponibles ici.</div>
+                    </div>`;
+                return;
+            }
+
+            let slidesHTML = refs.map((ref, i) => {
+                const date = new Date(ref.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+                return `
+                <div class="carousel-slide">
+                    ${ref.image
+                        ? `<img class="slide-image" src="${ref.image}" alt="Référence">`
+                        : `<div class="slide-image-placeholder">🏗️</div>`}
+                    <div class="slide-content">
+                        <div class="slide-date">${date}</div>
+                        <div class="slide-text">${ref.text || ''}</div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            container.innerHTML = `
+                <div class="carousel-wrapper" id="carouselWrapper">
+                    <div class="carousel-track" id="carouselTrack">${slidesHTML}</div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn" onclick="goToSlide(currentSlide - 1)">◀</button>
+                    <span class="carousel-counter" id="counter">1 / ${refs.length}</span>
+                    <button class="carousel-btn" id="nextBtn" onclick="goToSlide(currentSlide + 1)">▶</button>
+                </div>
+                <div class="carousel-dots" id="dots">
+                    ${refs.map((_, i) => `<button class="carousel-dot${i === 0 ? ' active' : ''}" onclick="goToSlide(${i})"></button>`).join('')}
+                </div>`;
+
+            totalSlides = refs.length;
+            initSwipe();
+            updateNav();
+        }
+
+        let currentSlide = 0;
+        let totalSlides = 0;
+
+        function goToSlide(index) {
+            if (index < 0 || index >= totalSlides) return;
+            currentSlide = index;
+            const track = document.getElementById('carouselTrack');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateNav();
+        }
+
+        function updateNav() {
+            if (totalSlides === 0) return;
+            document.getElementById('counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function initSwipe() {
+            const wrapper = document.getElementById('carouselWrapper');
+            const track = document.getElementById('carouselTrack');
+            if (!wrapper || !track) return;
+
+            let startX = 0;
+            let currentX = 0;
+            let isDragging = false;
+
+            wrapper.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+                track.classList.add('dragging');
+            }, { passive: true });
+
+            wrapper.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                currentX = e.touches[0].clientX;
+                const diff = currentX - startX;
+                const offset = -(currentSlide * wrapper.offsetWidth) + diff;
+                track.style.transform = `translateX(${offset}px)`;
+            }, { passive: true });
+
+            wrapper.addEventListener('touchend', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.classList.remove('dragging');
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 60) {
+                    if (diff < 0 && currentSlide < totalSlides - 1) {
+                        goToSlide(currentSlide + 1);
+                    } else if (diff > 0 && currentSlide > 0) {
+                        goToSlide(currentSlide - 1);
+                    } else {
+                        goToSlide(currentSlide);
+                    }
+                } else {
+                    goToSlide(currentSlide);
+                }
+                currentX = 0;
+            });
+
+            // Mouse drag support
+            wrapper.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                isDragging = true;
+                track.classList.add('dragging');
+                e.preventDefault();
+            });
+
+            wrapper.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                currentX = e.clientX;
+                const diff = currentX - startX;
+                const offset = -(currentSlide * wrapper.offsetWidth) + diff;
+                track.style.transform = `translateX(${offset}px)`;
+            });
+
+            wrapper.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.classList.remove('dragging');
+                const diff = currentX - startX;
+
+                if (Math.abs(diff) > 60) {
+                    if (diff < 0 && currentSlide < totalSlides - 1) {
+                        goToSlide(currentSlide + 1);
+                    } else if (diff > 0 && currentSlide > 0) {
+                        goToSlide(currentSlide - 1);
+                    } else {
+                        goToSlide(currentSlide);
+                    }
+                } else {
+                    goToSlide(currentSlide);
+                }
+                currentX = 0;
+            });
+
+            wrapper.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    track.classList.remove('dragging');
+                    goToSlide(currentSlide);
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+                if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+            });
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', renderCarousel);
+
+        // Header scripts
+        function toggleDropdown(id) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu.id !== id) menu.classList.remove('show');
+            });
+            document.getElementById(id).classList.toggle('show');
+        }
+
+        document.getElementById('burgerMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            document.getElementById('burgerMenu').classList.toggle('active');
+            document.getElementById('mobileMenuOverlay').classList.toggle('active');
+        });
+
+        document.getElementById('mobileMenuOverlay').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('burgerMenu').classList.remove('active');
+            document.getElementById('mobileMenuOverlay').classList.remove('active');
+        });
+
+        function toggleMobileDropdown(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+
+        document.querySelector('.mobile-dropdown-toggle').addEventListener('click', () => {
+            toggleMobileDropdown('mobileExpertise');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+            }
+        });
+    </script>
+</body>
+</html>
