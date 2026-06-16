@@ -382,6 +382,7 @@ function openRefEditor(id = null) {
         if (!ref) return;
         title.textContent = '✏️ Modifier la référence';
         document.getElementById('refTitle').value = ref.title || '';
+        document.getElementById('refDate').value = ref.created_at ? new Date(ref.created_at).toISOString().split('T')[0] : '';
         document.getElementById('refText').value = ref.text || '';
         if (ref.image) {
             document.getElementById('refImagePreview').src = ref.image;
@@ -390,6 +391,7 @@ function openRefEditor(id = null) {
     } else {
         title.textContent = '➕ Nouvelle référence';
         document.getElementById('refTitle').value = '';
+        document.getElementById('refDate').value = new Date().toISOString().split('T')[0];
         document.getElementById('refText').value = '';
         document.getElementById('refImagePreview').src = '';
         document.getElementById('refImageUploadZone').classList.remove('has-image');
@@ -407,9 +409,11 @@ function closeRefEditor() {
 
 async function saveRef() {
     const title = document.getElementById('refTitle').value.trim();
+    const dateVal = document.getElementById('refDate').value;
     const text = document.getElementById('refText').value.trim();
     const imageEl = document.getElementById('refImagePreview');
     const image = imageEl.src && !imageEl.src.includes('about:blank') ? imageEl.src : '';
+    const created_at = dateVal ? new Date(dateVal).toISOString() : new Date().toISOString();
 
     if (!title && !text && !image) { showToast('Ajoutez au moins un titre, une image ou du texte', 'error'); return; }
 
@@ -418,7 +422,7 @@ async function saveRef() {
             const res = await fetch(API_URL + '/api/references/' + editingRefId, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, text, image })
+                body: JSON.stringify({ title, text, image, created_at })
             });
             if (!res.ok) throw new Error('Update failed');
             showToast('Référence modifiée ✅', 'success');
@@ -426,7 +430,7 @@ async function saveRef() {
             const res = await fetch(API_URL + '/api/references', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, text, image })
+                body: JSON.stringify({ title, text, image, created_at })
             });
             if (!res.ok) throw new Error('Create failed');
             showToast('Référence ajoutée ✅', 'success');

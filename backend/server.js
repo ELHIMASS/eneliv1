@@ -46,11 +46,11 @@ app.get('/api/references', async (req, res) => {
 // POST new reference
 app.post('/api/references', async (req, res) => {
     try {
-        const { id, title, image, text } = req.body;
+        const { id, title, image, text, created_at } = req.body;
         const refId = id || 'ref_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
         const result = await pool.query(
-            'INSERT INTO references_posts (id, title, image, text) VALUES ($1, $2, $3, $4) RETURNING *',
-            [refId, title || '', image || '', text || '']
+            'INSERT INTO references_posts (id, title, image, text, created_at) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [refId, title || '', image || '', text || '', created_at || new Date().toISOString()]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -62,10 +62,10 @@ app.post('/api/references', async (req, res) => {
 // PUT update reference
 app.put('/api/references/:id', async (req, res) => {
     try {
-        const { title, image, text } = req.body;
+        const { title, image, text, created_at } = req.body;
         const result = await pool.query(
-            'UPDATE references_posts SET title = $1, image = $2, text = $3, updated_at = NOW() WHERE id = $4 RETURNING *',
-            [title || '', image || '', text || '', req.params.id]
+            'UPDATE references_posts SET title = $1, image = $2, text = $3, created_at = COALESCE($4, created_at), updated_at = NOW() WHERE id = $5 RETURNING *',
+            [title || '', image || '', text || '', created_at || null, req.params.id]
         );
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Référence non trouvée' });
