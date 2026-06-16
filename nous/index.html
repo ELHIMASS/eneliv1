@@ -1701,18 +1701,12 @@
     <footer class="footer">
         <div class="containers">
             <div class="footer-content">
-                <!-- Informations de l'entreprise -->
-                <div class="footer-section company-info">
-                    <div class="company-logo">
-                        <img src="./../logoblanc.png" alt="" style="width: 150px;">
-                    </div>
-                    <p>Eneliv, bureau d'études technique en énergie, environnement et diagnostics immobiliers, vous accompagne partout en France pour transformer vos obligations réglementaires en opportunités concrètes: sauvegarde du bâtiment, économies d’énergie et la valorisation de votre patrimoine.</p>
-                    
-                </div>
-
-                <!-- Nos services -->
                 <div class="footer-section">
-                    <h3>Nos Expertises</h3>
+                    <h3>ENELIV</h3>
+                    <p>Bureau d'études thermiques spécialisé dans la performance énergétique des bâtiments. Nous accompagnons les particuliers, copropriétés et entreprises dans leurs projets de rénovation et de conformité réglementaire.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Nos Services</h3>
                     <ul>
                         <li><a href="./../dpe/index.html">DPE - Diagnostic de Performance Énergétique</a></li>
                         <li><a href="./../DTG/index.html">DTG - Diagnostic Technique Global</a></li>
@@ -1721,33 +1715,18 @@
                         <li><a href="./../renov/index.html">Audit Énergétique Industrie</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact -->
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <div class="contact-item">
-                        <p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p>
-                    </div>
-                    <div class="contact-item">
-                        
-                        <p>✆     +33 4 87 62 67 74</p>
-                    </div>
-                    <div class="contact-item">
-                        <p>✉︎ contact@eneliv.fr</p>
-                    </div>
-                    <div class="contact-item">
-                        <p>Lun-Jeu : 8h30-12h30 | 13h30-18h30<br>Ven-Sam : 8h30-12h30</p>
-                    </div>
+                    <div class="contact-item"><p>⚲ 13 Cr de Verdun Gensoul<br>69002 LYON, France</p></div>
+                    <div class="contact-item"><p>✆ +33 4 87 62 67 74</p></div>
+                    <div class="contact-item"><p>✉︎ contact@eneliv.fr</p></div>
+                    <div class="contact-item"><p>Lun-Jeu : 8h30-12h30 | 13h30-18h30<br>Ven-Sam : 8h30-12h30</p></div>
                 </div>
-
-                
             </div>
-
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; 2025 ENELIV. Tous droits réservés.</p>
                 <div class="footer-links">
-                  <a href="./../Mentions Légales/index.html">Mentions légales</a>
+                    <a href="./../Mentions Légales/index.html">Mentions légales</a>
                     <a href="./../Confidentialité/index.html">Confidentialité</a>
                 </div>
             </div>
@@ -2046,42 +2025,43 @@ console.log('Script chargé successfully');
 
 <!-- Floating CTA -->
 <a href="https://calendly.com/akrame-elhimass-eneliv/30min" class="floating-cta" target="_blank">
-    <span class="floating-cta-icon">📅</span>
-    <span class="floating-cta-text">PRENDRE RENDEZ-VOUS</span>
+    PRENDRE RENDEZ-VOUS
 </a>
 <style>
 .floating-cta {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: linear-gradient(135deg, #7FB77E, #5a9e58);
+    background: #7FB77E;
     color: white;
     text-decoration: none;
-    padding: 14px 24px;
-    border-radius: 50px;
+    padding: 14px 28px;
+    border-radius: 6px;
     font-weight: 700;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 6px 25px rgba(127,183,126,0.4);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(127,183,126,0.35);
     z-index: 9999;
     transition: all 0.3s ease;
     font-family: Arial, sans-serif;
-    letter-spacing: 0.5px;
+    animation: ctaPulse 2s ease-in-out infinite;
 }
 .floating-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px rgba(127,183,126,0.5);
-    background: linear-gradient(135deg, #6fa86d, #4a8e48);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(127,183,126,0.45);
+    background: #6fa86d;
+    animation: none;
 }
-.floating-cta-icon { font-size: 1.1rem; }
+@keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(127,183,126,0.35); }
+    50% { box-shadow: 0 4px 25px rgba(127,183,126,0.65); }
+}
 @media (max-width: 768px) {
     .floating-cta {
         bottom: 20px;
         right: 20px;
-        padding: 12px 18px;
-        font-size: 0.8rem;
+        padding: 12px 20px;
+        font-size: 0.75rem;
     }
 }
 </style>
