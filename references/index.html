@@ -119,138 +119,126 @@
             margin: 0 auto;
         }
 
-        /* ===== CAROUSEL ===== */
-        .carousel-container {
-            max-width: 700px;
+        /* ===== REFERENCES GRID ===== */
+        .refs-container {
+            max-width: 900px;
             margin: 50px auto;
             padding: 0 20px;
-            position: relative;
         }
 
-        .carousel-wrapper {
-            overflow: hidden;
-            border-radius: 16px;
-            position: relative;
+        .refs-page {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .ref-card {
             background: white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            touch-action: pan-y;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
+        .ref-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
         }
 
-        .carousel-track.dragging {
-            transition: none;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
-        }
-
-        .slide-image {
+        .ref-image {
             width: 100%;
-            aspect-ratio: 4/3;
+            aspect-ratio: 16/9;
             object-fit: cover;
             display: block;
         }
 
-        .slide-image-placeholder {
+        .ref-image-placeholder {
             width: 100%;
-            aspect-ratio: 4/3;
+            aspect-ratio: 16/9;
             background: linear-gradient(135deg, #0B3041, #1e3c72);
             display: flex;
             align-items: center;
             justify-content: center;
             color: rgba(255,255,255,0.3);
-            font-size: 4rem;
+            font-size: 3rem;
         }
 
-        .slide-content {
-            padding: 24px;
+        .ref-content {
+            padding: 20px 24px 24px;
         }
 
-        .slide-date {
-            font-size: 0.8rem;
+        .ref-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0B3041;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .ref-date {
+            font-size: 0.78rem;
             color: #7FB77E;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .slide-text {
-            font-size: 1rem;
+        .ref-text {
+            font-size: 0.95rem;
             line-height: 1.7;
-            color: #333;
+            color: #555;
         }
 
-        /* Navigation arrows */
-        .carousel-nav {
+        /* Pagination */
+        .pagination {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            margin-top: 24px;
+            gap: 12px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        .carousel-btn {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            border: 2px solid #0B3041;
+        .page-btn {
+            min-width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
             background: white;
             color: #0B3041;
-            font-size: 1.2rem;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 14px;
+            font-family: inherit;
         }
 
-        .carousel-btn:hover {
+        .page-btn:hover {
+            border-color: #7FB77E;
+            background: rgba(127,183,126,0.08);
+        }
+
+        .page-btn.active {
             background: #0B3041;
             color: white;
+            border-color: #0B3041;
         }
 
-        .carousel-btn:disabled {
-            opacity: 0.3;
+        .page-btn:disabled {
+            opacity: 0.35;
             cursor: not-allowed;
         }
 
-        .carousel-counter {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #0B3041;
-            min-width: 60px;
+        .page-info {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 10px;
             text-align: center;
-        }
-
-        /* Dots */
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .carousel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #ddd;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: #7FB77E;
-            transform: scale(1.3);
         }
 
         /* Empty state */
@@ -263,6 +251,11 @@
         .empty-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.4; }
         .empty-title { font-size: 1.3rem; font-weight: 700; color: #0B3041; margin-bottom: 0.5rem; }
         .empty-text { color: #666; font-size: 0.95rem; }
+
+        @media (max-width: 600px) {
+            .ref-content { padding: 16px 18px 20px; }
+            .ref-title { font-size: 1.05rem; }
+        }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -373,9 +366,9 @@
         <p>Découvrez nos réalisations et projets récents en audit énergétique et diagnostic</p>
     </div>
 
-    <!-- Carousel -->
-    <div class="carousel-container">
-        <div id="carouselContent"></div>
+    <!-- References -->
+    <div class="refs-container">
+        <div id="refsContent"></div>
     </div>
 
     <!-- Footer -->
@@ -415,30 +408,25 @@
     </footer>
 
     <script>
-        // ===== CONFIGURATION — change this URL after Railway deployment =====
         const API_URL = window.ENELIV_API_URL || 'https://eneliv1-production.up.railway.app';
-
-        let cachedRefs = [];
+        const PER_PAGE = 4;
+        let allRefs = [];
+        let currentPage = 1;
 
         async function loadReferences() {
             try {
                 const res = await fetch(API_URL + '/api/references');
                 if (!res.ok) throw new Error('API error');
-                cachedRefs = await res.json();
-                return cachedRefs;
+                allRefs = await res.json();
             } catch (err) {
                 console.error('Failed to load references:', err);
-                return [];
+                allRefs = [];
             }
         }
 
-        async function renderCarousel() {
-            const container = document.getElementById('carouselContent');
-            container.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Chargement...</div></div>';
-
-            const refs = await loadReferences();
-
-            if (refs.length === 0) {
+        function renderPage() {
+            const container = document.getElementById('refsContent');
+            if (allRefs.length === 0) {
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-icon">📋</div>
@@ -448,155 +436,56 @@
                 return;
             }
 
-            let slidesHTML = refs.map((ref, i) => {
+            const totalPages = Math.ceil(allRefs.length / PER_PAGE);
+            if (currentPage > totalPages) currentPage = totalPages;
+            const start = (currentPage - 1) * PER_PAGE;
+            const pageRefs = allRefs.slice(start, start + PER_PAGE);
+
+            const cardsHTML = pageRefs.map(ref => {
                 const date = new Date(ref.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
                 return `
-                <div class="carousel-slide">
+                <div class="ref-card">
                     ${ref.image
-                        ? `<img class="slide-image" src="${ref.image}" alt="Référence">`
-                        : `<div class="slide-image-placeholder">🏗️</div>`}
-                    <div class="slide-content">
-                        <div class="slide-date">${date}</div>
-                        <div class="slide-text">${ref.text || ''}</div>
+                        ? `<img class="ref-image" src="${ref.image}" alt="${ref.title || 'Référence'}">`
+                        : `<div class="ref-image-placeholder">🏗️</div>`}
+                    <div class="ref-content">
+                        ${ref.title ? `<div class="ref-title">${ref.title}</div>` : ''}
+                        <div class="ref-date">${date}</div>
+                        ${ref.text ? `<div class="ref-text">${ref.text}</div>` : ''}
                     </div>
                 </div>`;
             }).join('');
 
-            container.innerHTML = `
-                <div class="carousel-wrapper" id="carouselWrapper">
-                    <div class="carousel-track" id="carouselTrack">${slidesHTML}</div>
-                </div>
-                <div class="carousel-nav">
-                    <button class="carousel-btn" id="prevBtn" onclick="goToSlide(currentSlide - 1)">◀</button>
-                    <span class="carousel-counter" id="counter">1 / ${refs.length}</span>
-                    <button class="carousel-btn" id="nextBtn" onclick="goToSlide(currentSlide + 1)">▶</button>
-                </div>
-                <div class="carousel-dots" id="dots">
-                    ${refs.map((_, i) => `<button class="carousel-dot${i === 0 ? ' active' : ''}" onclick="goToSlide(${i})"></button>`).join('')}
-                </div>`;
-
-            totalSlides = refs.length;
-            initSwipe();
-            updateNav();
-        }
-
-        let currentSlide = 0;
-        let totalSlides = 0;
-
-        function goToSlide(index) {
-            if (index < 0 || index >= totalSlides) return;
-            currentSlide = index;
-            const track = document.getElementById('carouselTrack');
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            updateNav();
-        }
-
-        function updateNav() {
-            if (totalSlides === 0) return;
-            document.getElementById('counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
-            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlide);
-            });
-        }
-
-        function initSwipe() {
-            const wrapper = document.getElementById('carouselWrapper');
-            const track = document.getElementById('carouselTrack');
-            if (!wrapper || !track) return;
-
-            let startX = 0;
-            let currentX = 0;
-            let isDragging = false;
-
-            wrapper.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-                track.classList.add('dragging');
-            }, { passive: true });
-
-            wrapper.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                currentX = e.touches[0].clientX;
-                const diff = currentX - startX;
-                const offset = -(currentSlide * wrapper.offsetWidth) + diff;
-                track.style.transform = `translateX(${offset}px)`;
-            }, { passive: true });
-
-            wrapper.addEventListener('touchend', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.classList.remove('dragging');
-                const diff = currentX - startX;
-
-                if (Math.abs(diff) > 60) {
-                    if (diff < 0 && currentSlide < totalSlides - 1) {
-                        goToSlide(currentSlide + 1);
-                    } else if (diff > 0 && currentSlide > 0) {
-                        goToSlide(currentSlide - 1);
-                    } else {
-                        goToSlide(currentSlide);
-                    }
-                } else {
-                    goToSlide(currentSlide);
+            let paginationHTML = '';
+            if (totalPages > 1) {
+                let btns = `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>◀ Précédent</button>`;
+                for (let i = 1; i <= totalPages; i++) {
+                    btns += `<button class="page-btn${i === currentPage ? ' active' : ''}" onclick="goToPage(${i})">${i}</button>`;
                 }
-                currentX = 0;
-            });
+                btns += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Suivant ▶</button>`;
+                paginationHTML = `<div class="pagination">${btns}</div>
+                    <div class="page-info">${start + 1}–${Math.min(start + PER_PAGE, allRefs.length)} sur ${allRefs.length} référence${allRefs.length > 1 ? 's' : ''}</div>`;
+            }
 
-            // Mouse drag support
-            wrapper.addEventListener('mousedown', (e) => {
-                startX = e.clientX;
-                isDragging = true;
-                track.classList.add('dragging');
-                e.preventDefault();
-            });
-
-            wrapper.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                currentX = e.clientX;
-                const diff = currentX - startX;
-                const offset = -(currentSlide * wrapper.offsetWidth) + diff;
-                track.style.transform = `translateX(${offset}px)`;
-            });
-
-            wrapper.addEventListener('mouseup', () => {
-                if (!isDragging) return;
-                isDragging = false;
-                track.classList.remove('dragging');
-                const diff = currentX - startX;
-
-                if (Math.abs(diff) > 60) {
-                    if (diff < 0 && currentSlide < totalSlides - 1) {
-                        goToSlide(currentSlide + 1);
-                    } else if (diff > 0 && currentSlide > 0) {
-                        goToSlide(currentSlide - 1);
-                    } else {
-                        goToSlide(currentSlide);
-                    }
-                } else {
-                    goToSlide(currentSlide);
-                }
-                currentX = 0;
-            });
-
-            wrapper.addEventListener('mouseleave', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    track.classList.remove('dragging');
-                    goToSlide(currentSlide);
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
-                if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
-            });
+            container.innerHTML = `<div class="refs-page">${cardsHTML}</div>${paginationHTML}`;
         }
 
-        // Init
-        document.addEventListener('DOMContentLoaded', renderCarousel);
+        function goToPage(page) {
+            const totalPages = Math.ceil(allRefs.length / PER_PAGE);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderPage();
+            window.scrollTo({ top: document.querySelector('.refs-container').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        async function init() {
+            const container = document.getElementById('refsContent');
+            container.innerHTML = '<div class="empty-state"><div class="empty-icon">⏳</div><div class="empty-title">Chargement...</div></div>';
+            await loadReferences();
+            renderPage();
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
 
         // Header scripts
         function toggleDropdown(id) {

@@ -360,6 +360,7 @@ function renderRefsGrid() {
                 : `<div class="card-image-placeholder">🏗️</div>`}
             <div class="card-body">
                 <span class="card-tag">Référence</span>
+                ${ref.title ? `<h3 class="card-title" style="margin:4px 0 6px;font-size:1rem;color:#0B3041;">${ref.title}</h3>` : ''}
                 <p class="card-excerpt">${excerpt}</p>
                 <div class="card-date">📅 ${date}</div>
                 <div class="card-actions">
@@ -380,6 +381,7 @@ function openRefEditor(id = null) {
         const ref = references.find(r => r.id === id);
         if (!ref) return;
         title.textContent = '✏️ Modifier la référence';
+        document.getElementById('refTitle').value = ref.title || '';
         document.getElementById('refText').value = ref.text || '';
         if (ref.image) {
             document.getElementById('refImagePreview').src = ref.image;
@@ -387,6 +389,7 @@ function openRefEditor(id = null) {
         }
     } else {
         title.textContent = '➕ Nouvelle référence';
+        document.getElementById('refTitle').value = '';
         document.getElementById('refText').value = '';
         document.getElementById('refImagePreview').src = '';
         document.getElementById('refImageUploadZone').classList.remove('has-image');
@@ -403,18 +406,19 @@ function closeRefEditor() {
 }
 
 async function saveRef() {
+    const title = document.getElementById('refTitle').value.trim();
     const text = document.getElementById('refText').value.trim();
     const imageEl = document.getElementById('refImagePreview');
     const image = imageEl.src && !imageEl.src.includes('about:blank') ? imageEl.src : '';
 
-    if (!text && !image) { showToast('Ajoutez au moins une image ou du texte', 'error'); return; }
+    if (!title && !text && !image) { showToast('Ajoutez au moins un titre, une image ou du texte', 'error'); return; }
 
     try {
         if (editingRefId) {
             const res = await fetch(API_URL + '/api/references/' + editingRefId, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text, image })
+                body: JSON.stringify({ title, text, image })
             });
             if (!res.ok) throw new Error('Update failed');
             showToast('Référence modifiée ✅', 'success');
@@ -422,7 +426,7 @@ async function saveRef() {
             const res = await fetch(API_URL + '/api/references', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text, image })
+                body: JSON.stringify({ title, text, image })
             });
             if (!res.ok) throw new Error('Create failed');
             showToast('Référence ajoutée ✅', 'success');
