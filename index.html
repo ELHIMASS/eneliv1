@@ -3946,16 +3946,222 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </script>
 <!-- Floating CTA -->
-<a href="https://calendly.com/akrame-elhimass-eneliv/30min" class="floating-cta" target="_blank">
-    PRENDRE RENDEZ-VOUS
-</a>
+<div class="fcta-wrap" id="fctaWrap">
+    <div class="fcta-ring"></div>
+    <div class="fcta-ring"></div>
+    <div class="fcta-ring"></div>
+    <a href="https://calendly.com/akrame-elhimass-eneliv/30min" class="floating-cta" target="_blank" id="fctaBtn">
+        <svg class="fcta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        <span class="fcta-label">PRENDRE RENDEZ-VOUS</span>
+    </a>
+</div>
 <style>
-.floating-cta {
-    position: fixed;bottom: 60px;right: 30px;background: #7FB77E;color: white;text-decoration: none;padding: 10px 20px;border-radius: 6px;font-weight: 700;font-size: 0.75rem;letter-spacing: 1px;box-shadow: 0 4px 15px rgba(127,183,126,0.35);z-index: 9999;transition: all 0.3s ease;font-family: Arial, sans-serif;animation: ctaPulse 2s ease-in-out infinite;
+/* ===== FLOATING CTA WRAP ===== */
+.fcta-wrap {
+    position: fixed;
+    bottom: 60px;
+    right: 30px;
+    z-index: 9999;
+    transition: transform 0.2s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s ease;
 }
-.floating-cta:hover {transform: translateY(-2px);box-shadow: 0 8px 25px rgba(127,183,126,0.45);background: #6fa86d;animation: none;}
-@keyframes ctaPulse {0%, 100% { box-shadow: 0 4px 15px rgba(127,183,126,0.35); }50% { box-shadow: 0 4px 25px rgba(127,183,126,0.65); }}
-@media (max-width: 768px) {.floating-cta {bottom: 50px;right: 20px;padding: 8px 16px;font-size: 0.7rem;}}
+
+/* Anneaux de pouls */
+.fcta-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    border: 2px solid rgba(127,183,126,0.65);
+    pointer-events: none;
+    animation: fctaRingOut 2.4s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+.fcta-ring:nth-child(2) { animation-delay: 0.8s; }
+.fcta-ring:nth-child(3) { animation-delay: 1.6s; }
+
+/* Bouton principal */
+.floating-cta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: linear-gradient(135deg, #7FB77E, #5a9e59, #7FB77E);
+    background-size: 200% 200%;
+    color: white;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 6px 24px rgba(127,183,126,0.45), 0 2px 8px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+    animation: fctaBounce 3s ease-in-out infinite, fctaGrad 4s ease-in-out infinite;
+    overflow: hidden;
+    will-change: transform;
+    cursor: pointer;
+}
+
+/* Shimmer diagonal */
+.floating-cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 55%;
+    height: 200%;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%);
+    animation: fctaShimmer 2.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Bordure intérieure lumineuse */
+.floating-cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.28);
+    pointer-events: none;
+}
+
+.floating-cta:hover {
+    box-shadow: 0 16px 44px rgba(127,183,126,0.65), 0 4px 14px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.25);
+    animation-play-state: paused;
+}
+.floating-cta:hover::before { animation-duration: 0.85s; }
+
+/* Icône calendrier animée */
+.fcta-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.5));
+    animation: fctaIconPop 4s ease-in-out infinite;
+}
+
+.fcta-label { white-space: nowrap; }
+
+/* Particules vertes (créées en JS) */
+.fcta-spark {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* ---- Keyframes ---- */
+@keyframes fctaRingOut {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    100% { transform: scale(1.75); opacity: 0;   }
+}
+@keyframes fctaBounce {
+    0%, 100% { transform: translateY(0);   }
+    50%       { transform: translateY(-8px); }
+}
+@keyframes fctaGrad {
+    0%, 100% { background-position: 0% 50%;   }
+    50%       { background-position: 100% 50%; }
+}
+@keyframes fctaShimmer {
+    0%        { left: -80%; opacity: 0; }
+    10%       { opacity: 1; }
+    65%, 100% { left: 130%; opacity: 0; }
+}
+@keyframes fctaIconPop {
+    0%, 65%, 100% { transform: scale(1) rotate(0deg); }
+    73%            { transform: scale(1.3) rotate(-12deg); }
+    82%            { transform: scale(1.1) rotate(8deg);  }
+    90%            { transform: scale(1.05) rotate(-3deg); }
+}
+
+@media (max-width: 768px) {
+    .fcta-wrap { bottom: 50px; right: 20px; }
+    .floating-cta { padding: 10px 18px; font-size: 0.7rem; }
+}
+</style>
+
+<script>
+(function() {
+    const wrap = document.getElementById('fctaWrap');
+    const btn  = document.getElementById('fctaBtn');
+    if (!wrap || !btn) return;
+
+    // --- Particules vertes ---
+    const COLORS = ['#fff', '#a8e6a8', '#7FB77E', '#c8f5c8', '#5a9e59'];
+    function emitSpark() {
+        const s = document.createElement('div');
+        s.className = 'fcta-spark';
+        const bw = btn.offsetWidth, bh = btn.offsetHeight;
+        const edge = Math.random();
+        let sx, sy;
+        if      (edge < 0.25) { sx = Math.random() * bw; sy = 0;  }
+        else if (edge < 0.5)  { sx = bw; sy = Math.random() * bh; }
+        else if (edge < 0.75) { sx = Math.random() * bw; sy = bh; }
+        else                  { sx = 0;  sy = Math.random() * bh; }
+        const size = 3 + Math.random() * 4;
+        const tx   = (Math.random() - 0.5) * 65;
+        const ty   = -(22 + Math.random() * 52);
+        s.style.cssText = `left:${sx}px;top:${sy}px;width:${size}px;height:${size}px;background:${COLORS[Math.floor(Math.random()*COLORS.length)]};box-shadow:0 0 ${size*2}px #7FB77E;`;
+        wrap.appendChild(s);
+        s.animate([
+            { transform: 'translate(0,0) scale(1)', opacity: 0.95 },
+            { transform: `translate(${tx}px,${ty}px) scale(0)`, opacity: 0 }
+        ], { duration: 750 + Math.random() * 650, easing: 'ease-out', fill: 'forwards' })
+        .onfinish = () => s.remove();
+    }
+    let sparkTimer = setInterval(emitSpark, 480);
+
+    // --- Effet magnétique ---
+    document.addEventListener('mousemove', function(e) {
+        const r  = wrap.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top  + r.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 180) {
+            const pull = (1 - dist / 180) * 13;
+            wrap.style.transform = `translate(${(dx/dist)*pull}px,${(dy/dist)*pull}px)`;
+            btn.style.animationPlayState = 'paused';
+        } else {
+            wrap.style.transform = '';
+            btn.style.animationPlayState = '';
+        }
+    });
+
+    // --- Ripple au clic ---
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const r = btn.getBoundingClientRect();
+        const d = Math.max(btn.offsetWidth, btn.offsetHeight) * 2;
+        const rpl = document.createElement('span');
+        rpl.style.cssText = `position:absolute;border-radius:50%;width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px;background:rgba(255,255,255,0.3);pointer-events:none;z-index:10;`;
+        btn.appendChild(rpl);
+        rpl.animate([
+            { transform: 'scale(0)', opacity: 1 },
+            { transform: 'scale(1)', opacity: 0 }
+        ], { duration: 480, easing: 'ease-out', fill: 'forwards' })
+        .onfinish = () => { rpl.remove(); window.open(btn.href, '_blank'); };
+    });
+
+    // --- Masquer au scroll si footer visible ---
+    let hidden = false;
+    window.addEventListener('scroll', function() {
+        const footer = document.querySelector('.footer');
+        if (!footer) return;
+        const shouldHide = footer.getBoundingClientRect().top < window.innerHeight;
+        if (shouldHide && !hidden) {
+            wrap.style.opacity = '0'; wrap.style.pointerEvents = 'none';
+            clearInterval(sparkTimer); hidden = true;
+        } else if (!shouldHide && hidden) {
+            wrap.style.opacity = '1'; wrap.style.pointerEvents = '';
+            sparkTimer = setInterval(emitSpark, 480); hidden = false;
+        }
+    });
+})();
+</script>
 .footer{background-color:#0B3041;color:white;padding:60px 0 20px;margin-top:80px}.containers{max-width:1200px;margin:0 auto;padding:0 20px}.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;margin-bottom:40px}.footer-section h3{font-size:1.2rem;margin-bottom:20px;position:relative;padding-bottom:10px}.footer-section h3::after{content:'';position:absolute;bottom:0;left:0;width:40px;height:3px;background:#7FB77E}.footer-section p{color:#b0c4d4;font-size:0.95rem;line-height:1.8}.footer-section ul{list-style:none}.footer-section ul li{margin-bottom:10px}.footer-section ul li a{color:#b0c4d4;text-decoration:none;font-size:0.95rem;transition:color 0.3s}.footer-section ul li a:hover{color:#7FB77E}.contact-item p{color:#b0c4d4;font-size:0.95rem;margin-bottom:10px}.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:0}.footer-bottom p{color:#b0c4d4;font-size:0.85rem}.footer-links a{color:#b0c4d4;text-decoration:none;margin-left:20px;font-size:0.85rem}.footer-links a:hover{color:#7FB77E}
 </style>
 </body>
