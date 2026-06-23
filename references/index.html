@@ -1063,12 +1063,18 @@
         });
 
         function toggleMobileDropdown(id) {
-            document.getElementById(id).classList.toggle('active');
+            const dropdown = document.getElementById(id);
+            if (dropdown) {
+                dropdown.classList.toggle('active');
+            }
         }
 
-        document.querySelector('.mobile-dropdown-toggle').addEventListener('click', () => {
-            toggleMobileDropdown('mobileExpertise');
-        });
+        const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
+        if (mobileDropdownToggle) {
+            mobileDropdownToggle.addEventListener('click', () => {
+                toggleMobileDropdown('mobileExpertise');
+            });
+        }
 
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.dropdown')) {
