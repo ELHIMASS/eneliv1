@@ -4140,19 +4140,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Ripple au clic ---
+    // --- Ripple au clic (visuel uniquement, sans bloquer la navigation) ---
     btn.addEventListener('click', function(e) {
-        e.preventDefault();
         const r = btn.getBoundingClientRect();
+        const cx = (e.clientX || r.left + r.width / 2) - r.left;
+        const cy = (e.clientY || r.top + r.height / 2) - r.top;
         const d = Math.max(btn.offsetWidth, btn.offsetHeight) * 2;
         const rpl = document.createElement('span');
-        rpl.style.cssText = `position:absolute;border-radius:50%;width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px;background:rgba(255,255,255,0.3);pointer-events:none;z-index:10;`;
+        rpl.style.cssText = `position:absolute;border-radius:50%;width:${d}px;height:${d}px;left:${cx-d/2}px;top:${cy-d/2}px;background:rgba(255,255,255,0.3);pointer-events:none;z-index:10;`;
         btn.appendChild(rpl);
         rpl.animate([
             { transform: 'scale(0)', opacity: 1 },
             { transform: 'scale(1)', opacity: 0 }
-        ], { duration: 480, easing: 'ease-out', fill: 'forwards' })
-        .onfinish = () => { rpl.remove(); window.open(btn.href, '_blank'); };
+        ], { duration: 400, easing: 'ease-out', fill: 'forwards' })
+        .onfinish = () => rpl.remove();
+        // Pas de preventDefault — le lien s'ouvre normalement
     });
 
     // --- Masquer au scroll si footer visible ---
