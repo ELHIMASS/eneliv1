@@ -4077,8 +4077,17 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 
 @media (max-width: 768px) {
-    .fcta-wrap { bottom: 50px; right: 20px; }
-    .floating-cta { padding: 10px 18px; font-size: 0.7rem; }
+    .fcta-wrap { bottom: 24px; right: 16px; }
+    .floating-cta {
+        padding: 0;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        justify-content: center;
+    }
+    .fcta-label { display: none; }
+    .fcta-icon { width: 24px; height: 24px; }
+    .fcta-ring { border-radius: 50%; }
 }
 </style>
 
