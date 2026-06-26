@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: eneliv-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: eneliv
+      POSTGRES_USER: eneliv
+      POSTGRES_PASSWORD: Ism@ilN@s2004
+    volumes:
+      - eneliv_db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: eneliv-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://eneliv:Ism%40ilN%40s2004@postgres:5432/eneliv
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+
+volumes:
+  eneliv_db_data:
