@@ -302,7 +302,7 @@ function switchTab(tab) {
 }
 
 // ===== REFERENCES MANAGEMENT (Railway API) =====
-const API_URL = window.ENELIV_API_URL || 'http://192.168.1.25:3000';
+const API_URL = window.ENELIV_API_URL || 'https://api.eneliv.fr';
 
 let references = [];
 let editingRefId = null;
